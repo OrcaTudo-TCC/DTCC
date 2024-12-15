@@ -13,7 +13,7 @@
 
 - 🌱 **João Pedro Menezes**
 
-- ⚡ **Foco, Força e Fé**
+ <h3 align="center">⚡ **Foco, Força e Fé**</h3>
 
 
 
