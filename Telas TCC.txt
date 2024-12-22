@@ -1,0 +1,15 @@
+TELAS PROJETO TCC:
+
+-Landing Page; (Alex)
+-Home; (Alex)
+-Tela de Perfil p/ Fornecedor; (Alex)
+-Tela de Perfil Usuario; (Alex)
+-Dashboard; (Alex)
+-Cadastro/Fornecedores; (João Menezes)
+-Cadastro/Clientes; (João Menezes)
+-Catalogo de Itens; (João Menezes)
+-Carrinho de compras;
+-Gestão/Fornecedor; (Murilo)
+-Tela das Cotações de Preço; (Murilo)
+-Tela de Leilão;(Murilo)
+-Tela de Histórico de Cotações; (Murilo)
