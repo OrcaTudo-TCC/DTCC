@@ -1,6 +1,6 @@
 Data: [04/01/25]
 Hora de início: [23:21]
-Hora de término: [hh:mm]
+Hora de término: [23:50]
 Participantes: [Murilo,Alex Alves, João Pedro Menezes, João Pedro Xavier]
 Facilitador: [João Pedro Menezes]
 
@@ -22,6 +22,3 @@ Facilitador: [João Pedro Menezes]
 	Murilo Miranda: Diagrama de Classes
 	João Pedro Xavier: Organizar arquivo com Requisitos Funcionais e não Funcioanais
 	Geral(todos os membros): finalizar e corrigir os wireframes.
-4. Próximos Passos
-(Lista de atividades ou ações a serem realizadas antes da próxima 
-reunião)
