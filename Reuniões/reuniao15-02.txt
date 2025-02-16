@@ -1,0 +1,24 @@
+Data: [15/02/2025]
+Hora de início: [23:40]
+Hora de término: [00:00]
+Participantes: [Murilo,Alex Alves, João Pedro Xavier]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	quias foram os último passos tomados
+	o que cada membro vai desenvolver
+3. Decisões Tomadas
+	desenvolver:
+	Modelo de Entidade e relacionamento lógico, Desevolvimento do front-end das páginas
+	Estudo de Viabilidade
+
+	Compromissos de cada Membro:
+
+	Alex Alves: desenvolver Landing Page (Front-end).
+	Murilo Miranda: Modelo de Entidade e relacionamento lógico desenvolver tela de fornecerdor e catalogo de fornecedor(Front-end)
+	João Pedro Xavier: terminar lista de requisitos funcionais , desenvolver formularios Cadastro e Login (Front-end)
+	João Pedro Menezes: mostrar Diagrama de Classe de Uso, desenvolver Estudo de Viabilidade
