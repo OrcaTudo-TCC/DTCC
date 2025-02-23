@@ -1,0 +1,22 @@
+Data: [23/02/2025]
+Hora de início: [00:40]
+Hora de término: [01:02]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	cada membro apresentou o que foi realizado na última reunião até o dado momento:
+3. Decisões Tomadas
+	desenvolver:
+	Front-end , banco de dados e Api(node.js Express)
+
+	Compromissos de cada Membro:
+
+	Alex Alves: Modelo de entidade relacionamento físico (banco de dados).
+	Murilo Miranda: estudar conceitos de API express e node.js.
+	João Pedro Xavier: a definir.
+	João Pedro Menezes: Front-end tela de carrinho de Compras.
