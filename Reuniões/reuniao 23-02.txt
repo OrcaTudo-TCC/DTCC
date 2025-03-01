@@ -1,7 +1,7 @@
 Data: [23/02/2025]
 Hora de início: [00:40]
 Hora de término: [01:02]
-Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes, Otavio Franklin]
 Facilitador: [Murilo]
 
 1. Objetivo da Reunião
