@@ -119,6 +119,6 @@ body{
 }
 .geren-button:hover{
     cursor: pointer;
-    font-style: italic;
     background-color: #B8A79E;
+    font-style: italic;
 }

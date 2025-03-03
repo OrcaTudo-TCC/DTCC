@@ -58,3 +58,25 @@ section div img{
     color: lightgray;
     cursor: pointer;
 }
+.catalog{
+    display: flex;
+    justify-content: space-between;
+    width: 85vw;
+    height: 100vh;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.filters{
+    width: 20vw;
+    height: inherit;
+    background-color: #DCCEC6;
+    border-radius: 10px;
+}
+.card-container{
+    width: 60vw;
+    height: inherit;
+    background-color: #DCCEC6 ;
+    border-radius: 10px
+}
