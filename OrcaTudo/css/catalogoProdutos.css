@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #f8f8f8;
+}
+section{
+    display: flex;
+}
+section div{
+    display: flex;
+}
+section div:first-child{
+    margin-left: 50px;
+}
+section div h4{
+    margin-top: 9px;
+    color: black;
+}
+section div a{
+    text-decoration: none;
+}
+section div img{
+    margin: 10px 10px;
+}
+/* daqui pra cima formatação da section que contêm o nome das subcateogrias */
+.catalog{
+    display: flex;
+    justify-content: space-between;
+    width: 85vw;
+    height: 100vh;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 20px;
+}
+.filters{
+    width: 20vw;
+    height: inherit;
+    border-radius: 10px;
+}
+.order-by{
+    width: 20vw;
+    height: 20vh;
+    background-color: #fff;    
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.order-by h3{
+    padding: 10px;
+}
+.order-by select{
+    padding: 15px;
+    width: 17vw;
+    margin: 20px;
+    background-color: #fff;
+    border: 1PX solid black;
+    border-radius: 10px;
+}
+.categorias{
+    margin-top: 20px;
+    width: 20vw;
+    background-color: #fff;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.categorias h3{
+    padding: 10px 20px;
+}
+.categorias a h4{
+    color: #554f52;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.categorias a h4:hover{
+    cursor: pointer;
+    font-style: italic;
+    text-decoration: underline;
+}
+.found-products{
+    width: 64vw;
+    height: 10vh;
+    background-color: #fff ;
+    border-radius: 10px;
+    display:flex;
+    align-items: center;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.found-products h3{
+    padding-left: 15px;
+}
+.card-container{
+    margin-top: 20px;
+    width: 64vw;
+    background-color: #fff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+.card{
+    background-color: #fefefe;
+    margin-top: 20px;
+    width: 15vw;
+    height: 35vh;
+    border: 1px solid #eeeef0;
+
+}
