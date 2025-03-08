@@ -102,6 +102,7 @@ section div img{
     flex-wrap:wrap;
     justify-content: space-around;
     gap: 20px;
+    padding-bottom: 20px;
 }
 .card{
     background-color: #fefefe;
@@ -109,5 +110,22 @@ section div img{
     width: 15vw;
     height: 35vh;
     border: 1px solid #eeeef0;
-
+}
+.card:hover{
+    cursor: pointer;
+}
+.card img{
+    width: 15vw;
+    height:  15vh;   
+}
+.card p{
+    margin: 10px;
+}
+.card h3{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.card h3:hover{
+    text-decoration: underline;
+    font-style: italic;
 }
