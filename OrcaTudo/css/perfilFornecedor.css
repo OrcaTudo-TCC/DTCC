@@ -41,9 +41,25 @@ body{
         color: darkgrey;
     }
     .configs{
-        margin-top: 120px;
+        margin-top: 100px;
     }
 
+}
+.logout{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.logout:hover{
+    cursor: pointer;
+    color: darkgrey;
+}
+.logout img{
+    width: 3vw;
+}
+.logout h2{
+    text-align: center;
+    margin-top: 5px;
 }
 .mainContent{
     width: 70%; 
