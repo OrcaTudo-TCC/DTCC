@@ -1,0 +1,167 @@
+/* Resetando margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuração global da página */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Seção principal da página */
+.secao-destaque {
+    position: relative;
+    height: 75vh;
+    background: url('imagem1.jpg') no-repeat center center/cover;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Filtro escuro sobre a imagem de fundo */
+.filtro {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+/* Conteúdo centralizado */
+.conteudo {
+    position: relative;
+    max-width: 800px;
+    z-index: 2;
+}
+
+/* Título principal */
+.conteudo h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+/* Texto descritivo */
+.conteudo p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+/* Botão de ação */
+.botao {
+    display: inline-block;
+    background: #ae7550;
+    color: rgb(255, 255, 255);
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px;
+ 
+}
+
+.servicos {
+    max-width: 500px;
+    text-align: left;
+    margin-right: 60px;
+}
+
+.servicos h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ae7550;
+}
+
+.servicos p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #010101;
+}
+
+.servicos-img {
+    flex-shrink: 0;
+}
+
+.servicos-img img {
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+ /* Estilo geral para o contêiner que segura os círculos */
+
+
+ .icon-section {
+    background-color: #000;  /* Fundo preto */
+    width: 100%;             /* Ocupa toda a largura da tela */
+    padding: 40px 0;         /* Espaçamento vertical */
+  }
+
+  /* ===== Seção dos Passos ===== */
+.process-steps {
+    display: flex;                 
+    justify-content: space-around; 
+    align-items: flex-start;       
+    max-width: 1200px;        
+    margin: 40px auto;            
+    text-align: center;  
+    gap: 20px; /* Espaço de 20px entre os itens */   
+       
+  }
+  
+  .step-item {
+    width: 20%;                    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px; /* Ajuste o valor conforme desejado */
+  }
+  
+  /* ===== Círculo com Ícone ===== */
+  .icon-circle {
+    width: 80px;            
+    height: 80px;           
+    border-radius: 50%;     
+    background-color: #ae7550;  /* Cor de fundo do círculo */
+    display: flex;             
+    justify-content: center;    
+    align-items: center;        
+    margin-bottom: 10px;        
+  }
+  
+  /* Estilizando o ícone dentro do círculo */
+  .icon-circle i {
+    font-size: 32px;  /* Tamanho do ícone */
+    color: #000000;      /* Cor do ícone */
+  }
+  
+  /* ===== Título e Descrição ===== */
+  .step-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+  }
+  
+  .step-item p {
+    font-size: 0.9rem;
+    max-width: 150px; 
+    margin: 0 auto;
+    color: #555;
+  }
