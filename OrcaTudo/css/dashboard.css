@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.options{
+    display: flex;
+    width: 80vw;
+    height: 20vh;
+    background-color: #DCCEC6;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+    margin-top: 20px;
+}
+.opt-button{
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #eeeef0;
+}
+.opt-button:hover{
+    cursor: pointer;
+    font-style: italic;
+    border-color: none;
+    border: 2px solid white;
+}
