@@ -8,12 +8,12 @@
     display: flex;
     width: 80vw;
     height: 20vh;
-    background-color: #DCCEC6;
-    justify-content: center;
+    /* background-color: #DCCEC6; */
+    justify-content: start;
     align-items: center;
     border-radius: 10px;
     margin: auto;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); */
     gap: 20px;
     margin-top: 20px;
 }
@@ -29,3 +29,53 @@
     border-color: none;
     border: 2px solid white;
 }
+.historico{
+    margin: auto;
+    margin-top: 20px;
+    width: 80vw;
+    height: 45vh;
+    /* background-color: #DCCEC6; */
+    border-radius: 10px;
+    
+}
+.historico table{
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+caption {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color:  #8B6F61;
+}
+.historico table th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+th{
+    color:  #8B6F61;
+    text-transform: uppercase;
+}
+tr:nth-child(even) {
+    background-color: #F5EDE8; /* Tom mais claro do container */
+}
+tr:hover {
+    background-color: #E2D3CC;
+    cursor: pointer;
+}
+.cart{
+    width: 80vw;
+    margin: auto;
+}
+.cart table{
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    margin-left: 7vw;
+    border-collapse: collapse;
+    background-color: white;
+}
+
