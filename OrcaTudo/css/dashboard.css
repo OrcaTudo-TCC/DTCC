@@ -19,23 +19,40 @@
 }
 .opt-button{
     padding: 30px;
-    background-color: #fff;
     border-radius: 10px;
-    border: 1px solid #eeeef0;
+    background-color: #F8F9FA;
+    border: 1px solid #CED4DA;
+    font-size: large;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .opt-button:hover{
     cursor: pointer;
     font-style: italic;
-    border-color: none;
-    border: 2px solid white;
+    border: 1px solid white;
+}
+#licitacao{
+    font-weight:bold;
+    background-color: #007BFF;
+    color: white;
+}
+#licitacao:hover{
+    border: 1px solid white;
+}
+#cotacao{
+    background-color: #28A745;
+    color: white;
 }
 .historico{
     margin: auto;
+    overflow-y: auto; /* Rolagem vertical caso necessário */
+    overflow-x: hidden;
     margin-top: 20px;
     width: 80vw;
-    height: 45vh;
+    height: 55vh;
     /* background-color: #DCCEC6; */
     border-radius: 10px;
+    max-height: 55vh; /* Define a altura máxima antes de ativar a rolagem */
+    max-width: 100%; /* Garante que a tabela não ultrapasse o container */
     
 }
 .historico table{
@@ -57,25 +74,95 @@ caption {
     text-align: center;
 }
 th{
-    color:  #8B6F61;
     text-transform: uppercase;
 }
 tr:nth-child(even) {
     background-color: #F5EDE8; /* Tom mais claro do container */
 }
-tr:hover {
+table tbody tr:hover {
     background-color: #E2D3CC;
     cursor: pointer;
+    #cancelada{
+        background-color: #E68A8A;
+        transform: scale(1.05);
+    }
+    #pendente{
+        background-color: #FFD480;
+        transform: scale(1.05);
+    }
+    #concluido{
+        background-color: #8BCF8E;
+        transform: scale(1.05);
+    }
+}
+.status{
+    color: white;
+}
+#concluido{
+    background-color: #A3D9A5;
+    color: #226622;
+}
+#pendente{
+    background-color: #FFE5A3;
+    color: #775500;
+}
+#cancelada{
+    background-color: #F5A3A3;
+    color: #882222;
+}
+.historico table td:first-child{
+    width: 2vw;
 }
 .cart{
     width: 80vw;
     margin: auto;
+    display: flex;
+    
 }
-.cart table{
+.cart-div div , .user div{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #F5EDE8 ;
+    width:max-content;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.cart-div div:hover , .user div:hover{
+    background-color: #E2D3CC;
+    cursor: pointer;
+}
+.cart-div img , .user div img{
+    width: 40px;
+    height: 40px;
+}
+.cart-div h3 , .user div h3{
+    margin-left: 10px;
+}
+.user{
+    margin-left: 20px;
+}
+/* .cart table{
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     width: 70%;
     margin-left: 7vw;
+    margin-top: 3vh;
     border-collapse: collapse;
     background-color: white;
 }
+.cart table tbody td:hover{
+    cursor: pointer;
+}
+.cart table tbody td button{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+#edt-button{
+    background-color: #007BFF;
+}
+#dlt-button{
+    background-color: #28A745;
+} */
 

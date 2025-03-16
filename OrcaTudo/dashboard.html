@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="options">
-        <button class="opt-button">Abrir Licitação</button>
-        <button class="opt-button">Cotação</button>
-        <button class="opt-button">Catálogo</button>
-        <button class="opt-button">Histórico</button>
+        <button class="opt-button" id="licitacao">Abrir Licitação</button>
+        <button class="opt-button" id="cotacao" >Cotação</button>
+        <button class="opt-button" id="catalogo" >Catálogo</button>
+        <button class="opt-button" id="hist" >Histórico</button>
     </div>
     <div class="historico" >
         <table>
@@ -29,33 +29,63 @@
                     <td>12134</td>
                     <td>Licitação</td>
                     <td>14/03/2025</td>
-                    <td>Concluido</td>
+                    <td class="status" id="concluido" >Concluido</td>
                 </Tr>
                 <Tr>
-                    <td>12134</td>
-                    <td>Licitação</td>
-                    <td>14/03/2025</td>
-                    <td>Concluido</td>
+                    <td>54321</td>
+                    <td>Compra</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente">Pendente</td>
                 </Tr>
                 <Tr>
-                    <td>12134</td>
-                    <td>Licitação</td>
-                    <td>14/03/2025</td>
-                    <td>Concluido</td>
+                    <td>54832</td>
+                    <td>Cotação</td>
+                    <td>10/03/2025</td>
+                    <td class="status" id="pendente" >Concluido</td>
                 </Tr>
                 <Tr>
-                    <td>12134</td>
+                    <td>24632</td>
                     <td>Licitação</td>
                     <td>14/03/2025</td>
-                    <td>Concluido</td>
+                    <td class="status" id="cancelada" >Cancelada</td>
+                </Tr>
+                <Tr>
+                    <td>24632</td>
+                    <td>Licitação</td>
+                    <td>14/03/2025</td>
+                    <td class="status" id="cancelada" >cancelada</td>
+                </Tr>
+                <Tr>
+                    <td>54321</td>
+                    <td>Cotação</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente" >Pendente</td>
+                </Tr>
+                <Tr>
+                    <td>54321</td>
+                    <td>Cotação</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente" >Pendente</td>
                 </Tr>
             </tbody>
         </table>
     </div>
+    <hr style="width: 80vw; margin:auto; margin-top: 20px;">
     <div class="cart">
-        <hr>
-        <h3 id="txt-cart" >Itens em Carrinho</h3>
-        <Div>
+        <div class="cart-div">
+            <div>
+                <img src="imagens/cart.png" alt="cart icon">
+                <h3>Itens em Carrinho</h3>
+            </div>     
+        </div>
+        <div class="user">
+            <div>
+                <img src="imagens/userPlaceholder.png" alt="user placeholder icon">
+                <h3>Acessar Perfil</h3>
+            </div>
+            
+        </div>
+        <!-- <Div>
             <table>
                 <thead>
                     <tr>
@@ -72,11 +102,11 @@
                     <td>3</td>
                     <td>10,99</td>
                     <td>32,97</td>
-                    <td><button>editar quantidade</button></td>
-                    <td><button>deletar</button></td>
+                    <td id="edt-button" ><button>editar quantidade</button></td>
+                    <td id="dlt-button"><button>deletar</button></td>
                 </tbody>
             </table>
-        </Div>
+        </Div> -->
     </div>
 </body>
 </html>
