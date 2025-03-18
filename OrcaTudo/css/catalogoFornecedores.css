@@ -42,3 +42,45 @@
     text-decoration: underline;
     font-style: italic;
 }
+
+/* Estilos para o container de informações */
+.info-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.info-container h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-container p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.info-container p strong {
+    font-weight: bold;
+}
+
+/* Estilos para os cards */
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
