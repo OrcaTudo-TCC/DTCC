@@ -21,6 +21,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 0 20px;
+    margin-top: 0.5px;
 }
 
 /* Filtro escuro sobre a imagem de fundo */
@@ -85,7 +86,7 @@ section {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 15px;
-    color: #ae7550;
+    color: #000000;
 }
 
 .servicos p {
@@ -112,6 +113,7 @@ section {
     background-color: #000;  /* Fundo preto */
     width: 100%;             /* Ocupa toda a largura da tela */
     padding: 40px 0;         /* Espaçamento vertical */
+    margin-bottom: 1px;
   }
 
   /* ===== Seção dos Passos ===== */
@@ -123,6 +125,7 @@ section {
     margin: 40px auto;            
     text-align: center;  
     gap: 20px; /* Espaço de 20px entre os itens */   
+    
        
   }
   
