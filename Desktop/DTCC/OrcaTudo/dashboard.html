@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrçaTudo</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="options">
+        <button class="opt-button" id="licitacao">Abrir Licitação</button>
+        <button class="opt-button" id="cotacao" >Cotação</button>
+        <button class="opt-button" id="catalogo" >Catálogo</button>
+        <button class="opt-button" id="hist" >Histórico</button>
+    </div>
+    <div class="historico" >
+        <table>
+            <caption>Histórico de operações</caption>
+            <thead>
+                <tr>
+                    <th>num. operação</th>
+                    <th>Data</th>
+                    <th>Operação</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <Tr>
+                    <td>12134</td>
+                    <td>Licitação</td>
+                    <td>14/03/2025</td>
+                    <td class="status" id="concluido" >Concluido</td>
+                </Tr>
+                <Tr>
+                    <td>54321</td>
+                    <td>Compra</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente">Pendente</td>
+                </Tr>
+                <Tr>
+                    <td>54832</td>
+                    <td>Cotação</td>
+                    <td>10/03/2025</td>
+                    <td class="status" id="pendente" >Concluido</td>
+                </Tr>
+                <Tr>
+                    <td>24632</td>
+                    <td>Licitação</td>
+                    <td>14/03/2025</td>
+                    <td class="status" id="cancelada" >Cancelada</td>
+                </Tr>
+                <Tr>
+                    <td>24632</td>
+                    <td>Licitação</td>
+                    <td>14/03/2025</td>
+                    <td class="status" id="cancelada" >cancelada</td>
+                </Tr>
+                <Tr>
+                    <td>54321</td>
+                    <td>Cotação</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente" >Pendente</td>
+                </Tr>
+                <Tr>
+                    <td>54321</td>
+                    <td>Cotação</td>
+                    <td>07/03/2025</td>
+                    <td class="status" id="pendente" >Pendente</td>
+                </Tr>
+            </tbody>
+        </table>
+    </div>
+    <hr style="width: 80vw; margin:auto; margin-top: 20px;">
+    <div class="cart">
+        <div class="cart-div">
+            <div>
+                <img src="imagens/cart.png" alt="cart icon">
+                <h3>Itens em Carrinho</h3>
+            </div>     
+        </div>
+        <div class="user">
+            <div>
+                <img src="imagens/userPlaceholder.png" alt="user placeholder icon">
+                <h3>Acessar Perfil</h3>
+            </div>
+            
+        </div>
+        <!-- <Div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID produto</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>1123435</td>
+                    <td>Chave 10 polegadas em aço cromado</td>
+                    <td>3</td>
+                    <td>10,99</td>
+                    <td>32,97</td>
+                    <td id="edt-button" ><button>editar quantidade</button></td>
+                    <td id="dlt-button"><button>deletar</button></td>
+                </tbody>
+            </table>
+        </Div> -->
+    </div>
+</body>
+</html>

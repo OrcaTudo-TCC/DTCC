@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/catalogoFornecedores.css">
+
+    <header>
+        <div class="logo">
+            <img src="imagens/Logo1.png">
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="O que você procura na Orça tudo ?">
+            <i class="fas fa-search"></i>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Licitação</a></li>
+                <li><a href="#">Cotação</a></li>
+                <li><a href="#">Sobre nós</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+
+            <div class="user-menu">
+                <i class="far fa-user" id="user-icon"></i>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#">Configurações</a>
+                    <a href="#">Sair da Conta</a>
+                </div>
+            </div>
+           
+           
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const userIcon = document.getElementById("user-icon");
+                const dropdownMenu = document.getElementById("dropdown-menu");
+        
+                userIcon.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Impede que o clique feche imediatamente
+                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+                });
+        
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+        
+                dropdownMenu.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Evita que o clique no menu feche ele
+                });
+            });
+        </script>
+
+    </header>
+
+    
+</head>
+<div class="central">
+    <!-- Container de Informações -->
+ <div class="info-container">
+    <img src="https://cdn-icons-png.freepik.com/512/64/64572.png" class="img_perfil">
+    <h2>Informações do Fornecedor</h2>
+    <p><strong>Nome:</strong> João da Silva</p>
+    <p><strong>Email:</strong> joao@dominio.com</p>
+    <p><strong>Telefone:</strong> (11) 91234-5678</p>
+    <p><strong>Endereço:</strong> Rua Exemplo, 123, São Paulo, SP</p>
+</div>
+</div>
+ 
+<body>
+    <div class="card-container">
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do Produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+        <br>
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+
+        <div class="card">
+            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
+            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+
+            <h3>R$ 10,99</h3>
+        </div>
+       
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>Ideal Para</h3>
+                <ul>
+                    <li>Engenheiros Civis</li>
+                    <li>Construtoras</li>
+                    <li>Orçamentistas</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Funcionalidades</h3>
+                <ul>
+                    <li>Cotação de Preços</li>
+                    <li>Gestão de Orçamentos</li>
+                    <li>Comparação de Materiais</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Recursos</h3>
+                <ul>
+                    <li>Lista de Fornecedores</li>
+                    <li>Simulação de Custos</li>
+                    <li>Dashboard Interativo</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre o OrçaTudo</li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+        </div>
+    </footer>
+    
+
+
+</body>
+</html>
+
+</body>
+</html>
