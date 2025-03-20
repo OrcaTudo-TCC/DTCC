@@ -1,0 +1,24 @@
+Data: [04/01/25]
+Hora de início: [23:21]
+Hora de término: [23:50]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes, João Pedro Xavier]
+Facilitador: [João Pedro Menezes]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+2. Tópicos Abordados
+	O que progredimos desde a última reunião
+	Definir metas para próxima reunião
+3. Decisões Tomadas
+	desenvolver:
+	 Desenvolver Modelo Conceitual do banco de dados, Diagrama de casos de Uso, Diagrama de Classes,
+	Organizar arquivo com Requisitos Funcionais e não Funcioanais
+
+	Compromissos de cada Membro:
+
+	João Pedro Menezers: Diagrama de casos de Uso
+	Alex Alves: Desenvolver Modelo Conceitual do banco de dados
+	Murilo Miranda: Diagrama de Classes
+	João Pedro Xavier: Organizar arquivo com Requisitos Funcionais e não Funcioanais
+	Geral(todos os membros): finalizar e corrigir os wireframes.

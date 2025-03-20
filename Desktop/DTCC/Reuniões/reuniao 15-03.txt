@@ -1,0 +1,26 @@
+Data: [15/03/2025]
+Hora de início: [22:56]
+Hora de término: [23:30]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	Analisar a telas restantes
+	Alex: landing page 90% pronta , tela de histórico em desnevolvimento e iniciado desenvolvimento do header e footer.
+	Murilo: tela de dashboard concluida , ajustar tela de perfil forncedor
+	João Pedro Menezes: problemas na produção.
+	cada membro apresentou o que foi realizado na última reunião até o dado momento.
+3. Decisões Tomadas
+	desenvolver:
+	Front-end telas.
+	Api Java com Sptringboot
+	Estudar Fetch API em Javascript (todos os membros)
+	Compromissos de cada Membro:
+
+	Alex Alves: Continuar com desenvolvimento das telas, tela de cotação e formulários de login e cadastro.
+	Murilo Miranda: Terminar com desenvolvimento da tela de fornecedorCatalogo e iniciar desenvolvimento da API.
+	João Pedro Menezes: terminar desevolvimento das telas: catalogo fornecedor, Perfil usuario e Carrinho de compras.

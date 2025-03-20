@@ -1,0 +1,71 @@
+Requisitos Funcionais:
+
+1. Landing Page
+
+. botões de "Login" e "Cadastre-se".
+
+. Título e Slogan: O nome "OrçaTudo" é destacado como título principal. Abaixo, um slogan curto e impactante que representa a proposta da marca.
+
+. Imagem ao lado de um texto persuasivo ou marketing que explica os benefícios do serviço oferecido pela plataforma.
+
+. Ícones de Processo:
+Uma sequência de quatro ícones acompanhados de descrições curtas que explicam o processo de uso do serviço:
+Crie sua Solicitação
+Receba Propostas de Fornecedores
+Compare e Escolha a Melhor Opção
+Finalize e Economize  
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Dashboard 
+
+. Funcionalidade de Criação de Cotação.
+
+.Funcionalidade de Histórico
+ 
+. Visualização de Resumos de Atividades.
+
+. Visualização de Gráficos e Relatórios
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Tela perfil Fornecedor 
+
+. Visualização do Perfil: O sistema deve permitir que o fornecedor visualize seu nome, avaliação, uma breve descrição sobre a empresa, razão social, CNPJ, e-mail e telefone de contato.
+
+. Edição de Perfil: 
+Nome da empresa
+Descrição da empresa
+Razão social
+CNPJ
+E-mail
+Telefone de contato
+Endereço e área de atuação
+
+. Botão de Gerenciamento: Deve existir um botão "Gerenciar"
+
+. Funcionalidade de Sair da Conta
+
+. Gerenciamento de Segurança: O sistema deve permitir que o fornecedor altere sua senha, garantindo a segurança de sua conta.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Tela perfil Usuário 
+
+. Visualização de Perfil:
+O sistema deve permitir que o usuário visualize seu nome completo, e-mail, CNPJ/CPF, telefone de contato, endereço, biografia e outras informações cadastradas.
+
+. Edição de Perfil:
+O sistema deve permitir que o usuário edite todas as informações pessoais cadastradas, incluindo nome, e-mail, CNPJ/CPF, telefone de contato, endereço e biografia.
+A edição deve ser intuitiva e salvar as alterações de forma segura.
+
+. Gerenciamento de Segurança:
+O sistema deve permitir que o usuário altere sua senha, garantindo a segurança de sua conta.
+
+. Funcionalidade de Sair da Conta
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
