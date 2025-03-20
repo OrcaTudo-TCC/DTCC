@@ -7,7 +7,7 @@
 
 .card-container{
     margin-top: 30px;
-    width: 100vw;
+    width: 95vw;
     background-color: #ffffff;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -28,7 +28,7 @@
     cursor: pointer;
 }
 .card img{
-    width: 10vw;
+    width: 12vw;
     height:  14vh; 
     padding: 5px;  
 }
@@ -55,24 +55,15 @@
 .info-container {
     margin-bottom: 30px;
     margin-top: 30px;
-    padding: 10px;
-    background-color: #bdf0d6;
+    padding: 30px;
+    background-color: #a98e52;
     border-radius: 8px;
     border: 1px solid #ddd;
-    width: 1000px;
-    text-align: center; /* Alinha o texto à esquerda */
-    align-items: center; /* Alinha os itens no centro verticalmente */
-    
-}
+    width: 800px;
+    height: 180px;
+   
 
-.img_perfil {
-    width: 100px;
-    height: 100px;
-    border-radius: 60%;
-    margin-right: 20px; /* Espaço entre a imagem e as informações */
-    margin-top: 5px;
 }
-
 
 .info-container h2 {
     font-size: 1.6rem;
@@ -83,7 +74,7 @@
 .info-container p {
     font-size: 1.1rem;
     color: #000000;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .info-container p strong {
@@ -106,7 +97,6 @@
     background-color:   #ffffff;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
 }
 
 /*Header

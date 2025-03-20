@@ -1,0 +1,24 @@
+Data: [05/03/2025]
+Hora de início: [20:36]
+Hora de término: [21:13]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes,João Pedro xavier Otavio Franklin]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	Analisar a telas restantes
+	Estudar Fetch API
+	cada membro apresentou o que foi realizado na última reunião até o dado momento
+3. Decisões Tomadas
+	desenvolver:
+	Front-end , banco de dados e Api(node.js Express)
+	Estudar Fetch API em Javascript
+	Compromissos de cada Membro:
+
+	Alex Alves: Terminar tela de Landing Page e tela de histórico
+	Murilo Miranda: Terminar tela de perfil do fornecedor, tela de home e tela de editar dados cadastrados
+	João Pedro Menezes: terminar tela de catálogo de itens Fornecedor e inciar desvolvimento da tela de prefil do usuário
+	João Pedro Xavier: inicar desenvolvimento do header e footer  A

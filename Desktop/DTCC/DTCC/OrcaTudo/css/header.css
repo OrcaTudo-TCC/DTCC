@@ -1,0 +1,285 @@
+/* Resetando estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo do header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap; /* Para melhor adaptação em telas menores */
+}
+
+/* Estilo do logo */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Reduz o espaço entre logo e search bar */
+}
+
+.logo img {
+    height: 50px; /* Ajuste conforme necessário */
+    width: auto;
+}
+
+/* Barra de pesquisa */ 
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 8px;
+    border-radius: 5px;
+    width: 35%;
+    min-width: 250px;
+    margin-left: -250px; /* Aproxima a barra de pesquisa */
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+}
+
+.search-bar i {
+    color: gray;
+}
+
+nav {
+    margin-left: -190px; /* Aproxima a nav da barra de pesquisa */
+}
+
+
+/* Estilização do menu de navegação */
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+}
+
+nav ul li a:hover {
+    color: #ae7550;
+}
+
+/* Ícones de usuário e carrinho */
+.icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.icons i {
+    cursor: pointer;
+    color: #ae7550;
+    font-size: 25px;
+    transition: color 0.3s ease; /* Suaviza a mudança de cor */
+}
+
+.icons i:hover {
+    color: rgb(255, 255, 255);
+}
+
+
+/* Estilo do menu dropdown */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ícone do usuário */
+#user-icon {
+    cursor: pointer;
+}
+
+/* Menu dropdown oculto */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    z-index: 1000;
+}
+
+/* Estilo dos links do menu */
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background: #f3f3f3;
+}
+
+/* Para telas entre 768px e 1199px (tablets e telas médias) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .search-bar {
+        width: 40%;
+    }
+
+    nav ul {
+        margin-left: 0;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    .icons {
+        font-size: 20px;
+    }
+}
+
+/* Para telas menores (como smartphones) */
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .search-bar {
+        width: 80%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .icons {
+        font-size: 20px;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .icons i {
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+
+/* Estilização Footer */    
+
+footer {
+    background-color: #000000;
+    color: #f3f3f3;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 180px;
+    margin: 10px;
+}
+
+.footer-section img {
+width: 200px;
+}
+
+
+
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ae7550;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ae7550;
+}
+
+.footer-logo {
+    width: 100px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 11px;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+Data: [21/12/24]
+Hora de início: [22:30]
+Hora de término: [23:17]
+Participantes: Alex Alves , João Pedro Menezes , Murilo
+Facilitador: João Pedro Menezes
+
+1. Objetivo da Reunião
+	continuidade ao projeto e aos wireframes
+	atualização da equipe
+listar todas as telas do projeto, nome, logo e visual
+2. Tópicos Abordados
+	definir quem vai desenvolver os requisitos funcionais e wireframes (de media fidalidade) de cada tela
+3. Decisões Tomadas
+	Alex alves: 
+	João Pedro: 
+	Murilo: 
+	Geral: pesquisar sobre o tema do tcc,
+	Estudar JavaScript(curso em vídeo)
+
+4. Próximos Passos
+	pega a lista de telas e fazer o wireframe de média fidelidade individual,
+	definir funcionalidades de cada tela da listagem,
+	
