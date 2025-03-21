@@ -7,7 +7,7 @@
 
 .card-container{
     position: relative;
-    top: -80px;
+    top: -230px;
     margin-left: 100px;
     width: 70vw;
     background-color: #dccec6;
@@ -17,7 +17,7 @@
     justify-content: center;
     padding-bottom: 20px;
     margin: auto;
-    margin-left: 400px;
+    margin-left: 460px;
     margin-bottom: 50px;
     
 }
@@ -71,8 +71,112 @@
     text-align: center;
     overflow: hidden; /* Evita que qualquer conteúdo extrapole */
     box-sizing: border-box; /* Garante que padding não altere a largura */
-    /* margin-left: 400px; */
+     margin-left: 460px; 
 }
+
+/* Daqui pra baixo começa a estilização dos fltros */
+/* Estilizando o contêiner principal de filtros */
+.filters {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    margin-top: -275px;
+    text-align: center;
+    margin-left: 30px;
+    
+    
+}
+
+/* Estilizando a parte de ordenar por */
+.order-by {
+    background-color: #f8f8f8; /* Cor de fundo leve */
+    padding: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 250px; /* Largura fixa para o contêiner */
+    
+}
+
+/* Estilizando o título "Ordenar por" */
+.order-by h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #333; /* Cor do texto */
+    margin-bottom: 10px; /* Espaço entre o título e o select */
+    
+}
+
+/* Estilizando o select (menu suspenso) */
+.order-by select {
+    width: 100%; /* O select ocupará toda a largura disponível */
+    padding: 10px; /* Adiciona um padding interno */
+    border: 1px solid #ccc; /* Borda suave */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px;
+    color: #333; /* Cor do texto */
+    background-color: #fff; /* Fundo branco */
+    cursor: pointer; /* Alterar o cursor para indicar que é interativo */
+    outline: none; /* Remove a borda de foco */
+}
+
+/* Estilizando o select ao ter o foco (quando o usuário clicar no menu suspenso) */
+.order-by select:focus {
+    border-color: #dccec6; /* Cor da borda ao focar */
+    box-shadow: 0 0 5px rgba(135, 156, 179, 0.5); /* Sombra azul suave */
+}
+
+/* Estilizando o select ao ter o foco (quando o usuário clicar no menu suspenso) */
+.order-by select:focus {
+    border-color: #dccec6; /* Cor da borda ao focar */
+    box-shadow: 0 0 5px #dccec6; /* Sombra azul suave */
+}
+
+/* Estilizando quando o item do select é selecionado */
+.order-by option:hover {
+    background-color: #dccec6; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilizando o contêiner de categorias */
+.categorias {
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 250px; /* Largura fixa */
+    margin-left: 30px;
+}
+
+/* Estilizando o título "categorias" */
+.categorias h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #333; /* Cor do texto */
+    margin-bottom: 15px; /* Espaço abaixo do título */
+    text-align: center; /* Centraliza o título */
+}
+
+/* Estilizando o título das categorias (h4) */
+.categorias a h4 {
+    font-size: 18px;
+    color: #dccec6; /* Cor azul para o texto */
+    font-weight: normal; /* Peso da fonte mais leve */
+    transition: color 0.3s; /* Transição suave para a cor */
+}
+
+/* Estilizando a interação ao passar o mouse sobre as categorias */
+.categorias a:hover h4 {
+    color: #dccec6; /* Muda a cor do texto para um azul mais escuro ao passar o mouse */
+}
+
+/* Adicionando efeito de foco nas categorias */
+.categorias a:focus h4 {
+    outline: none; /* Remove a borda padrão do foco */
+    color: #0056b3; /* Cor do texto ao focar */
+    background-color: #f0f0f0; /* Fundo suave para indicar o foco */
+    padding-left: 10px; /* Indica o foco com um leve deslocamento */
+    border-radius: 4px; /* Borda arredondada para o foco */
+}
+
 
 
 
