@@ -3,18 +3,25 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
+body{
+    background-color: #F5F5F5
+}
+.principal{
+    height: 100vh;
+}
 .historico{
     margin: auto;
     overflow-y: auto; /* Rolagem vertical caso necessário */
     overflow-x: hidden;
-    margin-top: 20px;
+    margin-top: 50px;
     width: 80vw;
-    height: 55vh;
+    height: 100vh;
     /* background-color: #DCCEC6; */
     border-radius: 10px;
-    max-height: 55vh; /* Define a altura máxima antes de ativar a rolagem */
+    max-height: 100vh; /* Define a altura máxima antes de ativar a rolagem */
     max-width: 100%; /* Garante que a tabela não ultrapasse o container */
     
 }
@@ -26,7 +33,7 @@
     background-color: white;
 }
 caption {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 1px;
     font-weight: bold;
     color:  #ffffff;
@@ -80,16 +87,20 @@ table tbody tr:hover {
 
 
 #download-btn {
-    background-color: #4CAF50; /* Verde */
-    color: white;
-    padding: 10px 20px;
+    background-color: #4CAF50;
+    margin-left: 170vh; 
+    color: #ffffff;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    margin-top: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    
 }
 
 #download-btn:hover {
-    background-color: #45a049; /* Cor um pouco mais escura no hover */
+    background-color: #45a049; 
 }
