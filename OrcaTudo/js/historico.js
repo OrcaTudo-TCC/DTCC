@@ -37,3 +37,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("status-filter").addEventListener("change", function() {
+        let selectedStatus = this.value.trim().toLowerCase(); // Normaliza o valor selecionado
+        let rows = document.querySelectorAll(".historico table tbody tr"); // Obtém todas as linhas da tabela
+
+        rows.forEach(row => {
+            let statusCell = row.querySelector(".status").textContent.trim().toLowerCase(); // Obtém o status da linha
+
+            // Se "Todos" estiver selecionado ou o status da linha for igual ao selecionado, exibe a linha
+            if (selectedStatus === "todos" || statusCell === selectedStatus) {
+                row.style.display = ""; // Exibe a linha
+            } else {
+                row.style.display = "none"; // Esconde a linha
+            }
+        });
+    });
+});
+
+
