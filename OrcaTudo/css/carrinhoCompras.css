@@ -219,10 +219,11 @@ nav ul li a:hover {
 }
 
 .container h2{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 40px;
 
-    
-   }
+     }
+/*Estilizando o container de resumo de compras*/
 
  .resumo {
     width: 400px;          /* Largura do container */
@@ -242,13 +243,25 @@ nav ul li a:hover {
     }
 
 .resumo h2{
-    font-size: larger;
+    font-size: larger;  
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
     
 }
 
+.itens p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 80px;
+    text-align: center;
+    margin-left: 800px;
+ 
+}
+
+
 /* Estilo do Container do Carrinho */
 .carrinho {
-    width: 65%;                 /* 65% da largura da tela */
+    width: 100%;   
+    height: 100%;              /* 65% da largura da tela */
     background-color: #f9f9f9;  /* Fundo leve */
     padding: 20px;
     border-radius: 8px;
@@ -257,7 +270,10 @@ nav ul li a:hover {
 
 .carrinho h2 {
     text-align: center;
-    color: #333;
+    color: #0a0a0a;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: normal;
+    height: 40px;
 }
 
 .item {
@@ -270,7 +286,15 @@ nav ul li a:hover {
 
 .item p {
     margin: 5px 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
 }
+
+.preco {
+    white-space: nowrap; /* Garante que o preço não quebre em várias linhas */
+    margin-left: 740px;
+    text-align: center;
+  }
 
 
 
