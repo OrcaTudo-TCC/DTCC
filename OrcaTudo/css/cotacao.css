@@ -97,3 +97,55 @@ label {
 .tabela-cotacao tbody tr:nth-child(even) {
     background-color: #d9d3df;
 }
+
+.produto-info {
+    margin-top: 60px;
+}
+
+.input-texto {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.quantidade-subtotal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-pequeno {
+    width: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    text-align: center;
+}
+
+.botoes-acao {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.verde {
+    background-color: #34c759;
+}
+
+.azul {
+    background-color: #2196F3;
+}
