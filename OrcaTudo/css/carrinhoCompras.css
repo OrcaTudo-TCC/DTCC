@@ -227,7 +227,7 @@ nav ul li a:hover {
 
  .resumo {
     width: 400px;          /* Largura do container */
-    height: 250px;         /* Altura do container */
+    height: 220px;         /* Altura do container */
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -250,11 +250,52 @@ nav ul li a:hover {
 }
 
 .itens p{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-top: 80px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
-    margin-left: 800px;
- 
+    margin-left: 1300px;
+    top: 200px;
+    position: absolute;
+}
+
+.total p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-left: 1300px;
+    top: 320px;
+    position: absolute;
+}
+
+.total-preco p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-left: 1600px;
+    top: 320px;
+    position: absolute;
+}
+
+
+
+
+.btn-resumo {
+    margin-top: auto;   /* Espaço entre o resumo e o botão */
+    padding: 10px 20px; /* Tamanho do botão */
+    background-color: #4CAF50; /* Cor de fundo do botão */
+    color: white;       /* Cor do texto do botão */
+    border: none;       /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;    /* Cursor de mãozinha ao passar por cima */
+    font-size: 13px;     /* Tamanho da fonte */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 20.7%;         /* Faz o botão ocupar toda a largura disponível */
+    height: 5%;
+    margin-left: 1300px;
+    top: 382px;
+    position: absolute;
+    
+}
+
+.btn-resumo:hover {
+    background-color: #45a049; /* Cor do botão quando estiver em hover */
 }
 
 

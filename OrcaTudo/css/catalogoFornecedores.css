@@ -7,9 +7,9 @@
 
 .card-container{
     position: relative;
-    top: -230px;
+    top: -225px;
     margin-left: 100px;
-    width: 70vw;
+    width: 63vw;
     background-color: #dccec6;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -17,7 +17,7 @@
     justify-content: center;
     padding-bottom: 20px;
     margin: auto;
-    margin-left: 460px;
+    margin-left: 530px;
     margin-bottom: 50px;
     
 }
@@ -63,7 +63,7 @@
     background-color:#dccec6;
     border-radius: 8px;
     border: 1px solid #ddd;
-    width: 70vw; /* Pode ajustar conforme necessário */
+    width: 63vw; /* Pode ajustar conforme necessário */
     max-width: 100%; /* Garante que não ultrapasse a tela */
     height: auto; /* Permite que o container cresça conforme o conteúdo */
     display: flex;
@@ -71,7 +71,7 @@
     text-align: center;
     overflow: hidden; /* Evita que qualquer conteúdo extrapole */
     box-sizing: border-box; /* Garante que padding não altere a largura */
-     margin-left: 460px; 
+     margin-left: 530px; 
 }
 
 /* Daqui pra baixo começa a estilização dos fltros */
@@ -219,9 +219,9 @@ display: inline-block;
 }
 
 .card {
-    width: 200px;
+    width: 210px;
     padding: 1px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 8px;
     background-color:   #ffffff;
     text-align: center;
