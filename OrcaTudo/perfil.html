@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/perfil.css">
+
+    <header>
+        <div class="logo">
+            <img src="imagens/Logo1.png">
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="O que você procura na Orça tudo ?">
+            <i class="fas fa-search"></i>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Licitação</a></li>
+                <li><a href="#">Cotação</a></li>
+                <li><a href="#">Sobre nós</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+
+            <div class="user-menu">
+                <i class="far fa-user" id="user-icon"></i>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#">Configurações</a>
+                    <a href="#">Sair da Conta</a>
+                </div>
+            </div>
+           
+           
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const userIcon = document.getElementById("user-icon");
+                const dropdownMenu = document.getElementById("dropdown-menu");
+        
+                userIcon.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Impede que o clique feche imediatamente
+                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+                });
+        
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+        
+                dropdownMenu.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Evita que o clique no menu feche ele
+                });
+            });
+        </script>
+
+    </header>
+
+    <!-- Main Content (Formulário) -->
+<main class="content">
+    <div class="profile-container">
+        <h2>Perfil do Usuário</h2>
+
+        <!-- Formulário de edição de perfil -->
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="cpf" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu E-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+
+            
+
+
+            <button type="submit" class="submit-btn">Salvar Alterações</button>
+        </form>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>Ideal Para</h3>
+                <ul>
+                    <li>Engenheiros Civis</li>
+                    <li>Construtoras</li>
+                    <li>Orçamentistas</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Funcionalidades</h3>
+                <ul>
+                    <li>Cotação de Preços</li>
+                    <li>Gestão de Orçamentos</li>
+                    <li>Comparação de Materiais</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Recursos</h3>
+                <ul>
+                    <li>Lista de Fornecedores</li>
+                    <li>Simulação de Custos</li>
+                    <li>Dashboard Interativo</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre o OrçaTudo</li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+        </div>
+    </footer>
+    
+    
+</head>
+<body>
+    
+</body>
+</html>
