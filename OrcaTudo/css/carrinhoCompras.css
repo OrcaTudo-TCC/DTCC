@@ -1,3 +1,12 @@
+/* Ajustes globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
 /*Header
 /* Resetando estilos padrão */
 * {
@@ -136,49 +145,21 @@ nav ul li a:hover {
     background: #f3f3f3;
 }
 
-/* Para telas entre 768px e 1199px (tablets e telas médias) */
-@media (max-width: 1199px) and (min-width: 768px) {
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .logo img {
-        height: 45px;
-    }
-
-    .search-bar {
-        width: 40%;
-    }
-
-    nav ul {
-        margin-left: 0;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    .icons {
-        font-size: 20px;
-    }
-}
-
-/* Para telas menores (como smartphones) */
-@media (max-width: 767px) {
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
     header {
         flex-direction: column;
         align-items: center;
-        padding: 10px;
     }
 
-    .logo {
+    .logo img {
+        height: 40px;
         margin-bottom: 15px;
     }
 
     .search-bar {
         width: 80%;
-        margin-left: 0;
+        margin: 0;
         margin-bottom: 10px;
     }
 
@@ -194,19 +175,82 @@ nav ul li a:hover {
 
     .icons {
         font-size: 20px;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         margin-top: 15px;
     }
 
-    .icons i {
-        font-size: 20px;
+    .carrinho {
+        width: 100%;
+    }
+
+    .container {
+        width: 95%;
+        margin: 0;
+    }
+
+    .resumo {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .item {
+        width: 100%;
+    }
+
+    .btn-resumo {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .itens, .total {
+        position: relative;
+        margin-left: 0;
+    }
+
+    .itens p, .total p {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .total-preco {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .search-bar {
+        width: 90%;
+        margin-bottom: 15px;
+    }
+
+    .icons {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        text-align: center;
+        min-width: auto;
     }
 }
 
 /* Estilizando o container */
 .container {
-    width: 50%;
+    width: 90%;
     max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
@@ -215,7 +259,7 @@ nav ul li a:hover {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     min-height: 100vh;
     position: relative;
-    margin-left: 300px;
+    margin-left: 220px;
 }
 
 .container h2{
@@ -339,14 +383,6 @@ nav ul li a:hover {
 
 
 
-
-   
-
-
-  
-
-   
-
 /* Estilização Footer */    
 
 footer {
@@ -466,112 +502,6 @@ width: 200px;
     align-items: center;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Estilização Footer */    

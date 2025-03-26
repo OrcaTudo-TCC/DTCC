@@ -366,73 +366,32 @@ nav ul li a:hover {
     background: #f3f3f3;
 }
 
-/* Para telas entre 768px e 1199px (tablets e telas médias) */
-@media (max-width: 1199px) and (min-width: 768px) {
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .logo img {
-        height: 45px;
-    }
-
-    .search-bar {
-        width: 40%;
-    }
-
-    nav ul {
-        margin-left: 0;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    .icons {
-        font-size: 20px;
-    }
-}
-
-/* Para telas menores (como smartphones) */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     header {
         flex-direction: column;
         align-items: center;
         padding: 10px;
     }
-
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .search-bar {
-        width: 80%;
-        margin-left: 0;
+}
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Em dispositivos móveis, os cards ocupam toda a largura */
         margin-bottom: 10px;
     }
-
-    nav ul {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .icons {
-        font-size: 20px;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .icons i {
-        font-size: 20px;
+}
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
     }
 }
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 /* Estilização Footer */    
 
