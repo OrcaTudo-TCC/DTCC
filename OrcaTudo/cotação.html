@@ -1,143 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotação</title>
+    <title>Cotacao</title>
     <link rel="stylesheet" href="css/cotacao.css">
 </head>
 <body>
-
-
-<container>
-
-    <div class="container-principal">
-        <h1>Cotação</h1>
-        <div class="cotacao-campos">
-            <div class="campo">
-                <label>Categoria</label>
-                <input type="text" class="campo-selecao" placeholder=" Ferramentas">
+    <div class="container">
+        <div class="produto">
+            <div class="imagem-produto">
+                <img src="imagens/placeholder.jpg">
             </div>
-            <div class="campo">
-                <label>Subcategoria</label>
-                <input type="text" class="campo-selecao" placeholder=" Chave Inglesa">
-            </div>
-            <div class="campo">
-                <label>Produto</label>
-                <input type="text" class="campo-selecao" placeholder=" Chave Inglesa Ajustável 8 polegadas 200mm">
+            <div class="sessao">
+
+                <div class="cotacao">
+
+                    <h1>Betoneira 400L Prime 220V Menegotti</h1>
+            
+                    <div class="linha">
+                        <div class="campo">
+                            <label for="categoria">Categoria</label>
+                            <input type="text" id="categoria" placeholder="Ex: Betoneira">
+                        </div>
+            
+                        <div class="campo">
+                            <label for="subcategoria">Subcategoria</label>
+                            <input type="text" id="subcategoria" placeholder="Ex: Prime 220V">
+                        </div>
+                    </div>
+            
+                    <div class="campo">
+                        <label for="produto">Produto</label>
+                        <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti">
+                    </div>
+            
+                </div>
+
+                <div class="descricao-produto">
+                    <h2>Descrição do Produto</h2>
+                    <p>Capacidade: 400L no tambor, ideal para pequenos projetos.
+                    Funcionamento: Energia elétrica, 220V, motor de 2CV.
+                    Produção horária:4.65 m³/h, garantindo eficiência.
+                    Mobilidade: Compacta e fácil de transportar, com rodas.
+                    Durabilidade: Alta resistência e longa vida útil.</p>
+                </div>
+                
+
+
+                
+                
+
+                
+
+                
             </div>
         </div>
     </div>
-
-
-    <div class="descricao-produto">
-        <div class="imagem-produto">
-            <img src="imagens/placeholder.jpg" alt="Imagem do Produto">
-        </div>
-        <div class="texto-descricao">
-            <h2>Descrição</h2>
-            <p>Uma descrição de produto é um texto que apresenta de forma clara e atrativa as características, funcionalidades e benefícios de um item, com o objetivo de informar e persuadir o consumidor a comprá-lo.</p>
-        </div>
-    </div>
-
-<br> <br>
-
-    <table class="tabela-cotacao">
-        <thead>
-            <tr>
-                <th>Fornecedor</th>
-                <th>Preço</th>
-                <th>Distância</th>
-                <th>Frete</th>
-                <th>Marca</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div class="produto-info">
-        <label for="produto-selecionado">Produto selecionado:</label>
-        <input type="text" id="produto-selecionado" class="input-texto" value="Ex. Chave Inglesa Ajustável 8 polegadas 200mm" readonly>
-    
-        <div class="quantidade-subtotal">
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" class="input-pequeno" min="1">
-    
-            <label for="subtotal">Subtotal:</label>
-            <input type="text" id="subtotal" class="input-pequeno" readonly>
-        </div>
-    
-        <div class="botoes-acao">
-            <button class="btn verde">Adicionar ao carrinho</button>
-            <button class="btn verde">Comprar</button>
-            <button class="btn azul">Iniciar licitação</button>
-        </div>
-    </div>
-    
-</container>
-
-
 </body>
 </html>
