@@ -169,7 +169,6 @@ nav ul li a:hover {
     align-items: center;
     background-color: #f4f4f4;
     padding: 50px;
-    margin-bottom: 111px; /* Certifique-se de ajustar o valor para o tamanho do footer, se necessário */
     height: calc(100% - 222px); /* Ajusta a altura para preencher o espaço restante */
     box-sizing: border-box;
     
