@@ -3,59 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotacao</title>
+    <title>Cotação de Produto</title>
     <link rel="stylesheet" href="css/cotacao.css">
 </head>
 <body>
-    <div class="container">
-        <div class="produto">
-            <div class="imagem-produto">
-                <img src="imagens/placeholder.jpg">
-            </div>
-            <div class="sessao">
-
-                <div class="cotacao">
-
-                    <h1>Betoneira 400L Prime 220V Menegotti</h1>
-            
-                    <div class="linha">
-                        <div class="campo">
-                            <label for="categoria">Categoria</label>
-                            <input type="text" id="categoria" placeholder="Ex: Betoneira">
-                        </div>
-            
-                        <div class="campo">
-                            <label for="subcategoria">Subcategoria</label>
-                            <input type="text" id="subcategoria" placeholder="Ex: Prime 220V">
-                        </div>
-                    </div>
-            
-                    <div class="campo">
-                        <label for="produto">Produto</label>
-                        <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti">
-                    </div>
-            
-                </div>
-
-                <div class="descricao-produto">
-                    <h2>Descrição do Produto</h2>
-                    <p>Capacidade: 400L no tambor, ideal para pequenos projetos.
-                    Funcionamento: Energia elétrica, 220V, motor de 2CV.
-                    Produção horária:4.65 m³/h, garantindo eficiência.
-                    Mobilidade: Compacta e fácil de transportar, com rodas.
-                    Durabilidade: Alta resistência e longa vida útil.</p>
+    <container>
+        <section class="conteudo">
+            <div class="produto-container">
+                <div class="imagem-produto">
+                    <img src="imagens/placeholder.jpg" alt="Imagem do Produto">
                 </div>
                 
-
-
+                <div class="detalhes-produto">
+                    <h1 class="produto-titulo">Betoneira 400L Prime 220V Menegotti</h1>
+                    
+                    <div class="cotacao">
+                        <div class="linha">
+                            <div class="campo">
+                                <label for="categoria">Categoria</label>
+                                <input type="text" id="categoria" placeholder="Ex: Betoneira">
+                            </div>
                 
+                            <div class="campo">
+                                <label for="subcategoria">Subcategoria</label>
+                                <input type="text" id="subcategoria" placeholder="Ex: Prime 220V">
+                            </div>
+                        </div>
                 
-
-                
-
-                
+                        <div class="campo">
+                            <label for="produto">Produto</label>
+                            <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti">
+                        </div>
+                    </div>
+                    
+                    <div class="descricao-produto">
+                        <h2>Descrição do Produto</h2>
+                        <ul>
+                            <li><strong>Capacidade:</strong> 400L no tambor, ideal para pequenos projetos.</li>
+                            <li><strong>Funcionamento:</strong> Energia elétrica, 220V, motor de 2CV.</li>
+                            <li><strong>Produção horária:</strong> 4.65 m³/h, garantindo eficiência.</li>
+                            <li><strong>Mobilidade:</strong> Compacta e fácil de transportar, com rodas.</li>
+                            <li><strong>Durabilidade:</strong> Alta resistência e longa vida útil.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section class="tabela">
+            <div class="tabela-container">
+                <table class="tabela-content">
+                    <thead>
+                        <tr>
+                            <th>Fornecedor</th>
+                            <th>Preço</th>
+                            <th>Distância</th>
+                            <th>Frete</th>
+                            <th>Marca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fornecedor A</td>
+                            <td>R$ 1.500,00</td>
+                            <td>20 km</td>
+                            <td>R$ 50,00</td>
+                            <td>Marca X</td>
+                        </tr>
+                        <tr>
+                            <td>Fornecedor B</td>
+                            <td>R$ 1.450,00</td>
+                            <td>15 km</td>
+                            <td>R$ 45,00</td>
+                            <td>Marca Y</td>
+                        </tr>
+                        <tr>
+                            <td>Fornecedor C</td>
+                            <td>R$ 1.600,00</td>
+                            <td>30 km</td>
+                            <td>R$ 60,00</td>
+                            <td>Marca Z</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="compra">
+            <div class="compra-container">
+                <p><strong>Produto selecionado:</strong></p>
+                <input type="text" id="produto-selecionado" placeholder="Ex. Chave inglesa Ajustável 8 polegadas 200mm" disabled>
+        
+                <div class="quantidade-subtotal">
+                    <div class="quantidade">
+                        <label for="quantidade"><strong>Quantidade:</strong></label>
+                        <input type="number" id="quantidade" min="1" value="1">
+                    </div>
+                    <div class="subtotal">
+                        <label for="subtotal"><strong>Subtotal:</strong></label>
+                        <input type="text" id="subtotal" disabled>
+                    </div>
+                </div>
+        
+                <div class="botoes-compra">
+                    <button class="btn verde">Adicionar ao carrinho</button>
+                    <button class="btn verde">Comprar</button>
+                    <button class="btn azul">Iniciar licitação</button>
+                </div>
+            </div>
+        </section>
+        
+        
+
+
+
+
+
+    </container>
 </body>
 </html>
