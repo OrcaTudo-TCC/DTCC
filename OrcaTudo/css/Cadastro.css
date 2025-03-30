@@ -1,0 +1,381 @@
+/*Header
+/* Resetando estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo do header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap; /* Para melhor adaptação em telas menores */
+}
+
+/* Estilo do logo */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Reduz o espaço entre logo e search bar */
+}
+
+.logo img {
+    height: 50px; /* Ajuste conforme necessário */
+    width: auto;
+}
+
+/* Barra de pesquisa */ 
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 8px;
+    border-radius: 5px;
+    width: 35%;
+    min-width: 250px;
+    margin-left: -250px; /* Aproxima a barra de pesquisa */
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+}
+
+.search-bar i {
+    color: gray;
+}
+
+nav {
+    margin-left: -190px; /* Aproxima a nav da barra de pesquisa */
+}
+
+
+/* Estilização do menu de navegação */
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+}
+
+nav ul li a:hover {
+    color: #ae7550;
+}
+
+/* Ícones de usuário e carrinho */
+.icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.icons i {
+    cursor: pointer;
+    color: #ae7550;
+    font-size: 25px;
+    transition: color 0.3s ease; /* Suaviza a mudança de cor */
+}
+
+.icons i:hover {
+    color: rgb(255, 255, 255);
+}
+
+
+/* Estilo do menu dropdown */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ícone do usuário */
+#user-icon {
+    cursor: pointer;
+}
+
+/* Menu dropdown oculto */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    z-index: 1000;
+}
+
+/* Estilo dos links do menu */
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background: #f3f3f3;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Em dispositivos móveis, os cards ocupam toda a largura */
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Estilos para a Tela de Cadastro de Fornecedor */
+
+.conteudo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 50px;
+    height: calc(100% - 222px);
+    box-sizing: border-box;
+}
+
+.container-fornecedor {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.grupo-formulario {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.grupo-formulario label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.grupo-formulario input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.grupo-formulario input:focus {
+    border-color: #ae7550;
+    box-shadow: 0 0 5px rgba(135, 156, 179, 0.5);
+}
+
+.botao-enviar {
+    background-color: #ae7550;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.botao-enviar:hover {
+    background-color: #8e5f3b;
+}
+
+
+.formulario-flex {
+    display: flex;
+    gap: 20px; /* Espaço entre as colunas */
+}
+
+.coluna {
+    flex: 1; /* Faz com que cada coluna ocupe metade do espaço */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os inputs */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .formulario-flex {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+
+/* Estilização Footer */    
+
+footer {
+    background-color: #000000;
+    color: #f3f3f3;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 180px;
+    margin: 10px;
+}
+
+.footer-section img {
+width: 200px;
+}
+
+
+
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ae7550;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ae7550;
+}
+
+.footer-logo {
+    width: 100px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 11px;
+}
+
+.filters{
+    width: 20vw;
+    height: inherit;
+    border-radius: 10px;
+}
+.order-by{
+    width: 20vw;
+    height: 20vh;
+    background-color: #fff;    
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.order-by h3{
+    padding: 10px;
+}
+.order-by select{
+    padding: 15px;
+    width: 17vw;
+    margin: 20px;
+    background-color: #fff;
+    border: 1PX solid black;
+    border-radius: 10px;
+}
+.categorias{
+    margin-top: 20px;
+    width: 20vw;
+    background-color: #fff;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.categorias h3{
+    padding: 10px 20px;
+}
+.categorias a h4{
+    color: #554f52;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.categorias a h4:hover{
+    cursor: pointer;
+    font-style: italic;
+    text-decoration: underline;
+}
+.found-products{
+    width: 64vw;
+    height: 10vh;
+    background-color: #fff ;
+    border-radius: 10px;
+    display:flex;
+    align-items: center;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
