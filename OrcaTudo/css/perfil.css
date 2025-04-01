@@ -281,7 +281,7 @@ footer {
 .footer-section {
     flex: 1;
     min-width: 180px;
-    margin: 10px;
+    margin: 30px;
 }
 
 .footer-section img {
