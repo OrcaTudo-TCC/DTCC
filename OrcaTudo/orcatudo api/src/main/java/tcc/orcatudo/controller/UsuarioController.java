@@ -1,5 +1,6 @@
 package tcc.orcatudo.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,12 @@ public class UsuarioController {
     @GetMapping()
     public List<Usuario> getUsuarioById(@RequestParam(required = false) Integer id , @RequestParam(required = false) String email){
         if (id != null) {
-            return  List.of(usuarioRepository.findById(id).orElse(new Usuario())); 
+            return  usuarioRepository.findById(id).map(List::of).orElseGet(Collections::emptyList);
         }else if (email != null) {
             return List.of(usuarioRepository.findByEmail(email));
         }
-        return usuarioRepository.findAll();
+        List<Usuario> usuarios =usuarioRepository.findAll();
+        return usuarios;
 
     }
     @PostMapping()

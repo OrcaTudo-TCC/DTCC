@@ -9,6 +9,8 @@ public class ResponseError {
     private String error;
 
     
+
+    
     public Date getTimestamp() {
         return timestamp;
     }

@@ -1,5 +1,7 @@
 package tcc.orcatudo.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
+
 public class Usuario {
 
     @Id
@@ -24,8 +27,10 @@ public class Usuario {
     @Column(length = 11 , nullable = false)
     private String senha;
 
+
     @Column(length = 11 , nullable = true)
     private Integer telefone;
+
 
     @Column(length = 250 , nullable = true)
     private String endereco;
@@ -67,14 +72,11 @@ public class Usuario {
     }
 
 
-    public int getTelefone() {
+    public Integer getTelefone() {
         return telefone;
     }
 
 
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
-    }
 
 
     public String getEndereco() {
