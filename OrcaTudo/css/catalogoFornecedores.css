@@ -8,10 +8,10 @@
 .card-container{
     position: relative;
     top: -225px;
-    margin-left: 100px;
+    margin-left: 100vw;
     width: 63vw;
     background-color: #dccec6;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 4vw 4vw 10vw rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@
     
 }
 .card{
-    gap: 50px;
+    gap: 50vw;
     background-color: #fefefe;
     margin-top: 20px;
     width: 15vw;
@@ -92,8 +92,8 @@
     background-color: #f8f8f8; /* Cor de fundo leve */
     padding: 20px;
     border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 250px; /* Largura fixa para o contêiner */
+    box-shadow: 0 2vw 5vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 250vw; /* Largura fixa para o contêiner */
     
 }
 
@@ -140,9 +140,9 @@
 .categorias {
     background-color: #f9f9f9; /* Cor de fundo suave */
     padding: 20px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 250px; /* Largura fixa */
+    border-radius: 8vw; /* Bordas arredondadas */
+    box-shadow: 0 2vw 8vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 250vw; /* Largura fixa */
     margin-left: 30px;
 }
 
@@ -376,16 +376,16 @@ nav ul li a:hover {
 @media (max-width: 768px) {
     .card {
         width: 100%; /* Em dispositivos móveis, os cards ocupam toda a largura */
-        margin-bottom: 10px;
+        margin-bottom: 10vw;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 768vw) {
     .filters {
         flex-direction: column;
         align-items: center;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 768vw) {
     .footer-container {
         flex-direction: column;
         align-items: center;
