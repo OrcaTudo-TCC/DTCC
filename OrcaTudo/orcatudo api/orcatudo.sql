@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 09:59 PM
+-- Generation Time: Apr 02, 2025 at 10:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -173,15 +173,18 @@ CREATE TABLE `usuarios` (
   `cpf_cnpj` varchar(14) NOT NULL,
   `telefone` int(11) DEFAULT NULL,
   `endereco` varchar(250) DEFAULT NULL,
-  `senha` varchar(11) NOT NULL
+  `senha` varchar(200) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `email`, `cpf_cnpj`, `telefone`, `endereco`, `senha`) VALUES
-(1, 'rony@example.com', '11122233345', NULL, NULL, '12345');
+INSERT INTO `usuarios` (`id_usuario`, `email`, `cpf_cnpj`, `telefone`, `endereco`, `senha`, `nome`) VALUES
+(1, 'rony@example.com', '11122233345', NULL, NULL, '12345', NULL),
+(3, 'ronoy@example.com', '15122233345', NULL, NULL, '12345', NULL),
+(4, 'ronyelson@gmail.com', '11122233343', NULL, NULL, '$2a$10$axzF/ote.Ufte40/jP2zHe1hkr3leHNSsl9XHStmJfqu5IGXvKUEa', 'Rony Gol da Silva');
 
 --
 -- Indexes for dumped tables
@@ -336,7 +339,7 @@ ALTER TABLE `subcategoria_ternaria`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

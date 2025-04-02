@@ -1,6 +1,12 @@
 package tcc.orcatudo.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +18,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 
-public class Usuario {
+public class Usuario implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +30,10 @@ public class Usuario {
 
     @Column(name = "cpf_cnpj", length = 14 , nullable = false)
     private String documento;
-    @Column(length = 11 , nullable = false)
+    @Column(length = 200 , nullable = false)
     private String senha;
+
+    private String nome;
 
 
     @Column(length = 11 , nullable = true)
@@ -50,7 +58,7 @@ public class Usuario {
     }
 
     
-
+    
 
     public String getEmail() {
         return email;
@@ -107,7 +115,59 @@ public class Usuario {
     public void setTelefone(Integer telefone) {
         this.telefone = telefone;
     }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
     
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
     
 }

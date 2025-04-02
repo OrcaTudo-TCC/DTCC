@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.handler.BusinessException;
 import tcc.orcatudo.handler.MissingFieldsException;
 import tcc.orcatudo.model.Usuario;
 import tcc.orcatudo.repository.UsuarioRepository;
@@ -30,7 +31,8 @@ public class UsuarioController {
         if (id != null) {
             return  usuarioRepository.findById(id).map(List::of).orElseGet(Collections::emptyList);
         }else if (email != null) {
-            return List.of(usuarioRepository.findByEmail(email));
+            return List.of(usuarioRepository.findByEmail(email)
+            .orElseThrow(() -> new BusinessException("Email do usuário não corresponde no Banco de dados")));
         }
         List<Usuario> usuarios =usuarioRepository.findAll();
         return usuarios;
