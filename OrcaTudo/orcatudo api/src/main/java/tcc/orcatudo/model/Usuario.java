@@ -6,14 +6,19 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import tcc.orcatudo.entitites.Role;
 
 @Entity
 @Table(name = "usuarios")
@@ -42,9 +47,15 @@ public class Usuario implements UserDetails{
 
     @Column(length = 250 , nullable = true)
     private String endereco;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    private Role role;
     
 
     public Usuario() {}
+
+    
 
 
     public boolean validadeRequiredFields(){
@@ -119,7 +130,9 @@ public class Usuario implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+    SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getName().toString());
+        
+    return List.of(authority);
     }
 
 
@@ -166,6 +179,20 @@ public class Usuario implements UserDetails{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+
+
+    public Role getRole() {
+        return role;
+    }
+
+
+
+
+    public void setRole(Role role) {
+        this.role = role;
     }
     
     
