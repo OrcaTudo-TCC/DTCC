@@ -6,7 +6,7 @@ body {
 }
 .options{
     display: flex;
-    width: 80vw;
+    width: 90vw;
     height: 15vh;
     background-color: white; 
     justify-content: center;
@@ -18,34 +18,25 @@ body {
     margin-top: 20px;
     font-size: 14px;
 }
-.opt-button{
-    height:  20px ;
-    width: 250px;
-    padding: 30px;
+.opt-button {
+    font-weight: bold;
+    background-color:#ae7550;
+    color: white; /* Mantém o texto branco */
+    width: 220px; /* Ajuste o tamanho do botão */
+    height: 40px;
+    padding: 10px;
+    font-size: 14px;
     border-radius: 10px;
-    background-color: #F8F9FA;
-    border: 1px solid #CED4DA;
-    font-size: large;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-
-}
-.opt-button:hover{
+    border: none;
     cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.opt-button:hover {
+    border: 1px solid white;
     font-style: italic;
-    border: 1px solid white;
 }
-#licitacao{
-    font-weight:bold;
-    background-color: #007BFF;
-    color: white;
-}
-#licitacao:hover{
-    border: 1px solid white;
-}
-#cotacao{
-    background-color: #28A745;
-    color: white;
-}
+
 
 
 
@@ -53,10 +44,10 @@ body {
     margin: auto;
     overflow-y: auto; /* Rolagem vertical caso necessário */
     overflow-x: hidden;
-    margin-top: 20px;
-    width: 80vw;
+    margin-top: 40px;
+    width: 90vw;
     height: 55vh;
-    /* background-color: #DCCEC6; */
+    background-color: white;
     border-radius: 10px;
     max-height: 55vh; /* Define a altura máxima antes de ativar a rolagem */
     max-width: 100%; /* Garante que a tabela não ultrapasse o container */
