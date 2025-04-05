@@ -117,18 +117,29 @@ table tbody tr:hover {
 }
 
 
+.btn-section {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 90vw;
+    height: 15vh;
+    margin: 30px auto 40px auto; /* <- Aqui adicionamos 40px de espaço inferior */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-left: 40px;
+}
+
+
 .footer-buttons {
     display: flex;
-    justify-content: flex-start; /* Alinha à esquerda */
-    gap: 20px;
-    margin: 40px 0 20px 10vw; /* Espaço da esquerda */
+    gap: 30px;
 }
 
 .footer-btn {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #17a2b8;
+    background-color: #17a2b8; /* Cor principal */
     color: white;
     text-decoration: none;
     padding: 12px 24px;
@@ -140,8 +151,9 @@ table tbody tr:hover {
 }
 
 .footer-btn:hover {
-    background-color: #6c5247;
+    background-color: #138496; /* Cor de hover mais escura e harmônica */
     transform: scale(1.05);
     cursor: pointer;
 }
+
 
