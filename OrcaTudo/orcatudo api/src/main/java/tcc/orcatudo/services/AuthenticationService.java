@@ -10,11 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import tcc.orcatudo.dtos.LoginUsuarioDto;
+import tcc.orcatudo.dtos.RegisterDto;
+import tcc.orcatudo.dtos.RegisterFornecedorDto;
 import tcc.orcatudo.dtos.RegisterUsuarioDto;
 import tcc.orcatudo.entitites.Role;
 import tcc.orcatudo.entitites.RoleEnum;
+import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.handler.BusinessException;
-import tcc.orcatudo.model.Usuario;
 import tcc.orcatudo.repository.RoleRepository;
 import tcc.orcatudo.repository.UsuarioRepository;
 
@@ -40,13 +42,23 @@ public class AuthenticationService {
         this.roleRepository = roleRepository;
     }
 
-    public Usuario signup(RegisterUsuarioDto input) {
+    public Usuario signup(RegisterDto input) {
 
-        Optional<Role> roleOptional = roleRepository.findByName(RoleEnum.USUARIO);
+        RoleEnum Enum = null;
 
+        if (input instanceof RegisterUsuarioDto) {
+            Enum = RoleEnum.USUARIO;
+        }
+        if (input instanceof RegisterFornecedorDto) {
+            Enum = RoleEnum.FORNECEDOR;
+        }
+        Optional<Role> roleOptional = roleRepository.findByName(Enum);
         if (roleOptional.isEmpty()) {
             return null;
         }
+        
+
+
 
         Usuario user = new Usuario();
                 user.setNome(input.getNome());

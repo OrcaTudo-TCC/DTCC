@@ -1,4 +1,4 @@
-package tcc.orcatudo.model;
+package tcc.orcatudo.entitites;
 
 
 
@@ -18,12 +18,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import tcc.orcatudo.entitites.Role;
 
 @Entity
 @Table(name = "usuarios")
 
-public class Usuario implements UserDetails{
+public class Usuario implements UserDetails , User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

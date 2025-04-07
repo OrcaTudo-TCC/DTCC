@@ -1,0 +1,21 @@
+Data: [06/04/2025]
+Hora de início: [21:07]
+Hora de término: [21:37]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Apresentar o que foi desenvolivdo essa semana
+	Planejar atividades para próxima semana
+2. Tópicos Abordados
+	Murilo: apresentou estado do desenvolvimento da API , desenvolveu o cronograma de atividade e finalizou a monografia
+	Alex: Começou das telas DashBoard e perifl fornecedor, inicou estudo em fetch API javascript
+	João Pedro Menezes: Tela de perfil feita , ainda não inicou apresentação.
+
+3. Decisões Tomadas
+
+	Murilo: Continuar desenvolvimento da API, estudar fetch API e javacript
+	Alex: arrumar a responsividade das telas necessárias, continuar padronização , estudar fetch API javascript
+	João Pedro Menezes: Estudar jascpit fetch API , desenvolver apresentação (15/04), realizar possíveis telas que forem necessárias
+	Kauan(ausente): Apresentar alterações da tela de licitação.
+

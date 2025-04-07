@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tcc.orcatudo.dtos.LoginUsuarioDto;
 import tcc.orcatudo.dtos.RegisterUsuarioDto;
-import tcc.orcatudo.model.Usuario;
+import tcc.orcatudo.entitites.User;
+import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.responses.LoginResponse;
 import tcc.orcatudo.services.AuthenticationService;
 import tcc.orcatudo.services.JwtService;
@@ -25,7 +26,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signupUsuario")
     public ResponseEntity<Usuario> register(@RequestBody RegisterUsuarioDto registerUserDto) {
         Usuario registeredUser = authenticationService.signup(registerUserDto);
 

@@ -1,6 +1,7 @@
 package tcc.orcatudo.dtos;
 
-public class RegisterUsuarioDto extends RegisterDto{
+public abstract class RegisterDto {
+
     private String email;
     
     private String password;
@@ -42,7 +43,5 @@ public class RegisterUsuarioDto extends RegisterDto{
     }
 
     
-    
-    
-    
+
 }

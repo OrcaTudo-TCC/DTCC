@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2025 at 10:53 PM
+-- Generation Time: Apr 07, 2025 at 06:00 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,15 +52,16 @@ CREATE TABLE `categoria` (
 
 CREATE TABLE `fornecedor` (
   `id_fornecedor` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
+  `nome` varchar(50) NOT NULL,
   `razao_social` varchar(100) DEFAULT NULL,
   `email` varchar(200) NOT NULL,
-  `telefone` int(11) DEFAULT NULL,
-  `endereco` varchar(200) DEFAULT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
   `area_de_atuacao` varchar(45) DEFAULT NULL,
   `descricao` varchar(200) DEFAULT NULL,
-  `avaliacao` double DEFAULT NULL,
-  `senha` varchar(8) NOT NULL
+  `avaliacao` int(11) NOT NULL,
+  `senha` varchar(200) DEFAULT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -140,6 +141,45 @@ CREATE TABLE `produto` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `name` enum('FORNECEDOR','USUARIO') DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `created_at`, `description`, `name`, `updated_at`) VALUES
+(2, '2025-04-04 00:36:04.000000', 'role de Usuario/Cliente', 'USUARIO', '2025-04-04 00:36:04.000000'),
+(3, '2025-04-04 00:36:04.000000', 'Role de fornecedor', 'FORNECEDOR', '2025-04-04 00:36:04.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles_seq`
+--
+
+CREATE TABLE `roles_seq` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles_seq`
+--
+
+INSERT INTO `roles_seq` (`next_val`) VALUES
+(101);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subcategoria`
 --
 
@@ -174,17 +214,17 @@ CREATE TABLE `usuarios` (
   `telefone` int(11) DEFAULT NULL,
   `endereco` varchar(250) DEFAULT NULL,
   `senha` varchar(200) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL
+  `nome` varchar(255) DEFAULT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `email`, `cpf_cnpj`, `telefone`, `endereco`, `senha`, `nome`) VALUES
-(1, 'rony@example.com', '11122233345', NULL, NULL, '12345', NULL),
-(3, 'ronoy@example.com', '15122233345', NULL, NULL, '12345', NULL),
-(4, 'ronyelson@gmail.com', '11122233343', NULL, NULL, '$2a$10$axzF/ote.Ufte40/jP2zHe1hkr3leHNSsl9XHStmJfqu5IGXvKUEa', 'Rony Gol da Silva');
+INSERT INTO `usuarios` (`id_usuario`, `email`, `cpf_cnpj`, `telefone`, `endereco`, `senha`, `nome`, `role_id`) VALUES
+(5, 'ronyelson@gmail.com', '1223434312', NULL, NULL, '$2a$10$BJoXqH0KtddDrlcQ.otvVuVBfsVHZmH.LodpDQkgHAbxvpTQ84wXO', 'rony gol da silva', 2),
+(7, 'ronyson@gmail.com', '132434312', NULL, NULL, '$2a$10$QSe7/Y6m0VT.Nf/e1hiYjOS276lViT0yXzDIVVjRd20S7nW2PKYZO', 'rony gol silva', 2);
 
 --
 -- Indexes for dumped tables
@@ -208,7 +248,8 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `fornecedor`
   ADD PRIMARY KEY (`id_fornecedor`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `FKpu45ygbqj51yt1i16jk1jffsy` (`role_id`);
 
 --
 -- Indexes for table `item_carrinho`
@@ -250,6 +291,13 @@ ALTER TABLE `produto`
   ADD KEY `id_subcategoriaTernaria` (`id_subcategoriaTernaria`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UKofx66keruapi6vyqpv6f2or37` (`name`);
+
+--
 -- Indexes for table `subcategoria`
 --
 ALTER TABLE `subcategoria`
@@ -269,7 +317,8 @@ ALTER TABLE `subcategoria_ternaria`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `cpf_cnpj` (`cpf_cnpj`);
+  ADD UNIQUE KEY `cpf_cnpj` (`cpf_cnpj`),
+  ADD KEY `FKeljjw3mx8n5ngoe7fbqbjwusp` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -339,7 +388,7 @@ ALTER TABLE `subcategoria_ternaria`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -350,6 +399,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `carrinho`
   ADD CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+
+--
+-- Constraints for table `fornecedor`
+--
+ALTER TABLE `fornecedor`
+  ADD CONSTRAINT `FKpu45ygbqj51yt1i16jk1jffsy` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `item_carrinho`
@@ -396,6 +451,12 @@ ALTER TABLE `subcategoria`
 --
 ALTER TABLE `subcategoria_ternaria`
   ADD CONSTRAINT `subcategoria_ternaria_ibfk_1` FOREIGN KEY (`id_subcategoria`) REFERENCES `subcategoria` (`id_subcategoria`);
+
+--
+-- Constraints for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `FKeljjw3mx8n5ngoe7fbqbjwusp` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
