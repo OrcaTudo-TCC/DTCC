@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0c0ce94d;
+    background: white;
 }
 
 .container {
@@ -41,7 +41,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #ccb09e;
     padding: 3rem;
 }
 
@@ -58,15 +58,17 @@ body {
 
 .login-button button {
     border: none;
-    background-color: #6c63ff;
+    background-color: black;
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .login-button button:hover {
-    background-color: #6b63fff1;
+    background-color: black;
+    
 }
+
 
 .login-button button a {
     text-decoration: none;
@@ -79,7 +81,7 @@ body {
     display: block;
     width: 5rem;
     height: 0.3rem;
-    background-color: #6c63ff;
+    background-color: black;
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
@@ -159,7 +161,7 @@ body {
 }
 
 .continue-button button:hover {
-    background-color: #6b63fff1;
+    background-color: black;
 }
 
 .continue-button button a {
