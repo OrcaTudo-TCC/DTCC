@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tcc.orcatudo.dtos.LoginUsuarioDto;
+import tcc.orcatudo.dtos.RegisterFornecedorDto;
 import tcc.orcatudo.dtos.RegisterUsuarioDto;
-import tcc.orcatudo.entitites.User;
+import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.responses.LoginResponse;
 import tcc.orcatudo.services.AuthenticationService;
@@ -28,9 +29,15 @@ public class AuthenticationController {
 
     @PostMapping("/signupUsuario")
     public ResponseEntity<Usuario> register(@RequestBody RegisterUsuarioDto registerUserDto) {
-        Usuario registeredUser = authenticationService.signup(registerUserDto);
+        Usuario registeredUser = authenticationService.signupUsuario(registerUserDto);
 
         return ResponseEntity.ok(registeredUser);
+    }
+    @PostMapping("/signupFornecedor")
+    public ResponseEntity<Fornecedor> registerFornecedor(@RequestBody RegisterFornecedorDto registerFornecedorDto){
+        Fornecedor registeredFornecedor = authenticationService.signupFornecedor(registerFornecedorDto);
+
+        return ResponseEntity.ok(registeredFornecedor);
     }
 
     @PostMapping("/login")

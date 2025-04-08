@@ -4,7 +4,7 @@ public class RegisterFornecedorDto extends RegisterDto {
 
     private String nome;
 
-    private String passwaord;
+    private String password;
 
     private String razao_social;
 
@@ -22,6 +22,8 @@ public class RegisterFornecedorDto extends RegisterDto {
 
     private int avaliacao;
 
+    
+
     public String getNome() {
         return nome;
     }
@@ -30,12 +32,12 @@ public class RegisterFornecedorDto extends RegisterDto {
         this.nome = nome;
     }
 
-    public String getPasswaord() {
-        return passwaord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswaord(String passwaord) {
-        this.passwaord = passwaord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRazao_social() {
@@ -92,6 +94,14 @@ public class RegisterFornecedorDto extends RegisterDto {
 
     public void setAvaliacao(int avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     
