@@ -95,4 +95,15 @@ public class AuthenticationService {
                 .orElseThrow(() -> new BusinessException("Email não possui correspondÊncia no banco de dados"));
     }
 
+    public Fornecedor authenticateFornecedor(LoginUsuarioDto input) {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                input.getEmail(),
+                input.getPassword()
+            )
+        );
+
+        return fornecedorRepository.findByEmail(input.getEmail()).orElseThrow(() -> new BusinessException("Email não possui correspondência no banco de dados"));
+    }
+
 }

@@ -52,4 +52,16 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(loginResponse);
     }
+    @PostMapping("/loginFornecedor")
+    public ResponseEntity<LoginResponse> authenticateFornecedor(@RequestBody LoginUsuarioDto loginUsuarioDto){
+        Fornecedor authenticatedForn = authenticationService.authenticateFornecedor(loginUsuarioDto);
+
+        String jwtToken = jwtService.generateToken(authenticatedForn);
+
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setToken(jwtToken);
+        loginResponse.setExpiresIn(jwtService.getExpirationTime());
+
+        return ResponseEntity.ok(loginResponse);
+    }
 }

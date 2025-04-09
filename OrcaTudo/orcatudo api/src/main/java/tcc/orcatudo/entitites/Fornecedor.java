@@ -37,7 +37,7 @@ public class Fornecedor implements UserDetails , User{
     @Column(nullable = false)
     private String endereco;
 
-    @Column( name = "cpf_cnpj",  length = 11)
+    @Column( name = "cpf_cnpj")
     private String documento;
     
     @Column(length = 45)

@@ -33,11 +33,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(Exception.class)
     private ResponseEntity<Object> handleGeneral(Exception e, WebRequest request) {
+        e.printStackTrace();
         if (e.getClass().isAssignableFrom(UndeclaredThrowableException.class)) {
             UndeclaredThrowableException exception = (UndeclaredThrowableException) e;
             return handleBusinessException((BusinessException) exception.getUndeclaredThrowable(), request);
         } else {
-            String message = messageSource.getMessage("error.server", new Object[]{e.getMessage()}, null);
+            String message;
+            try{
+                message = messageSource.getMessage("error.server", new Object[]{e.getMessage()}, null);
+            }catch(Exception ex){
+                message = "erro interno do servidor" + e.getMessage();
+            }
+
             ResponseError error = responseError(message,HttpStatus.INTERNAL_SERVER_ERROR);
             return handleExceptionInternal(e, error, headers(), HttpStatus.INTERNAL_SERVER_ERROR, request);
         }
