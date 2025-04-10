@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import tcc.orcatudo.services.ComposedDetailsService;
 import tcc.orcatudo.services.JwtService;
 
 import org.springframework.lang.NonNull;
@@ -21,20 +22,25 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
     private final HandlerExceptionResolver handlerExceptionResolver;
 
     private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+
+    private final ComposedDetailsService composedDetailsService;
+
+    
 
     public JwtAuthenticationFilter(
+        HandlerExceptionResolver handlerExceptionResolver,
         JwtService jwtService,
-        UserDetailsService userDetailsService,
-        HandlerExceptionResolver handlerExceptionResolver
-    ) {
-        this.jwtService = jwtService;
-        this.userDetailsService = userDetailsService;
+        ComposedDetailsService composedDetailsService) {
         this.handlerExceptionResolver = handlerExceptionResolver;
+        this.jwtService = jwtService;
+        this.composedDetailsService = composedDetailsService;
     }
+
+
 
     @Override
     protected void doFilterInternal(
@@ -56,7 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
             if (userEmail != null && authentication == null) {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+                UserDetails userDetails = composedDetailsService.loadUserByUsername(userEmail);
 
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

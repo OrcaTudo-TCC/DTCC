@@ -11,20 +11,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import tcc.orcatudo.repository.UsuarioRepository;
+
+import tcc.orcatudo.services.ComposedDetailsService;
 
 @Configuration
 public class ApplicationConfiguration {
-    private final UsuarioRepository userRepository;
 
-    public ApplicationConfiguration(UsuarioRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final ComposedDetailsService composedService;
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public ApplicationConfiguration(ComposedDetailsService composedDetailsService) {
+        this.composedService = composedDetailsService;
     }
 
     @Bean
@@ -41,7 +37,7 @@ public class ApplicationConfiguration {
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
-        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setUserDetailsService(composedService);
         authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
