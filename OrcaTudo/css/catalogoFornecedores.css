@@ -156,17 +156,23 @@ body {
 
   .product-section {
     background-color: white;
-
-    display: flex;
+    display: grid;
     width: 70vw;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    flex: 1;
+    max-width: 70vw;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    margin: 0 auto;
+    margin-left: -30px;
     padding: 20px;
-  }
+}
+
+
+
   
   .product-card {
-    background-color: #e5d8d0;
+    background-color: white;
     padding: 16px;
     border-radius: 8px;
     text-align: center;
@@ -183,17 +189,29 @@ body {
   .product-card h3 {
     font-size: 16px;
     margin: 12px 0 4px;
-    color: #333;
+    color: black;
   }
+
+
+  .product-card .category,
+.product-card .subcategory {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
   
   .product-card .price {
     font-weight: bold;
     color: #000;
+    margin-top: 7px;
     margin-bottom: 6px;
   }
   
   .product-card .description {
     font-size: 14px;
     color: #555;
+    text-align: left;
   }
   
