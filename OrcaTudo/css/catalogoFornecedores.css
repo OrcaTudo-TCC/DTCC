@@ -4,522 +4,196 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-.card-container{
-    position: relative;
-    top: -225px;
-    margin-left: 100vw;
-    width: 63vw;
-    background-color: #dccec6;
-    box-shadow: 4vw 4vw 10vw rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 20px;
-    margin: auto;
-    margin-left: 530px;
-    margin-bottom: 50px;
-    
-}
-.card{
-    gap: 50vw;
-    background-color: #fefefe;
-    margin-top: 20px;
-    width: 15vw;
-    height: 35vh;
-    border: 1px solid #eeeef0;
-}
-.card:hover{
-    cursor: pointer;
-}
-.card img{
-    width: 10vw;
-    height:  14vh; 
-    padding: 5px;  
-}
-.card p{
-    margin: 10px;
-}
-.card h3{
-    margin-left: 10px;
-    margin-top: 20px;
-}
-.card h3:hover{
-    text-decoration: underline;
-    font-style: italic;
-}
-
-.central{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-}
-/* Estilos para o container de informações */
-.info-container {
-    margin: 60px auto; /* Centraliza na tela */
-    padding: 30px; /* Reduzi o padding para evitar estouro */
-    background-color:#dccec6;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 63vw; /* Pode ajustar conforme necessário */
-    max-width: 100%; /* Garante que não ultrapasse a tela */
-    height: auto; /* Permite que o container cresça conforme o conteúdo */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    overflow: hidden; /* Evita que qualquer conteúdo extrapole */
-    box-sizing: border-box; /* Garante que padding não altere a largura */
-     margin-left: 530px; 
-}
-
-/* Daqui pra baixo começa a estilização dos fltros */
-/* Estilizando o contêiner principal de filtros */
-.filters {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    margin-top: -275px;
-    text-align: center;
-    margin-left: 30px;
-    
-    
-}
-
-/* Estilizando a parte de ordenar por */
-.order-by {
-    background-color: #f8f8f8; /* Cor de fundo leve */
-    padding: 20px;
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2vw 5vw rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 250vw; /* Largura fixa para o contêiner */
-    
-}
-
-/* Estilizando o título "Ordenar por" */
-.order-by h3 {
-    font-size: 20px;
-    font-weight: normal;
-    color: #333; /* Cor do texto */
-    margin-bottom: 10px; /* Espaço entre o título e o select */
-    
-}
-
-/* Estilizando o select (menu suspenso) */
-.order-by select {
-    width: 100%; /* O select ocupará toda a largura disponível */
-    padding: 10px; /* Adiciona um padding interno */
-    border: 1px solid #ccc; /* Borda suave */
-    border-radius: 5px; /* Bordas arredondadas */
-    font-size: 16px;
-    color: #333; /* Cor do texto */
-    background-color: #fff; /* Fundo branco */
-    cursor: pointer; /* Alterar o cursor para indicar que é interativo */
-    outline: none; /* Remove a borda de foco */
-}
-
-/* Estilizando o select ao ter o foco (quando o usuário clicar no menu suspenso) */
-.order-by select:focus {
-    border-color: #dccec6; /* Cor da borda ao focar */
-    box-shadow: 0 0 5px rgba(135, 156, 179, 0.5); /* Sombra azul suave */
-}
-
-/* Estilizando o select ao ter o foco (quando o usuário clicar no menu suspenso) */
-.order-by select:focus {
-    border-color: #dccec6; /* Cor da borda ao focar */
-    box-shadow: 0 0 5px #dccec6; /* Sombra azul suave */
-}
-
-/* Estilizando quando o item do select é selecionado */
-.order-by option:hover {
-    background-color: #dccec6; /* Cor de fundo ao passar o mouse */
-}
-
-/* Estilizando o contêiner de categorias */
-.categorias {
-    background-color: #f9f9f9; /* Cor de fundo suave */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 8vw; /* Bordas arredondadas */
-    box-shadow: 0 2vw 8vw rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 250vw; /* Largura fixa */
-    margin-left: 30px;
-}
-
-/* Estilizando o título "categorias" */
-.categorias h3 {
-    font-size: 20px;
-    font-weight: normal;
-    color: #333; /* Cor do texto */
-    margin-bottom: 15px; /* Espaço abaixo do título */
-    text-align: center; /* Centraliza o título */
-}
-
-/* Estilizando o título das categorias (h4) */
-.categorias a h4 {
-    font-size: 18px;
-    color: #dccec6; /* Cor azul para o texto */
-    font-weight: normal; /* Peso da fonte mais leve */
-    transition: color 0.3s; /* Transição suave para a cor */
-}
-
-/* Estilizando a interação ao passar o mouse sobre as categorias */
-.categorias a:hover h4 {
-    color: #dccec6; /* Muda a cor do texto para um azul mais escuro ao passar o mouse */
-}
-
-/* Adicionando efeito de foco nas categorias */
-.categorias a:focus h4 {
-    outline: none; /* Remove a borda padrão do foco */
-    color: #0056b3; /* Cor do texto ao focar */
-    background-color: #f0f0f0; /* Fundo suave para indicar o foco */
-    padding-left: 10px; /* Indica o foco com um leve deslocamento */
-    border-radius: 4px; /* Borda arredondada para o foco */
-}
-
-
-
-
-.img_perfil{
-    width: 150px;
-    height: 150px;
-}
-
-.info_img{
-  margin-left: 50px;  
-display: inline-block;
-}
-
-.info_perfil{
-    margin: auto;
-}
-.info-container h2 {
-    font-size: 1.6rem;
-    color: #000000;
-    margin-bottom: 10px;
-}
-
-.info-container p {
-    font-size: 1.1rem;
-    color: #000000;
-    margin: 5px 0;
-}
-
-.info-container p strong {
-    font-weight: bold;
-}
-
-/* Estilos para os cards */
-.card-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    
-}
-
-.card {
-    width: 210px;
-    padding: 1px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    background-color:   #ffffff;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/*Header
-/* Resetando estilos padrão */
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+.container{
+    display: flex;  
+
 }
 
-/* Estilo do header */
-header {
+.mainContent{
+    width: 100%; 
+    height: 100vh;
+    padding: 20px;
+    text-align:center;
+}
+
+.perfil-fornecedor {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 30px;
-    background-color: rgb(0, 0, 0);
-    border-bottom: 1px solid #ddd;
-    flex-wrap: wrap; /* Para melhor adaptação em telas menores */
-}
-
-/* Estilo do logo */
-.logo {
-    display: flex;
-    align-items: center;
-    margin-right: 20px; /* Reduz o espaço entre logo e search bar */
-}
-
-.logo img {
-    height: 50px; /* Ajuste conforme necessário */
-    width: auto;
-}
-
-/* Barra de pesquisa */ 
-.search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #f3f3f3;
-    padding: 8px;
-    border-radius: 5px;
-    width: 35%;
-    min-width: 250px;
-    margin-left: -250px; /* Aproxima a barra de pesquisa */
-}
-
-.search-bar input {
-    border: none;
-    background: none;
-    width: 100%;
-    outline: none;
-    padding: 5px;
-}
-
-.search-bar i {
-    color: gray;
-}
-
-nav {
-    margin-left: -190px; /* Aproxima a nav da barra de pesquisa */
-}
-
-
-/* Estilização do menu de navegação */
-nav ul {
-    display: flex;
-    list-style: none;
     flex-wrap: wrap;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-}
-
-nav ul li a:hover {
-    color: #ae7550;
-}
-
-/* Ícones de usuário e carrinho */
-.icons {
-    display: flex;
-    gap: 15px;
-    font-size: 18px;
-}
-
-.icons i {
-    cursor: pointer;
-    color: #ae7550;
-    font-size: 25px;
-    transition: color 0.3s ease; /* Suaviza a mudança de cor */
-}
-
-.icons i:hover {
-    color: rgb(255, 255, 255);
-}
-
-
-/* Estilo do menu dropdown */
-.user-menu {
-    position: relative;
-    display: inline-block;
-}
-
-/* Ícone do usuário */
-#user-icon {
-    cursor: pointer;
-}
-
-/* Menu dropdown oculto */
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 30px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    width: 150px;
-    z-index: 1000;
-}
-
-/* Estilo dos links do menu */
-.dropdown-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-}
-
-.dropdown-menu a:hover {
-    background: #f3f3f3;
-}
-
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-}
-@media (max-width: 768px) {
-    .card {
-        width: 100%; /* Em dispositivos móveis, os cards ocupam toda a largura */
-        margin-bottom: 10vw;
-    }
-}
-@media (max-width: 768vw) {
-    .filters {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (max-width: 768vw) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-
-/* Estilização Footer */    
-
-footer {
-    background-color: #000000;
-    color: #f3f3f3;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.footer-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90vw;
+    margin: 30px auto;
+    gap: 30px;
+  }
+  
+  .perfil-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .perfil-info {
     flex: 1;
-    min-width: 180px;
-    margin: 10px;
-}
-
-.footer-section img {
-width: 200px;
-}
-
-
-.footer-section h3 {
+    min-width: 250px;
+  }
+  
+  .perfil-nome {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .perfil-avaliacao {
     font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .perfil-stars img {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .perfil-sobre {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .perfil-sobre h3 {
+    font-size: 18px;
     margin-bottom: 10px;
-    color: #ae7550;
-}
+  }
+  
+  .perfil-sobre p {
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+  }
 
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-    font-size: 13px;
-}
-
-.footer-section ul li a {
-    text-decoration: none;
-    color: #ffffff;
-    transition: color 0.3s;
-}
-
-.footer-section ul li a:hover {
-    color: #ae7550;
-}
-
-.footer-logo {
-    width: 100px;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 11px;
-}
-
-.filters{
-    width: 20vw;
-    height: inherit;
-    border-radius: 10px;
-}
-.order-by{
-    width: 20vw;
-    height: 20vh;
-    background-color: #fff;    
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-}
-.order-by h3{
-    padding: 10px;
-}
-.order-by select{
-    padding: 15px;
-    width: 17vw;
+  .catalog-section {
+    width: 250px;
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
     margin: 20px;
-    background-color: #fff;
-    border: 1PX solid black;
-    border-radius: 10px;
-}
-.categorias{
-    margin-top: 20px;
-    width: 20vw;
-    background-color: #fff;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-}
-.categorias h3{
-    padding: 10px 20px;
-}
-.categorias a h4{
-    color: #554f52;
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
-.categorias a h4:hover{
+    margin-top: 5px;
+    margin-left: 40px; /* afasta do canto esquerdo */
+    float: left;
+  }
+  
+  
+  
+  .catalog-section {
+    min-height: 200px;
+  }
+  
+
+
+  
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .filter-container label {
+    font-weight: 500;
+    color: #374151; /* cinza escuro */
+    font-size: 14px;
+  }
+  
+  .filter-select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: white;
+    color: #374151;
+  }
+  
+  .filter-select:focus {
+    outline: none;
+    border-color: #3b82f6; /* azul */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+  
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .category-item {
+    padding: 8px 16px;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px; /* borda redonda tipo "pill" */
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
     cursor: pointer;
-    font-style: italic;
-    text-decoration: underline;
-}
-.found-products{
-    width: 64vw;
-    height: 10vh;
-    background-color: #fff ;
-    border-radius: 10px;
-    display:flex;
-    align-items: center;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-}
+    transition: background-color 0.2s ease;
+  }
+  
+  .category-item:hover {
+    background-color: #e5e7eb; /* hover suave */
+  }
 
+  .product-section {
+    background-color: white;
 
-
-
-
-
-
-
-
-
-
-
-
+    display: flex;
+    width: 70vw;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .product-card {
+    background-color: #e5d8d0;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .product-card h3 {
+    font-size: 16px;
+    margin: 12px 0 4px;
+    color: #333;
+  }
+  
+  .product-card .price {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 6px;
+  }
+  
+  .product-card .description {
+    font-size: 14px;
+    color: #555;
+  }
+  

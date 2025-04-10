@@ -6,6 +6,9 @@
     <title>Catalogo de Fornecedores</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/catalogoFornecedores.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
 
     <header>
         <div class="logo">
@@ -60,161 +63,99 @@
         </script>
 
     </header>
-
     
-</head>
-<div class="central">
-    <!-- Container de Informações -->
- <div class="info-container">
 
-     <div class="info_img"><img src="imagens/userPlaceholder.png" class="img_perfil"></div>
-     
-    <div class="info_perfil">
-        <h2>Informações do Fornecedor</h2>
-        <p><strong>Nome:</strong> João da Silva</p>
-        <p><strong>Email:</strong> joao@dominio.com</p>
-        <p><strong>Telefone:</strong> (11) 91234-5678</p>
-        <p><strong>Endereço:</strong> Rua Exemplo, 123, São Paulo, SP</p>
- </div>
-</div>
-</div>
-    <!-- Filtro de ordenação -->
-    <div class="filters">
-        <div class="order-by">
-            <h3>Ordenar por</h3>
-            <select name="">
-                <option value="">Mais Relevantes</option>
-                <option value="">Menor preço</option>
-                <option value="">Mais Vendidos</option>
-                <option value="">Maior preço</option>
-            </select>
-         </div>
-         </div>
-         
-    <!-- Filtro de seleção -->
-    <div class="categorias">
-        <h3>Categorias</h3>
-        <a><h4>Decorações</h4></a>
-        <a><h4>Ferramentas</h4></a>
-        <a><h4>Materiais</h4></a>
-        <a><h4>Exemplo de Categoria</h4></a>
-    </div>
+    <container>
 
- 
-<body>
-    <div style="display: flex;" >
 
-    </div>
-    <div class="card-container">
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do Produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+        <div class="mainContent">
+            
+            <section class="perfil-fornecedor">
+                <div class="perfil-img">
+                  <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
+                </div>
+              
+                <div class="perfil-info">
+                  <h2 class="perfil-nome">Nome do Fornecedor</h2>
+                  <p class="perfil-avaliacao">Avaliação:</p>
+                  <div class="perfil-stars">
+                    <img src="imagens/star(1).png" alt="1 estrela">
+                    <img src="imagens/star(1).png" alt="2 estrelas">
+                    <img src="imagens/star(1).png" alt="3 estrelas">
+                    <img src="imagens/star.png" alt="4 estrelas">
+                    <img src="imagens/star.png" alt="5 estrelas">
+                  </div>
+                </div>
+              
+                <div class="perfil-sobre">
+                  <h3>Sobre nós</h3>
+                  <p>
+                    Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
+                    Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
+                    Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
+                    garantindo excelência em cada projeto e construindo relações de confiança.
+                  </p>
+                </div>
+              </section>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+              <section class="catalog-section">
+                <!-- Filtro -->
+                <div class="filter-container">
+                  <label for="filter">Filtrar por</label>
+                  <select id="filter" class="filter-select">
+                    <option value="relevante">Mais relevante</option>
+                    <option value="maior_preco">Maior preço</option>
+                    <option value="menor_preco">Menor preço</option>
+                  </select>
+                </div>
+              
+                <!-- Categorias -->
+                <div class="category-list">
+                  <span class="category-item">Categoria 1</span>
+                  <span class="category-item">Categoria 2</span>
+                  <span class="category-item">Categoria 3</span>
+                  <span class="category-item">Categoria 4</spa  n>
+                </div>
+              </section>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+              <section class="product-section">
+                <div class="product-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3>Nome do Produto</h3>
+                  <p class="price">R$ 0,00</p>
+                  <p class="description">Descrição do produto.</p>
+                </div>
+            
+                <!-- repete os cards -->
+                <div class="product-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3>Nome do Produto</h3>
+                  <p class="price">R$ 0,00</p>
+                  <p class="description">Descrição do produto.</p>
+                </div>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+                <div class="product-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3>Nome do Produto</h3>
+                  <p class="price">R$ 0,00</p>
+                  <p class="description">Descrição do produto.</p>
+                </div>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+                <div class="product-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3>Nome do Produto</h3>
+                  <p class="price">R$ 0,00</p>
+                  <p class="description">Descrição do produto.</p>
+                </div>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
+                
+              </section>
+              
+    </container>
 
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-            <h3>R$ 10,99</h3>
-        </div>
-        <div class="card">
-            <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-            <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-            <h3>R$ 10,99</h3>
-        </div>
-     
-    </div>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
-            </div>
-            <div class="footer-section">
-                <h3>Ideal Para</h3>
-                <ul>
-                    <li>Engenheiros Civis</li>
-                    <li>Construtoras</li>
-                    <li>Orçamentistas</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Funcionalidades</h3>
-                <ul>
-                    <li>Cotação de Preços</li>
-                    <li>Gestão de Orçamentos</li>
-                    <li>Comparação de Materiais</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Recursos</h3>
-                <ul>
-                    <li>Lista de Fornecedores</li>
-                    <li>Simulação de Custos</li>
-                    <li>Dashboard Interativo</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Sobre</h3>
-                <ul>
-                    <li><a href="#">Sobre o OrçaTudo</li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
-        </div>
-    </footer>
-    
 
 
 </body>
 </html>
 
-</body>
-</html>
