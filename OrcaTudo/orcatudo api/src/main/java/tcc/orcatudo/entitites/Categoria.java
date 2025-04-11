@@ -7,35 +7,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "subcategoriafinal")
-public class SubcategoriaFinal {
+@Table( name =  "categoria")
+public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nome;
 
-    @ManyToOne
-    @JoinColumn( name = "id_subcategoria")
-    private Subcategoria subcategoria;
+    @OneToMany( mappedBy = "categoria" , cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Subcategoria> subcategorias;
 
-    @OneToMany(mappedBy = "subcategoriaFinal" ,  cascade = CascadeType.ALL , orphanRemoval = true)
-    private List<Produto> produtos;
-
-    
-
-    public SubcategoriaFinal() {
+    public Categoria() {
     }
 
-
-
+    public Categoria(String nome) {
+        this.nome = nome;
+    }
 
     public Integer getId() {
         return id;
@@ -53,16 +46,13 @@ public class SubcategoriaFinal {
         this.nome = nome;
     }
 
-    public Subcategoria getSubcategoria() {
-        return subcategoria;
+    public List<Subcategoria> getSubcategorias() {
+        return subcategorias;
     }
 
-    public void setSubcategoria(Subcategoria subcategoria) {
-        this.subcategoria = subcategoria;
+    public void setSubcategorias(List<Subcategoria> subcategorias) {
+        this.subcategorias = subcategorias;
     }
 
     
-
-    
-
 }

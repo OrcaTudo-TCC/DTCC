@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "fornecedor")
-public class Fornecedor implements UserDetails , User{
+public class Fornecedor implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

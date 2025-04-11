@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 
-public class Usuario implements UserDetails , User{
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
