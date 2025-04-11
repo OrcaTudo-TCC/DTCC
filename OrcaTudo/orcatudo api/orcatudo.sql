@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2025 at 06:00 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Tempo de geração: 11/04/2025 às 02:19
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `orcatudo`
+-- Banco de dados: `orcatudo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carrinho`
+-- Estrutura para tabela `carrinho`
 --
 
 CREATE TABLE `carrinho` (
@@ -36,7 +36,7 @@ CREATE TABLE `carrinho` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estrutura para tabela `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -47,7 +47,7 @@ CREATE TABLE `categoria` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fornecedor`
+-- Estrutura para tabela `fornecedor`
 --
 
 CREATE TABLE `fornecedor` (
@@ -61,13 +61,14 @@ CREATE TABLE `fornecedor` (
   `descricao` varchar(200) DEFAULT NULL,
   `avaliacao` int(11) NOT NULL,
   `senha` varchar(200) DEFAULT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `cpf_cnpj` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_carrinho`
+-- Estrutura para tabela `item_carrinho`
 --
 
 CREATE TABLE `item_carrinho` (
@@ -80,7 +81,7 @@ CREATE TABLE `item_carrinho` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `licitacao`
+-- Estrutura para tabela `licitacao`
 --
 
 CREATE TABLE `licitacao` (
@@ -97,7 +98,7 @@ CREATE TABLE `licitacao` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `operacao`
+-- Estrutura para tabela `operacao`
 --
 
 CREATE TABLE `operacao` (
@@ -111,7 +112,7 @@ CREATE TABLE `operacao` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedido`
+-- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -126,7 +127,7 @@ CREATE TABLE `pedido` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produto`
+-- Estrutura para tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -141,7 +142,7 @@ CREATE TABLE `produto` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estrutura para tabela `roles`
 --
 
 CREATE TABLE `roles` (
@@ -153,7 +154,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `roles`
+-- Despejando dados para a tabela `roles`
 --
 
 INSERT INTO `roles` (`id`, `created_at`, `description`, `name`, `updated_at`) VALUES
@@ -163,7 +164,7 @@ INSERT INTO `roles` (`id`, `created_at`, `description`, `name`, `updated_at`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles_seq`
+-- Estrutura para tabela `roles_seq`
 --
 
 CREATE TABLE `roles_seq` (
@@ -171,7 +172,7 @@ CREATE TABLE `roles_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `roles_seq`
+-- Despejando dados para a tabela `roles_seq`
 --
 
 INSERT INTO `roles_seq` (`next_val`) VALUES
@@ -180,7 +181,7 @@ INSERT INTO `roles_seq` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subcategoria`
+-- Estrutura para tabela `subcategoria`
 --
 
 CREATE TABLE `subcategoria` (
@@ -192,11 +193,11 @@ CREATE TABLE `subcategoria` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subcategoria_ternaria`
+-- Estrutura para tabela `subcategoriafinal`
 --
 
-CREATE TABLE `subcategoria_ternaria` (
-  `id_subcategoriaTernaria` int(11) NOT NULL,
+CREATE TABLE `subcategoriafinal` (
+  `id_subcategoriafinal` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `id_subcategoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -204,7 +205,7 @@ CREATE TABLE `subcategoria_ternaria` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -219,32 +220,33 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `email`, `cpf_cnpj`, `telefone`, `endereco`, `senha`, `nome`, `role_id`) VALUES
 (5, 'ronyelson@gmail.com', '1223434312', NULL, NULL, '$2a$10$BJoXqH0KtddDrlcQ.otvVuVBfsVHZmH.LodpDQkgHAbxvpTQ84wXO', 'rony gol da silva', 2),
-(7, 'ronyson@gmail.com', '132434312', NULL, NULL, '$2a$10$QSe7/Y6m0VT.Nf/e1hiYjOS276lViT0yXzDIVVjRd20S7nW2PKYZO', 'rony gol silva', 2);
+(7, 'ronyson@gmail.com', '132434312', NULL, NULL, '$2a$10$QSe7/Y6m0VT.Nf/e1hiYjOS276lViT0yXzDIVVjRd20S7nW2PKYZO', 'rony gol silva', 2),
+(8, 'richarrios@gmail.com', '12343456', NULL, NULL, '$2a$10$lbBLB1F4xk50DxpyxmSIne.qimSrQHwveiRTelIRsBf8gcMHJo6sS', 'richard rios', 2);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `carrinho`
+-- Índices de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
   ADD PRIMARY KEY (`id_carrinho`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `categoria`
+-- Índices de tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `fornecedor`
+-- Índices de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
   ADD PRIMARY KEY (`id_fornecedor`),
@@ -252,14 +254,14 @@ ALTER TABLE `fornecedor`
   ADD KEY `FKpu45ygbqj51yt1i16jk1jffsy` (`role_id`);
 
 --
--- Indexes for table `item_carrinho`
+-- Índices de tabela `item_carrinho`
 --
 ALTER TABLE `item_carrinho`
   ADD PRIMARY KEY (`id_itemCarrinho`),
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Indexes for table `licitacao`
+-- Índices de tabela `licitacao`
 --
 ALTER TABLE `licitacao`
   ADD PRIMARY KEY (`id_licitacao`),
@@ -268,7 +270,7 @@ ALTER TABLE `licitacao`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Indexes for table `operacao`
+-- Índices de tabela `operacao`
 --
 ALTER TABLE `operacao`
   ADD PRIMARY KEY (`id_operacao`),
@@ -276,7 +278,7 @@ ALTER TABLE `operacao`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `pedido`
+-- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
@@ -284,35 +286,35 @@ ALTER TABLE `pedido`
   ADD KEY `id_carrinho` (`id_carrinho`);
 
 --
--- Indexes for table `produto`
+-- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`),
   ADD KEY `id_subcategoriaTernaria` (`id_subcategoriaTernaria`);
 
 --
--- Indexes for table `roles`
+-- Índices de tabela `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKofx66keruapi6vyqpv6f2or37` (`name`);
 
 --
--- Indexes for table `subcategoria`
+-- Índices de tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
   ADD PRIMARY KEY (`id_subcategoria`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indexes for table `subcategoria_ternaria`
+-- Índices de tabela `subcategoriafinal`
 --
-ALTER TABLE `subcategoria_ternaria`
-  ADD PRIMARY KEY (`id_subcategoriaTernaria`),
+ALTER TABLE `subcategoriafinal`
+  ADD PRIMARY KEY (`id_subcategoriafinal`),
   ADD KEY `id_subcategoria` (`id_subcategoria`);
 
 --
--- Indexes for table `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
@@ -321,99 +323,93 @@ ALTER TABLE `usuarios`
   ADD KEY `FKeljjw3mx8n5ngoe7fbqbjwusp` (`role_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `carrinho`
+-- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
   MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fornecedor`
+-- AUTO_INCREMENT de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
   MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `item_carrinho`
+-- AUTO_INCREMENT de tabela `item_carrinho`
 --
 ALTER TABLE `item_carrinho`
   MODIFY `id_itemCarrinho` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `licitacao`
+-- AUTO_INCREMENT de tabela `licitacao`
 --
 ALTER TABLE `licitacao`
   MODIFY `id_licitacao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `operacao`
+-- AUTO_INCREMENT de tabela `operacao`
 --
 ALTER TABLE `operacao`
   MODIFY `id_operacao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pedido`
+-- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
   MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `produto`
+-- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
   MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `subcategoria`
+-- AUTO_INCREMENT de tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
   MODIFY `id_subcategoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `subcategoria_ternaria`
---
-ALTER TABLE `subcategoria_ternaria`
-  MODIFY `id_subcategoriaTernaria` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `carrinho`
+-- Restrições para tabelas `carrinho`
 --
 ALTER TABLE `carrinho`
   ADD CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Constraints for table `fornecedor`
+-- Restrições para tabelas `fornecedor`
 --
 ALTER TABLE `fornecedor`
   ADD CONSTRAINT `FKpu45ygbqj51yt1i16jk1jffsy` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
--- Constraints for table `item_carrinho`
+-- Restrições para tabelas `item_carrinho`
 --
 ALTER TABLE `item_carrinho`
   ADD CONSTRAINT `item_carrinho_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
--- Constraints for table `licitacao`
+-- Restrições para tabelas `licitacao`
 --
 ALTER TABLE `licitacao`
   ADD CONSTRAINT `licitacao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
@@ -421,39 +417,39 @@ ALTER TABLE `licitacao`
   ADD CONSTRAINT `licitacao_ibfk_3` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
--- Constraints for table `operacao`
+-- Restrições para tabelas `operacao`
 --
 ALTER TABLE `operacao`
   ADD CONSTRAINT `operacao_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
   ADD CONSTRAINT `operacao_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Constraints for table `pedido`
+-- Restrições para tabelas `pedido`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_carrinho`) REFERENCES `carrinho` (`id_carrinho`);
 
 --
--- Constraints for table `produto`
+-- Restrições para tabelas `produto`
 --
 ALTER TABLE `produto`
-  ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`id_subcategoriaTernaria`) REFERENCES `subcategoria_ternaria` (`id_subcategoriaTernaria`);
+  ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`id_subcategoriaTernaria`) REFERENCES `subcategoriafinal` (`id_subcategoriafinal`);
 
 --
--- Constraints for table `subcategoria`
+-- Restrições para tabelas `subcategoria`
 --
 ALTER TABLE `subcategoria`
   ADD CONSTRAINT `subcategoria_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
 
 --
--- Constraints for table `subcategoria_ternaria`
+-- Restrições para tabelas `subcategoriafinal`
 --
-ALTER TABLE `subcategoria_ternaria`
-  ADD CONSTRAINT `subcategoria_ternaria_ibfk_1` FOREIGN KEY (`id_subcategoria`) REFERENCES `subcategoria` (`id_subcategoria`);
+ALTER TABLE `subcategoriafinal`
+  ADD CONSTRAINT `subcategoriafinal_ibfk_1` FOREIGN KEY (`id_subcategoria`) REFERENCES `subcategoria` (`id_subcategoria`);
 
 --
--- Constraints for table `usuarios`
+-- Restrições para tabelas `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `FKeljjw3mx8n5ngoe7fbqbjwusp` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
