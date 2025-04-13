@@ -1,93 +1,251 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo 'nome fornecedor'</title>
+    <title>Catalogo de Fornecedores</title>
+    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/catalogoProdutos.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
-    <main>
-        <section>
-            <div>
-                <a href=""><h4>Home</h4></a>
-                <img style="height: 20px; width: 20px;"  src="imagens/chevron.png" alt="right arrow">
-            </div>
-            <div>
-                <a href=""><h4>Categoria</h4></a>
-                <img style="height: 20px; width: 20px;"  src="imagens/chevron.png" alt="right arrow">
-            </div>
-            <div>
-                <a href=""><h4>subcategoria</h4></a>
-                <img style="height: 20px; width: 20px;"  src="imagens/chevron.png" alt="right arrow">
-            </div>
-            <div>
-                <a href=""><h4>sub-subcategoria</h4></a>
-            </div>
-        </section>
-        <div class="catalog">
-            <div class="filters">
-                <div class="order-by">
-                    <h3>Ordenar por</h3>
-                    <select name="">
-                        <option value="">Mais Relevantes</option>
-                        <option value="">Menor preço</option>
-                        <option value="">Mais Vendidos</option>
-                        <option value="">Maior preço</option>
-                    </select>
-                </div>
-                <div class="categorias">
-                    <h3>categorias</h3>
-                    <a><h4>Decorações</h4></a>
-                    <a><h4>Ferramentas</h4></a>
-                    <a><h4>Materiais</h4></a>
-                    <a><h4>exemplo de categoria</h4></a>
-                </div>
-            </div>
-            <div>
-                <div class="found-products">
-                    <h3>997 Resultados para "tijolo"</h3>
-                </div>
-                <div class="card-container">
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do Produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
 
-                        <h3>R$ 10,99</h3>
-                    </div>
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-                        <h3>R$ 10,99</h3>
-                    </div>
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-                        <h3>R$ 10,99</h3>
-                    </div>
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-                        <h3>R$ 10,99</h3>
-                    </div>
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-                        <h3>R$ 10,99</h3>
-                    </div>
-                    <div class="card">
-                        <img src="imagens/placeholder.jpg" alt="Imagem Produto">
-                        <p>nome do produto teste varias linhas kfsjfl dsf fdsfsfs fdsfsfs</p>
-
-                        <h3>R$ 10,99</h3>
-                    </div>
-
-                </div>
-            </div>
+    <header>
+        <div class="logo">
+            <img src="imagens/Logo1.png">
         </div>
-    </main>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="O que você procura na Orça tudo ?">
+            <i class="fas fa-search"></i>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Licitação</a></li>
+                <li><a href="#">Cotação</a></li>
+                <li><a href="#">Sobre nós</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+
+            <div class="user-menu">
+                <i class="far fa-user" id="user-icon"></i>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#">Configurações</a>
+                    <a href="#">Sair da Conta</a>
+                </div>
+            </div>
+           
+           
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const userIcon = document.getElementById("user-icon");
+                const dropdownMenu = document.getElementById("dropdown-menu");
+        
+                userIcon.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Impede que o clique feche imediatamente
+                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+                });
+        
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+        
+                dropdownMenu.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Evita que o clique no menu feche ele
+                });
+            });
+        </script>
+
+    </header>
+    
+
+    <container>
+
+
+        <div class="mainContent">
+
+            <section class="ordenar-section">
+                <span>Ordenar por:</span>
+                <div class="ordenar-opcoes">
+                  <button class="ordenar-botao">Relevância</button>
+                  <button class="ordenar-botao">Menor Preço</button>
+                  <button class="ordenar-botao">Maior Preço</button>
+                  <button class="ordenar-botao">Avaliação</button>
+                </div>
+              </section>
+              
+
+              <section class="catalogo-section">
+                <!-- Filtro -->
+                <div class="filtro-container">
+                  <label for="filtro">Filtrar por Categoria</label>
+                  <select id="filtro" class="filtro-selecao">
+                    <option value="Categoria1">Categoria 1</option>
+                    <option value="Categoria2">Categoria 2</option>
+                    <option value="Categoria3">Categria 3</option>
+                  </select>
+                </div>
+              
+               <!-- FILTRAR POR MARCA -->
+                <div class="filtro-marca-container">
+                    <label for="filtro-marca">Filtrar por Marca</label>
+                    <div class="marca-lista">
+                    <span class="marca-item">Marca 1</span>
+                    <span class="marca-item">Marca 2</span>
+                    <span class="marca-item">Marca 3</span>
+                    <span class="marca-item">Marca 4</span>
+                    </div>
+                </div>
+                
+                <!-- FILTRAR POR FORNECEDOR -->
+                <div class="filtro-fornecedor-container">
+                    <label for="filtro-fornecedor">Filtrar por Fornecedor</label>
+                    <div class="fornecedor-lista">
+                    <span class="fornecedor-item">Fornecedor A</span>
+                    <span class="fornecedor-item">Fornecedor B</span>
+                    <span class="fornecedor-item">Fornecedor C</span>
+                    <span class="fornecedor-item">Fornecedor D</span>
+                    </div>
+                </div>
+  
+                  
+              </section>
+
+              <section class="produto-section">
+                <div class="produto-card">
+                    <img src="https://cdn.leroymerlin.com.br/products/carrinho_de_mao_em_aco_carbono_pneu_e_camara_chapa_26mm_45l_1571958082_5aac_300x300.jpg" alt="Produto" />
+                    <h3> Carrinho De Mão Em Aço </h3>
+                    <p class="preco">R$ 189,91</p>
+                    <p class="categoria"> Ferramentas e Equipamentos</p>
+                    <p class="subcategoria">Carrinhos de Mão</p>
+                  </div>
+                  
+            
+                <!-- repete os cards -->
+                
+                <div class="produto-card">
+                  <img src="https://cdn.leroymerlin.com.br/products/betoneira_400l_1_traco_max_mono_127v_csm_92016435_f57f_600x600.jpg" alt="Produto" />
+                  <h3> Betoneira 400L 1 Traço </h3>
+                  <p class="preco">R$ 4.589,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="https://cdn.leroymerlin.com.br/products/trena_manual_5mx19mm_460610_dexter_91716401_b391_600x600.jpg" alt="Produto" />
+                  <h3> Trena Manual 5 metros </h3>
+                  <p class="preco">R$  29,90</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+                <div class="produto-card">
+                  <img src="imagens/placeholder.jpg" alt="Produto" />
+                  <h3> Nome Produto  </h3>
+                  <p class="preco">R$ 00,00</p>
+                  <p class="categoria"> Categoria </p>
+                  <p class="subcategoria"> Sub Categoria </p>
+                </div>
+                
+
+                
+              </section>
+              
+    </container>
+
+
+
+    <footer>
+      <div class="footer-container">
+          <div class="footer-section">
+              <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+          </div>
+          <div class="footer-section">
+              <h3>Ideal Para</h3>
+              <ul>
+                  <li>Engenheiros Civis</li>
+                  <li>Construtoras</li>
+                  <li>Orçamentistas</li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Funcionalidades</h3>
+              <ul>
+                  <li>Cotação de Preços</li>
+                  <li>Gestão de Orçamentos</li>
+                  <li>Comparação de Materiais</li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Recursos</h3>
+              <ul>
+                  <li>Lista de Fornecedores</li>
+                  <li>Simulação de Custos</li>
+                  <li>Dashboard Interativo</li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Sobre</h3>
+              <ul>
+                  <li><a href="#">Sobre o OrçaTudo</li>
+                  <li><a href="#">Contato</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+      </div>
+  </footer>
+  
+
+
+
 </body>
 </html>
+
