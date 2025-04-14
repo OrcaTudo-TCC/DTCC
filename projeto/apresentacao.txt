@@ -1,0 +1,16 @@
+Joao menezes : apresentar introdução, problematização, solução , objetivos, conclusão.
+wireframes de média fidelidae: tela de licitação , tela de perfil fornecdor e tela de hitórico. 
+diagrama de casso de uso.
+
+Alex Alves: publico alvo , objetivos.
+requisitos funcionais: tela de perfil fornecedor e tela perfil usuario.
+wireframes de média fidelidade: perfil Fornecedor, dashboard, login, e catalogo de itens.
+digrama de banco de dados.
+
+Murilo: justificativa, gráficos, referaÊncias e desafios
+wireframes de média fidelidade: tela de cotação e Landing Page e perfil de usuario.
+Diagrama de Classe
+
+Kauan: Metodologia usada no projeto, hard e soft skills.
+requistos funcionais: Landing page, dashboard.
+wireframes de baixa fidelidade: todos.
