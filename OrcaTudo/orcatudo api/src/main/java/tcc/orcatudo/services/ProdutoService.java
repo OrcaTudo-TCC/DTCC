@@ -2,6 +2,8 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import tcc.orcatudo.dtos.PutProdutoDTO;
 import tcc.orcatudo.dtos.SaveProdutoDTO;
 import tcc.orcatudo.entitites.Produto;

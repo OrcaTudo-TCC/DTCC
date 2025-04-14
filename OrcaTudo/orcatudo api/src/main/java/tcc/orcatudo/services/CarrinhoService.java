@@ -6,4 +6,6 @@ public interface CarrinhoService {
 
     Carrinho getCarrinhoByUsuarioId(int id);
 
+    void postCarrinho();
+
 }
