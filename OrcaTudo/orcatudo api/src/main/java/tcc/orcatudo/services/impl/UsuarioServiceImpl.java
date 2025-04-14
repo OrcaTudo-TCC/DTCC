@@ -11,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import tcc.orcatudo.dtos.UsuarioDTO;
 import tcc.orcatudo.entitites.Usuario;
-import tcc.orcatudo.handler.MissingFieldsException;
 import tcc.orcatudo.repository.UsuarioRepository;
 import tcc.orcatudo.services.UsuarioService;
 

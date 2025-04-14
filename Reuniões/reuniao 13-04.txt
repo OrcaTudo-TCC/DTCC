@@ -1,0 +1,20 @@
+Data: [13/04/2025]
+Hora de início: [21:15]
+Hora de término: [21:29]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Apresentar o que foi desenvolivdo essa semana
+	Planejar atividades para próxima semana
+2. Tópicos Abordados
+	Murilo: desenvolvimento da API em 80%
+	Alex: Tela de catalogo fornecedor e tela catalogo nos ultimos detalhes.
+	João Pedro Menezes: Terminou os slides.
+
+3. Decisões Tomadas
+	Murilo: Continuar desenvolvimento da API, criação das classes em javascript
+	Alex: Ajustar Header , padronizar Carrinho de compras , padronizar login e desenvolver telda de perfil usuario e ajustar responsividades de telas.
+	João Pedro Menezes: Estudar jascpit fetch API, Padronização da tela Login e criação da tela de perfil do usuário.
+	Kauan: Criação das classes em javascript.
+

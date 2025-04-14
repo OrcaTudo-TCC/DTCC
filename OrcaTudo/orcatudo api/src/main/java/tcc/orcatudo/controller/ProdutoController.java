@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.dtos.PutProdutoDTO;
+import tcc.orcatudo.dtos.SaveProdutoDTO;
 import tcc.orcatudo.entitites.Produto;
 import tcc.orcatudo.services.ProdutoService;
 
@@ -44,12 +47,12 @@ public class ProdutoController {
     }
 
     @PutMapping()
-    public ResponseEntity<Produto> putProduto(Produto produto){
+    public ResponseEntity<Produto> putProduto(@RequestBody PutProdutoDTO produto){
         return ResponseEntity.ok(produtoService.putProduto(produto));
     }
 
     @PostMapping()
-    public ResponseEntity<Produto> saveProduto(Produto produto){
-        return ResponseEntity.ok(produtoService.putProduto(produto));
+    public ResponseEntity<Produto> saveProduto(@RequestBody SaveProdutoDTO produto){
+        return ResponseEntity.ok(produtoService.saveProduto(produto));
     }
 }

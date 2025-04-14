@@ -8,4 +8,6 @@ import tcc.orcatudo.entitites.SubcategoriaFinal;
 @Repository
 public interface SubcategoriaFinalRepository extends JpaRepository<SubcategoriaFinal, Integer> {
 
+    SubcategoriaFinal findByNome(String nome);
+
 }

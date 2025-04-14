@@ -6,14 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import tcc.orcatudo.dtos.PutProdutoDTO;
+import tcc.orcatudo.dtos.SaveProdutoDTO;
 import tcc.orcatudo.entitites.Produto;
+import tcc.orcatudo.repository.FornecedorRepository;
 import tcc.orcatudo.repository.ProdutoRepository;
+import tcc.orcatudo.repository.SubcategoriaFinalRepository;
 import tcc.orcatudo.services.ProdutoService;
 
 public class ProdutoServiceImpl implements ProdutoService{
 
     @Autowired
     ProdutoRepository produtoRepository;
+
+    @Autowired
+    FornecedorRepository fornecedorRepository;
+
+    @Autowired
+    SubcategoriaFinalRepository subcategoriaFinalRepository;
 
     @Override
     public List<Produto> getAllProduto() {
@@ -46,11 +56,15 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Produto putProduto(Produto produto) {
+    public Produto putProduto(PutProdutoDTO produto) {
         if (!produtoRepository.existsById(produto.getId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Produto não encontrado para atualizar");
         }
-        return produtoRepository.save(produto);
+        Produto updatedProduto = Produto.fromDTO(produto);
+        updatedProduto.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor()));
+        updatedProduto.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal()));
+
+        return produtoRepository.save(updatedProduto);
     }
 
     @Override
@@ -72,8 +86,11 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Produto saveProduto(Produto produto) {
-        return produtoRepository.save(produto);
+    public Produto saveProduto(SaveProdutoDTO produto) {
+        Produto produtoToSave = Produto.fromDTO(produto);
+        produtoToSave.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor()));
+        produtoToSave.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNome()));
+        return produtoRepository.save(produtoToSave);
     }
 
     

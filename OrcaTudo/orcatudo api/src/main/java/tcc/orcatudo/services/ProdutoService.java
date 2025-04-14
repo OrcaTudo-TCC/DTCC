@@ -2,11 +2,13 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
+import tcc.orcatudo.dtos.PutProdutoDTO;
+import tcc.orcatudo.dtos.SaveProdutoDTO;
 import tcc.orcatudo.entitites.Produto;
 
 public interface ProdutoService {
 
-    Produto saveProduto(Produto produto);
+    Produto saveProduto(SaveProdutoDTO produto);
 
     List<Produto> getAllProduto();
 
@@ -24,7 +26,7 @@ public interface ProdutoService {
 
     Produto getProdutoByNome(String nome);
 
-    Produto putProduto(Produto produto);
+    Produto putProduto(PutProdutoDTO produto);
 
     void deleteProdutoById(int id);
 
