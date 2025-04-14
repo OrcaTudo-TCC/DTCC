@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import tcc.orcatudo.dtos.FornecedorDTO;
 
 @Entity
 @Table(name = "fornecedor")
@@ -55,9 +56,23 @@ public class Fornecedor implements UserDetails{
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    
-
     public Fornecedor() {
+    }
+
+    public static Fornecedor fromDTO(FornecedorDTO dto){
+        Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setId(dto.getId());
+        fornecedor.setArea_de_atuacao(dto.getAreaDeAtuacao());
+        fornecedor.setAvaliacao(dto.getAvaliacao());
+        fornecedor.setDescricao(dto.getDescricao());
+        fornecedor.setDocumento(dto.getDocumento());
+        fornecedor.setEmail(dto.getEmail());
+        fornecedor.setEndereco(dto.getEndereco());
+        fornecedor.setNome(dto.getNome());
+        fornecedor.setRazao_social(dto.getRazao_social());
+        fornecedor.setTelefone(dto.getTelefone());
+
+        return fornecedor;
     }
 
     @Override
@@ -99,6 +114,7 @@ public class Fornecedor implements UserDetails{
         return true;
     }
 
+    
     public Integer getId() {
         return id;
     }
@@ -191,6 +207,10 @@ public class Fornecedor implements UserDetails{
 
     public void setDocumento(String documento) {
         this.documento = documento;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 

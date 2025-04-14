@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.repository.FornecedorRepository;
 import tcc.orcatudo.services.FornecedorService;
@@ -31,11 +32,13 @@ public class FornecedorServiceImpl implements FornecedorService{
     }
 
     @Override
-    public Fornecedor updateFornecedor(Fornecedor fornecedor) {
+    public Fornecedor updateFornecedor(FornecedorDTO fornecedor) {
         if (!fornecedorRepository.existsById(fornecedor.getId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND , "Fornecedor não encontrado para atualizar");
         }
-        return fornecedorRepository.save(fornecedor);
+        Fornecedor updatedFornecedor = Fornecedor.fromDTO(fornecedor);
+
+        return fornecedorRepository.save(updatedFornecedor);
     }
 
     @Override
@@ -45,11 +48,6 @@ public class FornecedorServiceImpl implements FornecedorService{
         }
         fornecedorRepository.deleteById(id);
         return true;
-    }
-
-    @Override
-    public long countFornecedor() {
-        return fornecedorRepository.count();
     }
 
     @Override

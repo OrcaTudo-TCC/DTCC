@@ -4,8 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import tcc.orcatudo.services.ComposedDetailsService;
 import tcc.orcatudo.services.JwtService;
+import tcc.orcatudo.services.details.ComposedDetailsService;
 
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

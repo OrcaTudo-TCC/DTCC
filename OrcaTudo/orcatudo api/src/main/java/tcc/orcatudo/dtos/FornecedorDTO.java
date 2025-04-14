@@ -1,6 +1,8 @@
 package tcc.orcatudo.dtos;
 
-public class RegisterFornecedorDto{
+public class FornecedorDTO {
+
+    private int id;
 
     private String nome;
 
@@ -22,7 +24,13 @@ public class RegisterFornecedorDto{
 
     private int avaliacao;
 
-    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -54,6 +62,14 @@ public class RegisterFornecedorDto{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public String getTelefone() {
@@ -96,13 +112,6 @@ public class RegisterFornecedorDto{
         this.avaliacao = avaliacao;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
     
+
 }

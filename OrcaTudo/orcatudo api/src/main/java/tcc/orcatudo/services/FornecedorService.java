@@ -2,9 +2,12 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
+import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 
 public interface FornecedorService {
+
+    List<Fornecedor> getAllFornecedor();
 
     Fornecedor getFornecedorById(int id);
 
@@ -12,12 +15,8 @@ public interface FornecedorService {
 
     boolean existsFornecedorByEmail(String email);
 
-    List<Fornecedor> getAllFornecedor();
-
-    Fornecedor updateFornecedor(Fornecedor fornecedor);
+    Fornecedor updateFornecedor(FornecedorDTO fornecedor);
 
     boolean deleteFornecedorByID(int id);
-
-    long countFornecedor();
 
 }

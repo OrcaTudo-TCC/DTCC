@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.services.FornecedorService;
 
@@ -31,13 +32,9 @@ public class FornecedorController {
             return fornecedorService.getAllFornecedor();
         }
     }
-    @GetMapping("Count")
-    public long getCountFornecedor(){
-        return fornecedorService.countFornecedor();
-    }
 
     @PutMapping()
-    public ResponseEntity<Fornecedor> putFornecedor(Fornecedor fornecedor){
+    public ResponseEntity<Fornecedor> putFornecedor(FornecedorDTO fornecedor){
         return  ResponseEntity.ok(fornecedorService.updateFornecedor(fornecedor));
     }
 

@@ -1,4 +1,4 @@
-package tcc.orcatudo.services;
+package tcc.orcatudo.services.details;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -59,6 +59,8 @@ public class AuthenticationService {
                     user.setEmail(input.getEmail());
                     user.setDocumento(input.getDocumento());
                     user.setRole(roleOptional.get());
+                    user.setTelefone(input.getTelefone());
+                    user.setEndereco(input.getEndereco());
                     user.setSenha(passwordEncoder.encode(input.getPassword()));
     
             return userRepository.save(user);

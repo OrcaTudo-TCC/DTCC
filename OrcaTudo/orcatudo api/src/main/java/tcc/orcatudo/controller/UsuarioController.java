@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.dtos.UsuarioDTO;
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.services.impl.UsuarioServiceImpl;
 
@@ -34,21 +36,17 @@ public class UsuarioController {
 
         return usuarioService.getAllUsuario();
     }
-    @GetMapping("Count")
-    public long countUsuario(){
-        return usuarioService.countUsuario();
-    }
 
     @PutMapping()
     @PreAuthorize("hasRole('USUARIO')")
-    public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<Usuario> putUsuario(@RequestBody UsuarioDTO usuario){
         return ResponseEntity.ok(usuarioService.putUsuario(usuario));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('USUARIO')")
-    public void deleteUsuario(@RequestBody Usuario usuario){
-        usuarioService.deleteUsuario(usuario);
+    public void deleteUsuario(@PathVariable int id){
+        usuarioService.deleteUsuarioById(id);
     }
 
 

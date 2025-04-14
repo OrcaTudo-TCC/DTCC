@@ -1,4 +1,4 @@
-package tcc.orcatudo.services;
+package tcc.orcatudo.services.details;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

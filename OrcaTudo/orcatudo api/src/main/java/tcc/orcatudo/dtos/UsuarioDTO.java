@@ -1,9 +1,11 @@
 package tcc.orcatudo.dtos;
 
-public class RegisterUsuarioDto{
+public class UsuarioDTO {
+    private int id;
+
     private String email;
     
-    private String password;
+    private String senha;
     
     private String nome;
 
@@ -13,7 +15,13 @@ public class RegisterUsuarioDto{
     
     private String endereco;
 
-    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -21,14 +29,6 @@ public class RegisterUsuarioDto{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getNome() {
@@ -47,7 +47,13 @@ public class RegisterUsuarioDto{
         this.documento = documento;
     }
 
+    public Integer getTelefone() {
+        return telefone;
+    }
 
+    public void setTelefone(Integer telefone) {
+        this.telefone = telefone;
+    }
 
     public String getEndereco() {
         return endereco;
@@ -57,16 +63,13 @@ public class RegisterUsuarioDto{
         this.endereco = endereco;
     }
 
-    public Integer getTelefone() {
-        return telefone;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    
-    
-    
     
 }

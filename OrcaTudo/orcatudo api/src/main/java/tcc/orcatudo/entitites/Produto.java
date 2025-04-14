@@ -34,6 +34,10 @@ public class Produto {
     @JoinColumn( name = "id_subcategoriafinal" )
     private SubcategoriaFinal subcategoriaFinal;
 
+    @ManyToOne
+    @JoinColumn( name = "id_fornecedor")
+    private Fornecedor fornecedor;
+
 
     public Produto() {
     }
@@ -85,6 +89,20 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    
 
     
 }

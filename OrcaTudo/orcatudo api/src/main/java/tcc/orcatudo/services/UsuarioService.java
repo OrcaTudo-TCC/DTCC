@@ -2,6 +2,7 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
+import tcc.orcatudo.dtos.UsuarioDTO;
 import tcc.orcatudo.entitites.Usuario;
 
 public interface UsuarioService {
@@ -12,9 +13,9 @@ public interface UsuarioService {
 
     List<Usuario> getAllUsuario();
 
-    Usuario putUsuario(Usuario usuario);
+    Usuario putUsuario(UsuarioDTO usuario);
 
-    void deleteUsuario(Usuario usuario);
+    void deleteUsuarioById(int id);
 
     long countUsuario();
 
