@@ -1,12 +1,29 @@
 package tcc.orcatudo.dtos;
 
-import java.util.List;
-
-public class postCarrinhoDTO {
+public class PostCarrinhoDTO {
 
     private boolean status;
 
-    private String nomeDoUsuario;
+    private String EmailDoUsuario;
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getEmailDoUsuario() {
+        return EmailDoUsuario;
+    }
+
+    public void setEmailDoUsuario(String emailDoUsuario) {
+        EmailDoUsuario = emailDoUsuario;
+    }
+
+    
+
+    
 
 }

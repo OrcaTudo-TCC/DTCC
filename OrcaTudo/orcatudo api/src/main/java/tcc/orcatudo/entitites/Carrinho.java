@@ -26,7 +26,7 @@ public class Carrinho {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "carrinho"  , cascade = CascadeType.ALL , orphanRemoval = true)
+    @OneToMany(mappedBy = "carrinho"  , orphanRemoval = true)
     private List<ItemCarrinho> itensCarrinho;
 
     
