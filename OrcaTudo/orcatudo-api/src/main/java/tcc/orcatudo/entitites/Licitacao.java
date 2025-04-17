@@ -17,6 +17,7 @@ public class Licitacao {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column( name = "data_inicio")
     private LocalDateTime startdate;
