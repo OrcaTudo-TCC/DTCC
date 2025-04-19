@@ -1,5 +1,7 @@
 package tcc.orcatudo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class PedidoController {
     PedidoService pedidoService;
 
     @GetMapping("/{id}")
-    public Pedido getPedidoByCarrinhoId(@PathVariable int id){
+    public List<Pedido> getPedidoByCarrinhoId(@PathVariable int id){
         return pedidoService.getPedidoByCarrinhoId(id);
     }
     @PostMapping()

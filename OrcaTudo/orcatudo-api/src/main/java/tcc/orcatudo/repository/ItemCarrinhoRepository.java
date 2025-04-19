@@ -8,6 +8,6 @@ import tcc.orcatudo.entitites.ItemCarrinho;
 
 public interface ItemCarrinhoRepository extends JpaRepository<ItemCarrinho, Integer>{
 
-    List<ItemCarrinho> findByCarrinhoId(Integer id);
+    List<ItemCarrinho> findAllByCarrinhoId(Integer id);
 
 }

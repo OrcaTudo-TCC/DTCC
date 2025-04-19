@@ -1,15 +1,18 @@
 package tcc.orcatudo.services;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 import tcc.orcatudo.entitites.Operacao;
 import tcc.orcatudo.entitites.OperacaoEnum;
+import tcc.orcatudo.entitites.StatusEnum;
 
 public interface OperacaoService {
 
-    Operacao getOperacaoByUsuarioId(int id);
+    List<Operacao> getOperacaoByUsuarioId(int id);
 
-    ResponseEntity<Operacao> postOperacaoById(int id, OperacaoEnum operacao);
+    Operacao postOperacaoById(int id, OperacaoEnum operacao, StatusEnum status);
+
+    Operacao putOperacaoStatusById(int id, StatusEnum status);
 
 
 

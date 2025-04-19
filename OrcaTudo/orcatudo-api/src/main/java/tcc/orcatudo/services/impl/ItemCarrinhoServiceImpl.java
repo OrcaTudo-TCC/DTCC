@@ -28,7 +28,7 @@ public class ItemCarrinhoServiceImpl implements ItemCarrinhoService{
 
     @Override
     public List<ItemCarrinho> getItemByCarrinhoId(int id) {
-        return itemCarrinhoRepository.findByCarrinhoId(id);
+        return itemCarrinhoRepository.findAllByCarrinhoId(id);
     }
 
     @Override

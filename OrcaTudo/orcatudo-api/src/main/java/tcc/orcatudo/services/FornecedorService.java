@@ -2,8 +2,6 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 

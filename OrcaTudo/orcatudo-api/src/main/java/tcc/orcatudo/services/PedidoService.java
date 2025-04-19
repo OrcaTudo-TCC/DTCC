@@ -1,10 +1,12 @@
 package tcc.orcatudo.services;
 
+import java.util.List;
+
 import tcc.orcatudo.entitites.Pedido;
 
 public interface PedidoService {
 
-    Pedido getPedidoByCarrinhoId(int id);
+    List<Pedido> getPedidoByCarrinhoId(int id);
 
     Pedido postPedido(int idDoCarrinho);
 

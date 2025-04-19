@@ -1,6 +1,7 @@
 package tcc.orcatudo.services.impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,8 @@ public class PedidoServiceImpl implements PedidoService{
     CarrinhoRepository carrinhoRepository;
 
     @Override
-    public Pedido getPedidoByCarrinhoId(int id) {
-        return pedidoRepository.findByCarrinhoId(id)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum carrinho encontrado com id: "+ id));
+    public List<Pedido> getPedidoByCarrinhoId(int id) {
+        return pedidoRepository.findAllByCarrinhoId(id);
     }
 
     @Override
