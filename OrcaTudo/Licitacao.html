@@ -10,87 +10,78 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="form-image">
-            <img src="imagems/livro.jpeg" alt="">
+
+    <container>
+        <section class="licitacao-section">
+         <h2>Nova Licitação</h2>
+         <div class="form-grid">
+          <!-- Categoria -->
+            <div class="form-group">
+             <label for="categoria">Categoria</label>
+             <input type="text" id="categoria" name="categoria" />
+            </div>
+      
+             <!-- Sub Categoria -->
+            <div class="form-group">
+            <label for="subcategoria">Sub Categoria</label>
+             <input type="text" id="subcategoria" name="subcategoria" />
+            </div>
+      
+          <!-- SubCategoria Terciária -->
+          <div class="form-group">
+            <label for="subcategoria3">SubCategoria Terciária</label>
+            <input type="text" id="subcategoria3" name="subcategoria3" />
+          </div>
+      
+          <!-- Marca -->
+          <div class="form-group">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" name="marca" />
+          </div>
+      
+          <!-- Produto -->
+          <div class="form-group">
+            <label for="produto">Produto</label>
+            <input type="text" id="produto" name="produto" />
+          </div>
+      
+          <!-- Comentário -->
+          <div class="form-group">
+            <label for="comentario">Comentário</label>
+            <input type="text" id="comentario" name="comentario" />
+          </div>
         </div>
-        <div class="form">
-            <form action="#">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Abrir Licitação</h1>
-                    </div>
-                    <div class="login-button">
-                        <button><a href="#">Entrar</a></button>
-                    </div>
-                </div>
+      </section>
 
-                <div class="input-group">
-                    <div class="input-box">
-                        <label for="firstname">Categoria</label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Ex.Ferramentas" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="lastname">Marca (Opicional)</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Ex.Brasfort" required>
-                    </div>
-                    <div class="input-box">
-                        <label for="email">Subcategoria</label>
-                        <input id="email" type="email" name="email" placeholder="Ex.chaves" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="number">Produto</label>
-                        <input id="number" type="tel" name="number" placeholder="Ex.Chave inglessa ajustavel 8 polegadas 200mm" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="password">Subcategoria - ternaria </label>
-                        <input id="password" type="password" name="password" placeholder="Ex.chave inglessa" required>
-                    </div>
-
-
-                    <div class="input-box">
-                        <label for="confirmPassword">Comentario</label>
-                        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Ex.comentario detalhado infomações" required>
-                    </div>
-
-                </div>
-
-                <div class="gender-inputs">
-                    <div class="gender-title">
-                        <h6>Confirme seus dados</h6>
-                    </div>
-
-                    <div class="gender-group">
-                        <div class="gender-input">
-                            <input id="female" type="radio" name="gender">
-                            <label for="female">CPF</label>
-                        </div>
-
-                        <div class="gender-input">
-                            <input id="male" type="radio" name="gender">
-                            <label for="male">CNPJ</label>
-                        </div>
-
-                        <div class="input-box">
-                            <label for="number">CPF</label>
-                            <input id="number" type="tel" name="number" placeholder="000.000.000-00" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="number">senha</label>
-                            <input id="number" type="tel" name="number" placeholder="" required>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="continue-button">
-                        <button><a href="#">Confirmar</a> </button>
-                    </div>
-                </div>
-            </form>
+      <section class="detalhes-section">
+        <h2>Detalhes do Produto</h2>
+        <div class="detalhes-grid">
+          <!-- Quantidade -->
+          <div class="detalhes-group">
+            <label for="quantidade">Quantidade</label>
+            <input type="number" id="quantidade" name="quantidade" />
+          </div>
+      
+          <!-- Cor -->
+          <div class="detalhes-group">
+            <label for="cor">Cor</label>
+            <input type="text" id="cor" name="cor" />
+          </div>
+      
+          <!-- Preço Inicial -->
+          <div class="detalhes-group">
+            <label for="precoInicial">Preço Inicial (R$)</label>
+            <input type="number" step="0.01" id="precoInicial" name="precoInicial" />
+          </div>
         </div>
-    </div>
+      </section>
+      
+
+
+
+
+    </container>
+      
 </body>
 
 </html>
