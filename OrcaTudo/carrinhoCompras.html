@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/carrinhoCompras.css">
 
     <header>
@@ -61,95 +62,61 @@
       </header>
 
 
-      <div class="container">
-        <h2>Meu Carrinho </h2>
-        <!-- Container do Carrinho de Compras -->
-<div class="carrinho">
-    <h2>Carrinho de Compras</h2>
-    <div class="item">
-        <p>Produto 1</p>
-        <p>Descrição: fjlskdjflksdjf</p>
-        <div class="preco">
-            R$ 100,00
-          </div>
-    </div>
-    <div class="item">
-        <p>Produto 2</p>
-        <p>Descrição: khs </p>
-        <div class="preco">
-        <p>R$ 15,00</p>
-    </div>
-        </div>
-    <div class="item">
-        <p>Produto 3</p>
-        <p>Descrição: fhskdhfkjsdhfk </p>
-        <div class="preco">    
-        <p> R$ 10,00</p>
-        </div>
-    </div>
-    <div class="item">
-        <p>Produto 4</p>
-        <p>Descrição: ifjriejflrej 3</p>
-        <div class="preco">
-        <p> R$ 10,00</p>
-    </div>
-    </div>
-    <div class="item">
-        <p>Produto 5</p>
-        <p>Descrição: fhsjkdfhksjdfhk 3</p>
-        <div class="preco">
-        <p> R$ 10,00</p>
-        </div>
-    </div>
-    <div class="item">
-        <p>Produto 6</p>
-        <p>Descrição: fjihfkhfkjsdhkf 3</p>
-        <div class="preco">
-        <p> R$ 10,00</p>
-        </div>
-    </div>
-    <div class="item">
-        <p>Produto 7</p>
-        <p>Descrição: ifishfgshf 3</p>
-        <div class="preco">
-        <p> R$ 10,00</p>
-        </div>
-    </div>
-    <div class="item">
-        <p>Produto 8</p>
-        <p>Descrição: iefjkwfkd 3</p>
-        <div class="preco">
-        <p> R$ 10,00</p>
-        </div>
-    </div>
-</div>
-</div>
-    </div>
-
-    <div class="resumo">
-        <h2>Resumo do Carrinho</h2>
-    </div>
-
-    <button class="btn-resumo">Finalizar Compra</button>
-
-    <div class="itens">
-        <p>Itens</p>
-    </div>
-
-    <div class="total">
-        <p>Total a Pagar</p>
-    </div>
-
-    <div class="total-preco">
-        <p> R$ 50,00</p>
-    </div>
-
+      <div class="container-carrinho">
+        <!-- Lado Esquerdo: Lista de Produtos -->
+        <section class="carrinho">
+          <h2>Meu Carrinho <span>(3 itens)</span></h2>
       
-        
+          <div class="item-carrinho">
+            <img src="imagens/placeholder.jpg">
+            <div class="info-produto">
+              <p class="nome-produto">Produto 1</p>
+              <p class="codigo-produto">Cód: 001235</p>
+              <button class="remover-item">Remover</button>
+            </div>
+            <div class="preco-produto">R$ 45,00</div>
+          </div>
+      
+          <div class="item-carrinho">
+            <img src="imagens/placeholder.jpg">
+            <div class="info-produto">
+              <p class="nome-produto"> Produto 2</p>
+              <p class="codigo-produto">Cód: 001236</p>
+              <button class="remover-item">Remover</button>
+            </div>
+            <div class="preco-produto">R$ 1,20</div>
+          </div>
 
-    
-    
-
+          <div class="item-carrinho">
+            <img src="imagens/placeholder.jpg">
+            <div class="info-produto">
+              <p class="nome-produto"> Produto 3</p>
+              <p class="codigo-produto">Cód: 001237</p>
+              <button class="remover-item">Remover</button>
+            </div>
+            <div class="preco-produto">R$ 5,10</div>
+          </div>
+        </section>
+      
+        <!-- Lado Direito: Resumo do Carrinho -->
+        <section class="resumo-carrinho">
+          <h3>Resumo do Carrinho</h3>
+          <div class="resumo-linha">
+            <span>Itens</span>
+            <span>3</span>
+          </div>
+          <div class="resumo-linha">
+            <span>Frete</span>
+            <span>-</span>
+          </div>
+          <div class="resumo-linha total">
+            <span>Total a pagar</span>
+            <span> R$ 51,30</span>
+          </div>
+          <button class="btn-finalizar">Finalizar compra</button>
+        </section>
+      </div>
+      
 
 
     <footer>
