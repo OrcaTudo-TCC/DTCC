@@ -34,6 +34,7 @@ public class SecurityConfiguration {
             .csrf().disable()
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/auth/**",
+                    "/**",
                     "/swagger-ui/**",
                     "/v3/api-docs/**",
                     "/v3/api-docs.yaml",

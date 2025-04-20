@@ -1,13 +1,13 @@
 package tcc.orcatudo.services.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.repository.FornecedorRepository;
 import tcc.orcatudo.services.FornecedorService;
@@ -34,13 +34,48 @@ public class FornecedorServiceImpl implements FornecedorService{
     }
 
     @Override
-    public Fornecedor updateFornecedor(FornecedorDTO fornecedor) {
-        if (!fornecedorRepository.existsById(fornecedor.getId())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND , "Fornecedor não encontrado para atualizar");
-        }
-        Fornecedor updatedFornecedor = Fornecedor.fromDTO(fornecedor);
+    public Fornecedor updateFornecedor(Map<String,String> campos , int id) {
+        Fornecedor toUpdate = fornecedorRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor encontrado com id: "+ id));
 
-        return fornecedorRepository.save(updatedFornecedor);
+        campos.forEach((campo , valor) -> {
+            switch (campo) {
+                case "nome":
+                    toUpdate.setNome(valor);
+                    break;
+                case "razao_social":
+                    toUpdate.setRazao_social(valor);
+                    break;
+                case "email":
+                    toUpdate.setEmail(valor);
+                    break;
+                case "telefone":
+                    toUpdate.setTelefone(valor);
+                    break;
+                case "endereco":
+                    toUpdate.setEndereco(valor);
+                    break;
+                case "documento":
+                    toUpdate.setDocumento(valor);
+                    break;
+                case "area_de_atuacao":
+                    toUpdate.setArea_de_atuacao(valor);
+                    break;
+                case "descricao":
+                    toUpdate.setDescricao(valor);
+                    break;
+                case "avaliacao":
+                    toUpdate.setAvaliacao(Integer.parseInt(valor));
+                    break;
+                case "senha":
+                    toUpdate.setSenha(valor);
+                    break;
+                default:
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum campo de fornecedor com nome: "+ campo);
+            }
+        });
+
+        return fornecedorRepository.save(toUpdate);
     }
 
     @Override

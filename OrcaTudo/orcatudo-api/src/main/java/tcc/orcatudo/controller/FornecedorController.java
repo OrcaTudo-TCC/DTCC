@@ -1,6 +1,7 @@
 package tcc.orcatudo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.services.FornecedorService;
 
@@ -35,9 +35,9 @@ public class FornecedorController {
         }
     }
 
-    @PutMapping()
-    public ResponseEntity<Fornecedor> putFornecedor(@RequestBody FornecedorDTO fornecedor){
-        return  ResponseEntity.ok(fornecedorService.updateFornecedor(fornecedor));
+    @PutMapping("/{id}")
+    public ResponseEntity<Fornecedor> putFornecedor(@PathVariable int id , @RequestBody Map<String , String> campos){
+        return  ResponseEntity.ok(fornecedorService.updateFornecedor(campos, id));
     }
 
     @DeleteMapping("/{id}")

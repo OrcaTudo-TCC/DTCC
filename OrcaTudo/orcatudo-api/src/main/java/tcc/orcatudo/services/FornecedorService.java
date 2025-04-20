@@ -1,8 +1,8 @@
 package tcc.orcatudo.services;
 
 import java.util.List;
+import java.util.Map;
 
-import tcc.orcatudo.dtos.FornecedorDTO;
 import tcc.orcatudo.entitites.Fornecedor;
 
 public interface FornecedorService {
@@ -15,8 +15,8 @@ public interface FornecedorService {
 
     boolean existsFornecedorByEmail(String email);
 
-    Fornecedor updateFornecedor(FornecedorDTO fornecedor);
-
     boolean deleteFornecedorByID(int id);
+
+    Fornecedor updateFornecedor(Map<String,String> campos , int id );
 
 }
