@@ -1,6 +1,7 @@
 package tcc.orcatudo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tcc.orcatudo.dtos.UsuarioDTO;
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.services.impl.UsuarioServiceImpl;
 
@@ -36,9 +36,9 @@ public class UsuarioController {
         return usuarioService.getAllUsuario();
     }
 
-    @PutMapping()
-    public ResponseEntity<Usuario> putUsuario(@RequestBody UsuarioDTO usuario){
-        return ResponseEntity.ok(usuarioService.putUsuario(usuario));
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> putUsuario(@RequestBody Map<String,String> campos , @PathVariable int id){
+        return ResponseEntity.ok(usuarioService.putUsuario(campos , id));
     }
 
     @DeleteMapping("/{id}")

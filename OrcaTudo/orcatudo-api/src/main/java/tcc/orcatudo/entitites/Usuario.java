@@ -41,7 +41,7 @@ public class Usuario implements UserDetails {
 
 
     @Column(length = 11 , nullable = true)
-    private Integer telefone;
+    private String telefone;
 
 
     @Column(length = 250 , nullable = true)
@@ -90,10 +90,6 @@ public class Usuario implements UserDetails {
     }
 
 
-    public Integer getTelefone() {
-        return telefone;
-    }
-
 
 
 
@@ -122,9 +118,6 @@ public class Usuario implements UserDetails {
     }
 
 
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
-    }
 
 
     @Override
@@ -192,6 +185,20 @@ public class Usuario implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+
+
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+
+
+
+    public String getTelefone() {
+        return telefone;
     }
     
     

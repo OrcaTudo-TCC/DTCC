@@ -2,6 +2,7 @@ package tcc.orcatudo.services.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import tcc.orcatudo.dtos.UsuarioDTO;
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.repository.UsuarioRepository;
 import tcc.orcatudo.services.UsuarioService;
@@ -36,17 +36,39 @@ public class UsuarioServiceImpl implements UsuarioService{
         return usuarioRepository.findAll();
     }
 
-    public Usuario putUsuario(UsuarioDTO usuario){
-        Usuario updatedUser = new Usuario();
-        updatedUser.setId(usuario.getId());
-        updatedUser.setDocumento(usuario.getDocumento());
-        updatedUser.setEmail(usuario.getEmail());
-        updatedUser.setEndereco(usuario.getEndereco());
-        updatedUser.setNome(usuario.getNome());
-        updatedUser.setTelefone(usuario.getTelefone());
-        updatedUser.setSenha(passwordEncoder.encode(usuario.getSenha()));
 
-        return usuarioRepository.save(updatedUser);
+
+    @Override
+    public Usuario putUsuario(Map<String, String> campos, int id) {
+        Usuario toUpdate = usuarioRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum usuario com id: "+ id));
+
+        campos.forEach((campo , valor)->{
+            switch (campo) {
+                case "nome":
+                    toUpdate.setNome(valor);
+                    break;
+                case "email":
+                    toUpdate.setEmail(valor);
+                    break;
+                case "documento":
+                    toUpdate.setDocumento(valor);
+                    break;
+                case "senha":
+                    toUpdate.setSenha(valor);
+                    break;
+                case "telefone":
+                    toUpdate.setTelefone(valor);
+                    break;
+                case "endereco":
+                    toUpdate.setEndereco(valor);
+                    break;
+                default:
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum campo de fornecedor com nome: "+ campo);
+            }
+        });
+
+        return usuarioRepository.save(toUpdate);
     }
 
     public void deleteUsuarioById(int id){
