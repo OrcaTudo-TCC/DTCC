@@ -1,5 +1,4 @@
-/*Header
-/* Resetando estilos padrão */
+/* Reset padrão */
 * {
     margin: 0;
     padding: 0;
@@ -7,30 +6,29 @@
     font-family: Arial, sans-serif;
 }
 
-/* Estilo do header */
+/* BODY */
+body {
+    background-color: #f4f4f4;
+}
+
+/* HEADER */
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px;
-    background-color: rgb(0, 0, 0);
+    background-color: #000;
     border-bottom: 1px solid #ddd;
-    flex-wrap: wrap; /* Para melhor adaptação em telas menores */
+    flex-wrap: wrap;
 }
 
-/* Estilo do logo */
-.logo {
-    display: flex;
-    align-items: center;
-    margin-right: 20px; /* Reduz o espaço entre logo e search bar */
-}
-
+/* LOGO */
 .logo img {
-    height: 50px; /* Ajuste conforme necessário */
+    height: 50px;
     width: auto;
 }
 
-/* Barra de pesquisa */ 
+/* SEARCH BAR */
 .search-bar {
     display: flex;
     align-items: center;
@@ -39,7 +37,7 @@ header {
     border-radius: 5px;
     width: 35%;
     min-width: 250px;
-    margin-left: -250px; /* Aproxima a barra de pesquisa */
+    margin-left: -250px;
 }
 
 .search-bar input {
@@ -54,12 +52,11 @@ header {
     color: gray;
 }
 
+/* NAVIGATION */
 nav {
-    margin-left: -190px; /* Aproxima a nav da barra de pesquisa */
+    margin-left: -190px;
 }
 
-
-/* Estilização do menu de navegação */
 nav ul {
     display: flex;
     list-style: none;
@@ -72,7 +69,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-size: 14px;
 }
 
@@ -80,7 +77,7 @@ nav ul li a:hover {
     color: #ae7550;
 }
 
-/* Ícones de usuário e carrinho */
+/* ICONS */
 .icons {
     display: flex;
     gap: 15px;
@@ -91,26 +88,23 @@ nav ul li a:hover {
     cursor: pointer;
     color: #ae7550;
     font-size: 25px;
-    transition: color 0.3s ease; /* Suaviza a mudança de cor */
+    transition: color 0.3s ease;
 }
 
 .icons i:hover {
-    color: rgb(255, 255, 255);
+    color: #fff;
 }
 
-
-/* Estilo do menu dropdown */
+/* USER DROPDOWN */
 .user-menu {
     position: relative;
     display: inline-block;
 }
 
-/* Ícone do usuário */
 #user-icon {
     cursor: pointer;
 }
 
-/* Menu dropdown oculto */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -123,7 +117,6 @@ nav ul li a:hover {
     z-index: 1000;
 }
 
-/* Estilo dos links do menu */
 .dropdown-menu a {
     display: block;
     padding: 10px;
@@ -136,93 +129,79 @@ nav ul li a:hover {
     background: #f3f3f3;
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-}
-@media (max-width: 768px) {
-    .card {
-        width: 100%; /* Em dispositivos móveis, os cards ocupam toda a largura */
-        margin-bottom: 10vw;
-    }
-}
-@media (max-width: 768vw) {
-    .filters {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (max-width: 768vw) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
+/* MAIN CONTENT */
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 50px;
+    min-height: calc(100vh - 300px);
 }
 
-.login-container {
-    background-color: #f0ecec;
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    height: 400px;
-    margin-bottom: 300px;
-    margin-left: 700px;
-    margin-top: 100px;    
-  }
-  
-  h2 {
+/* PROFILE CONTAINER */
+.profile-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
     text-align: center;
-    margin-bottom: 50px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    
-  }
-  
-  button {
+}
+
+.form-group input {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .error-message {
-    color: red;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 14px;
-    text-align: center;
-  }
+    outline: none;
+}
 
-/* Estilização Footer */    
+.form-group input:focus {
+    border-color: #ae7550;
+    box-shadow: 0 0 5px rgba(135, 156, 179, 0.5);
+}
 
+/* BUTTON */
+.submit-btn {
+    background-color: #ae7550;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #8e5f3b;
+}
+
+/* FOOTER */
 footer {
-    background-color: #000000;
+    background-color: #000;
     color: #f3f3f3;
     padding: 20px 0;
     font-family: Arial, sans-serif;
@@ -234,21 +213,13 @@ footer {
     flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
-    height: 100px;
-    
-    
 }
 
 .footer-section {
     flex: 1;
     min-width: 180px;
-    margin: 10px;
+    margin: 30px;
 }
-
-.footer-section img {
-width: 200px;
-}
-
 
 .footer-section h3 {
     font-size: 16px;
@@ -268,7 +239,7 @@ width: 200px;
 
 .footer-section ul li a {
     text-decoration: none;
-    color: #ffffff;
+    color: #fff;
     transition: color 0.3s;
 }
 
@@ -277,7 +248,7 @@ width: 200px;
 }
 
 .footer-logo {
-    width: 100px;
+    width: 200px;
 }
 
 .footer-bottom {
@@ -286,11 +257,32 @@ width: 200px;
     font-size: 11px;
 }
 
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
 
+    .search-bar,
+    nav {
+        margin: 10px 0 0 0;
+        width: 100%;
+        justify-content: center;
+    }
 
+    nav ul {
+        justify-content: center;
+    }
 
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-
-
-
-
+    .profile-container {
+        padding: 20px;
+        margin: 10px;
+    }
+}
