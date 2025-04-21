@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Usuário</title>
+    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/perfilUsuario.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+
+
+    <header>
+        <div class="logo">
+            <img src="imagens/Logo1.png">
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="O que você procura na Orça tudo ?">
+            <i class="fas fa-search"></i>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Licitação</a></li>
+                <li><a href="#">Cotação</a></li>
+                <li><a href="#">Sobre nós</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+
+            <div class="user-menu">
+                <i class="far fa-user" id="user-icon"></i>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#">Configurações</a>
+                    <a href="#">Sair da Conta</a>
+                </div>
+            </div>
+           
+           
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const userIcon = document.getElementById("user-icon");
+                const dropdownMenu = document.getElementById("dropdown-menu");
+        
+                userIcon.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Impede que o clique feche imediatamente
+                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+                });
+        
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+        
+                dropdownMenu.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Evita que o clique no menu feche ele
+                });
+            });
+        </script>
+
+    </header>
+
+
+    <main>
+        <div class="container">
+    
+            <div class="mainContent">
+            
+                <section class="perfil-fornecedor">
+                    <div class="perfil-img">
+                      <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
+                    </div>
+                  
+                    <div class="perfil-info">
+                      <h2 class="perfil-nome">Nome do Usuário</h2>
+                      <p class="perfil-avaliacao">Avaliação:</p>
+                      <div class="perfil-stars">
+                        <img src="imagens/star(1).png" alt="1 estrela">
+                        <img src="imagens/star(1).png" alt="2 estrelas">
+                        <img src="imagens/star(1).png" alt="3 estrelas">
+                        <img src="imagens/star.png" alt="4 estrelas">
+                        <img src="imagens/star.png" alt="5 estrelas">
+                      </div>
+                    </div>
+                  
+                    <div class="perfil-sobre">
+                      <h3>Sobre nós</h3>
+                      <p>
+                        Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
+                        Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
+                        Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
+                        garantindo excelência em cada projeto e construindo relações de confiança.
+                      </p>
+                    </div>
+                  </section>
+                  
+               
+               
+                <section class="info-geral">
+                    <div class="container-info">
+                        <div class="formdata">
+                            <h4>Nome</h4>
+                            <input type="text" placeholder="Digite o nome usuário">
+                        </div>
+                        <div class="formdata">
+                            <h4>Categoria</h4>
+                            <input type="text" placeholder="Digite a categoria">
+                        </div>
+                        <div class="formdata">
+                            <h4>CNPJ/CPF</h4>
+                            <input type="text" placeholder="Digite o CNPJ/CPF">
+                        </div>
+                        <div class="formdata">
+                            <h4>Email</h4>
+                            <input type="email" placeholder="Digite o email">
+                        </div>
+                        <div class="formdata">
+                            <h4>Telefone</h4>
+                            <input type="tel" placeholder="Digite o telefone">
+                        </div>
+                        <div class="formdata">
+                            <h4>Endereço</h4>
+                            <input type="text" placeholder="Digite o endereço">
+                        </div>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="editar-section">
+                    <h2>Gerenciamento</h2>
+                  
+                    <div class="editar-buttons">
+                      <button><i class="fas fa-pen"></i> Editar</button>
+                      <button><i class="fas fa-save"></i> Salvar</button>
+                      <button><i class="fas fa-trash"></i> Excluir</button>
+                    </div>
+                  </section>
+                  
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>Ideal Para</h3>
+                <ul>
+                    <li>Engenheiros Civis</li>
+                    <li>Construtoras</li>
+                    <li>Orçamentistas</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Funcionalidades</h3>
+                <ul>
+                    <li>Cotação de Preços</li>
+                    <li>Gestão de Orçamentos</li>
+                    <li>Comparação de Materiais</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Recursos</h3>
+                <ul>
+                    <li>Lista de Fornecedores</li>
+                    <li>Simulação de Custos</li>
+                    <li>Dashboard Interativo</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre o OrçaTudo</li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>
