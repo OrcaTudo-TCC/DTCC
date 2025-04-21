@@ -4,13 +4,14 @@ package tcc.orcatudo.services;
 
 import java.util.List;
 
+import tcc.orcatudo.dtos.SubcategoriaDTO;
 import tcc.orcatudo.entitites.Subcategoria;
 
 public interface SubcategoriaService {
 
     List<Subcategoria> getByCategoria(String nomeCategoria);
 
-    Subcategoria postSubcategoria(String nomeDaCategoria, String nome);
+    Subcategoria postSubcategoria(SubcategoriaDTO dto);
 
     Subcategoria updateNome(int idDaSubcategoria, String novoNome);
 

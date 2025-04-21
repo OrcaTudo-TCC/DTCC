@@ -9,7 +9,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import tcc.orcatudo.dtos.PostItemCarrinhoDTO;
-import tcc.orcatudo.dtos.PutItemCarrinhoDTO;
 
 @Entity
 @Table( name = "item_carrinho")
@@ -70,12 +69,6 @@ public class ItemCarrinho {
         this.produto = produto;
     }
 
-    public static ItemCarrinho fromDTO(PutItemCarrinhoDTO dto) {
-        ItemCarrinho itemCarrinho = new ItemCarrinho();
-        itemCarrinho.setId(dto.getId());
-        itemCarrinho.setQuantidade(dto.getQuantidade());
-        return itemCarrinho;
-    }
 
     public static ItemCarrinho fromDTO(PostItemCarrinhoDTO dto) {
         ItemCarrinho itemCarrinho = new ItemCarrinho();

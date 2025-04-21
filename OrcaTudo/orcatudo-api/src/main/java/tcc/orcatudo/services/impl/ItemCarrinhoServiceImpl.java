@@ -33,7 +33,9 @@ public class ItemCarrinhoServiceImpl implements ItemCarrinhoService{
 
     @Override
     public ItemCarrinho putItemCarrinho(PutItemCarrinhoDTO itemToUpdate) {
-        ItemCarrinho updatedItem = ItemCarrinho.fromDTO(itemToUpdate);
+        ItemCarrinho updatedItem = itemCarrinhoRepository.findById(itemToUpdate.getIdDoItem())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum itemCarrinho com id: "+ itemToUpdate.getIdDoItem()));
+        updatedItem.setQuantidade(itemToUpdate.getQuantidade());
         updatedItem.setProduto(produtoRepository.findByNome(itemToUpdate.getNomeDoProduto())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto com nome: "+ itemToUpdate.getNomeDoProduto())));
         updatedItem.setCarrinho(carrinhoRepository.findById(itemToUpdate.getIdDoCarrinho())

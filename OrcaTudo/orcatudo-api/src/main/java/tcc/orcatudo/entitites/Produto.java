@@ -33,11 +33,11 @@ public class Produto {
     private Byte[] imagem;
 
     @ManyToOne
-    @JoinColumn( name = "id_subcategoriafinal" )
+    @JoinColumn( name = "id_subcategoriafinal")
     private SubcategoriaFinal subcategoriaFinal;
 
     @ManyToOne
-    @JoinColumn( name = "id_fornecedor")
+    @JoinColumn( name = "id_fornecedor" )
     private Fornecedor fornecedor;
 
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import tcc.orcatudo.dtos.OperacaoDTO;
 import tcc.orcatudo.entitites.Operacao;
 import tcc.orcatudo.entitites.OperacaoEnum;
 import tcc.orcatudo.entitites.StatusEnum;
@@ -37,13 +38,13 @@ public class OperacaoServiceImpl implements OperacaoService{
     }
 
     @Override
-    public Operacao postOperacaoById(int idUsuario ,OperacaoEnum operacao, StatusEnum status) {
+    public Operacao postOperacaoById(OperacaoDTO dto) {
         Operacao operacaoToSave = new Operacao();
-        operacaoToSave.setOperacao(operacao);
-        operacaoToSave.setUsuario(usuarioRepository.findById(idUsuario)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum usuário encontrado com id: "+ idUsuario)));
+        operacaoToSave.setOperacao(dto.getOperacao());
+        operacaoToSave.setUsuario(usuarioRepository.findById(dto.getIdUsuario())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum usuário encontrado com id: "+ dto.getIdUsuario())));
         operacaoToSave.setData(LocalDateTime.now());
-        operacaoToSave.setStatus(status);
+        operacaoToSave.setStatus(dto.getStatus());
         return operacaoRepository.save(operacaoToSave);
     }
 

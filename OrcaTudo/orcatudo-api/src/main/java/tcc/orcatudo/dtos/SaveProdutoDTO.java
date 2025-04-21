@@ -1,5 +1,7 @@
 package tcc.orcatudo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SaveProdutoDTO {
 
     private String nome;
@@ -8,6 +10,7 @@ public class SaveProdutoDTO {
 
     private Double preco;
 
+    @JsonProperty("imagem")
     private Byte[] imagem;
 
     private String nomeDasubcategoriaFinal;

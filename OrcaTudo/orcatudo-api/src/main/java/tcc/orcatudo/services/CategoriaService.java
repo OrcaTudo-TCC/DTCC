@@ -12,4 +12,6 @@ public interface CategoriaService {
 
     void deleteByid(int id);
 
+    Categoria postCategoria(String nome);
+
 }

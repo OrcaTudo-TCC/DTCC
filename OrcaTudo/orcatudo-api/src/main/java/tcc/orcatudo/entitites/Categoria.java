@@ -20,8 +20,6 @@ public class Categoria {
 
     private String nome;
 
-    @OneToMany( mappedBy = "categoria" , cascade = CascadeType.ALL , orphanRemoval = true)
-    private List<Subcategoria> subcategorias;
 
     public Categoria() {
     }
@@ -44,14 +42,6 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Subcategoria> getSubcategorias() {
-        return subcategorias;
-    }
-
-    public void setSubcategorias(List<Subcategoria> subcategorias) {
-        this.subcategorias = subcategorias;
     }
 
     

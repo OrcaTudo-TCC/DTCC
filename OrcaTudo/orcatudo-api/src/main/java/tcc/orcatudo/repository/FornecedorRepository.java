@@ -8,7 +8,7 @@ import tcc.orcatudo.entitites.Fornecedor;
 
 public interface FornecedorRepository extends JpaRepository<Fornecedor , Integer>{
 
-    Fornecedor findByNome(String nome);
+    Optional<Fornecedor> findByNome(String nome);
 
     Optional<Fornecedor> findByEmail(String email);
 

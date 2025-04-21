@@ -24,14 +24,14 @@ public class CarrinhoController {
     @Autowired
     CarrinhoService carrinhoService;
 
-    @GetMapping("/{id}")
-    public Carrinho getCarrinhoByUsuarioId(@PathVariable int id){
-        return carrinhoService.getCarrinhoByUsuarioId(id);
+    @GetMapping("/{idUsuario}")
+    public Carrinho getCarrinhoByUsuarioId(@PathVariable int idUsuario){
+        return carrinhoService.getCarrinhoByUsuarioId(idUsuario);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Carrinho> putCarrinhoById(@PathVariable int id, @RequestParam boolean status){
-        return ResponseEntity.ok(carrinhoService.changeCarrinhoStatus(id ,status));
+    @PutMapping("/{idUsuario}")
+    public ResponseEntity<Carrinho> putCarrinhoById(@PathVariable int idUsuario, @RequestParam boolean status){
+        return ResponseEntity.ok(carrinhoService.changeCarrinhoStatus(idUsuario ,status));
     }
 
     @PostMapping()

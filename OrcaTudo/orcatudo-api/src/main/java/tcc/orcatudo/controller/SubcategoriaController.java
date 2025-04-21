@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.dtos.SubcategoriaDTO;
 import tcc.orcatudo.entitites.Subcategoria;
 import tcc.orcatudo.services.SubcategoriaService;
 
@@ -24,20 +25,20 @@ public class SubcategoriaController {
     SubcategoriaService subcategoriaService;
 
     @GetMapping("/{categoria}")
-    public List<Subcategoria> getSubcategoriaByCategoria(@PathVariable String nomeCategoria){
-        return subcategoriaService.getByCategoria(nomeCategoria);
+    public List<Subcategoria> getSubcategoriaByCategoria(@PathVariable(required = true) String categoria){
+        return subcategoriaService.getByCategoria(categoria);
     }
     @PutMapping("/{id}/nome")
-    public ResponseEntity<Subcategoria> putSubcategoriaNome(@PathVariable int idDaSubcategoria, @RequestBody String novoNome){
-        return ResponseEntity.ok(subcategoriaService.updateNome(idDaSubcategoria , novoNome));
+    public ResponseEntity<Subcategoria> putSubcategoriaNome(@PathVariable int id, @RequestBody String novoNome){
+        return ResponseEntity.ok(subcategoriaService.updateNome(id , novoNome));
     }
     @PutMapping("/{id}/categoria")
-    public ResponseEntity<Subcategoria> putSubcategoriaCategoria(@PathVariable int idDaSubcategoria, @RequestBody int idDaCategoria){
-        return ResponseEntity.ok(subcategoriaService.updateCategoria(idDaSubcategoria , idDaCategoria));
+    public ResponseEntity<Subcategoria> putSubcategoriaCategoria(@PathVariable(required = true) int id, @RequestBody int idDaCategoria){
+        return ResponseEntity.ok(subcategoriaService.updateCategoria(id , idDaCategoria));
     }
     @PostMapping()
-    public ResponseEntity<Subcategoria> postSubcategoria(@RequestBody String nomeDaCategoria, @RequestBody String nome){
-        return ResponseEntity.ok(subcategoriaService.postSubcategoria(nomeDaCategoria, nome));
+    public ResponseEntity<Subcategoria> postSubcategoria(@RequestBody SubcategoriaDTO dto){
+        return ResponseEntity.ok(subcategoriaService.postSubcategoria(dto));
     }
     @DeleteMapping("/{id}")
     public void deleteSubcategoriaById(@PathVariable int id){

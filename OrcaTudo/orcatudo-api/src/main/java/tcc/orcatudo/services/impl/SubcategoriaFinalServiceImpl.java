@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import tcc.orcatudo.dtos.SubcategoriaFinalDTO;
 import tcc.orcatudo.entitites.Subcategoria;
 import tcc.orcatudo.entitites.SubcategoriaFinal;
 import tcc.orcatudo.repository.SubcategoriaFinalRepository;
@@ -24,7 +25,11 @@ public class SubcategoriaFinalServiceImpl implements SubcategoriaFinalService{
     
     @Override
     public List<SubcategoriaFinal> getSubcategoriaFinalBySubcategoriaNome(String nomeSubcategoria) {
-        return subFinalRepository.findAllBySubcategoriaNome(nomeSubcategoria);
+        List<SubcategoriaFinal> lista = subFinalRepository.findAllBySubcategoriaNome(nomeSubcategoria);
+        if (lista.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhuma subcategoria encontrada com nome: "+ nomeSubcategoria);
+        }
+        return lista;
     }
 
     @Override
@@ -44,6 +49,17 @@ public class SubcategoriaFinalServiceImpl implements SubcategoriaFinalService{
         toUpdate.setSubcategoria(subcategoria);
         return subFinalRepository.save(toUpdate);
 
+    }
+    
+
+    @Override
+    public SubcategoriaFinal postSubcategoriaFinal(SubcategoriaFinalDTO dto) {
+        Subcategoria subcategoria = subRepository.findByNome(dto.getNomeDasubcategoria())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhuma subcategoria encontrada com nome: "+ dto.getNomeDasubcategoria()));
+        SubcategoriaFinal subcategoriaFinal = new SubcategoriaFinal();
+        subcategoriaFinal.setNome(dto.getNome());
+        subcategoriaFinal.setSubcategoria(subcategoria);
+        return subFinalRepository.save(subcategoriaFinal);
     }
 
     @Override

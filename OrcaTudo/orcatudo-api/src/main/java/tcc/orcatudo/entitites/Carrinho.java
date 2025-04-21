@@ -1,14 +1,11 @@
 package tcc.orcatudo.entitites;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,18 +22,11 @@ public class Carrinho {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "carrinho"  , orphanRemoval = true)
-    private List<ItemCarrinho> itensCarrinho;
-
     
 
     public Carrinho() {
     }
 
-
-    public double getTotal(){
-        return itensCarrinho.stream().mapToDouble(ItemCarrinho::getSubtotal).sum();
-    }
 
 
     public Integer getId() {
@@ -68,14 +58,5 @@ public class Carrinho {
         this.usuario = usuario;
     }
 
-
-    public List<ItemCarrinho> getItensCarrinho() {
-        return itensCarrinho;
-    }
-
-
-    public void setItensCarrinho(List<ItemCarrinho> itensCarrinho) {
-        this.itensCarrinho = itensCarrinho;
-    }
     
 }

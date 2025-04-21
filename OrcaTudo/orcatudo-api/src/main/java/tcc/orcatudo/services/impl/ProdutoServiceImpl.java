@@ -62,9 +62,16 @@ public class ProdutoServiceImpl implements ProdutoService{
         if (!produtoRepository.existsById(produto.getId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Produto não encontrado para atualizar");
         }
-        Produto updatedProduto = Produto.fromDTO(produto);
-        updatedProduto.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor()));
-        updatedProduto.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal()));
+        Produto updatedProduto = produtoRepository.findById(produto.getId())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto encontrado com id: "+ produto.getId()));
+        updatedProduto.setNome(produto.getNome());
+        updatedProduto.setDescricao(produto.getDescricao());
+        updatedProduto.setPreco(produto.getPreco());
+        updatedProduto.setImagem(produto.getImagem());
+        updatedProduto.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor com nome: "+ produto.getNomeDoFornecedor())));
+        updatedProduto.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhuma subcategoria fianl com nome: "+ produto.getNomeDasubcategoriaFinal())));
 
         return produtoRepository.save(updatedProduto);
     }
@@ -90,8 +97,10 @@ public class ProdutoServiceImpl implements ProdutoService{
     @Override
     public Produto saveProduto(SaveProdutoDTO produto) {
         Produto produtoToSave = Produto.fromDTO(produto);
-        produtoToSave.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor()));
-        produtoToSave.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNome()));
+        produtoToSave.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor com nome: "+ produto.getNomeDoFornecedor())));
+        produtoToSave.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal())
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhuma subcategoria fianl com nome: "+ produto.getNomeDasubcategoriaFinal())));
         return produtoRepository.save(produtoToSave);
     }
 

@@ -35,7 +35,7 @@ public class ProdutoController {
         return produtoService.getAllProduto();
     }
 
-    @GetMapping("/categoria/{nome}")
+    @GetMapping("/subcategoriafinal/{nome}")
     public List<Produto> getProdutoBySubcategoriaFinal(@PathVariable String nome){
         return produtoService.getProdutoBySubcategoriaFinal(nome);
 

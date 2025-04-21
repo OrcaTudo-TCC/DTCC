@@ -29,6 +29,14 @@ public class CategoriaServiceImpl implements CategoriaService{
         toUpdate.setNome(novoNome);
         return categoriaRepository.save(toUpdate);
     }
+    
+
+    @Override
+    public Categoria postCategoria(String nome) {
+        Categoria categoria = new Categoria();
+        categoria.setNome(nome);
+        return categoriaRepository.save(categoria);
+    }
 
     @Override
     public void deleteByid(int id) {

@@ -2,7 +2,7 @@ package tcc.orcatudo.dtos;
 
 public class PutItemCarrinhoDTO {
 
-    private int id;
+    private int idDoItem;
 
     private int quantidade;
 
@@ -10,13 +10,7 @@ public class PutItemCarrinhoDTO {
 
     private int idDoCarrinho;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getQuantidade() {
         return quantidade;
@@ -40,6 +34,14 @@ public class PutItemCarrinhoDTO {
 
     public void setIdDoCarrinho(int idDoCarrinho) {
         this.idDoCarrinho = idDoCarrinho;
+    }
+
+    public int getIdDoItem() {
+        return idDoItem;
+    }
+
+    public void setIdDoItem(int idDoItem) {
+        this.idDoItem = idDoItem;
     }
 
     

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tcc.orcatudo.dtos.OperacaoDTO;
 import tcc.orcatudo.entitites.Operacao;
-import tcc.orcatudo.entitites.OperacaoEnum;
 import tcc.orcatudo.entitites.StatusEnum;
 import tcc.orcatudo.services.OperacaoService;
 
@@ -29,14 +29,14 @@ public class OperacaoController {
         return operacaoService.getOperacaoByUsuarioId(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Operacao> putStatusByOperacaoId(@PathVariable int id ,@RequestBody StatusEnum status){
-        return ResponseEntity.ok(operacaoService.putOperacaoStatusById(id , status));
+    @PutMapping("/{idDaOperacao}")
+    public ResponseEntity<Operacao> putStatusByOperacaoId(@PathVariable int idDaOperacao ,@RequestBody StatusEnum status){
+        return ResponseEntity.ok(operacaoService.putOperacaoStatusById(idDaOperacao , status));
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Operacao> postOperacaoById(@PathVariable int id , @RequestBody OperacaoEnum operacao, @RequestBody StatusEnum status){
-        return ResponseEntity.ok(operacaoService.postOperacaoById(id , operacao , status));
+    @PostMapping()
+    public ResponseEntity<Operacao> postOperacaoById(@RequestBody OperacaoDTO dto){
+        return ResponseEntity.ok(operacaoService.postOperacaoById(dto));
     }
 
 }
