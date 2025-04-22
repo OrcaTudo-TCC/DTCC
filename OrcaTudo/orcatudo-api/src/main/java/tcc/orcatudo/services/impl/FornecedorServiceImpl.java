@@ -1,7 +1,7 @@
 package tcc.orcatudo.services.impl;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class FornecedorServiceImpl implements FornecedorService{
     }
 
     @Override
-    public Fornecedor updateFornecedor(Map<String,String> campos , int id) {
+    public Fornecedor updateFornecedor(HashMap<String,String> campos , int id) {
         Fornecedor toUpdate = fornecedorRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor encontrado com id: "+ id));
 

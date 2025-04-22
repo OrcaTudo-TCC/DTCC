@@ -1,7 +1,7 @@
 package tcc.orcatudo.services;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import tcc.orcatudo.entitites.Fornecedor;
 
@@ -17,6 +17,6 @@ public interface FornecedorService {
 
     boolean deleteFornecedorByID(int id);
 
-    Fornecedor updateFornecedor(Map<String,String> campos , int id );
+    Fornecedor updateFornecedor(HashMap<String,String> campos , int id );
 
 }

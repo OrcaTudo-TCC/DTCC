@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import tcc.orcatudo.dtos.LoginUsuarioDto;
 import tcc.orcatudo.dtos.RegisterFornecedorDto;
 import tcc.orcatudo.dtos.RegisterUsuarioDto;
@@ -17,6 +18,7 @@ import tcc.orcatudo.services.JwtService;
 
 @RequestMapping("/auth")
 @RestController
+@Tag(name = "Usuarios")
 public class AuthenticationController {
     private final JwtService jwtService;
     

@@ -1,8 +1,9 @@
 package tcc.orcatudo.services.impl;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 
     @Override
-    public Usuario putUsuario(Map<String, String> campos, int id) {
+    public Usuario putUsuario(HashMap<String, String> campos, int id) {
         Usuario toUpdate = usuarioRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum usuario com id: "+ id));
 
