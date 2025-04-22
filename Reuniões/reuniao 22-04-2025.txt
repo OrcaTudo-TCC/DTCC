@@ -1,0 +1,23 @@
+Data: [22/04/2025]
+Hora de início: [19:25]
+Hora de término: []
+Participantes: [Murilo,Alex Alves, João Pedro Menezes, Kauan]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	Apresentar progressso desde a última reunião:
+	Murilo: terminei desenvolvimento da API, iniciando documentação da API
+	João Menezes: inicou correção dos slides.
+	Alex: fornt-end terminado, pequenos ajustes.
+	Kauan: terminou de estudar fetch API
+3. Decisões Tomadas
+	metas:
+	João Pedro Menezes: terminar correção dos slides, estudar fetch API, se posssível participar das criação da classe Categoria.
+	Alex: criar Classe Usuario
+	Murilo: terminar documentação, criar classe de fornecedor.
+	Kauan: criar classe de produto.
+	
