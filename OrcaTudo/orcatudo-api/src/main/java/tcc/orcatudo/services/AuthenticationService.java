@@ -4,10 +4,12 @@ package tcc.orcatudo.services;
 
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import tcc.orcatudo.dtos.LoginUsuarioDto;
 import tcc.orcatudo.dtos.RegisterFornecedorDto;
@@ -16,7 +18,6 @@ import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.entitites.Role;
 import tcc.orcatudo.entitites.RoleEnum;
 import tcc.orcatudo.entitites.Usuario;
-import tcc.orcatudo.handler.BusinessException;
 import tcc.orcatudo.repository.FornecedorRepository;
 import tcc.orcatudo.repository.RoleRepository;
 import tcc.orcatudo.repository.UsuarioRepository;
@@ -94,7 +95,7 @@ public class AuthenticationService {
         );
 
         return userRepository.findByEmail(input.getEmail())
-                .orElseThrow(() -> new BusinessException("Email não possui correspondÊncia no banco de dados"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhuma correspondência ao email: "+ input.getEmail()));
     }
 
     public Fornecedor authenticateFornecedor(LoginUsuarioDto input) {
@@ -105,7 +106,7 @@ public class AuthenticationService {
             )
         );
 
-        return fornecedorRepository.findByEmail(input.getEmail()).orElseThrow(() -> new BusinessException("Email não possui correspondência no banco de dados"));
+        return fornecedorRepository.findByEmail(input.getEmail()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhuma correspondência ao email: "+ input.getEmail()));
     }
 
 }
