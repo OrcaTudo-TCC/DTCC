@@ -1,5 +1,25 @@
 <h1 align="center">TCC EQUIPE - 03 Etec Uirapuru - Desenvolvimento de Sistemas</h1>
-<h3 align="center">projeto: OrçaTudo</h3>
+<h2 align="center">projeto: OrçaTudo</h2>
+<p>O projeto ORÇATUDO tem como objetivo ser um sistema web que facilita a cotação de materiais de contrução e ferramentas</p>
+<h3>Tecnologias utilizadas: HTML,CSS,Javascript,Java Com Spring Boot</h3>
+
+
+<h4>Equipe:</h4>
+
+-  **Murilo Miranda Verçosa**
+
+-  **João Pedro Xavier**
+
+-  **Otávio Franklin**
+
+-  **Alex Alves da Silva**
+
+-  **João Pedro Menezes**
+
+ <h3 align="center">Foco é a ponte entre seus sonhos e suas conquistas</h3>
+ <hr>
+
+<h3>Modelo de Entidade Relacionamento lógico</h3>
 
 ```mermaid
 erDiagram
@@ -120,20 +140,6 @@ erDiagram
     fornecedor ||--o{ roles : "role_id"
 
 ```
-
-<h4>Equipe:</h4>
-
-- 🌱 **Murilo Miranda Verçosa**
-
-- 🌱 **João Pedro Xavier**
-
-- 🌱 **Otávio Franklin**
-
-- 🌱 **Alex Alves da Silva**
-
-- 🌱 **João Pedro Menezes**
-
- <h3 align="center">Foco é a ponte entre seus sonhos e suas conquistas</h3>
 
 
 
