@@ -1,6 +1,6 @@
 <h1 align="center">TCC EQUIPE - 03 Etec Uirapuru - Desenvolvimento de Sistemas</h1>
 <h2 align="center">projeto: OrçaTudo</h2>
-<p>O projeto ORÇATUDO tem como objetivo ser um sistema web que facilita a cotação de materiais de contrução e ferramentas</p>
+<p>O projeto ORÇATUDO tem como objetivo ser um sistema web que facilita a cotação e licitação de materiais de contrução e ferramentas</p>
 <h3>Tecnologias utilizadas: HTML,CSS,Javascript,Java Com Spring Boot</h3>
 
 
