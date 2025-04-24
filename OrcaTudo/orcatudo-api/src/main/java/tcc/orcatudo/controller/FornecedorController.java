@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -42,7 +43,7 @@ public class FornecedorController {
     }
     )
     @GetMapping()
-    public List<Fornecedor> getFornecedor(@RequestParam( required = false) String email, @RequestParam( required = false) Integer id){
+    public List<Fornecedor> getFornecedor(@Parameter(required = false, description = "Email do Fornecedor")@RequestParam( required = false) String email,@Parameter(required = false, description = "id do Usuário")@RequestParam( required = false) Integer id){
         if (id != null) {
             return List.of(fornecedorService.getFornecedorById(id));
         }else if (email != null) {
@@ -74,13 +75,13 @@ public class FornecedorController {
         @ApiResponse(responseCode = "400", description = "O atributo passado não é válido.", content = @Content())
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Fornecedor> putFornecedor(@PathVariable int id , @RequestBody HashMap<String , String> campos){
+    public ResponseEntity<Fornecedor> putFornecedor(@Parameter(required = true, description = "id do Usuário") @PathVariable int id , @RequestBody HashMap<String , String> campos){
         return  ResponseEntity.ok(fornecedorService.updateFornecedor(campos, id));
     }
 
     @Operation(summary = "deleta o fornecedor pelo id", description = "Deleta o fornecedor correspondente ao id passado pelo Path da URI, exemplo: \"fornecedor/3\"")
     @DeleteMapping("/{id}")
-    public void deleteFornecedor(@PathVariable int id){
+    public void deleteFornecedor(@Parameter(required = true, description = "id do Usuário", example = "7") @PathVariable int id){
         fornecedorService.deleteFornecedorByID(id);
     }
 

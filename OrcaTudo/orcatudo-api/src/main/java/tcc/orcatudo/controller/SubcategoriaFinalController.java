@@ -13,21 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import tcc.orcatudo.dtos.SubcategoriaFinalDTO;
 import tcc.orcatudo.entitites.SubcategoriaFinal;
 import tcc.orcatudo.services.SubcategoriaFinalService;
 
 @RestController
 @RequestMapping("/subcategoriafinal")
+@Tag(name = "Categorias")
 public class SubcategoriaFinalController {
 
     @Autowired
     SubcategoriaFinalService subFinalService;
 
+    @Operation(summary = "Retorna as categorias Finais", description = "<h3>Retorna as categorias finais pelo nome da subcategoria via caminho da requisição<br>Exemplo\"\\subcategoriafinal\\chave-de-fenda\"</h3>")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Achou as categorias finais com sucesso", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "Não encontrou nenhuma subcategoria com o nome fornecido", content = @Content())
+    })
     @GetMapping("/{subcategoria}")
-    public List<SubcategoriaFinal> getSubcategoriaFinalBySubcategoria(@PathVariable String subcategoria){
+    public List<SubcategoriaFinal> getSubcategoriaFinalBySubcategoria(@Parameter(required = true, description = "Nome da Subcategoria")@PathVariable String subcategoria){
         return subFinalService.getSubcategoriaFinalBySubcategoriaNome(subcategoria);
     }
+
+    
     @PutMapping("/{idSubcategoriaFinal}/nome")
     public ResponseEntity<SubcategoriaFinal> putSubcategoriaFinal(@PathVariable int idSubcategoriaFinal, @RequestBody String novoNome){
         return ResponseEntity.ok(subFinalService.updateNomeSubcategoriaFinal(idSubcategoriaFinal , novoNome));

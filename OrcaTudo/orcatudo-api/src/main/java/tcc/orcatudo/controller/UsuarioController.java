@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -39,7 +40,7 @@ public class UsuarioController {
         @ApiResponse(responseCode = "404", description = "Não encontrou o Usuário.", content = @Content())
     })
     @GetMapping()
-    public List<Usuario> getUsuarioById(@RequestParam(required = false) Integer id , @RequestParam(required = false) String email){
+    public List<Usuario> getUsuarioById(@Parameter(required = false, description = "id do Usuário")@RequestParam(required = false) Integer id ,@Parameter(required = false, description = "Email do Usuário") @RequestParam(required = false) String email){
         if (id != null) {
             return  usuarioService.getUsuarioByID(id);
         }else if (email != null) {
@@ -72,12 +73,12 @@ public class UsuarioController {
         @ApiResponse(responseCode = "400", description = "O atributo passado não é válido.", content = @Content())
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> putUsuario(@RequestBody HashMap<String,String> campos , @PathVariable int id){
+    public ResponseEntity<Usuario> putUsuario(@RequestBody HashMap<String,String> campos ,@Parameter(required = true, description = "id do Usuário") @PathVariable int id){
         return ResponseEntity.ok(usuarioService.putUsuario(campos , id));
     }
     @Operation(summary = "deleta o usuário pelo id", description = "Deleta o usuário correspondente ao id passado pelo Path da URI, exemplo: \"usuarios/7\"")
     @DeleteMapping("/{id}")
-    public void deleteUsuario(@PathVariable int id){
+    public void deleteUsuario(@Parameter(required = true, description = "id do Usuário", example = "7") @PathVariable int id){
         usuarioService.deleteUsuarioById(id);
     }
 
