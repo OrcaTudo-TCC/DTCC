@@ -85,8 +85,8 @@ public class ProdutoController {
 
     @Operation(summary = "Deleta um produto pelo ID", description = "Deleta o produto correspondente ao Id passado pelo caminho da requisição")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Retornou a lista de produtos com sucesso", content = @Content()),
-        @ApiResponse(responseCode = "404", description = "Nome da Subcategoria não possui correspondência, não encontrado", content = @Content())
+        @ApiResponse(responseCode = "200", description = "Deletou o Produto com sucesso", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "Nome da Subcategoria final não possui correspondência, não encontrado", content = @Content())
     })
     @DeleteMapping("/{id}")
     public void deleteProduto(@Parameter(required = true, description = "Id do produto")@PathVariable int id){

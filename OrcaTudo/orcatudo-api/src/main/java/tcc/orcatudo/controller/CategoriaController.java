@@ -85,6 +85,7 @@ public class CategoriaController {
 
     @Operation(summary = "Deleta a Categoria", description = "<h3>Deleta a Categoria correspondente ao id passado no caminho da requisição</h3>")
     @ApiResponse(responseCode = "200", description = "Deletou com sucesso a categoria",content = @Content())
+    @ApiResponse(responseCode = "404", description = "Nenhuma correspondência ao id passado")
     @DeleteMapping("/{id}")
     public void deleteCategoria(@Parameter(required = true, description = "Id da categoria")@PathVariable int id){
         categoriaService.deleteByid(id);

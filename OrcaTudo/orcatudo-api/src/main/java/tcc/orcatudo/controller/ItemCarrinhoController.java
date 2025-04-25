@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +94,17 @@ public class ItemCarrinhoController {
     @PostMapping()
     public void postItemCarrinho(@RequestBody PostItemCarrinhoDTO postItemCarrinhoDTO){
         itemCarrinhoService.postItemCarrinho(postItemCarrinhoDTO);
+    }
+
+    @Operation(summary = "Deleta um Item", description = "<h3>Deleta o Item-carrinho correspondente ao id</h3>")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Deletou o item com sucesso", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "O id do Carrinho não possui correspondência", content = @Content())
+    })
+    
+    @DeleteMapping("/{id}")
+    public void deleteItemCarrinho(@Parameter(required = true, description = "Id do carrinho")@PathVariable int id){
+        itemCarrinhoService.deleteCarrinho(id);
     }
 }
 

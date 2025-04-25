@@ -13,6 +13,8 @@ public interface ItemCarrinhoService {
     ItemCarrinho putItemCarrinho(PutItemCarrinhoDTO itemToUpdate);
 
     void postItemCarrinho(PostItemCarrinhoDTO itemToSave);
+
+    void deleteCarrinho(int id);
     
 }
     

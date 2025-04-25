@@ -52,6 +52,11 @@ public class ItemCarrinhoServiceImpl implements ItemCarrinhoService{
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum carrinho com id: "+ itemToSave.getIdDoCarrinho())));
         itemCarrinhoRepository.save(updatedItem);
     }
+
+    @Override
+    public void deleteCarrinho(int id) {
+        itemCarrinhoRepository.deleteById(id);
+    }
     
     
 
