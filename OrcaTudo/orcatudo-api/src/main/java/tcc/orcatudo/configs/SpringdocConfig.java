@@ -11,7 +11,7 @@ import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class SpringdocConfig {
 
-        @Bean
+    @Bean
     public OpenAPI baseOpenAPI() {
     
      return new OpenAPI()

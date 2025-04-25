@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import tcc.orcatudo.dtos.OperacaoDTO;
@@ -26,6 +27,7 @@ import tcc.orcatudo.services.OperacaoService;
 
 @RestController
 @RequestMapping("/operacao")
+@Tag(name = "Operação")
 public class OperacaoController {
 
     @Autowired

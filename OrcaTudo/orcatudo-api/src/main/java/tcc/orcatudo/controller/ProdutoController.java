@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import tcc.orcatudo.dtos.PutProdutoDTO;
 import tcc.orcatudo.dtos.SaveProdutoDTO;
 import tcc.orcatudo.entitites.Produto;
@@ -26,6 +27,7 @@ import tcc.orcatudo.services.ProdutoService;
 
 @RestController
 @RequestMapping("/produtos")
+@Tag(name = "Produto")
 public class ProdutoController {
 
     @Autowired
