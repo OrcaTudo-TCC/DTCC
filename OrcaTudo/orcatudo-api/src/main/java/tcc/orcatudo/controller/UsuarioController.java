@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -20,7 +21,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.services.impl.UsuarioServiceImpl;
@@ -54,7 +54,7 @@ public class UsuarioController {
     summary = "Edite atributos do Usuário correspondente ao Id",
     description = "É necessário passar um Id no caminho da Uri por exemplo: \"/usuario/5\",<br>" +
     "e no corpo da requisição enviar o nome do atributo dois ponto e o novo valor desse atributo, por exemplo: \"nome\":\"Matheus\"",
-    requestBody = @RequestBody(
+    requestBody =  @io.swagger.v3.oas.annotations.parameters.RequestBody(
         required = true,
         description = "recebe um Map<String,String> ou seja: \"nome do atributo\":\"novo valor\"",
         content = @Content(

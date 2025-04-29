@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import tcc.orcatudo.dtos.SubcategoriaDTO;
 import tcc.orcatudo.dtos.SubcategoriaFinalDTO;
 import tcc.orcatudo.entitites.Subcategoria;
 import tcc.orcatudo.entitites.SubcategoriaFinal;
@@ -47,7 +46,7 @@ public class SubcategoriaFinalController {
         @Operation(
         summary = "Edita o nome da subcategoria final",
         description = "<h3>Edita a subcategoria final correspondente ao Id passado pelo caminho da requisição<br>o novo nome deve ser passado pelo corpo da requição sem aspas</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "Novo nome sem aspas",
             content = @Content(schema = @Schema(example = "novo nome"))
@@ -69,7 +68,7 @@ public class SubcategoriaFinalController {
     @Operation(
         summary = "Edita a Subcategoria a qual a Subcategoria final pertence",
         description = "<h3>Edita a Subcategoria a qual a Subcategoria final pertence, Por meio do caminho da requisição deverá ser passado o id da Subcategoria final<br> e por do corpo da requisição o id da Subcategoria</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "<h3>Id da Subcategoria</h3>"
         ))
@@ -89,7 +88,7 @@ public class SubcategoriaFinalController {
     @Operation(
         summary = "Cria uma Subcategoria final",
         description = "<h3>Cria uma Subcategoria final com os atributos passado via corpo da requisição</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "<h3>Atributos da subcategoria final</h3>",
         content = @Content(schema = @Schema(implementation = SubcategoriaFinalDTO.class))

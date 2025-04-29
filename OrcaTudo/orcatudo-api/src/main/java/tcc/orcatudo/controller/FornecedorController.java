@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import tcc.orcatudo.entitites.Fornecedor;
 import tcc.orcatudo.entitites.Usuario;
 import tcc.orcatudo.services.FornecedorService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/fornecedor")
@@ -56,7 +56,7 @@ public class FornecedorController {
         summary = "Edite atributos do Fornecedor correspondente ao Id",
         description = "É necessário passar um Id no caminho da Uri por exemplo: \"/usuario/5\",<br>" +
     "e no corpo da requisição enviar o nome do atributo dois ponto e o novo valor desse atributo, por exemplo: \"nome\":\"Matheus\"",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "recebe um Map<String,String> ou seja: \"nome do atributo\":\"novo valor\"",
             content = @Content(

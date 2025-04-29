@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import tcc.orcatudo.dtos.PostCarrinhoDTO;
 import tcc.orcatudo.entitites.Carrinho;
@@ -56,7 +56,7 @@ public class CarrinhoController {
     @Operation(
         summary = "Cria um carrinho",
         description = "Cria um carrinho com os atributos passados via corpo da requisição",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "Atributos necessários para criar carrinho",
             content = @Content(schema = @Schema(implementation = PostCarrinhoDTO.class))

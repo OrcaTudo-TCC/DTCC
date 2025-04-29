@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import tcc.orcatudo.dtos.SubcategoriaDTO;
 import tcc.orcatudo.entitites.Subcategoria;
 import tcc.orcatudo.services.SubcategoriaService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/subcategoria")
@@ -54,7 +54,7 @@ public class SubcategoriaController {
     @Operation(
         summary = "Edita o nome da subcategoria",
         description = "<h3>Edita a subcategoria correspondente ao Id passado pelo caminho da requisição<br>o novo nome deve ser passado pelo corpo da requição sem aspas</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "Novo nome sem aspas",
             content = @Content(schema = @Schema(example = "novo nome"))
@@ -76,7 +76,7 @@ public class SubcategoriaController {
     @Operation(
         summary = "Edita a Categoria a qual a Subcategoria pertence",
         description = "<h3>Edita a Categoria a qual a Subcategoria pertence, Por meio do caminho da requisição deverá ser passado o id da Subcategoria<br> e por do corpo da requisição o id Da Categoria</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "<h3>Id da Categoria</h3>"
         ))
@@ -97,7 +97,7 @@ public class SubcategoriaController {
     @Operation(
         summary = "Cria uma Subcategoria",
         description = "<h3>Cria uma Subcategoria com os atributos passado via corpo da requisição</h3>",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
             description = "<h3>Atributos da subcategoria</h3>",
             content = @Content(schema = @Schema(implementation = SubcategoriaDTO.class))
