@@ -1,12 +1,16 @@
 
 const endpoint = "http://localhost:8080/fornecedor"
 
+const endpoint2 = "http://localhost:8080/auth/signFornecedor"
+
 async function getFornecedor(id){
 
      if(typeof id === 'number' && Number.isInteger(id)){
         // se a requisição conter parametro numérico
         try{
-            const response = await fetch(endpoint, { method: "GET" });
+            const response = await fetch(endpoint+"/"+id, { method: "GET" 
+
+            });
             const data = await response.json();
 
             if(!response.ok){
@@ -20,7 +24,7 @@ async function getFornecedor(id){
     }else if(typeof id === 'string'){
         // se a requisição conter uma String
         try{
-            const response = await fetch(endpoint,{ method: "GET"});
+            const response = await fetch(endpoint+"/"+id,{ method: "GET"});
             const data = await response.json();
 
             if(!response.ok){
@@ -67,19 +71,60 @@ async function postFornecedor(fornecedor) {
       ];
     // Verifica se é um objeto
     if (typeof dados !== 'object' || dados === null) {
-        console.log('Parâmetro inválido: não é um objeto.');
-        return;
+        throw new Error("Parâmetro inválido: não é um objeto.");
       }
     
     // Verifica se todos os campos obrigatórios estão presentes
     const todosPresentes = camposObrigatorios.every(campo => campo in dados);
     if (!todosPresentes) {
-        console.log('Objeto incompleto. Faltando algum campo.');
-        return;
+        throw new Error("Objeto incompleto. Faltando algum campo.");
     }
-    const response = await fetch(endpoint,{ method: "POST" });
+    try{
+        const response = await fetch(endpoint2,{ 
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                "nome": fornecedor.nome,
+                "password": fornecedor.password,
+                "razao_social": fornecedor.razao_social,
+                "email": fornecedor.email,
+                "documento": fornecedor.documento,
+                "telefone": fornecedor.telefone,
+                "endereco": fornecedor.endereco,
+                "areaDeAtuacao": fornecedor.areaDeAtuacao,
+                "descricao": fornecedor.descricao,
+                "avaliacao": fornecedor.avaliacao
+            })
+        });
+        const data = response.json();
+        if(!response.ok){
+            throw new Error("Erro na requsição: "+ response.status)
+        }
+        return data;
+    }catch(err){
+        console.log("Erro na requisição post fornecedor: "+ err)
+    }
     const data = await response.json()
     return data;
 
+}
+
+async function putFornecedor(id, atributo , valor){
+    try{
+        const response = await fetch(endpoint+ "/"+ id , {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                [atributo] : valor
+            })
+        });
+        const data = await response.json();
+
+        if(!response.ok){
+            throw new Error("Erro na requisição put fronecedor: "+ response.status);
+        }
+    }catch(err){
+        console.log("Erro na requsição put fornecedor: "+ err.status);
+    }
 }
 getFornecedor()
