@@ -7,10 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +18,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import tcc.orcatudo.dtos.PostCarrinhoDTO;
 import tcc.orcatudo.entitites.Carrinho;
 import tcc.orcatudo.services.CarrinhoService;
 
@@ -43,28 +39,20 @@ public class CarrinhoController {
         return carrinhoService.getCarrinhoByUsuarioId(idUsuario);
     }
 
-    @Operation(summary = "Atualiza o Status do carrinho", description = "Atualiza o status do carrinho correspondente ao usuário")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Atualizou com sucesso o carrinho", content = @Content(schema = @Schema(implementation = Carrinho.class))),
-        @ApiResponse(responseCode = "404", description = "Nenhuma correspondência ao id do Usuário passado", content = @Content())
-    })
-    @PutMapping("/{idUsuario}")
-    public ResponseEntity<Carrinho> putCarrinhoById(@Parameter(required = true, description = "Id do Usuário")@PathVariable int idUsuario, @RequestParam boolean status){
-        return ResponseEntity.ok(carrinhoService.changeCarrinhoStatus(idUsuario ,status));
-    }
+
 
     @Operation(
         summary = "Cria um carrinho",
-        description = "Cria um carrinho com os atributos passados via corpo da requisição",
-        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            required = true,
-            description = "Atributos necessários para criar carrinho",
-            content = @Content(schema = @Schema(implementation = PostCarrinhoDTO.class))
-        ))
-    @PostMapping()
-    public ResponseEntity<Carrinho> postCarrinho(@RequestBody PostCarrinhoDTO carrinhoDTO){
+        description = "<h3>Cria um carrinho ativo para o Usuario corresponde ao email, caso o usuario já tenha um carrinho ativo lança uma Exeção</h3>")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Criou um carrinho ativo com sucesso", content = @Content(schema = @Schema(implementation = Carrinho.class))),
+        @ApiResponse(responseCode = "409", description = "O usuário já possui um carrinho ativo, operação não realizada", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "Nenhum usuário corresponde ao email", content = @Content())
+    })
+    @PostMapping("/{email}")
+    public ResponseEntity<Carrinho> postCarrinho(@Parameter(required = true,description = "Email do Usuário" )@PathVariable String email){
         return ResponseEntity
-        .status(HttpStatus.CREATED).body(carrinhoService.postCarrinho(carrinhoDTO));
+        .status(HttpStatus.CREATED).body(carrinhoService.postCarrinho(email));
     }
 
 

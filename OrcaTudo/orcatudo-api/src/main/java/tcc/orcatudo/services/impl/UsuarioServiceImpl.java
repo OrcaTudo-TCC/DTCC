@@ -65,7 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                     toUpdate.setEndereco(valor);
                     break;
                 default:
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum campo de fornecedor com nome: "+ campo);
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum campo de usuario com nome: "+ campo);
             }
         });
 
@@ -73,7 +73,10 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     public void deleteUsuarioById(int id){
-        usuarioRepository.deleteById(id);
+        Usuario toDelete = usuarioRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+        toDelete.setRole(null);
+        usuarioRepository.delete(toDelete);
     }
 
     @Override

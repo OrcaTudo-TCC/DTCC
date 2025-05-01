@@ -38,7 +38,10 @@ public class FornecedorController {
         description = "Sem Parâmetros: Retorna uma lista com todos os fornecedores cadastrados.<br>|| Passando Id ou Email: Retorna o fornecedor correspondete ao Id ou Email<br> || Caso passado os dois parâmetros pesquisa por id"
     )
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Retornou o Fornecedor com sucesso", content = @Content()),
+        @ApiResponse(
+            responseCode = "200",
+            description = "Retornou o Fornecedor com sucesso",
+            content = @Content(schema = @Schema(implementation = Fornecedor.class))),
         @ApiResponse(responseCode = "404", description = "Não encontrou o Fornecedor.", content = @Content())
     }
     )

@@ -36,7 +36,10 @@ public class UsuarioController {
 
     @Operation(summary = "Pesquisa de Usuario: por id ou email",  description = "Sem Parâmetros: Retorna uma lista com todos os usuarios cadastrados.<br> || Passando Id ou Email: Retorna o Usuario correspondete ao Id ou Email<br> || Caso passado os dois parâmetros pesquisa por id")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Retornou o Usuário com sucesso."),
+        @ApiResponse(
+            responseCode = "200",
+            description = "Retornou o Usuário com sucesso.",
+            content = @Content(schema = @Schema(implementation = Usuario.class))),
         @ApiResponse(responseCode = "404", description = "Não encontrou o Usuário.", content = @Content())
     })
     @GetMapping()

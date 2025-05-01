@@ -1,7 +1,7 @@
 package tcc.orcatudo.repository;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,5 +12,5 @@ import tcc.orcatudo.entitites.Carrinho;
 public interface CarrinhoRepository extends JpaRepository< Carrinho , Integer > {
 
 
-    Optional<List<Carrinho>> findAllByUsuarioId(int id);
+    List<Carrinho> findAllByUsuarioId(int id);
 }

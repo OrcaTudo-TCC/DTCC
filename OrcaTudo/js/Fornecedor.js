@@ -3,6 +3,7 @@ const endpoint = "http://localhost:8080/fornecedor"
 
 const endpoint2 = "http://localhost:8080/auth/signupFornecedor"
 
+//retorna o fornecedor buscado
 async function getFornecedorById(id){
 
      if(typeof id === 'number' && Number.isInteger(id)){
@@ -43,6 +44,7 @@ async function getFornecedorById(id){
 
     
 }
+//retorna o fornecedor buscado
 async function getFornecedorByEmail(email) {
     if(typeof email === 'string'){
         // se a requisição conter parametro numérico
@@ -116,7 +118,7 @@ async function postFornecedor(fornecedor) {
         console.log("Erro na requisição post fornecedor: "+ err)
     }
 }
-
+// atualiza um atributo, retorna o forncedor atualziaod
 async function putFornecedor(id, atributo , valor){
     if(!(typeof id === 'number' && Number.isInteger(id))){
         throw new Error("Id inválido, id precisa ser um número inteiro")
@@ -139,7 +141,7 @@ async function putFornecedor(id, atributo , valor){
         console.log("Erro na requsição put fornecedor: "+ err);
     }
 }
-
+//deleta o forncedor, retorna um boolean
 async function deleteFornecedor(id) {
     if(!(typeof id === 'number' && Number.isInteger(id))){
         throw new Error("Id inválido, id precisa ser um número inteiro")
