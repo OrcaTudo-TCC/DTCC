@@ -1,50 +1,39 @@
 
 const endpoint = "http://localhost:8080/fornecedor"
 
-const endpoint2 = "http://localhost:8080/auth/signFornecedor"
+const endpoint2 = "http://localhost:8080/auth/signupFornecedor"
 
-async function getFornecedor(id){
+async function getFornecedorById(id){
 
      if(typeof id === 'number' && Number.isInteger(id)){
         // se a requisição conter parametro numérico
+        const url = new URL(endpoint);
+        url.searchParams.append('id', id)
         try{
-            const response = await fetch(endpoint+"/"+id, { method: "GET" 
-
+            const response = await fetch(url.toString(), {
+                method: "GET", 
+                headers: { "Content-Type": "application/json" }
             });
-            const data = await response.json();
-
             if(!response.ok){
                 throw new Error("Erro na requisição: "+ response.status);
             }
+            const data = await response.json();
+
             return data;
         }catch(err){
             console.log(err);
             return data;
         }
-    }else if(typeof id === 'string'){
-        // se a requisição conter uma String
-        try{
-            const response = await fetch(endpoint+"/"+id,{ method: "GET"});
-            const data = await response.json();
-
-            if(!response.ok){
-                throw new Error("Erro na requisição: "+ response.status);
-            }
-            return data;
-        }catch(err){
-            console.log(err);
-            return null;
-        }
+    }
     // se a requisição não conter nennhum parametro
-    }else if(typeof id === undefined){
+    else if(id === undefined){
         try{
             const response = await fetch(endpoint);
             const data = await response.json();
     
-            console.log(data);
             return data
         }catch(err){
-            console.log(err)
+            console.log("Erro na requisição get fornecedor: "+ err)
             return null
         }
     }else{
@@ -54,7 +43,29 @@ async function getFornecedor(id){
 
     
 }
+async function getFornecedorByEmail(email) {
+    if(typeof email === 'string'){
+        // se a requisição conter parametro numérico
+        const url = new URL(endpoint);
+        url.searchParams.append('email', email)
+        console.log(email);
+        try{
+            const response = await fetch(url.toString(), {
+                method: "GET" ,
+                headers: { "Content-Type": "application/json" }
+            });
+            if(!response.ok){
+                throw new Error("Erro na requisição: "+ response.status);
+            }
+            const data = await response.json();
 
+            return data;
+        }catch(err){
+            console.log(err);
+            return null;
+        }
+    }
+}
 // deve se enviar um objeto fornecedor com todos os atributos e valores
 async function postFornecedor(fornecedor) {
     const camposObrigatorios = [
@@ -70,12 +81,12 @@ async function postFornecedor(fornecedor) {
         'avaliacao'
       ];
     // Verifica se é um objeto
-    if (typeof dados !== 'object' || dados === null) {
+    if (typeof fornecedor !== 'object' || fornecedor === null) {
         throw new Error("Parâmetro inválido: não é um objeto.");
       }
     
     // Verifica se todos os campos obrigatórios estão presentes
-    const todosPresentes = camposObrigatorios.every(campo => campo in dados);
+    const todosPresentes = camposObrigatorios.every(campo => campo in fornecedor);
     if (!todosPresentes) {
         throw new Error("Objeto incompleto. Faltando algum campo.");
     }
@@ -96,20 +107,20 @@ async function postFornecedor(fornecedor) {
                 "avaliacao": fornecedor.avaliacao
             })
         });
-        const data = response.json();
         if(!response.ok){
             throw new Error("Erro na requsição: "+ response.status)
         }
+        const data = await response.json();
         return data;
     }catch(err){
         console.log("Erro na requisição post fornecedor: "+ err)
     }
-    const data = await response.json()
-    return data;
-
 }
 
 async function putFornecedor(id, atributo , valor){
+    if(!(typeof id === 'number' && Number.isInteger(id))){
+        throw new Error("Id inválido, id precisa ser um número inteiro")
+    }
     try{
         const response = await fetch(endpoint+ "/"+ id , {
             method: "PUT",
@@ -123,8 +134,29 @@ async function putFornecedor(id, atributo , valor){
         if(!response.ok){
             throw new Error("Erro na requisição put fronecedor: "+ response.status);
         }
+        return data;
     }catch(err){
-        console.log("Erro na requsição put fornecedor: "+ err.status);
+        console.log("Erro na requsição put fornecedor: "+ err);
     }
 }
-getFornecedor()
+
+async function deleteFornecedor(id) {
+    if(!(typeof id === 'number' && Number.isInteger(id))){
+        throw new Error("Id inválido, id precisa ser um número inteiro")
+    }
+    try{
+        const response = await fetch(endpoint + "/" + id, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }
+        });
+        if(!response.ok){
+            throw new Error("Erro na requisição: "+ response.status);
+        }
+
+
+        return true;
+
+    }catch(err){
+        console.log("Erro na requisição delete fornecedor: "+ err)
+    }
+}

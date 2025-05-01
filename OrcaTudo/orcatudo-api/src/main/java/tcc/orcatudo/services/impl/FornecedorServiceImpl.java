@@ -80,10 +80,12 @@ public class FornecedorServiceImpl implements FornecedorService{
 
     @Override
     public boolean deleteFornecedorByID(int id) {
-        if (fornecedorRepository.existsById(id)) {
+        if (!(fornecedorRepository.existsById(id))) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Fornecedor não encontrado para deletar");
         }
-        fornecedorRepository.deleteById(id);
+        Fornecedor toDelete = fornecedorRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fornecedor não encontrado"));
+        toDelete.setRole(null);
+        fornecedorRepository.delete(toDelete);
         return true;
     }
 
