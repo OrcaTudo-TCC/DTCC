@@ -23,7 +23,7 @@ async function getFornecedorById(id){
             return data;
         }catch(err){
             console.log(err);
-            return data;
+            return null;
         }
     }
     // se a requisição não conter nennhum parametro

@@ -43,7 +43,7 @@ public class PedidoController {
         return pedidoService.getPedidoByCarrinhoId(id);
     }
 
-    @Operation(summary = "Cria um pedido com o Id do carrinho", description = "<h3>Cria um pedido com id de um carrinho<br> passado pelo caminho da requisição, Exemplo \"/pedido/5\"</h3>")
+    @Operation(summary = "Cria um pedido com o Id do carrinho", description = "<h3>Cria um pedido com id de um carrinho, muda o status do carrinho para false(desativado)<br> passado pelo caminho da requisição, Exemplo \"/pedido/5\"</h3>")
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
@@ -52,18 +52,19 @@ public class PedidoController {
         @ApiResponse(responseCode = "404", description = "Nenhum usuário correspondente ao id", content = @Content())
     })
     @PostMapping("/{id}")
-    public ResponseEntity<Pedido> postPedido(@Parameter(required = true, description = "Id do Usuario")@PathVariable int id){
+    public ResponseEntity<Pedido> postPedido(@Parameter(required = true, description = "Id do Carrinho")@PathVariable int id){
         return ResponseEntity.status(HttpStatus.CREATED)
         .body(pedidoService.postPedido(id));
     }
 
     @Operation(summary = "Deleta um Pedido pelo seu ID", description = "<h3>Deleta um pedido pelo seu id<br> passado pelo caminho da requisição, Exemplo: \"/pedido/8\"</h3>")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Deletou o pedido com sucesso", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Nenhum usuário correspondente ao id", content = @Content())
+        @ApiResponse(responseCode = "200", description = "Deletou o pedido com sucesso", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "Nenhum usuário correspondente ao id", content = @Content()),
+        @ApiResponse(responseCode = "409", description = "O usuário já possui um carrinho ativo, não é possível desfazer pedido")
     })
     @DeleteMapping("/{id}")
-    public void deletePedido(@Parameter(required = true, description = "Id do Usuario")@PathVariable int id){
+    public void deletePedido(@Parameter(required = true, description = "Id do Pedido")@PathVariable int id){
         pedidoService.deletePedidoById(id);
     }
 

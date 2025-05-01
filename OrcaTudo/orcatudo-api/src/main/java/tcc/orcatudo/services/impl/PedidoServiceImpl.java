@@ -32,6 +32,7 @@ public class PedidoServiceImpl implements PedidoService{
     public Pedido postPedido(int idDoCarrinho) {
         Carrinho carrinho = carrinhoRepository.findById(idDoCarrinho)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum carrinho encontrado com id: "+ idDoCarrinho));
+        carrinho.setStatus(false);
         Pedido pedido = new Pedido();
         pedido.setCarrinho(carrinho);
         pedido.setData(LocalDateTime.now());
@@ -43,6 +44,13 @@ public class PedidoServiceImpl implements PedidoService{
     public void deletePedidoById(int id) {
         Pedido pedido = pedidoRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum pedido com o id: "+ id));
+        
+        List<Carrinho> carrinhos = carrinhoRepository.findAllByUsuarioId(pedido.getCarrinho().getUsuario().getId());
+        List<Carrinho> carrinhosAtivos = carrinhos.stream().filter(Carrinho::isStatus).toList();
+        if (carrinhosAtivos.size() > 0) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "O usuário já possui um carrinho ativo, não é possível desfazer pedido");
+        }
+        pedido.getCarrinho().setStatus(true);
         pedidoRepository.delete(pedido);
     }
     
