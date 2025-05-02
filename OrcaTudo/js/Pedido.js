@@ -1,6 +1,7 @@
 
 const endpoint = "http://localhost:8080/pedido";
 
+// retorna todos os pedidos de um usuário
 async function getPedido(idUsuario) {
     try {
         if(typeof idUsuario !== 'number' || !Number.isInteger(idUsuario)){
@@ -21,6 +22,7 @@ async function getPedido(idUsuario) {
         console.log("Erro no método get fornecedor: "+ error)
     }
 }
+// cria um pedido com um carrinho e muda o status do carirnho para false
 async function postPedido(idCarrinho) {
     try {
         if(typeof idCarrinho !== 'number' || !Number.isInteger(idCarrinho)){
@@ -38,9 +40,11 @@ async function postPedido(idCarrinho) {
 
         return data;
     } catch (error) {
-        console.log9("Erro no método post pedido: "+ error);
+        console.log("Erro no método post pedido: "+ error);
     }
 }
+
+// deleta o pedido correspondente ao id e retorna true
 async function deletePedido(idPedido) {
     try {
         if(typeof idPedido !== 'number' || !Number.isInteger(idPedido)){
@@ -55,7 +59,7 @@ async function deletePedido(idPedido) {
         }
         const data = await response.json();
 
-        return data;
+        return true;
     } catch (error) {
         console.log("Erro no método delete pedido: "+ error);
     }

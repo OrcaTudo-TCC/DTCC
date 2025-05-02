@@ -103,7 +103,7 @@ public class ItemCarrinhoController {
     })
     
     @DeleteMapping("/{id}")
-    public void deleteItemCarrinho(@Parameter(required = true, description = "Id do carrinho")@PathVariable int id){
+    public void deleteItemCarrinho(@Parameter(required = true, description = "Id do item-carrinho")@PathVariable int id){
         itemCarrinhoService.deleteCarrinho(id);
     }
 }

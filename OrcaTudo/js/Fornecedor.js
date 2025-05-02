@@ -90,7 +90,7 @@ async function postFornecedor(fornecedor) {
     // Verifica se todos os campos obrigatórios estão presentes
     const todosPresentes = camposObrigatorios.every(campo => campo in fornecedor);
     if (!todosPresentes) {
-        throw new Error("Objeto incompleto. Faltando algum campo.");
+        throw new Error("Corpo da requisção incompleto. Faltando algum campo.");
     }
     try{
         const response = await fetch(endpoint2,{ 
