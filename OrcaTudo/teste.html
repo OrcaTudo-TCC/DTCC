@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Exclusão de Categoria</title>
+    <script>
+        // Defina o endpoint da sua API
+        const endpoint = 'http://localhost:8080/categoria';
+
+        // Função para excluir a categoria
+        async function deleteCategoria(idcategoria) {
+            try {
+                const response = await fetch(endpoint + "/" + idcategoria, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                if (!response.ok) {
+                    throw new Error(response.status);
+                }
+
+                const data = await response.json();
+                console.log('Categoria excluída com sucesso:', data);
+                alert('Categoria excluída com sucesso!');
+            } catch (error) {
+                console.error("Erro na requisição deleteCategoria:", error);
+                alert('Erro ao excluir a categoria.');
+            }
+        }
+
+        // Função para capturar o ID da categoria e chamar a função de exclusão
+        function handleDelete() {
+            const idcategoria = document.getElementById('idcategoria').value;
+            if (idcategoria) {
+                deleteCategoria(idcategoria);
+            } else {
+                alert('Por favor, insira um ID de categoria.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Excluir Categoria</h1>
+    <label for="idcategoria">ID da Categoria:</label>
+    <input type="text" id="idcategoria" placeholder="Digite o ID da categoria">
+    <button onclick="handleDelete()">Excluir</button>
+</body>
+</html>
