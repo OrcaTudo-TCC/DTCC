@@ -1,5 +1,6 @@
 package tcc.orcatudo.services;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -9,7 +10,7 @@ import tcc.orcatudo.entitites.Produto;
 
 public interface ProdutoService {
 
-    Produto saveProduto(SaveProdutoDTO produto);
+    Produto saveProduto(SaveProdutoDTO produto) throws IOException;
 
     List<Produto> getAllProduto();
 

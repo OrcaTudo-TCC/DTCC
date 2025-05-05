@@ -1,5 +1,6 @@
 package tcc.orcatudo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,7 @@ public class ProdutoController {
 
     @Operation(summary = "Cria um Produto", description = "<h3>Cria um Produto conforme o valor dos atributos no corpo da requisição</h3>")
     @PostMapping()
-    public ResponseEntity<Produto> saveProduto(@RequestBody SaveProdutoDTO produto){
+    public ResponseEntity<Produto> saveProduto(@RequestBody SaveProdutoDTO produto) throws IOException{
         return ResponseEntity.ok(produtoService.saveProduto(produto));
     }
 

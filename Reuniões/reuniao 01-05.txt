@@ -1,0 +1,21 @@
+Data: [01/05/2025]
+Hora de início: [21:57]
+Hora de término: [22:16]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	Apresentar progressso desde a última reunião:
+	Murilo: começei Classes utilitárias em javascript
+	João Menezes: terminou a correção dos slides, estudou fetch API
+	Alex: iniciou o desenvolvimento das classes utilitárias em javascript
+3. Decisões Tomadas
+	metas:
+	João Pedro Menezes: Classes: categoria, sub-categoria , categoria-final
+	Alex: Classes: usuarios , operacao e autenticação
+	Murilo: classes: fornecedor, carrinho, item-carrinho, produto, pedido
+	

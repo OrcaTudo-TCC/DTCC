@@ -1,5 +1,6 @@
 package tcc.orcatudo.services.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,12 +96,22 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Produto saveProduto(SaveProdutoDTO produto) {
+    public Produto saveProduto(SaveProdutoDTO produto) throws IOException {
+
+        byte[] bytes = produto.getImagemFile().getBytes();
+        Byte[] byteObjt = new Byte[bytes.length];
+
+        for(int i =0; i < bytes.length; i++){
+            byteObjt[i] = bytes[i];
+        }
+
+
         Produto produtoToSave = Produto.fromDTO(produto);
         produtoToSave.setFornecedor(fornecedorRepository.findByNome(produto.getNomeDoFornecedor())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor com nome: "+ produto.getNomeDoFornecedor())));
         produtoToSave.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhuma subcategoria fianl com nome: "+ produto.getNomeDasubcategoriaFinal())));
+        produtoToSave.setImagem(byteObjt);
         return produtoRepository.save(produtoToSave);
     }
 

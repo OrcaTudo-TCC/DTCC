@@ -1,5 +1,7 @@
 package tcc.orcatudo.dtos;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SaveProdutoDTO {
@@ -10,8 +12,7 @@ public class SaveProdutoDTO {
 
     private Double preco;
 
-    @JsonProperty("imagem")
-    private Byte[] imagem;
+    private MultipartFile imagemFile;
 
     private String nomeDasubcategoriaFinal;
 
@@ -41,14 +42,7 @@ public class SaveProdutoDTO {
         this.preco = preco;
     }
 
-    public Byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Byte[] imagem) {
-        this.imagem = imagem;
-    }
-
+    
     public String getNomeDasubcategoriaFinal() {
         return nomeDasubcategoriaFinal;
     }
@@ -63,6 +57,14 @@ public class SaveProdutoDTO {
 
     public void setNomeDoFornecedor(String nomeDoFornecedor) {
         this.nomeDoFornecedor = nomeDoFornecedor;
+    }
+
+    public MultipartFile getImagemFile() {
+        return imagemFile;
+    }
+
+    public void setImagemFile(MultipartFile imagemFile) {
+        this.imagemFile = imagemFile;
     }
 
     
