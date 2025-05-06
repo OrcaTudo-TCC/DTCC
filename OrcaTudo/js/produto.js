@@ -76,7 +76,7 @@ async function getProdutoByCategoriaFinal(nomeCategoriaFinal){
         if(typeof nomeCategoriaFinal === "string"){
             throw new Error("O nome categoria precisa ser do tipo String");
         }
-        const response = await fetch(endpoint+"/"+nomeCategoriaFinal,{
+        const response = await fetch(endpoint+"/subcategoriafinal"+nomeCategoriaFinal,{
             method:"GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -96,7 +96,7 @@ async function getProdutoByFornecedorNome(nomeFornecedor){
         if(typeof nomeCategoriaFinal === "string"){
             throw new Error("O nome categoria precisa ser do tipo String");
         }
-        const response = await fetch(endpoint+"/"+nomeFornecedor,{
+        const response = await fetch(endpoint+"/fornecedor"+nomeFornecedor,{
             method:"GET",
             headers: { "Content-Type": "application/json" }
         })

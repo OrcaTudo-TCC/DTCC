@@ -69,6 +69,12 @@ public class ProdutoController {
         return produtoService.getProdutoByFornecedor(nome);
     }
 
+
+    @GetMapping("{id}/imagem")
+    public byte[] getImagem(@PathVariable int id) throws IOException{
+        return produtoService.getImagem(id);
+    }
+
     @Operation(summary = "Atualiza os atributos de um produto", description = "<h3>Atualiza um produto conforme o valro dos atributos passado via corpo da requisição.</h3>")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Atualizou o produto ocm sucesso"),
@@ -95,5 +101,6 @@ public class ProdutoController {
     public void deleteProduto(@Parameter(required = true, description = "Id do produto")@PathVariable int id){
         produtoService.deleteProdutoById(id);
     }
+    
 
 }

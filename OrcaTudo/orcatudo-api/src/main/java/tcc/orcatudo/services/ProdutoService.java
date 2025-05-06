@@ -32,4 +32,6 @@ public interface ProdutoService {
 
     void deleteProdutoById(int id);
 
+    byte[] getImagem(int id);
+
 }
