@@ -57,7 +57,6 @@ public class Produto {
     public static Produto fromDTO(SaveProdutoDTO dto){
         Produto produto = new Produto();
         produto.setDescricao(dto.getDescricao());
-        produto.setImagem(dto.getImagem());
         produto.setNome(dto.getNome());
         produto.setPreco(dto.getPreco());
 

@@ -85,7 +85,7 @@ async function postFornecedor(fornecedor) {
     // Verifica se é um objeto
     if (typeof fornecedor !== 'object' || fornecedor === null) {
         throw new Error("Parâmetro inválido: não é um objeto.");
-      }
+    }
     
     // Verifica se todos os campos obrigatórios estão presentes
     const todosPresentes = camposObrigatorios.every(campo => campo in fornecedor);
