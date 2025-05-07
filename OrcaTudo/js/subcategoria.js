@@ -66,6 +66,47 @@ async function putSubcategorianome(id, nome) {
       console.log("Erro na Requisição putSubcategoria: " + error);
     }
   }
+
+  async function putSubcategorianome (id, categoria) {
+    try {
+      const response = await fetch(endpoint + "/" + id + "/categoria", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(categoria)
+      });
+
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      console.log ("Erro na Requisição putSubcategoria: " + error);
+    }
+
+    }
+
+    async function deleteSubcategoria (id) {
+      try{
+        const response = await fetch(endpoint + "/" + id, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+
+        return true;
+
+      } catch (error) {
+        console.log ("Erro na Requisição deleteSubcategoria: " + error);
+      }
+
+    }
+  
   
     
 
