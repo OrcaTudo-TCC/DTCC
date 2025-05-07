@@ -115,6 +115,19 @@ public class ProdutoServiceImpl implements ProdutoService{
         return produtoRepository.save(produtoToSave);
     }
 
+    @Override
+    public byte[] getImagem(int id) {
+        Produto produto = produtoRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto com o id: "+ id));
+         byte[] produtoImagem = new byte[produto.getImagem().length];
+
+        for(int i = 0; i < produto.getImagem().length; i++){
+            produtoImagem[i]= produto.getImagem()[i];
+        }
+
+        return produtoImagem;
+    }
+
     
 
 }

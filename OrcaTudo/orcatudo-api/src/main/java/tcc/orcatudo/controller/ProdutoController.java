@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -71,8 +75,12 @@ public class ProdutoController {
 
 
     @GetMapping("{id}/imagem")
-    public byte[] getImagem(@PathVariable int id) throws IOException{
-        return produtoService.getImagem(id);
+    public ResponseEntity<byte[]> getImagem(@PathVariable int id) throws IOException{
+        byte[] imagem = produtoService.getImagem(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(imagem,headers,HttpStatus.OK);
+        
     }
 
     @Operation(summary = "Atualiza os atributos de um produto", description = "<h3>Atualiza um produto conforme o valro dos atributos passado via corpo da requisição.</h3>")
@@ -88,7 +96,7 @@ public class ProdutoController {
 
     @Operation(summary = "Cria um Produto", description = "<h3>Cria um Produto conforme o valor dos atributos no corpo da requisição</h3>")
     @PostMapping()
-    public ResponseEntity<Produto> saveProduto(@RequestBody SaveProdutoDTO produto) throws IOException{
+    public ResponseEntity<Produto> saveProduto(@ModelAttribute SaveProdutoDTO produto) throws IOException{
         return ResponseEntity.ok(produtoService.saveProduto(produto));
     }
 

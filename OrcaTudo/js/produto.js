@@ -27,25 +27,21 @@ async function postProduto(produto , imagem) {
         if (!todosPresentes) {
             throw new Error("corpo da requisição incompleto. Faltando algum campo.");
         }
-        const formData = FormData();
+        const formData = new FormData();
         formData.append("nome", produto.nome);
-        formData.append("descricao", descricao);
-        formData.append("preco", preco);
-        formData.append("nomeDasubcategoriafinal", idSubcategoriaFinal);
-        formData.append("nomeDoFornecedor", idFornecedor);
-        formData.append("imagem", imagem);
+        formData.append("descricao", produto.descricao);
+        formData.append("preco",produto.preco);
+        formData.append("nomeDasubcategoriafinal",produto.idSubcategoriaFinal);
+        formData.append("nomeDoFornecedor", produto.idFornecedor);
+        formData.append("imagemFile", imagem);
         //requisição com fecth
-        const response = fetch(endpoint,{
+        const response = await fetch(endpoint,{
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: formData
         })
         if(!response.ok){
             throw new Error("Erro na requisição: "+ response.status);
         }
-        const data = (await response).json();
-
-        return data;
     } catch (error) {
         console.log("Erro no método post item: "+ error)
     }
@@ -110,6 +106,27 @@ async function getProdutoByFornecedorNome(nomeFornecedor){
         console.log("Erro na requisição get produto by fornecedor nome: "+error)
     }
 }
+
+async function getProdutoImagem(id) {
+    try {
+        if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
+            throw new Error("O id do produto precisa ser um númeor inteiro");
+        }
+        const response = await fetch(endpoint+ "/"+ idProduto,{
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+        if(!response.ok){
+            throw new Error("Erro na resposta da requisição: "+ response.status);
+        }
+        const data = response.blob();
+
+        return data;
+    } catch (error) {
+        console.log("Erro na requisição get produto by id: "+ error)
+    }
+}
+
 /*  O parametro do método deve ser um objeto com os seguintes atributos:
     {
   "id": 0,

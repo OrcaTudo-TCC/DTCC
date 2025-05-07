@@ -2,7 +2,6 @@ package tcc.orcatudo.dtos;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SaveProdutoDTO {
 
