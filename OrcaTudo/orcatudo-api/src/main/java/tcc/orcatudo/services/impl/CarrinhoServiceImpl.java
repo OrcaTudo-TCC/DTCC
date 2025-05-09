@@ -4,13 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import tcc.orcatudo.entitites.Carrinho;
 import tcc.orcatudo.entitites.Usuario;
-import tcc.orcatudo.handler.BusinessException;
 import tcc.orcatudo.repository.CarrinhoRepository;
 import tcc.orcatudo.repository.UsuarioRepository;
 import tcc.orcatudo.services.CarrinhoService;
