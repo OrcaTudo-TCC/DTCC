@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "OrcatudoApplication",
+            "request": "launch",
+            "mainClass": "tcc.orcatudo.OrcatudoApplication",
+            "projectName": "orcatudo"
+        }
+    ]
+}
