@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Exclusão de Categoria</title>
-    <script>
-        // Defina o endpoint da sua API
-        const endpoint = 'http://localhost:8080/categoria';
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excluir Subcategoria Final</title>
+  <script>
+    const endpoint = 'http://localhost:8080/subcategoriafinal'; // ajuste conforme seu backend
 
-        // Função para excluir a categoria
-        async function deleteCategoria(idcategoria) {
-            try {
-                const response = await fetch(endpoint + "/" + idcategoria, {
-                    method: "DELETE",
-                    headers: { "Content-Type": "application/json" },
-                });
+    async function deleteSubcategoriafinal(id) {
+      try {
+        const response = await fetch(endpoint + "/" + id, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" }
+        });
 
-                if (!response.ok) {
-                    throw new Error(response.status);
-                }
-
-                const data = await response.json();
-                console.log('Categoria excluída com sucesso:', data);
-                alert('Categoria excluída com sucesso!');
-            } catch (error) {
-                console.error("Erro na requisição deleteCategoria:", error);
-                alert('Erro ao excluir a categoria.');
-            }
+        if (!response.ok) {
+          throw new Error(response.status);
         }
 
-        // Função para capturar o ID da categoria e chamar a função de exclusão
-        function handleDelete() {
-            const idcategoria = document.getElementById('idcategoria').value;
-            if (idcategoria) {
-                deleteCategoria(idcategoria);
-            } else {
-                alert('Por favor, insira um ID de categoria.');
-            }
+        console.log("Subcategoria final excluída com sucesso.");
+        alert("Subcategoria final excluída com sucesso!");
+      } catch (error) {
+        console.log("Erro na Requisição deleteSubcategoria: " + error);
+        alert("Erro ao excluir a subcategoria final.");
+      }
+    }
+
+    function handleDelete() {
+      const id = document.getElementById("id").value;
+
+      if (id) {
+        const confirmacao = confirm(`Tem certeza que deseja excluir a subcategoria final com ID ${id}?`);
+        if (confirmacao) {
+          deleteSubcategoriafinal(id);
         }
-    </script>
+      } else {
+        alert("Informe o ID da subcategoria final.");
+      }
+    }
+  </script>
 </head>
 <body>
-    <h1>Excluir Categoria</h1>
-    <label for="idcategoria">ID da Categoria:</label>
-    <input type="text" id="idcategoria" placeholder="Digite o ID da categoria">
-    <button onclick="handleDelete()">Excluir</button>
+  <h1>Excluir Subcategoria Final</h1>
+
+  <label for="id">ID da Subcategoria Final:</label><br>
+  <input type="text" id="id" placeholder="Ex: 5"><br><br>
+
+  <button onclick="handleDelete()">Excluir</button>
 </body>
 </html>

@@ -74,9 +74,9 @@ async function deleteCategoria (idcategoria) {
             throw new Error( response.status)
         }
 
-        const data = await response.json()
+        
 
-        return data 
+        return true
     } catch (error) {
         console.log ("Erro na Requisição deleteCategoria: "+ error)
     }
