@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de API - Usuários</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .output {
+      white-space: pre-wrap;
+      background: #f0f0f0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Testar métodos da API de Usuários</h1>
+
+  <h2>Buscar por ID</h2>
+  <input type="number" id="buscarId" placeholder="ID do usuário">
+  <button onclick="testarGetById()">Buscar</button>
+
+  <h2>Buscar por Email</h2>
+  <input type="email" id="buscarEmail" placeholder="Email do usuário">
+  <button onclick="testarGetByEmail()">Buscar</button>
+
+  <h2>Cadastrar Usuário</h2>
+  <input type="text" id="nome" placeholder="Nome">
+  <input type="password" id="password" placeholder="Senha">
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="documento" placeholder="Documento">
+  <input type="text" id="telefone" placeholder="Telefone">
+  <input type="text" id="endereco" placeholder="Endereço">
+  <button onclick="testarPostUsuario()">Cadastrar</button>
+
+  <h2>Atualizar Usuário</h2>
+  <input type="number" id="idUpdate" placeholder="ID do usuário">
+  <input type="text" id="atributoUpdate" placeholder="Atributo a atualizar (ex: nome)">
+  <input type="text" id="valorUpdate" placeholder="Novo valor">
+  <button onclick="testarPutUsuario()">Atualizar</button>
+
+  <h2>Deletar Usuário</h2>
+  <input type="number" id="idDelete" placeholder="ID do usuário">
+  <button onclick="testarDeleteUsuario()">Deletar</button>
+
+  <div class="output" id="resultado"></div>
+
+  <script src="js/Usuario.js"></script> <!-- Ou coloque o script diretamente aqui -->
+  <script>
+    async function testarGetById() {
+      const id = parseInt(document.getElementById("buscarId").value);
+      const resultado = await getUsuarioById(id);
+      document.getElementById("resultado").textContent = JSON.stringify(resultado, null, 2);
+    }
+
+    async function testarGetByEmail() {
+      const email = document.getElementById("buscarEmail").value;
+      const resultado = await getUsuarioByEmail(email);
+      document.getElementById("resultado").textContent = JSON.stringify(resultado, null, 2);
+    }
+
+    async function testarPostUsuario() {
+      const usuario = {
+        nome: document.getElementById("nome").value,
+        password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        documento: document.getElementById("documento").value,
+        telefone: document.getElementById("telefone").value,
+        endereco: document.getElementById("endereco").value
+      };
+
+      const resultado = await postUsuario(usuario);
+      document.getElementById("resultado").textContent = JSON.stringify(resultado, null, 2);
+    }
+
+    async function testarPutUsuario() {
+      const id = parseInt(document.getElementById("idUpdate").value);
+      const atributo = document.getElementById("atributoUpdate").value;
+      const valor = document.getElementById("valorUpdate").value;
+      const resultado = await putUsuario(id, atributo, valor);
+      document.getElementById("resultado").textContent = JSON.stringify(resultado, null, 2);
+    }
+
+    async function testarDeleteUsuario() {
+      const id = parseInt(document.getElementById("idDelete").value);
+      const resultado = await deleteUsuario(id);
+      document.getElementById("resultado").textContent = resultado
+        ? "Usuário deletado com sucesso!"
+        : "Erro ao deletar usuário.";
+    }
+  </script>
+</body>
+</html>

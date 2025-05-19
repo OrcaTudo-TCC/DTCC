@@ -1,6 +1,7 @@
 const endpointUsuario = "http://localhost:8080/usuarios";
 const endpointCadastroUsuario = "http://localhost:8080/auth/signupUsuario";
 
+
 // Retorna o usuário buscado por ID ou todos se não houver parâmetro
 async function getUsuarioById(id) {
   if (typeof id === "number" && Number.isInteger(id)) {
