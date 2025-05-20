@@ -1,5 +1,9 @@
 package tcc.orcatudo.bootstrap;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import org.springframework.context.ApplicationListener;
@@ -10,15 +14,26 @@ import tcc.orcatudo.dtos.RegisterFornecedorDto;
 import tcc.orcatudo.dtos.RegisterUsuarioDto;
 import tcc.orcatudo.entitites.Carrinho;
 import tcc.orcatudo.entitites.Categoria;
+import tcc.orcatudo.entitites.ItemCarrinho;
+import tcc.orcatudo.entitites.Operacao;
+import tcc.orcatudo.entitites.OperacaoEnum;
 import tcc.orcatudo.entitites.Pedido;
+import tcc.orcatudo.entitites.Produto;
+import tcc.orcatudo.entitites.StatusEnum;
 import tcc.orcatudo.entitites.Subcategoria;
 import tcc.orcatudo.entitites.SubcategoriaFinal;
 import tcc.orcatudo.entitites.Usuario;
+import tcc.orcatudo.handler.BusinessException;
 import tcc.orcatudo.repository.CarrinhoRepository;
 import tcc.orcatudo.repository.CategoriaRepository;
+import tcc.orcatudo.repository.FornecedorRepository;
+import tcc.orcatudo.repository.ItemCarrinhoRepository;
+import tcc.orcatudo.repository.OperacaoRepository;
 import tcc.orcatudo.repository.PedidoRepository;
+import tcc.orcatudo.repository.ProdutoRepository;
 import tcc.orcatudo.repository.SubcategoriaFinalRepository;
 import tcc.orcatudo.repository.SubcategoriaRepository;
+import tcc.orcatudo.repository.UsuarioRepository;
 import tcc.orcatudo.services.AuthenticationService;
 
 
@@ -30,28 +45,48 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
     public final AuthenticationService authenticationService;
     public final CarrinhoRepository carrinhoRepository;
     public final PedidoRepository pedidoRepository;
-    
+    public final ProdutoRepository produtoRepository;
+    public final FornecedorRepository fornecedorRepository;
+    public final UsuarioRepository usuarioRepository;
+    public final OperacaoRepository operacaoRepository;
+    public final ItemCarrinhoRepository itemCarrinhoRepository;
 
 
-    public TestDataInicializer(CategoriaRepository categoriaRepository, SubcategoriaRepository subcategoriaRepository, SubcategoriaFinalRepository subcategoriaFinalRepository, AuthenticationService authenticationService, CarrinhoRepository carrinhoRepository, PedidoRepository pedidoRepository) {
+    public TestDataInicializer(CategoriaRepository categoriaRepository, SubcategoriaRepository subcategoriaRepository, SubcategoriaFinalRepository subcategoriaFinalRepository, AuthenticationService authenticationService, CarrinhoRepository carrinhoRepository, PedidoRepository pedidoRepository, ProdutoRepository produtoRepository, FornecedorRepository fornecedorRepository, UsuarioRepository usuarioRepository, OperacaoRepository operacaoRepository, ItemCarrinhoRepository itemCarrinhoRepository) {
         this.categoriaRepository = categoriaRepository;
         this.subcategoriaRepository = subcategoriaRepository;
         this.subcategoriaFinalRepository = subcategoriaFinalRepository;
         this.authenticationService = authenticationService;
         this.carrinhoRepository = carrinhoRepository;
         this.pedidoRepository = pedidoRepository;
+        this.produtoRepository = produtoRepository;
+        this.fornecedorRepository = fornecedorRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.operacaoRepository = operacaoRepository;
+        this.itemCarrinhoRepository = itemCarrinhoRepository;
         
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        this.createTest();
+        try {
+            if (!usuarioRepository.findById(1).isPresent()) {
+                this.createTest();
+            }
+            
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    private void createTest() {
+    private void createTest() throws IOException {
         this.createFornecedor();
         this.createUsuario();
         this.createCategorias();
+        this.createProduto();
+        this.createItemCarrinho();
+        this.createOperacao();
     }
 
 
@@ -74,28 +109,6 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
         subcategoriaFinal.setNome("Subcategoria final teste");
         subcategoriaFinalRepository.save(subcategoriaFinal);
     }
-
-    // private void createSubcategoriaFinal() {
-    //     SubcategoriaFinal subcategoriaFinal = new SubcategoriaFinal();
-    //     subcategoriaFinal.setSubcategoria(subcategoriaRepository.findById(1).get());
-    //     subcategoriaFinal.setNome("Subcategoria final teste");
-    //     subcategoriaFinalRepository.save(subcategoriaFinal);
-
-    // }
-
-    // private void createSubcategoria() {
-    //     Subcategoria subcategoria = new Subcategoria();
-    //     subcategoria.setCategoria(categoriaRepository.findById(1).get());
-    //     subcategoria.setNome("Subcategoria teste");
-    //     subcategoriaRepository.save(subcategoria);
-    // }
-
-
-    // private void createCategoria() {
-    //     Categoria categoria = new Categoria();
-    //     categoria.setNome("Categoria teste");
-    //     categoriaRepository.save(categoria);
-    // }
 
     private void createUsuario() {
         RegisterUsuarioDto usuario = new RegisterUsuarioDto();
@@ -134,6 +147,48 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
         authenticationService.signupFornecedor(fornecedor);
     }
 
+    private void createProduto() throws IOException{
+        Produto produto = new Produto();
+        produto.setNome("Produto teste");
+        produto.setDescricao("descrição ddo produto teste");
+        produto.setFornecedor(fornecedorRepository.findById(1)
+        .orElseThrow(() -> new BusinessException("fornecedor teste não encontrado.")));
+        //criando byte[] para armazenar a imagme no banco de dados
 
+        Path caminho = Paths.get("imagens\\Logo.png");
+        byte[] imagem = Files.readAllBytes(caminho);
+        Byte[] imagemWrapper = new Byte[imagem.length];
 
+        for(int i = 0; i <imagem.length; i++){
+            imagemWrapper[i] = imagem[i];
+        }
+
+        produto.setImagem(imagemWrapper);
+
+        produto.setPreco(99.9);
+        produto.setSubcategoriaFinal(subcategoriaFinalRepository.findById(1).
+        orElseThrow(() -> new BusinessException("subcateogoria final teste não encontrado.")));
+        produtoRepository.save(produto);
+    }
+
+    private void createItemCarrinho(){
+        ItemCarrinho item = new ItemCarrinho();
+        item.setProduto(produtoRepository.findById(1)
+        .orElseThrow(() -> new BusinessException("produto teste não encontrado.")));
+        item.setQuantidade(5);
+        item.setCarrinho(carrinhoRepository.findById(1)
+        .orElseThrow(() -> new BusinessException("carrinho teste não encontrado.")));
+        itemCarrinhoRepository.save(item);
+    }
+
+    private void createOperacao(){
+        Operacao operacao = new Operacao();
+        operacao.setData(LocalDateTime.now());
+        operacao.setOperacao(OperacaoEnum.COTACAO);
+        operacao.setStatus(StatusEnum.PENDENTE);
+        operacao.setUsuario(usuarioRepository.findById(1)
+        .orElseThrow(() -> new BusinessException("carrinho teste não encontrado.")));
+        operacaoRepository.save(operacao);
+        
+    }
 }
