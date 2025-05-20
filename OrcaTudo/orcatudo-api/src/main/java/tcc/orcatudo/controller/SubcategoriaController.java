@@ -104,7 +104,8 @@ public class SubcategoriaController {
         ))
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Subcategoria criada com sucesso", content = @Content()),
-        @ApiResponse(responseCode = "400", description = "Bad request, tem alguma coisa errada na requisição", content = @Content())
+        @ApiResponse(responseCode = "400", description = "Bad request, tem alguma coisa errada na requisição", content = @Content()),
+        @ApiResponse(responseCode = "404", description = "Não foi encontrada a categoria correspondente")
     })
     @PostMapping()
     public ResponseEntity<Subcategoria> postSubcategoria(@RequestBody SubcategoriaDTO dto){

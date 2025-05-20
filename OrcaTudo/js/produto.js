@@ -43,7 +43,7 @@ async function postProduto(produto , imagem) {
             throw new Error("Erro na requisição: "+ response.status);
         }
     } catch (error) {
-        console.log("Erro no método post item: "+ error)
+        console.log("Erro no método post produto: "+ error)
     }
 }
 
@@ -107,23 +107,22 @@ async function getProdutoByFornecedorNome(nomeFornecedor){
     }
 }
 
-async function getProdutoImagem(id) {
+async function getProdutoImagem(idProduto) {
     try {
         if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
-            throw new Error("O id do produto precisa ser um númeor inteiro");
+            throw new Error("O id do produto precisa ser um número inteiro");
         }
-        const response = await fetch(endpoint+ "/"+ idProduto,{
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
+        const response = await fetch(endpoint+ "/"+ idProduto + "/imagem",{
+            method: "GET"
         })
         if(!response.ok){
             throw new Error("Erro na resposta da requisição: "+ response.status);
         }
-        const data = response.blob();
+        const data = await response.blob();
 
         return data;
     } catch (error) {
-        console.log("Erro na requisição get produto by id: "+ error)
+        console.log("Erro na requisição get produto imagem by id: "+ error)
     }
 }
 
