@@ -1,0 +1,22 @@
+
+Data: [15/05/2025]
+Hora de início: [20:52]
+Hora de término: [21:05]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes, Kauan]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana
+2. Tópicos Abordados
+	Apresentar progressso desde a última reunião:
+	Murilo: terminei todas classes auxiliares, falta testar
+	João Menezes: fez: categoria e subcategoria. Falta classe subcategoriafinal
+	Alex: terminou classe: usuário e operações. Falta: autenticação 
+3. Decisões Tomadas
+	metas:
+	João Pedro Menezes: integração tela login e cadastro fornecedor 
+	Alex: integração tela de Login e cadastro de usuário 
+	Murilo: Tela de histórico
+Todos: garantir que todas as classes utilitárias estejam funcionando devidamente
