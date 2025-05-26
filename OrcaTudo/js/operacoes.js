@@ -98,8 +98,3 @@ async function putStatusOperacao(idOperacao, novoStatus) {
   }
 }
 
-export {
-  getOperacoesByUsuarioId,
-  postOperacao,
-  putStatusOperacao
-};

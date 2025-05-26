@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -183,7 +184,7 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
 
     private void createOperacao(){
         Operacao operacao = new Operacao();
-        operacao.setData(LocalDateTime.now());
+        operacao.setData(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         operacao.setOperacao(OperacaoEnum.COTACAO);
         operacao.setStatus(StatusEnum.PENDENTE);
         operacao.setUsuario(usuarioRepository.findById(1)

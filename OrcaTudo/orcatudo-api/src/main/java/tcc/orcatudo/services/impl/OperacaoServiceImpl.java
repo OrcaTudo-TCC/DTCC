@@ -1,6 +1,7 @@
 package tcc.orcatudo.services.impl;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import tcc.orcatudo.dtos.OperacaoDTO;
 import tcc.orcatudo.entitites.Operacao;
-import tcc.orcatudo.entitites.OperacaoEnum;
 import tcc.orcatudo.entitites.StatusEnum;
 import tcc.orcatudo.repository.OperacaoRepository;
 import tcc.orcatudo.repository.UsuarioRepository;
@@ -43,7 +43,8 @@ public class OperacaoServiceImpl implements OperacaoService{
         operacaoToSave.setOperacao(dto.getOperacao());
         operacaoToSave.setUsuario(usuarioRepository.findById(dto.getIdUsuario())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum usuário encontrado com id: "+ dto.getIdUsuario())));
-        operacaoToSave.setData(LocalDateTime.now());
+        LocalDateTime data = LocalDateTime.now();
+        operacaoToSave.setData(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         operacaoToSave.setStatus(dto.getStatus());
         return operacaoRepository.save(operacaoToSave);
     }

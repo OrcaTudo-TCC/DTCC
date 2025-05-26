@@ -23,7 +23,7 @@ public class Operacao {
     @Enumerated(EnumType.STRING)
     private OperacaoEnum operacao;
 
-    private LocalDateTime data;
+    private String data;
 
     @ManyToOne
     @JoinColumn( name = "id_usuario")
@@ -53,14 +53,6 @@ public class Operacao {
         this.operacao = operacao;
     }
 
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -75,6 +67,14 @@ public class Operacao {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     
