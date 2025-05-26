@@ -1,0 +1,20 @@
+Data: [20/05/2025]
+Hora de início: [19:45]
+Hora de término: [20:00]
+Participantes: [Murilo,Alex Alves, João Pedro Menezes]
+Facilitador: [Murilo]
+
+1. Objetivo da Reunião
+	Dar continuidade ao projeto de tcc,
+	Cada membro apresentar o que foi desenvolvido na desde a última reunião
+	definir metas para próxima semana.
+2. Tópicos Abordados
+	Apresentar progressso desde a última reunião:
+	Murilo: testei as classes utilitárias, atualização na API.
+	João Menezes: testou todas as classes utilitárias, falta integração login e cadastro do fornecedor 
+	Alex: já realizou cadastro do Usuário, falta login Usuário 
+3. Decisões Tomadas
+	metas:
+	João Pedro Menezes: terminar integração fornecedor cadastro e login. Tela de perfil fornecedor.
+	Alex: integração tela de Login e cadastro de usuário. Tela de perfil Usuário 
+	Murilo: Tela de operações. Tela de carrinho compras.
