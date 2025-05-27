@@ -1,4 +1,4 @@
-const endpoint = "http://localhost:8080/auth/login";
+const endpointAuth = "http://localhost:8080/auth/login";
 
 async function login(email, password) {
   if (!email || !password) {
@@ -6,7 +6,7 @@ async function login(email, password) {
   }
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(endpointAuth, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

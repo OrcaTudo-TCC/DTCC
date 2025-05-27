@@ -97,7 +97,7 @@
 
             if (result) {
                 // Login bem-sucedido, salva o token no localStorage
-                localStorage.setItem("token", result.token);
+                sessionStorage.setItem("token", result.token);
                 alert("Login realizado com sucesso!");
                 // Redireciona o usuário para a dashboard (ajuste a rota se necessário)
                 window.location.href = "dashboard.html";

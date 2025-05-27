@@ -7,8 +7,23 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script> <!--Código Font Awesome para os ícones do site-->
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="CSS/Historico.css">
+    <script src="js/authUsuario.js" ></script>
+    <script src="js/Usuario.js"></script>
+    <!-- <script >
+            window.addEventListener('DOMContentLoaded', async ()=>{
+            if(!(sessionStorage.getItem('token').length === 0)){
+                token = sessionStorage.getItem('token');
+                obj = decodificarJWT(token);
+                usuario = await getUsuarioByEmail(obj.sub);
+            }else{
+                console.log("não existe token")
+            }
+        })
+    </script> -->
+
 </head>
 <body>
+
 
     <header>
         <div class="logo">
@@ -19,6 +34,7 @@
             <input type="text" placeholder="O que você procura na Orça tudo ?">
             <i class="fas fa-search"></i>
         </div>
+
         <nav>
             <ul>
                 <li><a href="#">Dashboard</a></li>
@@ -216,11 +232,23 @@
         </div>
     </footer>
 
+
+
     <script  src="js/operacoes.js"></script>
     <!--Script que faz integração dos dados com a API-->
     <script>
         window.addEventListener('DOMContentLoaded', async () =>{
-            response = await getOperacoesByUsuarioId(1);
+
+            if(!(sessionStorage.getItem('token').length === 0)){
+                token = sessionStorage.getItem('token');
+                obj = decodificarJWT(token);
+                usuario = await getUsuarioByEmail(obj.sub);
+            }else{
+                alert("Você precisa estar logado!");
+            }
+            console.log(usuario)
+            console.log(usuario[0].id)
+            response = await getOperacoesByUsuarioId( usuario[0].id);
             if(response.length === 0){
                 alert("Nenhuma Operação encontrada");
             }else{
