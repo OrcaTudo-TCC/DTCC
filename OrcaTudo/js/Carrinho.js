@@ -1,5 +1,5 @@
 
-const endpoint = "http://localhost:8080/carrinho";
+const endpointCarrinho = "http://localhost:8080/carrinho";
 
 async function getCarrinho(idUsuario) {
     try{
@@ -7,7 +7,7 @@ async function getCarrinho(idUsuario) {
             throw new Error("O id do usuário precisa ser um inteiro");
         }
 
-        const response = await fetch(endpoint + "/" + idUsuario,{
+        const response = await fetch(endpointCarrinho + "/" + idUsuario,{
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -30,7 +30,7 @@ async function postCarrinho(emailUsuario) {
             throw new Error("O email do usuário precisa ser uma string");
         }
 
-        const response = await fetch(endpoint+ "/"+ emailUsuario,{
+        const response = await fetch(endpointCarrinho+ "/"+ emailUsuario,{
             method: "POST",
             headers: { "Content-Type": "application/json" }
         })

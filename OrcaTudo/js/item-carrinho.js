@@ -1,12 +1,12 @@
 
-const endpoint = "http://localhost:8080/item-carrinho";
+const endpointItem = "http://localhost:8080/item-carrinho";
 
 async function getItens(idCarrinho) {
     try {
         if(typeof idCarrinho !== 'number' || !Number.isInteger(idCarrinho)){
             throw new Error("O id do carrinho precisa ser um Inteiro");
         }
-        const response = await fetch(endpoint+ "/" + idCarrinho,{
+        const response = await fetch(endpointItem+ "/" + idCarrinho,{
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -47,7 +47,7 @@ async function putItem(requestBody) {
         if (!todosPresentes) {
             throw new Error("corpo da requisição incompleto. Faltando algum campo.");
         }
-        const response = await fetch(endpoint,{
+        const response = await fetch(endpointItem,{
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -82,7 +82,7 @@ async function postItem(requestBody) {
         if (!todosPresentes) {
             throw new Error("corpo da requisição incompleto. Faltando algum campo.");
         }
-        const response = await fetch(endpoint,{
+        const response = await fetch(endpointItem,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -107,7 +107,7 @@ async function deleteItem(idItem) {
         if(typeof idItem !== 'number' || !Number.isInteger(idItem)){
             throw new Error("O id do item-carrinho precisa ser um Inteiro");
         }
-        const response = await fetch(endpoint + "/"+ idItem,{
+        const response = await fetch(endpointItem + "/"+ idItem,{
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
         })
