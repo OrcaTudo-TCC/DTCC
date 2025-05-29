@@ -6,7 +6,12 @@
     <title>Cadastro Fornecedor</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/Cadastro.css">
+</head>
+<body>
 
+
+
+    <!--Header-->
     <header>
         <div class="logo">
             <img src="imagens/Logo1.png">
@@ -122,15 +127,60 @@
     </div>
 </main>
 
+<!-- Integração API -->
+<script>
+    document.getElementById("form-fornecedor").addEventListener("submit", async function (event) {
+        event.preventDefault();
 
+        const fornecedor = {
+            nome: document.getElementById("nome").value,
+            password: document.getElementById("senha").value,
+            razao_social: document.getElementById("razao-social").value,
+            email: document.getElementById("email").value,
+            documento: document.getElementById("cnpj").value,
+            telefone: document.getElementById("telefone").value,
+            endereco: document.getElementById("endereco").value,
+            areaDeAtuacao: document.getElementById("area-atuacao").value,
+            descricao: "Fornecedor cadastrado via formulário", // valor padrão
+            avaliacao: 0 // valor inicial padrão
+        };
 
+        try {
+            const resultado = await postFornecedor(fornecedor);
+            if (resultado) {
+                alert("Fornecedor cadastrado com sucesso!");
+                document.getElementById("form-fornecedor").reset();
+            } else {
+                alert("Erro ao cadastrar fornecedor. Verifique os dados.");
+            }
+        } catch (err) {
+            console.error("Erro ao cadastrar fornecedor:", err);
+            alert("Erro inesperado ao cadastrar fornecedor.");
+        }
+    });
 
+    async function postFornecedor(fornecedor) {
+        try {
+            const response = await fetch("http://localhost:8080/auth/signupFornecedor", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(fornecedor)
+            });
 
+            if (!response.ok) {
+                throw new Error("Erro na requisição: " + response.status);
+            }
 
-
-
-
-
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            console.log("Erro na requisição post fornecedor:", err);
+            return false;
+        }
+    }
+</script>
+ 
+<!--- Inicio do Footer-->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -173,9 +223,6 @@
         </div>
     </footer>
     
-    
-</head>
-<body>
     
 </body>
 </html>
