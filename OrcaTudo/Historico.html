@@ -239,7 +239,7 @@
     <script>
         window.addEventListener('DOMContentLoaded', async () =>{
 
-            if(!(sessionStorage.getItem('token').length === 0)){
+            if(!(sessionStorage.getItem('token') == null)){
                 token = sessionStorage.getItem('token');
                 obj = decodificarJWT(token);
                 usuario = await getUsuarioByEmail(obj.sub);

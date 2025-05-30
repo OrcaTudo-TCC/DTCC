@@ -7,10 +7,21 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/carrinhoCompras.css">
-    <script src="js/authUsuario.js" >
+    <script src="js/authUsuario.js" ></script>
+    <script src="js/Carrinho.js" ></script>
+    <script  >
+      let carrinho;
       window.addEventListener('DOMContentLoaded', async() => {
-        usuario = await decotificarJWT(sessionStorage.getItem('token'));
-
+        if(sessionStorage == null){
+          alert("você precisa estar logado")
+        }
+        // obj = await decodificarJWT(sessionStorage.getItem('token'));
+        // usuarioId = obj.id;
+        // console.log(obj);
+        // console.log(usuarioId);
+        carrinho = await getCarrinho(1);
+        console.log(carrinho);
+        console.log(carrinho.id);
       }
       )
       
@@ -169,17 +180,24 @@
         </div>
     </footer>
     
-    <!--script que puxa o carrinho do usuário-->
-    <script src="js/Carrinho.js">
-      
-      window.addEventListener('DOMcontentLoaded', async ()=>{
-        id = await usuario.id;
-        carrinho = await getCarrinho(id);
-      })
-    </script>
-    <script src="js/item-carrinho.js">
+    <!--script que consome a api-->
+    <script  src="js/item-carrinho.js"></script>
+
+    <script>
       window.addEventListener('DOMContentLoaded', async () => {
-        itens = await getItens
+        if(sessionStorage == null){
+          alert("você precisa estar logado")
+        }
+        // obj = await decodificarJWT(sessionStorage.getItem('token'));
+        // usuarioId = obj.id;
+        // console.log(obj);
+        // console.log(usuarioId);
+        carrinho = await getCarrinho(1);
+        console.log(carrinho);
+        console.log(carrinho.id);
+        itens = await getItens(carrinho.id);
+        console.log(itens);
+
       })
     </script>
 
