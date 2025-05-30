@@ -30,7 +30,7 @@ public class Produto {
     private Double preco;
 
     @Lob
-    private Byte[] imagem;
+    private byte[] imagem;
 
     @ManyToOne
     @JoinColumn( name = "id_subcategoriafinal")
@@ -87,14 +87,6 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public Byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Byte[] imagem) {
-        this.imagem = imagem;
-    }
-
     public SubcategoriaFinal getSubcategoriaFinal() {
         return subcategoriaFinal;
     }
@@ -118,6 +110,18 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
     

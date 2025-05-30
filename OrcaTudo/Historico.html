@@ -245,6 +245,7 @@
                 usuario = await getUsuarioByEmail(obj.sub);
             }else{
                 alert("Você precisa estar logado!");
+                window.location = "http://127.0.0.1:5500/login.html"
             }
             console.log(usuario)
             console.log(usuario[0].id)

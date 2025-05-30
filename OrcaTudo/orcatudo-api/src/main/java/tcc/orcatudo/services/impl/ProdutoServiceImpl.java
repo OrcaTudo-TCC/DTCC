@@ -111,7 +111,7 @@ public class ProdutoServiceImpl implements ProdutoService{
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND , "Nenhum fornecedor com nome: "+ produto.getNomeDoFornecedor())));
         produtoToSave.setSubcategoriaFinal(subcategoriaFinalRepository.findByNome(produto.getNomeDasubcategoriaFinal())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhuma subcategoria fianl com nome: "+ produto.getNomeDasubcategoriaFinal())));
-        produtoToSave.setImagem(byteObjt);
+        produtoToSave.setImagem(bytes);
         return produtoRepository.save(produtoToSave);
     }
 
@@ -125,7 +125,7 @@ public class ProdutoServiceImpl implements ProdutoService{
             produtoImagem[i]= produto.getImagem()[i];
         }
 
-        return produtoImagem;
+        return produto.getImagem();
     }
 
     

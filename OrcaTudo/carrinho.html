@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="imagens/Logo1.png" type="image/png">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/carrinhoCompras.css">
-    <script src="js/authUsuario.js" ></script>
-    <script src="js/Carrinho.js" ></script>
-    <script  >
+
+    <!-- <script  >
       let carrinho;
       window.addEventListener('DOMContentLoaded', async() => {
         if(sessionStorage == null){
@@ -25,7 +25,7 @@
       }
       )
       
-    </script>
+    </script> -->
 
     <header>
         <div class="logo">
@@ -181,22 +181,72 @@
     </footer>
     
     <!--script que consome a api-->
+    <script src="js/authUsuario.js" ></script>
+    <script src="js/Carrinho.js" ></script>
+    <script src="js/Usuario.js"></script>
+    <script src="js/produto.js"></script>
     <script  src="js/item-carrinho.js"></script>
-
     <script>
       window.addEventListener('DOMContentLoaded', async () => {
         if(sessionStorage == null){
           alert("você precisa estar logado")
         }
-        // obj = await decodificarJWT(sessionStorage.getItem('token'));
-        // usuarioId = obj.id;
-        // console.log(obj);
-        // console.log(usuarioId);
-        carrinho = await getCarrinho(1);
+        const obj = await decodificarJWT(sessionStorage.getItem('token'));
+        console.log("Obj decotificado do token: ",obj);
+        const usuario = await getUsuarioByEmail(obj.sub);
+        if(!usuario || usuario.lenght === 0){
+          alert("Usuário não encontrado!")
+          return
+        }
+        console.log("Usuário correspondente ao email: ",usuario)
+        const carrinho = await getCarrinho(usuario[0].id);
+        
         console.log(carrinho);
-        console.log(carrinho.id);
-        itens = await getItens(carrinho.id);
-        console.log(itens);
+        const itens = await getItens(carrinho.id);
+        console.log("itens corrsepondentes ao carrinho: ",itens);
+
+        sectionCarrinho = document.getElementsByClassName('carrinho')[0];
+
+        await itens.forEach(item => {
+          let divItem = document.createElement('div'); // criando div principal para cada item do carrinho
+          divItem.classList.add("item-carrinho");
+          sectionCarrinho.appendChild(divItem); // colocando a div do item dentro da section
+
+          imgProd = document.createElement('img');
+          // let url = URL.createObjectURL(item.produto.imagem);
+          const base64 = item.produto.imagem;
+          const contentType = "image/png"; // ou "image/jpeg", conforme o caso
+          const dataUrl = `data:${contentType};base64,${base64}`;
+          imgProd.src = dataUrl
+          imgProd.alt = "Imagem do produto"
+          divItem.appendChild(imgProd);
+          
+          divInfo = document.createElement('div');
+          divInfo.classList.add("info-produto");
+          divItem.appendChild(divInfo); // colocando a div com as informações do produto dentro da div principal
+          
+          pNome = document.createElement('p');
+          pNome.classList.add('nome-produto');
+          pNome.innerText = item.produto.nome;
+          divInfo.appendChild(pNome); // colocando o p com nome do produto.
+          
+          pCodigo = document.createElement('p');
+          pCodigo.classList.add('codigo-produto');
+          pCodigo.innerText = "Código: "+item.produto.id;
+          divInfo.appendChild(pCodigo);
+
+          btnItem = document.createElement('button');
+          btnItem.classList.add('remover-item');
+          btnItem.innerText = "Remover";
+          divInfo.appendChild(btnItem) //adicionando botão de remover
+
+          pPreco = document.createElement('p');
+          pPreco.classList.add('preco-produto');
+          pPreco.innerText = "R$ " + item.produto.preco;
+          divItem.appendChild(pPreco);
+
+        });
+
 
       })
     </script>

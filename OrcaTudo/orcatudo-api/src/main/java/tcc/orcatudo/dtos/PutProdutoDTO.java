@@ -10,7 +10,7 @@ public class PutProdutoDTO {
 
     private Double preco;
 
-    private Byte[] imagem;
+    private byte[] imagem;
 
     private String nomeDasubcategoriaFinal;
 
@@ -48,13 +48,6 @@ public class PutProdutoDTO {
         this.preco = preco;
     }
 
-    public Byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Byte[] imagem) {
-        this.imagem = imagem;
-    }
 
     public String getNomeDasubcategoriaFinal() {
         return nomeDasubcategoriaFinal;
@@ -70,6 +63,14 @@ public class PutProdutoDTO {
 
     public void setNomeDoFornecedor(String nomeDoFornecedor) {
         this.nomeDoFornecedor = nomeDoFornecedor;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
     

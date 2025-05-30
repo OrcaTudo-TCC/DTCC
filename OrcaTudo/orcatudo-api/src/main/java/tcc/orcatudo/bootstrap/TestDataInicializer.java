@@ -156,7 +156,7 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
         .orElseThrow(() -> new BusinessException("fornecedor teste não encontrado.")));
         //criando byte[] para armazenar a imagme no banco de dados
 
-        Path caminho = Paths.get("imagens\\Logo.png");
+        Path caminho = Paths.get("imagens\\Logo1.png");
         byte[] imagem = Files.readAllBytes(caminho);
         Byte[] imagemWrapper = new Byte[imagem.length];
 
@@ -164,7 +164,7 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
             imagemWrapper[i] = imagem[i];
         }
 
-        produto.setImagem(imagemWrapper);
+        produto.setImagem(imagem);
 
         produto.setPreco(99.9);
         produto.setSubcategoriaFinal(subcategoriaFinalRepository.findById(1).
