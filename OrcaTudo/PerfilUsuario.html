@@ -6,6 +6,9 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/perfilUsuario.css">
     <link rel="stylesheet" href="css/header.css">
+    <script src="js/Usuario.js"></script>
+    <script src="js/authUsuario.js" ></script>
+    
 </head>
 <body>
 
@@ -104,27 +107,24 @@
                     <div class="container-info">
                         <div class="formdata">
                             <h4>Nome</h4>
-                            <input type="text" placeholder="Digite o nome usuário">
+                            <input id="nome" type="text" placeholder="Digite o nome usuário">
                         </div>
-                        <div class="formdata">
-                            <h4>Categoria</h4>
-                            <input type="text" placeholder="Digite a categoria">
-                        </div>
+                      
                         <div class="formdata">
                             <h4>CNPJ/CPF</h4>
-                            <input type="text" placeholder="Digite o CNPJ/CPF">
+                            <input id="documento" type="text" placeholder="Digite o CNPJ/CPF">
                         </div>
                         <div class="formdata">
                             <h4>Email</h4>
-                            <input type="email" placeholder="Digite o email">
+                            <input id="email" placeholder="Digite o email">
                         </div>
                         <div class="formdata">
                             <h4>Telefone</h4>
-                            <input type="tel" placeholder="Digite o telefone">
+                            <input id="telefone" type="tel" placeholder="Digite o telefone">
                         </div>
                         <div class="formdata">
                             <h4>Endereço</h4>
-                            <input type="text" placeholder="Digite o endereço">
+                            <input id="endereco" type="text" placeholder="Digite o endereço">
                         </div>
                     </div>
                 </section>
@@ -136,14 +136,48 @@
                   
                     <div class="editar-buttons">
                       <button><i class="fas fa-pen"></i> Editar</button>
-                      <button><i class="fas fa-save"></i> Salvar</button>
-                      <button><i class="fas fa-trash"></i> Excluir</button>
+                      <button id="salvar"><i class="fas fa-save"></i> Salvar</button>
+                      <button id="excluir"><i class="fas fa-trash"></i> Excluir</button>
                     </div>
                   </section>
                   
             </div>
         </div>
     </main>
+
+            <script>
+             document.addEventListener("DOMContentLoaded", async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("Você precisa estar logado.");
+                window.location.href = "/login.html";
+                return;
+            }
+
+            try {
+                const payload = decodificarJWT(token);
+                const email = payload.sub;
+                const usuarios = await getUsuarioByEmail(email);
+                const usuario = usuarios[0]; // 👈 Corrigido aqui
+
+                if (!usuario) {
+                    alert("Erro ao carregar dados do usuário.");
+                    return;
+                }
+
+                document.getElementById("nome").value = usuario.nome || "";
+                document.getElementById("email").value = usuario.email || "";
+                document.getElementById("telefone").value = usuario.telefone || "";
+                document.getElementById("documento").value = usuario.documento || "";
+                document.getElementById("endereco").value = usuario.endereco || "";
+
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+            }
+        });
+
+        </script>
+
 
 
     <footer>

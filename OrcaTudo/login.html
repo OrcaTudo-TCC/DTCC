@@ -82,35 +82,39 @@
             </form>
         </div>
 
-        <script>
+            <script>
             document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("profile-form");
+            const form = document.getElementById("profile-form");
 
-        form.addEventListener("submit", async function (event) {
+            form.addEventListener("submit", async function (event) {
             event.preventDefault(); // evita recarregar a página
 
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
 
             try {
-            const result = await login(email, password);
+                const result = await login(email, password); // função vinda de authUsuario.js
 
-            if (result) {
-                // Login bem-sucedido, salva o token no localStorage
-                sessionStorage.setItem("token", result.token);
-                alert("Login realizado com sucesso!");
-                // Redireciona o usuário para a dashboard (ajuste a rota se necessário)
-                window.location.href = "dashboard.html";
-            } else {
-                alert("Usuário não encontrado ou dados inválidos.");
-            }
+                if (result && result.token) {
+                    // 🔁 Salva o novo token, substituindo o antigo
+                    localStorage.setItem("token", result.token);
+
+                    // (Opcional) Decodifica para obter o e-mail ou ID
+                    const payload = decodificarJWT(result.token);
+                    localStorage.setItem("usuarioEmail", payload.sub); // salva o e-mail se quiser
+
+                    alert("Login realizado com sucesso!");
+                    window.location.href = "dashboard.html"; // vá para o perfil, dashboard etc
+                } else {
+                    alert("Usuário não encontrado ou dados inválidos.");
+                }
             } catch (error) {
-            console.error("Erro no login:", error);
-            alert("Erro ao fazer login. Tente novamente.");
+                console.error("Erro no login:", error);
+                alert("Erro ao fazer login. Tente novamente.");
             }
         });
-        });
-        </script>
+    });
+    </script>
 
 
 
