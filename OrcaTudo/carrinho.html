@@ -113,7 +113,7 @@
           </div>
           <div class="resumo-linha total">
             <span>Total a pagar</span>
-            <span> R$ 51,30</span>
+            <span id="vlrTotal"> R$ 51,30</span>
           </div>
           <button class="btn-finalizar">Finalizar compra</button>
         </section>
@@ -180,6 +180,7 @@
 
 
     <script>
+      let total = 0.0;
       const modal = document.getElementById('modal');
       const confirmarBtn = document.getElementById("confirmarBtn");
       const cancelarBtn = document.getElementById("cancelarBtn");
@@ -218,15 +219,11 @@
           alert("Usuário não encontrado!")
           return
         }
-        console.log("Usuário correspondente ao email: ",usuario)
         const carrinho = await getCarrinho(usuario[0].id);
         
-        console.log(carrinho);
         const itens = await getItens(carrinho.id);
-        console.log("itens corrsepondentes ao carrinho: ",itens);
-        console.log(itens.lenght);
-        console.log(Array.isArray(itens));
         
+
 
         // caso o carrinho esteja vazio exibe mensagem
         if(itens.length === 0){
@@ -234,13 +231,13 @@
         }
 
         sectionCarrinho = document.getElementsByClassName('carrinho')[0];
-        let total;
+
 
         document.getElementsByClassName('qtd-itens')[0].innerText = itens.length == 1 ? "( "+itens.length+ " itens )" : ("( 1 item )") //colocando a quantidade de itens na página
         document.getElementsByClassName('qtd-itens')[1].innerText = itens.length
         await itens.forEach(item => {
 
-          total += item.produto.subtotal;
+          total += item.subtotal;
 
           let divItem = document.createElement('div'); // criando div principal para cada item do carrinho
           divItem.classList.add("item-carrinho");
@@ -292,6 +289,8 @@
 
         });
 
+        vlrTotal = document.getElementById('vlrTotal');
+        vlrTotal.innerText = "R$ "+ total;
 
       })
     </script>
