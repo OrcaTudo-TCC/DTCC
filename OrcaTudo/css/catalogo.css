@@ -25,55 +25,42 @@
         width: 90vw;
         margin: 20px auto;
         padding: 16px 32px;
-        background-color: #945e3d;
+        background-color:white;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border-radius: 16px;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items:start;
+        justify-content:left;
         gap: 16px;
         flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
     }
     
     .ordenar-section span {
-        color: white;
+        color: black;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 24px;
         margin-right: 8px;
     }
     
-    .ordenar-opcoes {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
     
-    .ordenar-botao {
-        background-color: #ae7550;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+    #main{
+        width: 90vw;
+
+        margin: 20px auto;
     }
-    
-    .ordenar-botao:hover {
-        background-color: #945e3d;
-    }
-    
     
     
     .catalogo-section {
-        width: 290px;
+        width:17vw;
+        max-width: 17vw;
         height: auto;
         padding: 20px;
         background-color: white;
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         position: relative;
-        margin: 20px;
+        margin-right: 3vw;
         margin-top: 5px;
-        margin-left: 40px; /* afasta do canto esquerdo */
         float: left;
         min-height: 200px;
     }
@@ -134,8 +121,7 @@
 }
 
 /* Botões (marca e fornecedor com o mesmo estilo) */
-.marca-item
- {
+.marca-item{
     width: 90px;
     padding: 8px 16px;
     background-color: #28a745;
@@ -163,15 +149,21 @@
 }
 
 .marca-item{
-    background-color: #3b82f6;
+        background-color: #3b82f6;
 }
 
-    
-    .produto-section {
+.results{
+    display:flex;
+    width: 70vw;
+    background-color: white;
+    padding:20px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+}
+.produto-section {
         background-color: white;
-        display: grid;
         width: 70vw;
-        max-width: 70vw;
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
         border-radius: 12px;
         box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
@@ -180,9 +172,9 @@
         margin-left: -30px;
         margin-bottom: 60px;
         padding: 20px;
-    }
+}
     
-    .produto-card {
+.produto-card {
         background-color: white;
         padding: 16px;
         border-radius: 8px;
