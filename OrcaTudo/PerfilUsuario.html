@@ -158,7 +158,7 @@
                 const payload = decodificarJWT(token);
                 const email = payload.sub;
                 const usuarios = await getUsuarioByEmail(email);
-                const usuario = usuarios[0]; // 👈 Corrigido aqui
+                const usuario = usuarios[0];
 
                 if (!usuario) {
                     alert("Erro ao carregar dados do usuário.");
