@@ -1,10 +1,10 @@
-const endpoint = "http://localhost:8080/Subcategoriafinal"
+const endpointSubFinal = "http://localhost:8080/subcategoriafinal"
 
 async function getSubcategoriafinal (subcategoria) {
     try{
-      const response = await fetch(endpoint + "/" + subcategoria, {
+      const response = await fetch(endpointSubFinal + "/" + subcategoria, {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" }
         
       });
 
@@ -22,7 +22,7 @@ async function getSubcategoriafinal (subcategoria) {
 
   async function postSubcategoriafinal () {
     try{
-      const response = await fetch(endpoint,{
+      const response = await fetch(endpointSubFinal,{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify ({
@@ -46,7 +46,7 @@ async function getSubcategoriafinal (subcategoria) {
 
   async function putSubcategoriafinal (id, nome) {
     try {
-      const response = await fetch(endpoint + "/" + id + "/nome",{
+      const response = await fetch(endpointSubFinal + "/" + id + "/nome",{
         method:"PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify ({nome:nome})
@@ -67,7 +67,7 @@ async function getSubcategoriafinal (subcategoria) {
 
   async function deleteSubcategoriafinal (id) {
     try{
-      const response = await fetch(endpoint + "/" + id, {
+      const response = await fetch(endpointSubFinal + "/" + id, {
         method:"DELETE",
         headers: { "Content-Type": "application/json" },         
       });
@@ -93,7 +93,7 @@ async function getSubcategoriafinal (subcategoria) {
       throw new Error("O id da subcategoriafinal não é um inteiro");
     }
     try{
-      const response = await fetch(endpoint + "/" + idSubcategoriaFinal + "/update_subcategoria", {
+      const response = await fetch(endpointSubFinal + "/" + idSubcategoriaFinal + "/update_subcategoria", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },         
         body:JSON.stringify (idSubcategoria)

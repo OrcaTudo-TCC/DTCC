@@ -1,8 +1,8 @@
-const endpoint = "http://localhost:8080/categoria"
+const endpointCategoria = "http://localhost:8080/categoria"
 
 async function getCategoria () {
     try {
-        const response = await fetch (endpoint,{
+        const response = await fetch (endpointCategoria,{
             method:"GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -21,7 +21,7 @@ async function getCategoria () {
 
 async function postCategoria (nome) {
     try {
-        const response = await fetch (endpoint + "/"+ nome,{
+        const response = await fetch (endpointCategoria + "/"+ nome,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
 
@@ -41,7 +41,7 @@ async function postCategoria (nome) {
 
 async function putCategoria (nome,idcategoria) {
     try {
-        const response = await fetch (endpoint + "/"+ idcategoria,{
+        const response = await fetch (endpointCategoria + "/"+ idcategoria,{
             method:"PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -64,7 +64,7 @@ async function putCategoria (nome,idcategoria) {
 
 async function deleteCategoria (idcategoria) {
     try {
-        const response = await fetch (endpoint + "/"+ idcategoria,{
+        const response = await fetch (endpointCategoria + "/"+ idcategoria,{
             method:"DELETE",
             headers: { "Content-Type": "application/json" },
 

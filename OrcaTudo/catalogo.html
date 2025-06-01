@@ -82,27 +82,21 @@
                 <section class="catalogo-section">
                   <!-- Filtro -->
                   <div class="filtro-container">
-                    <label for="filtro">Filtrar por Categoria</label>
-                    <select id="filtro" class="filtro-selecao">
-                      <option value="Categoria1">Categoria 1</option>
-                      <option value="Categoria2">Categoria 2</option>
-                      <option value="Categoria3">Categria 3</option>
+                    <label for="filtro-categoria">Filtrar por Categoria</label>
+                    <select id="filtro-categoria" class="filtro-selecao">
                     </select>
                   </div>
-                                    <div class="filtro-container">
+
+                  <div class="filtro-container">
                     <label for="filtro">Filtrar por Subcategoria</label>
-                    <select id="filtro" class="filtro-selecao">
-                      <option value="Categoria1">Categoria 1</option>
-                      <option value="Categoria2">Categoria 2</option>
-                      <option value="Categoria3">Categria 3</option>
+                    <select id="filtro-subcategoria" class="filtro-selecao">
                     </select>
                   </div>
-                                    <div class="filtro-container">
+
+                  <div class="filtro-container">
                     <label for="filtro">Filtrar por Categoria Específica</label>
-                    <select id="filtro" class="filtro-selecao">
-                      <option value="Categoria1">Categoria 1</option>
-                      <option value="Categoria2">Categoria 2</option>
-                      <option value="Categoria3">Categria 3</option>
+                    <select id="filtro-final" class="filtro-selecao">
+
                     </select>
                   </div>
                 
@@ -240,6 +234,44 @@
   </footer>
   
 
+  <script src="js/categoria.js" ></script>
+  <script src="js/subcategoria.js"></script>
+  <script src="js/SubcategoriaFinal.js"></script>
+  <!--Script responsável por realizar integração-->
+  <script>
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      categorias = await getCategoria();
+      console.log(categorias)
+      //colocando as categorias existentes na página
+      select = document.getElementById('filtro-categoria');
+      categorias.forEach(categoria => {
+        option = document.createElement('option');
+        option.value = categoria.nome;
+        option.innerText = categoria.nome;
+        select.appendChild(option);
+      });
+      //fazendo a consulta de subcategoria com o valor selecionado em categoria
+      subcategorias = await getSubcategoria(select.value);
+      console.log(subcategorias);
+      subcategorias.forEach(subcategoria => {
+        select = document.getElementById('filtro-subcategoria');
+        option = document.createElement('option');
+        option.value = subcategoria.nome;
+        option.innerText = subcategoria.nome;
+        select.appendChild(option);
+      })
+      //fazendo a consulta da subcategoriafinal com o valor selecionado de subcategoria
+      categoriasFinal = await getSubcategoriafinal(select.value);
+      console.log(categoriasFinal)
+      categoriasFinal.forEach(final => {
+        select = document.getElementById('filtro-final');
+        option = document.createElement('option');
+        option.value = final.nome;
+        option.innerText = final.nome;
+        select.appendChild(option);
+      })
+    })
+  </script>
 
 
 </body>

@@ -1,11 +1,11 @@
-const endpoint = "http://localhost:8080/subcategoria"
+const endpointSubcategoria = "http://localhost:8080/subcategoria"
 
 async function getSubcategoria (categoria) {
-    if (typeof parametro !== 'string') {
+    if (typeof categoria !== 'string') {
         throw new Error("O parâmetro precisa ser um texto (string).");
       }
     try{
-        const response = await fetch (endpoint +"/"+categoria,{
+        const response = await fetch (endpointSubcategoria +"/"+categoria,{
             method:"GET" ,
             headers: { "Content-Type": "application/json" }
         })
@@ -25,7 +25,7 @@ async function getSubcategoria (categoria) {
 
 async function postSubcategoria (categoria,nome) {
     try {
-        const response = await fetch (endpoint, {
+        const response = await fetch (endpointSubcategoria, {
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -47,7 +47,7 @@ async function postSubcategoria (categoria,nome) {
 
 async function putSubcategorianome(id, nome) {
     try {
-      const response = await fetch(endpoint + "/" + id + "/nome", {
+      const response = await fetch(endpointSubcategoria + "/" + id + "/nome", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -69,7 +69,7 @@ async function putSubcategorianome(id, nome) {
 
   async function putSubcategorianome (id, categoria) {
     try {
-      const response = await fetch(endpoint + "/" + id + "/categoria", {
+      const response = await fetch(endpointSubcategoria + "/" + id + "/categoria", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(categoria)
@@ -90,7 +90,7 @@ async function putSubcategorianome(id, nome) {
 
     async function deleteSubcategoria (id) {
       try{
-        const response = await fetch(endpoint + "/" + id, {
+        const response = await fetch(endpointSubcategoria + "/" + id, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
         });
