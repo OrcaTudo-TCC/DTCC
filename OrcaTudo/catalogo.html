@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/catalogo.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="icon" href="imagens/Logo1.png" type="image/png">
 
 </head>
 <body>
@@ -84,19 +85,21 @@
                   <div class="filtro-container">
                     <label for="filtro-categoria">Filtrar por Categoria</label>
                     <select id="filtro-categoria" class="filtro-selecao">
+                      <!-- <option value="" disabled selected>Selecione uma categoria</option> -->
                     </select>
                   </div>
 
                   <div class="filtro-container">
                     <label for="filtro">Filtrar por Subcategoria</label>
                     <select id="filtro-subcategoria" class="filtro-selecao">
+                      <option value="" disabled selected>Selecione subcategoria</option>
                     </select>
                   </div>
 
                   <div class="filtro-container">
                     <label for="filtro">Filtrar por Categoria Específica</label>
                     <select id="filtro-final" class="filtro-selecao">
-
+                      <option value="" disabled selected>Selecione categoria final</option>
                     </select>
                   </div>
                 
@@ -237,41 +240,121 @@
   <script src="js/categoria.js" ></script>
   <script src="js/subcategoria.js"></script>
   <script src="js/SubcategoriaFinal.js"></script>
-  <!--Script responsável por realizar integração-->
+  <script src="js/produto.js"></script>
+  <!--Script responsável por realizar integração das categorias(principal)-->
   <script>
+      const select = document.getElementById('filtro-categoria');
+      const selectSub = document.getElementById('filtro-subcategoria');
+      const selectFinal = document.getElementById('filtro-final');
+
+    
     document.addEventListener('DOMContentLoaded', async ()=>{
+      await inicializarSelects()
+
+      let produtos = await todosProdutos();
+    })
+  </script>
+
+  <!--Scrpit para renderizar produtos-->
+  <script>
+    function renderizarProdutos(produtos){
+      produtos.forEach(produto =>{
+
+        let  div = document.createElement('div');
+        div.classList.add('produto-card');
+        let img = document.createElement('img');
+        img.src = "imagens/placeholder.jpg";
+        let h3Nome = document.createElement('h3');
+        h3Nome.innerText = produto.nome;
+        let preco = document.createElement('p');
+        preco.classList.add('preco');
+        let categoria = document.createElement('p');
+        categoria.classList.add('categoria');
+        categoria.innerText = produto.subcategoriafinal.nome;
+
+      })
+
+    }
+
+ </script>
+
+  <!--script responsável por buscar todos os produtos ao inicar página-->
+  <script>
+    async function todosProdutos() {
+      let categorias = getCategoria();
+      let subcategorias = Promise.all(categorias.map(cate => getSubcategoria(cate.nome)));
+      let categoriasFinal = Promise.all(
+        subcategorias.flat().map(sub => getSubcategoriafinal(sub.nome))
+      );
+      let produtos = Promise.all(
+        categoriasFinal.flat().map(final => getProdutoByCategoriaFinal(final.nome))
+      );
+      return produtos.flat();
+    }
+
+
+  </script>
+  <!--Script responsável pela inicialização dos selects-->
+  <script>
+    async function inicializarSelects() {
+      let categorias;
+      let subcategorias;
+      let categoriasFinal;
       categorias = await getCategoria();
       console.log(categorias)
+
       //colocando as categorias existentes na página
-      select = document.getElementById('filtro-categoria');
+      optionSelected= document.createElement('option');
+      optionSelected.value = '';
+      optionSelected.disabled = true;
+      optionSelected.selected = true;
+      optionSelected.innerText = 'Selecione uma categoria';
+      select.appendChild(optionSelected);
       categorias.forEach(categoria => {
         option = document.createElement('option');
         option.value = categoria.nome;
         option.innerText = categoria.nome;
         select.appendChild(option);
       });
-      //fazendo a consulta de subcategoria com o valor selecionado em categoria
-      subcategorias = await getSubcategoria(select.value);
-      console.log(subcategorias);
-      subcategorias.forEach(subcategoria => {
-        select = document.getElementById('filtro-subcategoria');
-        option = document.createElement('option');
-        option.value = subcategoria.nome;
-        option.innerText = subcategoria.nome;
-        select.appendChild(option);
+
+      //Adicionando eventListener para realizar nova busca quando é alterado o valor do select categoria
+      select.addEventListener('change', async ()=>{
+        //resetando o conteúdo dos selects dependentes
+        selectSub.innerHTML = '<option value= "" disabled selected>Selecione subcategoria</option>';
+        selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        if(!select.value !== "" ){
+          subcategorias = await getSubcategoria(select.value);
+          console.log(subcategorias);
+          subcategorias.forEach(subcategoria => {
+  
+            option = document.createElement('option');
+            option.value = subcategoria.nome;
+            option.innerText = subcategoria.nome;
+            selectSub.appendChild(option);
+          })
+        }
+        //realizando consulta com o novo valor de select
       })
-      //fazendo a consulta da subcategoriafinal com o valor selecionado de subcategoria
-      categoriasFinal = await getSubcategoriafinal(select.value);
-      console.log(categoriasFinal)
-      categoriasFinal.forEach(final => {
-        select = document.getElementById('filtro-final');
-        option = document.createElement('option');
-        option.value = final.nome;
-        option.innerText = final.nome;
-        select.appendChild(option);
+
+      //Adicionando eventListener para realizar busca quando ocorrer alteração subcategoria
+      selectSub.addEventListener('change', async ()=>{
+        selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        if(!selectSub.value !== ""){
+
+          categoriasFinal = await getSubcategoriafinal(selectSub.value);
+          console.log(categoriasFinal)
+          categoriasFinal.forEach(final => {
+          
+          option = document.createElement('option');
+          option.value = final.nome;
+          option.innerText = final.nome;
+          selectFinal.appendChild(option);
+        })
+        }
       })
-    })
+    }
   </script>
+
 
 
 </body>
