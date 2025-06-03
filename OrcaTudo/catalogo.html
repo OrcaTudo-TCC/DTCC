@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo de Fornecedores</title>
+    <title>Catálogo</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/catalogo.css">
     <link rel="stylesheet" href="css/header.css">
@@ -109,6 +109,7 @@
                 </section>
                 <div class="results">12345 Resultados encontrados</div>
                 <section class="produto-section">
+
                   <div class="produto-card">
                       <img src="https://cdn.leroymerlin.com.br/products/carrinho_de_mao_em_aco_carbono_pneu_e_camara_chapa_26mm_45l_1571958082_5aac_300x300.jpg" alt="Produto" />
                       <h3> Carrinho De Mão Em Aço </h3>
@@ -128,7 +129,7 @@
                     <p class="subcategoria"> Sub Categoria </p>
                   </div>
                   
-                  <div class="produto-card">
+                  <!-- <div class="produto-card">
                     <img src="https://cdn.leroymerlin.com.br/products/trena_manual_5mx19mm_460610_dexter_91716401_b391_600x600.jpg" alt="Produto" />
                     <h3> Trena Manual 5 metros </h3>
                     <p class="preco">R$  29,90</p>
@@ -182,7 +183,7 @@
                     <p class="preco">R$ 00,00</p>
                     <p class="categoria"> Categoria </p>
                     <p class="subcategoria"> Sub Categoria </p>
-                  </div>
+                  </div> -->
                   
 
                   
@@ -252,26 +253,46 @@
       await inicializarSelects()
 
       let produtos = await todosProdutos();
-
+      renderizarProdutos(produtos.flat());
     })
   </script>
 
   <!--Scrpit para renderizar produtos-->
   <script>
     function renderizarProdutos(produtos){
+      const results = document.getElementsByClassName('results')[0];
+      results.innerText = produtos.length +" Resultados encontrados"
       produtos.forEach(produto =>{
-
+        
+        const section = document.getElementsByClassName('produto-section')[0];
         let  div = document.createElement('div');
         div.classList.add('produto-card');
+        div.addEventListener('click', ()=> {
+          window.location = "cotacao.html?produto="+ produto.id;
+        })
         let img = document.createElement('img');
-        img.src = "imagens/placeholder.jpg";
+        const base64 = produto.imagem;
+        const contentType = "image/png"; // ou "image/jpeg", conforme o caso
+        const dataUrl = `data:${contentType};base64,${base64}`;
+        img.src = dataUrl
+        div.appendChild(img);
         let h3Nome = document.createElement('h3');
         h3Nome.innerText = produto.nome;
+        div.appendChild(h3Nome);
         let preco = document.createElement('p');
         preco.classList.add('preco');
+        preco.innerText = "R$ "+ produto.preco
+        div.appendChild(preco);
         let categoria = document.createElement('p');
         categoria.classList.add('categoria');
-        categoria.innerText = produto.subcategoriafinal.nome;
+        categoria.innerText = produto.subcategoriaFinal.subcategoria.categoria.nome;
+        div.appendChild(categoria);
+        let subcategoria = document.createElement('p');
+        subcategoria.classList.add('subcategoria');
+        subcategoria.innerText = produto.subcategoriaFinal.subcategoria.nome;
+        div.appendChild(subcategoria);
+        section.appendChild(div)
+        console.log("renderizou produto: ", produto)
 
       })
 
@@ -284,19 +305,28 @@
     async function todosProdutos() {
       let categorias = await getCategoria();
       let subcategorias = await Promise.all(categorias.map(cate => getSubcategoria(cate.nome)));
-      console.log(subcategorias)
+      console.log("subcategorias: ",subcategorias)
       let categoriasFinal = await Promise.all(
         subcategorias.flat().map(sub => getSubcategoriafinal(sub.nome))
       );
-      console.log(categoriasFinal)
-      let produtos =  await Promise.all(
-        categoriasFinal.map(final => getProdutoByCategoriaFinal(final.nome))
-      );
-    
-      console.log(produtos.flat())
-      return produtos.flat();
-    }
+      console.log("categorias finais: ",categoriasFinal)
 
+      const promessas = categoriasFinal
+        .flat()
+        .filter(final => final && typeof final.nome === 'string')
+        .map(async final => {
+          const resultado = await getProdutoByCategoriaFinal(final.nome);
+          console.log("Resultado de", final.nome, "=>", resultado);
+          return resultado;
+        });
+
+      const produtos = await Promise.all(promessas);
+      console.log("Produtos:", produtos);
+      return produtos
+    }
+  </script>
+  <!--script para alterar produtos exibidos conforme o select-->
+  <script>
 
   </script>
   <!--Script responsável pela inicialização dos selects-->
@@ -355,6 +385,15 @@
           option.innerText = final.nome;
           selectFinal.appendChild(option);
         })
+        }
+        function produtosSelecionados(nomeCategoria, nomeSubcategoria, nomeSubcategoriaFinal) {
+          try {
+            if(typeof nomeCategoria !== 'string' || typeof nomeSubcategoria !== 'string' || typeof nomeSubcategoriaFinal !== 'string'){
+              throw new Error("todos os parâmetros precisam ser do tipo 'string'");
+            }
+          } catch (error) {
+            console.log("Erro na função produtos selecionados, erro: "+ error)
+          }
         }
       })
     }

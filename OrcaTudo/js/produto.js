@@ -1,5 +1,5 @@
 
-const endpoint = "http://localhost:8080/produtos";
+const endpointProd = "http://localhost:8080/produtos";
 
 /*  Para criar um produto deve-se passar por parêmtro um objeto conforme a seguir:
     {
@@ -35,7 +35,7 @@ async function postProduto(produto , imagem) {
         formData.append("nomeDoFornecedor", produto.idFornecedor);
         formData.append("imagemFile", imagem);
         //requisição com fecth
-        const response = await fetch(endpoint,{
+        const response = await fetch(endpointProd,{
             method: "POST",
             body: formData
         })
@@ -52,7 +52,7 @@ async function getProdutoById(idProduto){
         if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
             throw new Error("O id do produto precisa ser um númeor inteiro");
         }
-        const response = await fetch(endpoint+ "/"+ idProduto,{
+        const response = await fetch(endpointProd+ "/"+ idProduto,{
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -69,21 +69,24 @@ async function getProdutoById(idProduto){
 
 async function getProdutoByCategoriaFinal(nomeCategoriaFinal){
     try {
-        if(typeof nomeCategoriaFinal === "string"){
+        if(typeof nomeCategoriaFinal !== "string"){
             throw new Error("O nome categoria precisa ser do tipo String");
         }
-        const response = await fetch(endpoint+"/subcategoriafinal"+nomeCategoriaFinal,{
+        console.log('(dentro do auxiliar)nomeCategoriaFinal: '+ nomeCategoriaFinal);
+        const response = await fetch(endpointProd+"/subcategoriafinal/"+nomeCategoriaFinal.toLowerCase(),{
             method:"GET",
             headers: { "Content-Type": "application/json" }
         })
         if(!response.ok){
             throw new Error("Erro na requisição get produto by categoria: "+response.status);
         }
-        const data = response.json();
-    
-        return data
+        let datap = await response.json();
+        console.log("data: ", datap)
+        return datap;
+
     } catch (error) {
         console.log("Erro na requisição get produto by categoria final: "+ error)
+        return null;
     }
 }
 
@@ -92,7 +95,7 @@ async function getProdutoByFornecedorNome(nomeFornecedor){
         if(typeof nomeCategoriaFinal === "string"){
             throw new Error("O nome categoria precisa ser do tipo String");
         }
-        const response = await fetch(endpoint+"/fornecedor"+nomeFornecedor,{
+        const response = await fetch(endpointProd+"/fornecedor"+nomeFornecedor,{
             method:"GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -112,7 +115,7 @@ async function getProdutoImagem(idProduto) {
         if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
             throw new Error("O id do produto precisa ser um número inteiro");
         }
-        const response = await fetch(endpoint+ "/"+ idProduto + "/imagem",{
+        const response = await fetch(endpointProd+ "/"+ idProduto + "/imagem",{
             method: "GET"
         })
         if(!response.ok){
@@ -157,7 +160,7 @@ async function putProduto(produto){
         throw new Error("Corpo da requisção incompleto. Faltando algum campo.");
     }
     try {
-        const response = await fetch(endpoint,{
+        const response = await fetch(endpointProd,{
             method:"PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(produto)
@@ -178,7 +181,7 @@ async function deleteProduto(idProduto){
         if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
             throw new Error("O id do produto precisa ser um númeor inteiro");
         }
-        const response = await fetch(endpoint+"/"+idProduto,{
+        const response = await fetch(endpointProd+"/"+idProduto,{
             method:"DELETE",
             headers: { "Content-Type": "application/json" }
         })

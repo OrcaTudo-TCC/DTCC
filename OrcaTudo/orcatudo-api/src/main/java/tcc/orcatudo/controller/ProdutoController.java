@@ -44,7 +44,7 @@ public class ProdutoController {
         @ApiResponse(responseCode = "404", description = "Id ou Nome não possui correspondência", content = @Content())
     })
     @GetMapping()
-    public List<Produto> getProduto(@Parameter(required = false, description = "Id do produto")@RequestParam(required = false) Integer id ,@Parameter(required = true, description = "Nome do produto") @RequestParam(required =  false) String nome ){
+    public List<Produto> getProduto(@Parameter(required = false, description = "Id do produto")@RequestParam(required = false) Integer id ,@Parameter(required = false, description = "Nome do produto") @RequestParam(required =  false) String nome ){
         if (id != null) {
             return List.of(produtoService.getProdutoById(id));
         }else if(nome != null){
