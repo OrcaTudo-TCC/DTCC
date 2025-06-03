@@ -252,6 +252,7 @@
       await inicializarSelects()
 
       let produtos = await todosProdutos();
+
     })
   </script>
 
@@ -281,14 +282,18 @@
   <!--script responsável por buscar todos os produtos ao inicar página-->
   <script>
     async function todosProdutos() {
-      let categorias = getCategoria();
-      let subcategorias = Promise.all(categorias.map(cate => getSubcategoria(cate.nome)));
-      let categoriasFinal = Promise.all(
+      let categorias = await getCategoria();
+      let subcategorias = await Promise.all(categorias.map(cate => getSubcategoria(cate.nome)));
+      console.log(subcategorias)
+      let categoriasFinal = await Promise.all(
         subcategorias.flat().map(sub => getSubcategoriafinal(sub.nome))
       );
-      let produtos = Promise.all(
-        categoriasFinal.flat().map(final => getProdutoByCategoriaFinal(final.nome))
+      console.log(categoriasFinal)
+      let produtos =  await Promise.all(
+        categoriasFinal.map(final => getProdutoByCategoriaFinal(final.nome))
       );
+    
+      console.log(produtos.flat())
       return produtos.flat();
     }
 
