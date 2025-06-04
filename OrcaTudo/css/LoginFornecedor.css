@@ -1,0 +1,288 @@
+/* Reset padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+    background-color: #f4f4f4;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #000;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+/* LOGO */
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+/* SEARCH BAR */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 8px;
+    border-radius: 5px;
+    width: 35%;
+    min-width: 250px;
+    margin-left: -250px;
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+}
+
+.search-bar i {
+    color: gray;
+}
+
+/* NAVIGATION */
+nav {
+    margin-left: -190px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+nav ul li a:hover {
+    color: #ae7550;
+}
+
+/* ICONS */
+.icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.icons i {
+    cursor: pointer;
+    color: #ae7550;
+    font-size: 25px;
+    transition: color 0.3s ease;
+}
+
+.icons i:hover {
+    color: #fff;
+}
+
+/* USER DROPDOWN */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+#user-icon {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background: #f3f3f3;
+}
+
+/* MAIN CONTENT */
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 50px;
+    min-height: calc(100vh - 300px);
+}
+
+/* PROFILE CONTAINER */
+.profile-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #ae7550;
+    box-shadow: 0 0 5px rgba(135, 156, 179, 0.5);
+}
+
+/* BUTTON */
+.submit-btn {
+    background-color: #ae7550;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #8e5f3b;
+}
+
+/* FOOTER */
+footer {
+    background-color: #000;
+    color: #f3f3f3;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 180px;
+    margin: 30px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ae7550;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ae7550;
+}
+
+.footer-logo {
+    width: 200px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 11px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .search-bar,
+    nav {
+        margin: 10px 0 0 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-container {
+        padding: 20px;
+        margin: 10px;
+    }
+}
