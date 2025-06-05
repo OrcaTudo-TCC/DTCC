@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/header.css">
     <script src="js/Usuario.js"></script>
     <script src="js/authUsuario.js" ></script>
+     <link rel="icon" href="imagens/Logo1.png" type="image/png">
     
 </head>
 <body>
@@ -107,24 +108,24 @@
                     <div class="container-info">
                         <div class="formdata">
                             <h4>Nome</h4>
-                            <input id="nome" type="text" placeholder="Digite o nome usuário">
+                            <input id="nome" type="text" placeholder="Digite o nome usuário" disabled>
                         </div>
                       
                         <div class="formdata">
                             <h4>CNPJ/CPF</h4>
-                            <input id="documento" type="text" placeholder="Digite o CNPJ/CPF">
+                            <input id="documento" type="text" placeholder="Digite o CNPJ/CPF" disabled>
                         </div>
                         <div class="formdata">
                             <h4>Email</h4>
-                            <input id="email" placeholder="Digite o email">
+                            <input id="email" placeholder="Digite o email" disabled>
                         </div>
                         <div class="formdata">
                             <h4>Telefone</h4>
-                            <input id="telefone" type="tel" placeholder="Digite o telefone">
+                            <input id="telefone" type="tel" placeholder="Digite o telefone" disabled>
                         </div>
                         <div class="formdata">
                             <h4>Endereço</h4>
-                            <input id="endereco" type="text" placeholder="Digite o endereço">
+                            <input id="endereco" type="text" placeholder="Digite o endereço" disabled>
                         </div>
                     </div>
                 </section>
@@ -135,7 +136,7 @@
                     <h2>Gerenciamento</h2>
                   
                     <div class="editar-buttons">
-                      <button><i class="fas fa-pen"></i> Editar</button>
+                      <button id="editar"><i class="fas fa-pen"></i> Editar</button>
                       <button id="salvar"><i class="fas fa-save"></i> Salvar</button>
                       <button id="excluir"><i class="fas fa-trash"></i> Excluir</button>
                     </div>
@@ -175,6 +176,90 @@
                 console.error("Erro ao carregar dados:", error);
             }
         });
+
+
+
+            document.addEventListener("DOMContentLoaded", () => { // espera que todo o HTML da página esteja carregado antes de executar qualquer código JavaScript.
+                const editarBtn = document.querySelector("#editar"); // 
+
+                editarBtn.addEventListener("click", () => { // Evento ao clicar no botão editar 
+                    // Ativa todos os campos de input para edição
+                    document.querySelectorAll("input").forEach(input => {
+                        input.disabled = false; // Remove o atributo disabled
+                    });
+                });
+            });
+
+
+
+
+        // Garante que o DOM esteja totalmente carregado antes de adicionar os ouvintes de eventos
+        document.addEventListener("DOMContentLoaded", () => {
+
+        // Seleciona o botão de salvar pelo ID
+        const salvarBtn = document.getElementById("salvar");
+
+        // Adiciona o evento de clique no botão Salvar
+        salvarBtn.addEventListener("click", async () => {
+
+            // Pega o token JWT salvo no localStorage
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("Você precisa estar logado.");
+                return; // Interrompe a execução caso não tenha token
+            }
+
+            try {
+                // Decodifica o token para obter o e-mail do usuário logado
+                const payload = decodificarJWT(token);
+                const email = payload.sub;
+
+                // Busca os dados do usuário com base no e-mail
+                const usuarios = await getUsuarioByEmail(email);
+                const usuario = usuarios[0]; // Pega o primeiro (e provavelmente único) resultado
+
+                // Cria um objeto com os valores dos inputs atualizados
+                const dadosAtualizados = {
+                    nome: document.getElementById("nome").value,
+                    email: document.getElementById("email").value,
+                    telefone: document.getElementById("telefone").value,
+                    documento: document.getElementById("documento").value,
+                    endereco: document.getElementById("endereco").value
+                };
+
+                // Envia a requisição PUT para atualizar os dados do usuário na API
+                const resposta = await fetch(`http://localhost:8080/usuarios/${usuario.id}`, {
+                    method: "PUT", // Método de atualização
+                    headers: {
+                        "Content-Type": "application/json", // Tipo de conteúdo esperado
+                        Authorization: `Bearer ${token}` // Envia o token JWT no cabeçalho para autenticação
+                    },
+                    body: JSON.stringify(dadosAtualizados) // Converte os dados em JSON para enviar no corpo
+                });
+
+                // Verifica se a atualização foi bem-sucedida
+                if (resposta.ok) {
+                    alert("Dados atualizados com sucesso!");
+
+                    // Desativa os campos novamente após salvar
+                    document.querySelectorAll("input").forEach(input => {
+                        input.disabled = true;
+                    });
+
+                } else {
+                    alert("Erro ao atualizar os dados."); // Caso ocorra algum erro (ex: validação)
+                }
+
+            } catch (error) {
+                // Captura qualquer erro que ocorra durante o processo
+                console.error("Erro ao salvar dados:", error);
+                alert("Erro inesperado."); // Alerta genérico
+            }
+
+        });
+    });
+
+
 
         </script>
 
