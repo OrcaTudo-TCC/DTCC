@@ -1,0 +1,21 @@
+Data: [26/05/25] 
+Hora de início: [19:52] 
+Hora de término: [20:10] 
+Participantes: Alex Alves , João Pedro Menezes, Kauann , Murilo 
+Facilitador: João Pedro Menezes 
+
+1. Objetivo da Reunião 
+        continuidade ao projeto e aos wireframes 
+        atualização da equipe 
+listar todas as telas do projeto, nome, logo e visual 
+2. Tópicos Abordados 
+        progresso:
+        Alex alves:  terminou integração da tela de login, tela de cadastro Usuário.
+        João Pedro:  terminou os testes das classes utilitaria, começou integração tela de login
+        Murilo: Termintos teste das classes utilitárias e terminei a integração da pagina de histórico.
+3. Decisões Tomadas 
+        Alex alves: integração  tela de perfil usuário 
+        João Pedro: integração  tela de perfil fornecedor, cadastro e login.
+        Murilo: integração do Carrinho de compras.
+       Kauan: integração da tela de catálogo fornecedor até terça(03/06).
+ 

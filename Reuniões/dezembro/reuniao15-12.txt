@@ -1,0 +1,22 @@
+Data: [15/12/24]
+Hora de início: [00:26]
+Hora de término: [00:46]
+Participantes: Alex Alves , João Pedro Menezes , Murilo
+Facilitador: João Pedro Menezes
+
+1. Objetivo da Reunião
+	atribuir os primeiros passos do projetos, wireframes de baixa fidelidade
+listar todas as telas do projeto, nome, logo e visual
+2. Tópicos Abordados
+	definição e atribuição de atividades 
+3. Decisões Tomadas
+	Alex alves: wireframes de baixa fidelidade,
+	João Pedro: listar todas as telas do projeto,
+	Murilo: nome, logo e visual,
+	Geral: pesquisar sobre o tema do tcc,
+	Estudar JavaScript(curso em vídeo)
+
+4. Próximos Passos
+	pega a lista de telas e fazer o wireframe de média fidelidade individual,
+	definir funcionalidades de cada tela da listagem,
+	

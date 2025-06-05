@@ -1,0 +1,38 @@
+Data: [02/06/25] 
+Hora de início: [19:41] 
+Hora de término: [20:07] 
+Participantes: Alex Alves , João Pedro Menezes, Kauan , Murilo 
+Facilitador: João Pedro Menezes 
+
+1. Objetivo da Reunião 
+        Dar continuidade ao tcc e inteirar a equipe sobre o progresso e desenvolvimento.
+2. Tópicos Abordados 
+        progresso:
+        Alex alves: finalizando integração da integração da tela de perfil Usuário, e iniciou edição do dahsboard.
+        João Pedro: Terminou integração da tela cadastro fornecedor, e criou e fez integração da tela de login Fornecedor.
+        Murilo: terminei tela de carrinho de compras, começei a integração.
+        Kauan: finalizando tela de cadastro fornecedor.
+3. Telas restantes:
+Cadastro fornecedor:✅
+Histórico:✅
+Licitação:❌
+Perfil usuário:⏳ finalizando 
+Cadastro Usuário:✅
+Carrinho de compras:⏳ finalizando 
+Catálogo fornecedores:⏳ finalizando 
+Catálogo: ⏳
+Cotação:❌
+Dahsboard usuário:❌❌
+Dahsboard fornecedor: ❌❌
+Header:❌
+Landing page:✅
+Login Usuário:✅
+Login Fornecedor:✅
+Perfil fornecedor:❌
+
+3. Decisões Tomadas 
+        Alex alves: terminar integração do perfil usuário 
+        João Pedro: começar integração do perfil fornecedor 
+        Murilo: terminar integração do catálogo 
+       Kauan: Terminar integração da tela de catálogo fornecedor ATÉ TERÇA(03/06)
+ 
