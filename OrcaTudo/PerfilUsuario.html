@@ -203,7 +203,7 @@
         salvarBtn.addEventListener("click", async () => {
 
             // Pega o token JWT salvo no localStorage
-            const token = localStorage.getItem("token");
+            const token = sessionStorage.getItem("token");
             if (!token) {
                 alert("Você precisa estar logado.");
                 return; // Interrompe a execução caso não tenha token
