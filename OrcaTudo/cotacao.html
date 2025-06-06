@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/cotacao.css">
+    <link rel="icon" href="imagens/Logo1.png" type="image/png">
 </head>
 <body>
 
@@ -217,6 +218,43 @@
         </div>
     </footer>
 
+    <!--integração da página-->
+    <script src="js/produto.js"></script>
 
+    <script>
+        const param = new URLSearchParams(window.location.search);
+        const produtostr =  parseInt(param.get('produto'));
+        if(produtoStr === null || isNaN(parseInt(produtoStr))){
+            alert("Parámetro 'produto' ausente ou inválido");
+        }else{
+            const idProduto = parseInt(produtostr);
+            console.log("id do produto: ",idProduto)
+        }
+        document.addEventListener("DOMContentLoaded", async () => {
+            carregarProduto(idProduto);
+        } )
+    </script>
+    
+
+    <script>
+
+        async function carregarProduto(idProduto) {
+            produto = await getProdutoById(idProduto);
+            console.log(produto)
+
+            let imgContainer = document.getElementsByClassName('imagem-produto')[0];
+            let imgElement = imgContainer.firstElementChild();
+            let Nomeh1 = document.getElementsByClassName('produto-titulo')[0];
+
+            Nomeh1.innerText = produto.nome;
+            //definindo a imagem do produto.
+            const base64 = produto.imagem;
+            const contentType = "image/png"; // ou "image/jpeg", conforme o caso
+            const dataUrl = `data:${contentType};base64,${base64}`;
+            imgElement.src = dataUrl;
+            
+
+        }
+    </script>
 </body>
 </html>

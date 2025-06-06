@@ -50,9 +50,10 @@ async function postProduto(produto , imagem) {
 async function getProdutoById(idProduto){
     try {
         if(typeof idProduto !== 'number' || !Number.isInteger(idProduto)){
-            throw new Error("O id do produto precisa ser um númeor inteiro");
+            throw new Error("O id do produto precisa ser um número inteiro");
         }
-        const response = await fetch(endpointProd+ "/"+ idProduto,{
+
+        const response = await fetch(endpointProd+ "?id="+ idProduto,{
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
