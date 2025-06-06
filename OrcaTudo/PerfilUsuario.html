@@ -148,7 +148,7 @@
 
             <script>
              document.addEventListener("DOMContentLoaded", async () => {
-            const token = localStorage.getItem("token");
+            const token = sessionStorage.getItem("token");
             if (!token) {
                 alert("Você precisa estar logado.");
                 window.location.href = "/login.html";

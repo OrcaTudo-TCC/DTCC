@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotação de Produto</title>
+    <title>Cotação</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/cotacao.css">
@@ -80,18 +80,21 @@
                         <div class="linha">
                             <div class="campo">
                                 <label for="categoria">Categoria</label>
-                                <input type="text" id="categoria" placeholder="Ex: Betoneira">
+                                <!-- <input type="text" id="categoria" placeholder="Ex: Betoneira"> -->
+                                <h3 id="categoria" >Betoneira</h3>
                             </div>
                 
                             <div class="campo">
                                 <label for="subcategoria">Subcategoria</label>
-                                <input type="text" id="subcategoria" placeholder="Ex: Prime 220V">
+                                <!-- <input type="text" id="subcategoria" placeholder="Ex: Prime 220V"> -->
+                                <h3 id="subcategoria" >Betoneira 400L</h3>
                             </div>
                         </div>
                 
                         <div class="campo">
                             <label for="produto">Produto</label>
-                            <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti">
+                            <!-- <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti"> -->
+                            <h3 id="produto">Betoneira 400L Prime 220V Menegotti</h3>
                         </div>
                     </div>
                     
@@ -245,13 +248,24 @@
             let imgContainer = document.getElementsByClassName('imagem-produto')[0];
             let imgElement = imgContainer.firstElementChild();
             let Nomeh1 = document.getElementsByClassName('produto-titulo')[0];
+            let categoriaH3 = document.getElementById('categoria');
+            let subcategoriaH3 = document.getElementById('subcategoria');
+            let categoriaFinal = document.getElementById('produto');
+            let descriçãoDiv = document.getElementsByClassName('descricao-produto')[0];
+
+
+            
 
             Nomeh1.innerText = produto.nome;
+            categoriaH3.innerText = produto.subcategoriaFinal.subcategoria.categoria.nome;
+            subcategoriaH3.innerText = produto.subcategoriaFinal.subcategoria.nome;
+            categoriaFinal.innerText = produto.subcategoriaFinal.nome;
             //definindo a imagem do produto.
             const base64 = produto.imagem;
             const contentType = "image/png"; // ou "image/jpeg", conforme o caso
             const dataUrl = `data:${contentType};base64,${base64}`;
             imgElement.src = dataUrl;
+
             
 
         }
