@@ -244,9 +244,9 @@
   <script src="js/produto.js"></script>
   <!--Script responsável por realizar integração das categorias(principal)-->
   <script>
-      const select = document.getElementById('filtro-categoria');
-      const selectSub = document.getElementById('filtro-subcategoria');
-      const selectFinal = document.getElementById('filtro-final');
+      var select = document.getElementById('filtro-categoria');
+      var selectSub = document.getElementById('filtro-subcategoria');
+      var selectFinal = document.getElementById('filtro-final');
 
     
     document.addEventListener('DOMContentLoaded', async ()=>{
@@ -254,17 +254,19 @@
 
       let produtos = await todosProdutos();
       renderizarProdutos(produtos.flat());
+
     })
   </script>
 
   <!--Scrpit para renderizar produtos-->
   <script>
-    function renderizarProdutos(produtos){
+    async function renderizarProdutos(produtos){
       const results = document.getElementsByClassName('results')[0];
       results.innerText = produtos.length +" Resultados encontrados"
       produtos.forEach(produto =>{
-        
+        console.log("dentro do foreach renderizar, produto: ", produto)
         const section = document.getElementsByClassName('produto-section')[0];
+        section.innerHTML = "";
         let  div = document.createElement('div');
         div.classList.add('produto-card');
         div.addEventListener('click', ()=> {
@@ -325,9 +327,46 @@
       return produtos
     }
   </script>
-  <!--script para alterar produtos exibidos conforme o select-->
+  <!--script para retornar os produtos conforme os selects selecionados-->
   <script>
+    async function produtosSelect(nomeCategoria , nomeSubcategoria , nomeSubcategoriaFinal) {
+      let categoria;
+      let subcategoria;
+      let subFinal;
+      let produtos = null;
+      console.log("nomeCategoria:", nomeCategoria);
+      console.log("nomeSubcategoria:", nomeSubcategoria);
+      console.log("nomeSubcategoriaFinal:", nomeSubcategoriaFinal);
+      try {
+        if(typeof nomeCategoria !== "string" || typeof nomeSubcategoria !== "string" || typeof nomeSubcategoriaFinal !== "string"){
+          throw new Error("O nome da categoria, subcategoria, subcategoriafinal precisam ser do tipo String");
+        }
+        if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() !== "" && nomeSubcategoriaFinal.trim() !== "" ){
+          //bloco caso os três selects tenham sido selecionados
+          alert("categoira, subcategoria e subcategoria final")
 
+          produtos = await getProdutoByCategoriaFinal(nomeSubcategoriaFinal);
+        }else if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() !== "" && nomeSubcategoriaFinal.trim() === ""){
+          //bloco caso apenas categoria e subcategoria tenham sido selecionados
+          alert("categoria e subcategoria")
+          subFinal = await getSubcategoriafinal(nomeSubcategoria);
+          produtos = await Promise.all( subFinal.map(final => getProdutoByCategoriaFinal(final.nome)))
+        }else if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() === "" && nomeSubcategoriaFinal.trim() === ""){
+          //bloco caso apenas categoria tenha sido selecionada
+          alert("categoria")
+          subcategoria = await getSubcategoria(nomeCategoria);
+          console.log("teste",subcategoria);
+          subcategoriaFinal = await Promise.all(subcategoria.map(sub => getSubcategoriafinal(sub.nome)));
+          produtos = await Promise.all(subcategoriaFinal.flat().map(final => getProdutoByCategoriaFinal(final.nome)));
+        }else{
+          console.log("nenhum select")
+        }
+        console.log("produtosSelect rodou!", produtos)
+        return produtos;
+      } catch (error) {
+        console.log("erro na funcão produtoSelect: "+ error);
+      }
+    }
   </script>
   <!--Script responsável pela inicialização dos selects-->
   <script>
@@ -339,8 +378,8 @@
       console.log(categorias)
 
       //colocando as categorias existentes na página
-      optionSelected= document.createElement('option');
-      optionSelected.value = '';
+      optionSelected = document.createElement('option');
+      optionSelected.value = "";
       optionSelected.disabled = true;
       optionSelected.selected = true;
       optionSelected.innerText = 'Selecione uma categoria';
@@ -355,8 +394,25 @@
       //Adicionando eventListener para realizar nova busca quando é alterado o valor do select categoria
       select.addEventListener('change', async ()=>{
         //resetando o conteúdo dos selects dependentes
-        selectSub.innerHTML = '<option value= "" disabled selected>Selecione subcategoria</option>';
-        selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        
+        // selectSub.innerHTML = '<option value= "" disabled selected>Selecione subcategoria</option>';
+        selectSub.innerHTML = "";
+        optionSelected = document.createElement('option');
+        optionSelected.value = "";
+        optionSelected.disabled = true;
+        optionSelected.selected = true;
+        optionSelected.innerText = "Selecione subcategoria"
+        selectSub.appendChild(optionSelected);
+        // selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        selectFinal.innerHTML = "";
+        optionSelected = document.createElement('option');
+        optionSelected.value = "";
+        optionSelected.disabled = true;
+        optionSelected.selected = true;
+        optionSelected.innerText = "Selecione categoria final"
+
+        selectFinal.appendChild(optionSelected);
+
         if(!select.value !== "" ){
           subcategorias = await getSubcategoria(select.value);
           console.log(subcategorias);
@@ -368,12 +424,20 @@
             selectSub.appendChild(option);
           })
         }
-        //realizando consulta com o novo valor de select
+        prt = await produtosSelect(select.value, selectSub.value , selectFinal.value);
+        renderizarProdutos(prt.flat());
       })
 
       //Adicionando eventListener para realizar busca quando ocorrer alteração subcategoria
       selectSub.addEventListener('change', async ()=>{
-        selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        // selectFinal.innerHTML = '<option value="" disabled selected>Selecione categoria final</option>';
+        selectFinal.innerHTML = "";
+        optionSelected = document.createElement('option');
+        optionSelected.value = "";
+        optionSelected.disabled = true;
+        optionSelected.selected = true;
+        optionSelected.innerText = "Selecione categoria final"
+        selectFinal.appendChild(optionSelected);
         if(!selectSub.value !== ""){
 
           categoriasFinal = await getSubcategoriafinal(selectSub.value);
@@ -386,15 +450,21 @@
           selectFinal.appendChild(option);
         })
         }
-        function produtosSelecionados(nomeCategoria, nomeSubcategoria, nomeSubcategoriaFinal) {
-          try {
-            if(typeof nomeCategoria !== 'string' || typeof nomeSubcategoria !== 'string' || typeof nomeSubcategoriaFinal !== 'string'){
-              throw new Error("todos os parâmetros precisam ser do tipo 'string'");
-            }
-          } catch (error) {
-            console.log("Erro na função produtos selecionados, erro: "+ error)
-          }
-        }
+        prt = await produtosSelect(select.value, selectSub.value , selectFinal.value);
+        renderizarProdutos(prt.flat());
+        // function produtosSelecionados(nomeCategoria, nomeSubcategoria, nomeSubcategoriaFinal) {
+        //   try {
+        //     if(typeof nomeCategoria !== 'string' || typeof nomeSubcategoria !== 'string' || typeof nomeSubcategoriaFinal !== 'string'){
+        //       throw new Error("todos os parâmetros precisam ser do tipo 'string'");
+        //     }
+        //   } catch (error) {
+        //     console.log("Erro na função produtos selecionados, erro: "+ error)
+        //   }
+        // }
+      })
+      selectFinal.addEventListener('change', async ()=>{
+        prt = await produtosSelect(select.value, selectSub.value , selectFinal.value);
+        renderizarProdutos(prt.flat());
       })
     }
   </script>
