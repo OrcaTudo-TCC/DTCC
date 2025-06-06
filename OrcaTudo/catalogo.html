@@ -263,9 +263,13 @@
     async function renderizarProdutos(produtos){
       const results = document.getElementsByClassName('results')[0];
       results.innerText = produtos.length +" Resultados encontrados"
+      const section = document.getElementsByClassName('produto-section')[0];
+      if(produtos.length === 0){
+        section.innerHTML = "";
+      }
       produtos.forEach(produto =>{
         console.log("dentro do foreach renderizar, produto: ", produto)
-        const section = document.getElementsByClassName('produto-section')[0];
+
         section.innerHTML = "";
         let  div = document.createElement('div');
         div.classList.add('produto-card');
@@ -343,17 +347,17 @@
         }
         if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() !== "" && nomeSubcategoriaFinal.trim() !== "" ){
           //bloco caso os três selects tenham sido selecionados
-          alert("categoira, subcategoria e subcategoria final")
+          
 
           produtos = await getProdutoByCategoriaFinal(nomeSubcategoriaFinal);
         }else if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() !== "" && nomeSubcategoriaFinal.trim() === ""){
           //bloco caso apenas categoria e subcategoria tenham sido selecionados
-          alert("categoria e subcategoria")
+          
           subFinal = await getSubcategoriafinal(nomeSubcategoria);
           produtos = await Promise.all( subFinal.map(final => getProdutoByCategoriaFinal(final.nome)))
         }else if(nomeCategoria.trim() !== "" && nomeSubcategoria.trim() === "" && nomeSubcategoriaFinal.trim() === ""){
           //bloco caso apenas categoria tenha sido selecionada
-          alert("categoria")
+          
           subcategoria = await getSubcategoria(nomeCategoria);
           console.log("teste",subcategoria);
           subcategoriaFinal = await Promise.all(subcategoria.map(sub => getSubcategoriafinal(sub.nome)));

@@ -97,6 +97,10 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
         categoria.setNome("Categoria teste");
         categoria = categoriaRepository.save(categoria);
 
+        Categoria categoria2 = new Categoria();
+        categoria2.setNome("Categoria 2");
+        categoria2 = categoriaRepository.save(categoria2);
+
 
         //cria uma subcategoria de teste
         Subcategoria subcategoria = new Subcategoria();
@@ -104,11 +108,33 @@ public class TestDataInicializer implements ApplicationListener<ContextRefreshed
         subcategoria.setNome("Subcategoria teste");
         subcategoria = subcategoriaRepository.save(subcategoria);
 
+        Subcategoria subcategoria2 = new Subcategoria();
+        subcategoria2.setCategoria(categoria);
+        subcategoria2.setNome("Subcategoria teste2");
+        subcategoria2 = subcategoriaRepository.save(subcategoria2);
+
+        Subcategoria subcategoria3 = new Subcategoria();
+        subcategoria3.setCategoria(categoria2);
+        subcategoria3.setNome("Subcategoria 3");
+        subcategoria3 = subcategoriaRepository.save(subcategoria3);
+
+
+
         //cria uma subcategoria final de teste
         SubcategoriaFinal subcategoriaFinal = new SubcategoriaFinal();
         subcategoriaFinal.setSubcategoria(subcategoria);
         subcategoriaFinal.setNome("Subcategoria final teste");
         subcategoriaFinalRepository.save(subcategoriaFinal);
+
+        SubcategoriaFinal subcategoriaFinal2 = new SubcategoriaFinal();
+        subcategoriaFinal2.setSubcategoria(subcategoria);
+        subcategoriaFinal2.setNome("final teste 2");
+        subcategoriaFinalRepository.save(subcategoriaFinal2);
+
+        SubcategoriaFinal subcategoriaFinal3 = new SubcategoriaFinal();
+        subcategoriaFinal3.setSubcategoria(subcategoria2);
+        subcategoriaFinal3.setNome("final teste 3");
+        subcategoriaFinalRepository.save(subcategoriaFinal3);
     }
 
     private void createUsuario() {
