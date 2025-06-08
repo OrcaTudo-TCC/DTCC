@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="css/cotacao.css">
     <link rel="icon" href="imagens/Logo1.png" type="image/png">
 </head>
+
 <body>
 
 
@@ -16,7 +18,7 @@
         <div class="logo">
             <img src="imagens/Logo1.png">
         </div>
-        
+
         <div class="search-bar">
             <input type="text" placeholder="O que você procura na Orça tudo ?">
             <i class="fas fa-search"></i>
@@ -38,8 +40,8 @@
                     <a href="#">Sair da Conta</a>
                 </div>
             </div>
-           
-           
+
+
             <i class="fas fa-shopping-cart"></i>
         </div>
 
@@ -48,16 +50,16 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const userIcon = document.getElementById("user-icon");
                 const dropdownMenu = document.getElementById("dropdown-menu");
-        
+
                 userIcon.addEventListener("click", function (event) {
                     event.stopPropagation(); // Impede que o clique feche imediatamente
                     dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
                 });
-        
+
                 document.addEventListener("click", function () {
                     dropdownMenu.style.display = "none";
                 });
-        
+
                 dropdownMenu.addEventListener("click", function (event) {
                     event.stopPropagation(); // Evita que o clique no menu feche ele
                 });
@@ -70,43 +72,36 @@
         <section class="conteudo">
             <div class="produto-container">
                 <div class="imagem-produto">
-                    <img src="imagens/placeholder.jpg" alt="Imagem do Produto">
+                    <img class="imagem-produto" src="imagens/placeholder.jpg" alt="Imagem do Produto">
                 </div>
-                
+
                 <div class="detalhes-produto">
                     <h1 class="produto-titulo">Betoneira 400L Prime 220V Menegotti</h1>
-                    
+
                     <div class="cotacao">
                         <div class="linha">
                             <div class="campo">
                                 <label for="categoria">Categoria</label>
                                 <!-- <input type="text" id="categoria" placeholder="Ex: Betoneira"> -->
-                                <h3 id="categoria" >Betoneira</h3>
+                                <h3 id="categoria">Betoneira</h3>
                             </div>
-                
+
                             <div class="campo">
                                 <label for="subcategoria">Subcategoria</label>
                                 <!-- <input type="text" id="subcategoria" placeholder="Ex: Prime 220V"> -->
-                                <h3 id="subcategoria" >Betoneira 400L</h3>
+                                <h3 id="subcategoria">Betoneira 400L</h3>
                             </div>
                         </div>
-                
+
                         <div class="campo">
                             <label for="produto">Produto</label>
                             <!-- <input type="text" id="produto" placeholder="Betoneira 400L Prime 220V Menegotti"> -->
                             <h3 id="produto">Betoneira 400L Prime 220V Menegotti</h3>
+
                         </div>
                     </div>
-                    
                     <div class="descricao-produto">
                         <h2>Descrição do Produto</h2>
-                        <ul>
-                            <li><strong>Capacidade:</strong> 400L no tambor, ideal para pequenos projetos.</li>
-                            <li><strong>Funcionamento:</strong> Energia elétrica, 220V, motor de 2CV.</li>
-                            <li><strong>Produção horária:</strong> 4.65 m³/h, garantindo eficiência.</li>
-                            <li><strong>Mobilidade:</strong> Compacta e fácil de transportar, com rodas.</li>
-                            <li><strong>Durabilidade:</strong> Alta resistência e longa vida útil.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -117,46 +112,53 @@
                 <table class="tabela-content">
                     <thead>
                         <tr>
-                            <th>Fornecedor</th>
-                            <th>Preço</th>
-                            <th>Distância</th>
-                            <th>Frete</th>
-                            <th>Marca</th>
+                            <th>
+                                <p>Fornecedor</p>
+                            </th>
+                            <th id="preco">
+                                <p>Preço</p>
+                            </th>
+                            <th>
+                                <p>Distância</p>
+                            </th>
+                            <th>
+                                <p>Frete</p>
+                            </th>
+
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="corpo-tabela">
                         <tr>
                             <td>Fornecedor A</td>
                             <td>R$ 1.500,00</td>
                             <td>20 km</td>
                             <td>R$ 50,00</td>
-                            <td>Marca X</td>
+
                         </tr>
                         <tr>
                             <td>Fornecedor B</td>
                             <td>R$ 1.450,00</td>
                             <td>15 km</td>
                             <td>R$ 45,00</td>
-                            <td>Marca Y</td>
+
                         </tr>
                         <tr>
                             <td>Fornecedor C</td>
                             <td>R$ 1.600,00</td>
                             <td>30 km</td>
                             <td>R$ 60,00</td>
-                            <td>Marca Z</td>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-
         <section class="compra">
             <div class="compra-container">
                 <p><strong>Produto selecionado:</strong></p>
                 <input type="text" id="produto-selecionado" placeholder="Betoneira 400L Prime 220V Menegotti" disabled>
-        
+
                 <div class="quantidade-subtotal">
                     <div class="quantidade">
                         <label for="quantidade"><strong>Quantidade:</strong></label>
@@ -167,7 +169,7 @@
                         <input type="text" id="subtotal" disabled>
                     </div>
                 </div>
-        
+
                 <div class="botoes-compra">
                     <button class="btn verde">Adicionar ao carrinho</button>
                     <button class="btn verde">Comprar</button>
@@ -226,49 +228,124 @@
 
     <script>
         const param = new URLSearchParams(window.location.search);
-        const produtostr =  parseInt(param.get('produto'));
-        if(produtoStr === null || isNaN(parseInt(produtoStr))){
+        const produtoStr = param.get('produto');
+        let idProduto;
+        if (produtoStr === null || isNaN(parseInt(produtoStr))) {
             alert("Parámetro 'produto' ausente ou inválido");
-        }else{
-            const idProduto = parseInt(produtostr);
-            console.log("id do produto: ",idProduto)
+        } else {
+            idProduto = parseInt(produtoStr);
+            console.log("id do produto: ", idProduto)
         }
+        //função que chama a integração ao carregar a página
         document.addEventListener("DOMContentLoaded", async () => {
             carregarProduto(idProduto);
-        } )
+            carregarTable(idProduto);
+
+        })
     </script>
-    
+
 
     <script>
-
         async function carregarProduto(idProduto) {
             produto = await getProdutoById(idProduto);
             console.log(produto)
 
-            let imgContainer = document.getElementsByClassName('imagem-produto')[0];
-            let imgElement = imgContainer.firstElementChild();
+
+            let imgElement = document.getElementsByClassName('imagem-produto')[1];
             let Nomeh1 = document.getElementsByClassName('produto-titulo')[0];
             let categoriaH3 = document.getElementById('categoria');
             let subcategoriaH3 = document.getElementById('subcategoria');
             let categoriaFinal = document.getElementById('produto');
             let descriçãoDiv = document.getElementsByClassName('descricao-produto')[0];
 
-
-            
-
-            Nomeh1.innerText = produto.nome;
-            categoriaH3.innerText = produto.subcategoriaFinal.subcategoria.categoria.nome;
-            subcategoriaH3.innerText = produto.subcategoriaFinal.subcategoria.nome;
-            categoriaFinal.innerText = produto.subcategoriaFinal.nome;
+            Nomeh1.innerText = produto[0].nome;
+            categoriaH3.innerText = produto[0].subcategoriaFinal.subcategoria.categoria.nome;
+            subcategoriaH3.innerText = produto[0].subcategoriaFinal.subcategoria.nome;
+            categoriaFinal.innerText = produto[0].subcategoriaFinal.nome;
+            descriçãoDiv.innerHTML += produto[0].descricao;
             //definindo a imagem do produto.
-            const base64 = produto.imagem;
+            const base64 = produto[0].imagem;
             const contentType = "image/png"; // ou "image/jpeg", conforme o caso
             const dataUrl = `data:${contentType};base64,${base64}`;
             imgElement.src = dataUrl;
-
-            
-
         }
+        async function carregarTable(idProduto) {
+            try {
+                if (!Number.isInteger(idProduto)) {
+                    throw new Error("O parâmetro da função 'carregarTable' precisa ser um inteiro");
+                }
+                produto = await getProdutoById(idProduto);
+                categoriFinal = produto[0].subcategoriaFinal.nome;
+                produtosFinal = await getProdutoByCategoriaFinal(categoriFinal);
+
+                produtosFinal.forEach(produto => {
+                    tbody = document.getElementById('corpo-tabela');
+                    tr = document.createElement('tr');
+                    tr.dataset.id = produto.id;
+                    fornecedorTd = document.createElement('td');
+                    fornecedorTd.innerText = produto.fornecedor.nome;
+                    tr.appendChild(fornecedorTd)
+                    precoTd = document.createElement('td');
+                    precoTd.innerText = "R$ " + produto.preco;
+                    tr.appendChild(precoTd);
+                    distanciaTd = document.createElement('td');
+                    distanciaTd.innerText = "-";
+                    tr.appendChild(distanciaTd);
+                    freteTd = document.createElement('td');
+                    freteTd.innerText = "-";
+                    tr.appendChild(freteTd);
+                    tbody.appendChild(tr);
+                })
+                interacaoPreco();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        //script respónsável por interação da tabela
+
+        function interacaoPreco() {
+            const precoTh = document.getElementById('preco');
+            const tbody = document.getElementById('corpo-tabela');
+            const linhas = Array.from(document.querySelectorAll('#corpo-tabela tr'));
+            let produtoSelecionado;
+            let ordemCrescente = true;
+            linhas.forEach(linha => {
+                linha.addEventListener('click', async () => {
+                    produtoSelecionado = parseInt(linha.dataset.id);
+                    produto = await getProdutoById(produtoSelecionado);
+                    produtoSelecionadoIn = document.getElementById('produto-selecionado');
+                    produtoSelecionadoIn.dataset.nomeProduto = produto[0].nome;
+                    produtoSelecionadoIn.placeholder = produto[0].nome;
+                })
+            })
+
+            precoTh.addEventListener('click', () => {
+
+
+                linhas.sort((a, b) => {
+                    const precoA = a.querySelectorAll("td")[1].textContent;
+                    const precoB = b.querySelectorAll("td")[1].textContent;
+                    //convertendo o texto das células para o valro em si
+                    const valorA = parseFloat(precoA.replace(/[R$\s]/g, '').replace(',', '.'))
+                    const valorB = parseFloat(precoB.replace(/[R$\s]/g, '').replace(',', '.'))
+
+                    //ordena em ordem crescente ou decrecente dependo do estado
+                    return ordemCrescente ? valorA - valorB : valorB - valorA;
+
+                })
+
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                linhas.forEach(linha => {
+                    tbody.appendChild(linha);
+                })
+
+                ordemCrescente = !ordemCrescente;
+            })
+        }
+
     </script>
 </body>
+
 </html>

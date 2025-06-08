@@ -112,6 +112,7 @@ h1 {
 .tabela-container {
     width: 100%; /* Ajuste para ocupar todo o espaço da seção */
     overflow-x: auto;
+    border-radius: 5px;
 }
 
 /* Estilização da Tabela */
@@ -119,26 +120,39 @@ h1 {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    
 }
 
 /* Cabeçalho */
 .tabela-content thead {
-    background-color: #ae7550;
+    background-color: #d9a989;
 }
 
 .tabela-content th {
     padding: 12px;
-    border: 1px solid #000;
+    border: 2px solid #2c2c2c;
+    
     font-weight: bold;
     text-align: left;
     white-space: nowrap; /* Evita quebra de texto */
+}
+.tabela-content th p{
+    color: #2c2c2c;
+    display: inline;
+}
+.tabela-content th:hover{
+    cursor: pointer;
+    background-color: #c6906e;
 }
 
 /* Corpo da Tabela */
 .tabela-content td {
     padding: 10px;
-    border: 1px solid #000;
+    border: 2px solid #2c2c2c;
     text-align: left;
+}
+.tabela-content td:hover{
+    cursor: pointer;
 }
 
 /* Efeito zebra (linhas alternadas) */
