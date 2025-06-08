@@ -1,26 +1,44 @@
-/* RESET GERAL */
-body {
+/* ========================
+   RESET E ESTILO BASE
+======================== */
+* {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* ========================
+   LAYOUT GERAL
+======================== */
 main {
   display: flex;
   min-height: 100vh;
 }
 
-/* SIDEBAR */
+main section:not(.sidebar) {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  padding-top: 10px; /* reduza se o topo estiver alto demais */
+}
+
+/* ========================
+   SIDEBAR
+======================== */
 .sidebar {
-  width: 240px;
-  background-color: #f5f5f5;
-  color: #000;
-  padding-top: 20px;
+  width: 290px;
   height: 100vh;
   position: sticky;
   top: 0;
   left: 0;
+  background-color: #f5f5f5;
+  padding-top: 20px;
+  color: #000;
 }
 
 .sidebar ul {
@@ -45,8 +63,8 @@ main {
 
 .sidebar a:hover,
 .sidebar a.active {
-  background-color: #E0E0E0 ;
-  color: rgb(0, 0, 0);
+  background-color: #e0e0e0;
+  color: #000;
 }
 
 .sidebar i {
@@ -54,89 +72,151 @@ main {
   text-align: center;
 }
 
-/* CONTEÚDO PRINCIPAL */
-main section:not(.sidebar) {
-  flex: 1;
-  padding: 30px;
+/* ========================
+   CONTEÚDO PRINCIPAL
+======================== */
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ========================
+   DASHBOARD - CARDS
+======================== */
+
+.cards {
+  display: flex;
+  flex-wrap: nowrap;      /* Impede quebra de linha */
+  gap: 30px;
+  padding: 10px;
+  justify-content: center;
+  align-items: stretch;    /* Garante alinhamento vertical uniforme */
+  height: 130px;
+  overflow: hidden;        /* Oculta conteúdo que exceder a altura */
+  margin-bottom: 0;        /* Remove espaço extra */
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 25px;
+   min-width: 250px;  /* ou o valor que você estiver usando */
+  width: 250px;
+  height: 130px;
+  margin: 0;
+   flex-shrink: 0;    /* Evita encolhimento se a largura da tela for pequena */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-header span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #999;
+  margin: 4px 0 16px;
+}
+
+.card-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ========================
+   TABELA - HISTÓRICO
+======================== */
+.historico {
+  width: 85vw;
+  max-width: 100%;
+  max-height: 55vh;
+  height: 10vh;
   overflow-y: auto;
+  border-radius: 10px;
+   margin-top: 0px;
+ 
 }
 
-
-
-.historico{
-    margin: auto;
-    overflow-y: auto; /* Rolagem vertical caso necessário */
-    overflow-x: hidden;
-    margin-top: 40px;
-    width: 90vw;
-    height: 55vh;
-    border-radius: 10px;
-    max-height: 55vh; /* Define a altura máxima antes de ativar a rolagem */
-    max-width: 100%; /* Garante que a tabela não ultrapasse o container */
-    
-}
-.historico table{
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin: auto;
-    border-collapse: collapse;
-    background-color: white;
-}
-caption {
-    height: 30px;
-    line-height: 30px; /* Centraliza verticalmente */
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #ae7550;
-    color:  #ffffff;
-    text-align: center;
-    
-
-}
-.historico table th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-th{
-    text-transform: uppercase;
-}
-tr:nth-child(even) {
-    background-color: #F5EDE8; /* Tom mais claro do container */
-}
-table tbody tr:hover {
-    background-color: #E2D3CC;
-    cursor: pointer;
-    #cancelada{
-        background-color: #E68A8A;
-        transform: scale(1.05);
-    }
-    #pendente{
-        background-color: #FFD480;
-        transform: scale(1.05);
-    }
-    #concluido{
-        background-color: #8BCF8E;
-        transform: scale(1.05);
-    }
-}
-.status{
-    color: white;
-}
-#concluido{
-    background-color: #A3D9A5;
-    color: #226622;
-}
-#pendente{
-    background-color: #FFE5A3;
-    color: #775500;
-}
-#cancelada{
-    background-color: #F5A3A3;
-    color: #882222;
-}
-.historico table td:first-child{
-    width: 2vw;
+.historico table {
+  width: 85%;
+  margin: auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.historico caption {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  background-color: #ae7550;
+  color: #fff;
+}
 
+.historico th,
+.historico td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.historico th {
+  text-transform: uppercase;
+}
+
+.historico tr:nth-child(even) {
+  background-color: #f5ede8;
+}
+
+.historico tbody tr:hover {
+  background-color: #e2d3cc;
+  cursor: pointer;
+}
+
+/* ========================
+   STATUS DAS OPERAÇÕES
+======================== */
+.status {
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
+#concluido {
+  background-color: #a3d9a5;
+  color: #226622;
+}
+
+#pendente {
+  background-color: #ffe5a3;
+  color: #775500;
+}
+
+#cancelada {
+  background-color: #f5a3a3;
+  color: #882222;
+}
+
+.historico td:first-child {
+  width: 2vw;
+}
