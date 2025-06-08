@@ -172,8 +172,6 @@
 
                 <div class="botoes-compra">
                     <button class="btn verde">Adicionar ao carrinho</button>
-                    <button class="btn verde">Comprar</button>
-                    <button class="btn azul">Iniciar licitação</button>
                 </div>
             </div>
         </section>
@@ -223,8 +221,59 @@
         </div>
     </footer>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Faça login para continuar</p>
+            <button class="btn btn-login" id="confirmarBtn">Login</button>
+            <button class="btn btn-cancelar" id="cancelarBtn">Voltar</button>
+        </div>
+    </div>
+    <script>
+        botaoCarirnho =  document.getElementsByClassName('btn verde')[0];
+        modal = document.getElementById('modal');
+        botaoCarirnho.addEventListener('click' , async ()=> {
+        if(sessionStorage.getItem('token') == null){
+            modal.style.display = "flex";
+            return;
+        }
+        let obj = await decodificarJWT(sessionStorage.getItem('token'));
+        let usuario = await getUsuarioByEmail(obj.sub);
+        if(!usuario || usuario.lenght === 0){
+          alert("Usuário não encontrado!")
+        }
+        const carrinho = await getCarrinho(usuario[0].id);
+        const qtd = document.getElementById('quantidade').value;
+        produtoSelecionadoIn = document.getElementById('produto-selecionado');
+        const nomeProduto = produtoSelecionadoIn.dataset.nomeProduto;
+        console.log("nomeProduto: ",nomeProduto)
+        if(nomeProduto == null){
+            alert("Você precisa selecinar um produto");
+            return
+        }
+        let requestbody = {
+            quantidade: qtd,
+            nomeDoProduto: nomeProduto,
+            idDoCarrinho: carrinho.id
+        }
+        let item = await postItem(requestbody);
+        })
+        const btnLogin = document.getElementById('confirmarBtn');
+        btnLogin.addEventListener('click', ()=>{
+            window.location = "login.html"
+        })
+        const btnVoltar = document.getElementById('cancelarBtn');
+        btnVoltar.addEventListener('click', ()=>{
+            modal.style.display = "none";
+        })
+    </script>
+
+
     <!--integração da página-->
     <script src="js/produto.js"></script>
+    <script src="js/item-carrinho.js"></script>
+    <script src="js/authUsuario.js"></script>
+    <script src="js/Usuario.js"></script>
+    <script src="js/Carrinho.js"></script>
 
     <script>
         const param = new URLSearchParams(window.location.search);

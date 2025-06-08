@@ -94,8 +94,6 @@ async function postItem(requestBody) {
         if(!response.ok){
             throw new Error("Erro na requsição: "+ response.status)
         }
-        const data = await response.json();
-        return data;
     } catch (error) {
         console.log("Erro no método post item: "+ error)
     }
