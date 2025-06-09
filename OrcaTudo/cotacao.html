@@ -166,7 +166,7 @@
                     </div>
                     <div class="subtotal">
                         <label for="subtotal"><strong>Subtotal:</strong></label>
-                        <input type="text" id="subtotal" disabled>
+                        <input id="subtotal" disabled>
                     </div>
                 </div>
 
@@ -229,40 +229,69 @@
         </div>
     </div>
     <script>
-        botaoCarirnho =  document.getElementsByClassName('btn verde')[0];
+        botaoCarrinho = document.getElementsByClassName('btn verde')[0];
         modal = document.getElementById('modal');
-        botaoCarirnho.addEventListener('click' , async ()=> {
-        if(sessionStorage.getItem('token') == null){
-            modal.style.display = "flex";
-            return;
-        }
-        let obj = await decodificarJWT(sessionStorage.getItem('token'));
-        let usuario = await getUsuarioByEmail(obj.sub);
-        if(!usuario || usuario.lenght === 0){
-          alert("Usuário não encontrado!")
-        }
-        const carrinho = await getCarrinho(usuario[0].id);
-        const qtd = document.getElementById('quantidade').value;
+        const qtd = document.getElementById('quantidade');
         produtoSelecionadoIn = document.getElementById('produto-selecionado');
-        const nomeProduto = produtoSelecionadoIn.dataset.nomeProduto;
-        console.log("nomeProduto: ",nomeProduto)
-        if(nomeProduto == null){
-            alert("Você precisa selecinar um produto");
-            return
-        }
-        let requestbody = {
-            quantidade: qtd,
-            nomeDoProduto: nomeProduto,
-            idDoCarrinho: carrinho.id
-        }
-        let item = await postItem(requestbody);
+        botaoCarrinho.addEventListener('click', async () => {
+            if (sessionStorage.getItem('token') == null) {
+                modal.style.display = "flex";
+                return;
+            }
+            let obj = await decodificarJWT(sessionStorage.getItem('token'));
+            let usuario = await getUsuarioByEmail(obj.sub);
+            if (!usuario || usuario.lenght === 0) {
+                alert("Usuário não encontrado!")
+            }
+            const carrinho = await getCarrinho(usuario[0].id);
+
+            // caso o usuário não possua um carrinho ativo
+            if (carrinho === null) {
+                await postCarrinho(usuario[0].email);
+                console.log("carrinho foi criado para o usuário")
+                carrinho = await getCarrinho(usuario[0].id);
+            }
+
+
+            const nomeProduto = produtoSelecionadoIn.dataset.nomeProduto;
+            console.log("nomeProduto: ", nomeProduto)
+            if (nomeProduto == null) {
+                alert("Você precisa selecinar um produto");
+                return
+            }
+
+            let requestbody = {
+                quantidade: qtd.value,
+                nomeDoProduto: nomeProduto,
+                idDoCarrinho: carrinho.id
+            }
+
+            let item = await postItem(requestbody);
+            alert("Adicionado com sucesso!")
         })
+
+        qtd.addEventListener('input', async () => {
+            carregarSubtotal()
+        })
+        async function carregarSubtotal() {
+            subtotal = document.getElementById('subtotal');
+            console.log("produtoSelecionadoIn: ", produtoSelecionadoIn.dataset.id)
+            if (produtoSelecionadoIn.dataset.id == undefined) {
+                subtotal.value = 0;
+                return;
+            }
+            let produto = await getProdutoById(parseInt(produtoSelecionadoIn.dataset.id));
+
+            vlrSub = produto[0].preco * qtd.value;
+            subtotal.value = vlrSub.toFixed(2);
+
+        }
         const btnLogin = document.getElementById('confirmarBtn');
-        btnLogin.addEventListener('click', ()=>{
+        btnLogin.addEventListener('click', () => {
             window.location = "login.html"
         })
         const btnVoltar = document.getElementById('cancelarBtn');
-        btnVoltar.addEventListener('click', ()=>{
+        btnVoltar.addEventListener('click', () => {
             modal.style.display = "none";
         })
     </script>
@@ -289,6 +318,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             carregarProduto(idProduto);
             carregarTable(idProduto);
+            subtotal = document.getElementById('subtotal').value = 0;
 
         })
     </script>
@@ -360,11 +390,17 @@
             let ordemCrescente = true;
             linhas.forEach(linha => {
                 linha.addEventListener('click', async () => {
+                    if(linha.dataset.id == undefined){
+                        return;
+                    }
                     produtoSelecionado = parseInt(linha.dataset.id);
+
                     produto = await getProdutoById(produtoSelecionado);
                     produtoSelecionadoIn = document.getElementById('produto-selecionado');
                     produtoSelecionadoIn.dataset.nomeProduto = produto[0].nome;
+                    produtoSelecionadoIn.dataset.id = linha.dataset.id;
                     produtoSelecionadoIn.placeholder = produto[0].nome;
+                    carregarSubtotal()
                 })
             })
 
@@ -392,6 +428,7 @@
 
                 ordemCrescente = !ordemCrescente;
             })
+            subtotal = document.getElementById('subtotal');
         }
 
     </script>

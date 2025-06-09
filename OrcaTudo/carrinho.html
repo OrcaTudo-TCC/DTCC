@@ -176,6 +176,7 @@
     <script src="js/Carrinho.js" ></script>
     <script src="js/Usuario.js"></script>
     <script src="js/produto.js"></script>
+    <script src="js/Pedido.js"></script>
     <script  src="js/item-carrinho.js"></script>
 
 
@@ -209,8 +210,9 @@
 
 
       window.addEventListener('DOMContentLoaded', async () => {
-        if(sessionStorage == null){
+        if(sessionStorage.getItem('token') == null){
           alert("você precisa estar logado")
+          window.location = "login.html";
         }
         const obj = await decodificarJWT(sessionStorage.getItem('token'));
         console.log("Obj decotificado do token: ",obj);
@@ -232,8 +234,12 @@
 
         sectionCarrinho = document.getElementsByClassName('carrinho')[0];
 
-
-        document.getElementsByClassName('qtd-itens')[0].innerText = itens.length == 1 ? "( "+itens.length+ " itens )" : ("( 1 item )") //colocando a quantidade de itens na página
+        console.log(itens.length)
+        if(itens.lenght == 1){
+          document.getElementsByClassName('qtd-itens')[0].innerText = "(1 item)"  
+        }else{
+          document.getElementsByClassName('qtd-itens')[0].innerText = "("+ itens.length +" itens)"  
+        }
         document.getElementsByClassName('qtd-itens')[1].innerText = itens.length
         await itens.forEach(item => {
 
@@ -292,6 +298,11 @@
         vlrTotal = document.getElementById('vlrTotal');
         vlrTotal.innerText = "R$ "+ total;
 
+        finalizr = document.getElementsByClassName('btn-finalizar')[0];
+        finalizr.addEventListener('click', async ()=>{
+          postPedido(carrinho.id);
+          alert('Compra realizada com sucesso!')
+        })
       })
     </script>
 
