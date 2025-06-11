@@ -94,7 +94,7 @@ async function getProdutoByCategoriaFinal(nomeCategoriaFinal){
 async function getProdutoByFornecedorNome(nomeFornecedor){
     try {
         if(typeof nomeCategoriaFinal === "string"){
-            throw new Error("O nome categoria precisa ser do tipo String");
+            throw new Error("O nome do fornecedor precisa ser do tipo String");
         }
         const response = await fetch(endpointProd+"/fornecedor"+nomeFornecedor,{
             method:"GET",
@@ -120,13 +120,32 @@ async function getProdutoImagem(idProduto) {
             method: "GET"
         })
         if(!response.ok){
-            throw new Error("Erro na resposta da requisição: "+ response.status);
+            throw new Error("resposta da requisição: "+ response.status);
         }
         const data = await response.blob();
 
         return data;
     } catch (error) {
         console.log("Erro na requisição get produto imagem by id: "+ error)
+    }
+}
+
+async function produtoNomeLike(nome){
+    try {
+        if(typeof nome !== "String"){
+            throw new Error("O nome do fornecedor precisa ser do tipo String");
+        }
+        const response = await fetch(endpointProd + "/search/" + nome, {
+            method: "GET"
+        })
+        if(!response.ok){
+            throw new Error("resposta da requisição: "+ response.status);
+        }
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        console.log("Erro na requisição get produto nome like: "+ error);
     }
 }
 

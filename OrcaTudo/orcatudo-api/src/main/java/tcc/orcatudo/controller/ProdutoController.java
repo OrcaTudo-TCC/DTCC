@@ -74,6 +74,15 @@ public class ProdutoController {
     }
 
 
+
+
+    @GetMapping("/search/{nome}")
+    public List<Produto> getProdutoNomeLike(@PathVariable String nome){
+
+        return produtoService.getProdutoNomeLike(nome);
+    }
+
+
     @GetMapping("{id}/imagem")
     public ResponseEntity<byte[]> getImagem(@PathVariable int id) throws IOException{
         byte[] imagem = produtoService.getImagem(id);

@@ -34,4 +34,6 @@ public interface ProdutoService {
 
     byte[] getImagem(int id);
 
+    List<Produto> getProdutoNomeLike(String nome);
+
 }

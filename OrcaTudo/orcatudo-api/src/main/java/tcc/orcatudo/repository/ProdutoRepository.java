@@ -21,4 +21,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 
     long countByFornecedorNome(String nome);
 
+    List<Produto> findByNomeContaining(String nome);
+
 }

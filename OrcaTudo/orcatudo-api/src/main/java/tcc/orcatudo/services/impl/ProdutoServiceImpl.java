@@ -58,6 +58,13 @@ public class ProdutoServiceImpl implements ProdutoService{
         return produtoRepository.findByNome(nome).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,  "Produto não encontrado pelo nome"));
     }
 
+    
+
+    @Override
+    public List<Produto> getProdutoNomeLike(String nome) {
+        return produtoRepository.findByNomeContaining(nome);
+    }
+
     @Override
     public Produto putProduto(PutProdutoDTO produto) {
         if (!produtoRepository.existsById(produto.getId())) {
