@@ -108,34 +108,58 @@
         </div>
 
 
-        <script>
-            document.getElementById("profile-form").addEventListener("submit", async function (event) {
-            event.preventDefault(); // Impede o reload da página
+        <!-- Integração API -->
+<script>
+    document.getElementById("form-fornecedor").addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-            const usuario = {
-            nome: document.getElementById("name").value,
-            documento: document.getElementById("cpf").value,
+        const fornecedor = {
+            nome: document.getElementById("nome").value,
+            password: document.getElementById("senha").value,
+            razao_social: document.getElementById("razao-social").value,
             email: document.getElementById("email").value,
-            telefone: document.getElementById("phone").value,
+            documento: document.getElementById("cnpj").value,
+            telefone: document.getElementById("telefone").value,
             endereco: document.getElementById("endereco").value,
-            password: document.getElementById("password").value
-            };
+            areaDeAtuacao: document.getElementById("area-atuacao").value,
+            descricao: "Fornecedor cadastrado via formulário", // valor padrão
+            avaliacao: 0 // valor inicial padrão
+        };
 
-            try {
-            const resultado = await postUsuario(usuario);
+        try {
+            const resultado = await postFornecedor(fornecedor);
             if (resultado) {
-                alert("Usuário cadastrado com sucesso!");
-                document.getElementById("profile-form").reset(); // Limpa o formulário
+                alert("Fornecedor cadastrado com sucesso!");
+                document.getElementById("form-fornecedor").reset();
             } else {
-                alert("Erro ao cadastrar usuário. Verifique os dados e tente novamente.");
+                alert("Erro ao cadastrar fornecedor. Verifique os dados.");
             }
-            } catch (err) {
-            console.error("Erro ao cadastrar usuário:", err);
-            alert("Erro ao cadastrar usuário.");
-            }
-        });
-        </script>
+        } catch (err) {
+            console.error("Erro ao cadastrar fornecedor:", err);
+            alert("Erro inesperado ao cadastrar fornecedor.");
+        }
+    });
 
+    async function postFornecedor(fornecedor) {
+        try {
+            const response = await fetch("http://localhost:8080/auth/signupFornecedor", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(fornecedor)
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro na requisição: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            console.log("Erro na requisição post fornecedor:", err);
+            return false;
+        }
+    }
+</script>
 
     </main>
 

@@ -145,6 +145,72 @@
         </div>
     </main>
 
+    <!--Integração API-->
+
+    <script>
+        const fornecedorId = 1; // Substitua com o ID real do fornecedor
+      
+        // Função para buscar dados do fornecedor
+        async function carregarPerfil() {
+          try {
+            const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`);
+            const fornecedor = await resposta.json();
+      
+            document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value = fornecedor.nome;
+            document.querySelector('input[placeholder="Digite a categoria"]').value = fornecedor.categoria;
+            document.querySelector('input[placeholder="Digite o CNPJ"]').value = fornecedor.cnpj;
+            document.querySelector('input[placeholder="Digite o email"]').value = fornecedor.email;
+            document.querySelector('input[placeholder="Digite o telefone"]').value = fornecedor.telefone;
+            document.querySelector('input[placeholder="Digite o endereço"]').value = fornecedor.endereco;
+            document.querySelector('.perfil-nome').textContent = fornecedor.nome;
+      
+          } catch (erro) {
+            console.error("Erro ao carregar perfil:", erro);
+          }
+        }
+      
+        // Função para salvar dados atualizados
+        async function salvarPerfil() {
+          const dados = {
+            nome: document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value,
+            categoria: document.querySelector('input[placeholder="Digite a categoria"]').value,
+            cnpj: document.querySelector('input[placeholder="Digite o CNPJ"]').value,
+            email: document.querySelector('input[placeholder="Digite o email"]').value,
+            telefone: document.querySelector('input[placeholder="Digite o telefone"]').value,
+            endereco: document.querySelector('input[placeholder="Digite o endereço"]').value
+          };
+      
+          try {
+            const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(dados)
+            });
+      
+            if (resposta.ok) {
+              alert("Perfil atualizado com sucesso!");
+            } else {
+              alert("Erro ao salvar.");
+            }
+      
+          } catch (erro) {
+            console.error("Erro ao salvar perfil:", erro);
+          }
+        }
+      
+        // Quando a página carregar
+        document.addEventListener("DOMContentLoaded", () => {
+          carregarPerfil();
+      
+          document.querySelector(".fa-save").parentElement.addEventListener("click", () => {
+            salvarPerfil();
+          });
+        });
+      </script>
+      
+
 
     <footer>
         <div class="footer-container">
