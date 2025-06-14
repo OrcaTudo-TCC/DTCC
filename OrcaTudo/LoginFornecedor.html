@@ -69,7 +69,7 @@
             <h2>Entrar</h2>
             <form id="profile-form">
                 <div class="form-group">
-                    <label for="text">Razão Social:</label>
+                    <label for="text">Email:</label>
                     <input type="text" id="email" name="email" placeholder="Digite a Razão Social" required>
                 </div>
 
@@ -82,6 +82,7 @@
             </form>
         </div>
 
+        <script src="js/authUsuario.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("profile-form");
@@ -89,19 +90,16 @@
             form.addEventListener("submit", async function (event) {
             event.preventDefault(); // evita recarregar a página
 
-            const email = document.getElementById("email").value.trim();
+            const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
             try {
-                const result = await login(email, password); // função vinda de authUsuario.js
+                const result = await loginFornecedor(email, password); // função vinda de authUsuario.js
 
                 if (result && result.token) {
                     // 🔁 Salva o novo token, substituindo o antigo
                     sessionStorage.setItem("token", result.token);
 
-                    // (Opcional) Decodifica para obter o e-mail ou ID
-                    const payload = decodificarJWT(result.token);
-                    sessionStorage.setItem("usuarioEmail", payload.sub); // salva o e-mail se quiser
 
                     alert("Login realizado com sucesso!");
                     window.location.href = "dashboard.html"; // vá para o perfil, dashboard etc

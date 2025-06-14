@@ -1,259 +1,273 @@
 <!DOCTYPE html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Fornecedor</title>
-    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/perfilFornecedor.css">
-    <link rel="stylesheet" href="css/header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Fornecedor</title>
+  <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/perfilFornecedor.css">
+  <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
 
 
-    <header>
-        <div class="logo">
-            <img src="imagens/Logo1.png">
+  <header>
+    <div class="logo">
+      <img src="imagens/Logo1.png">
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="O que você procura na Orça tudo ?">
+      <i class="fas fa-search"></i>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Licitação</a></li>
+        <li><a href="#">Cotação</a></li>
+        <li><a href="#">Sobre nós</a></li>
+      </ul>
+    </nav>
+    <div class="icons">
+
+      <div class="user-menu">
+        <i class="far fa-user" id="user-icon"></i>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="#">Configurações</a>
+          <a href="#">Sair da Conta</a>
         </div>
-        
-        <div class="search-bar">
-            <input type="text" placeholder="O que você procura na Orça tudo ?">
-            <i class="fas fa-search"></i>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Licitação</a></li>
-                <li><a href="#">Cotação</a></li>
-                <li><a href="#">Sobre nós</a></li>
-            </ul>
-        </nav>
-        <div class="icons">
-
-            <div class="user-menu">
-                <i class="far fa-user" id="user-icon"></i>
-                <div class="dropdown-menu" id="dropdown-menu">
-                    <a href="#">Configurações</a>
-                    <a href="#">Sair da Conta</a>
-                </div>
-            </div>
-           
-           
-            <i class="fas fa-shopping-cart"></i>
-        </div>
+      </div>
 
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const userIcon = document.getElementById("user-icon");
-                const dropdownMenu = document.getElementById("dropdown-menu");
-        
-                userIcon.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Impede que o clique feche imediatamente
-                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
-                });
-        
-                document.addEventListener("click", function () {
-                    dropdownMenu.style.display = "none";
-                });
-        
-                dropdownMenu.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Evita que o clique no menu feche ele
-                });
-            });
-        </script>
+      <i class="fas fa-shopping-cart"></i>
+    </div>
 
-    </header>
-
-
-    <main>
-        <div class="container">
-    
-            <div class="mainContent">
-            
-                <section class="perfil-fornecedor">
-                    <div class="perfil-img">
-                      <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
-                    </div>
-                  
-                    <div class="perfil-info">
-                      <h2 class="perfil-nome">Nome do Fornecedor</h2>
-                      <p class="perfil-avaliacao">Avaliação:</p>
-                      <div class="perfil-stars">
-                        <img src="imagens/star(1).png" alt="1 estrela">
-                        <img src="imagens/star(1).png" alt="2 estrelas">
-                        <img src="imagens/star(1).png" alt="3 estrelas">
-                        <img src="imagens/star.png" alt="4 estrelas">
-                        <img src="imagens/star.png" alt="5 estrelas">
-                      </div>
-                    </div>
-                  
-                    <div class="perfil-sobre">
-                      <h3>Sobre nós</h3>
-                      <p>
-                        Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
-                        Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
-                        Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
-                        garantindo excelência em cada projeto e construindo relações de confiança.
-                      </p>
-                    </div>
-                  </section>
-                  
-               
-               
-                <section class="info-geral">
-                    <div class="container-info">
-                        <div class="formdata">
-                            <h4>Nome</h4>
-                            <input type="text" placeholder="Digite o nome do fornecedor">
-                        </div>
-                        <div class="formdata">
-                            <h4>Categoria</h4>
-                            <input type="text" placeholder="Digite a categoria">
-                        </div>
-                        <div class="formdata">
-                            <h4>CNPJ</h4>
-                            <input type="text" placeholder="Digite o CNPJ">
-                        </div>
-                        <div class="formdata">
-                            <h4>Email</h4>
-                            <input type="email" placeholder="Digite o email">
-                        </div>
-                        <div class="formdata">
-                            <h4>Telefone</h4>
-                            <input type="tel" placeholder="Digite o telefone">
-                        </div>
-                        <div class="formdata">
-                            <h4>Endereço</h4>
-                            <input type="text" placeholder="Digite o endereço">
-                        </div>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="editar-section">
-                    <h2>Gerenciamento</h2>
-                  
-                    <div class="editar-buttons">
-                      <button><i class="fas fa-pen"></i> Editar</button>
-                      <button><i class="fas fa-save"></i> Salvar</button>
-                      <button><i class="fas fa-trash"></i> Excluir</button>
-                    </div>
-                  </section>
-                  
-            </div>
-        </div>
-    </main>
-
-    <!--Integração API-->
 
     <script>
-        const fornecedorId = 1; // Substitua com o ID real do fornecedor
-      
-        // Função para buscar dados do fornecedor
-        async function carregarPerfil() {
-          try {
-            const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`);
-            const fornecedor = await resposta.json();
-      
-            document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value = fornecedor.nome;
-            document.querySelector('input[placeholder="Digite a categoria"]').value = fornecedor.categoria;
-            document.querySelector('input[placeholder="Digite o CNPJ"]').value = fornecedor.cnpj;
-            document.querySelector('input[placeholder="Digite o email"]').value = fornecedor.email;
-            document.querySelector('input[placeholder="Digite o telefone"]').value = fornecedor.telefone;
-            document.querySelector('input[placeholder="Digite o endereço"]').value = fornecedor.endereco;
-            document.querySelector('.perfil-nome').textContent = fornecedor.nome;
-      
-          } catch (erro) {
-            console.error("Erro ao carregar perfil:", erro);
-          }
-        }
-      
-        // Função para salvar dados atualizados
-        async function salvarPerfil() {
-          const dados = {
-            nome: document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value,
-            categoria: document.querySelector('input[placeholder="Digite a categoria"]').value,
-            cnpj: document.querySelector('input[placeholder="Digite o CNPJ"]').value,
-            email: document.querySelector('input[placeholder="Digite o email"]').value,
-            telefone: document.querySelector('input[placeholder="Digite o telefone"]').value,
-            endereco: document.querySelector('input[placeholder="Digite o endereço"]').value
-          };
-      
-          try {
-            const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(dados)
-            });
-      
-            if (resposta.ok) {
-              alert("Perfil atualizado com sucesso!");
-            } else {
-              alert("Erro ao salvar.");
-            }
-      
-          } catch (erro) {
-            console.error("Erro ao salvar perfil:", erro);
-          }
-        }
-      
-        // Quando a página carregar
-        document.addEventListener("DOMContentLoaded", () => {
-          carregarPerfil();
-      
-          document.querySelector(".fa-save").parentElement.addEventListener("click", () => {
-            salvarPerfil();
-          });
+      document.addEventListener("DOMContentLoaded", function () {
+        const userIcon = document.getElementById("user-icon");
+        const dropdownMenu = document.getElementById("dropdown-menu");
+
+        userIcon.addEventListener("click", function (event) {
+          event.stopPropagation(); // Impede que o clique feche imediatamente
+          dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
         });
-      </script>
-      
+
+        document.addEventListener("click", function () {
+          dropdownMenu.style.display = "none";
+        });
+
+        dropdownMenu.addEventListener("click", function (event) {
+          event.stopPropagation(); // Evita que o clique no menu feche ele
+        });
+      });
+    </script>
+
+  </header>
 
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+  <main>
+    <div class="container">
+
+      <div class="mainContent">
+
+        <section class="perfil-fornecedor">
+          <div class="perfil-img">
+            <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
+          </div>
+
+          <div class="perfil-info">
+            <h2 id="perfil-nome">Nome do Fornecedor</h2>
+            <p class="perfil-avaliacao">Avaliação:</p>
+            <div class="perfil-stars">
+              <img src="imagens/star(1).png" alt="1 estrela">
+              <img src="imagens/star(1).png" alt="2 estrelas">
+              <img src="imagens/star(1).png" alt="3 estrelas">
+              <img src="imagens/star.png" alt="4 estrelas">
+              <img src="imagens/star.png" alt="5 estrelas">
             </div>
-            <div class="footer-section">
-                <h3>Ideal Para</h3>
-                <ul>
-                    <li>Engenheiros Civis</li>
-                    <li>Construtoras</li>
-                    <li>Orçamentistas</li>
-                </ul>
+          </div>
+
+          <div class="perfil-sobre">
+            <h3>Sobre nós</h3>
+            <p id="descricao">
+              Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
+              Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
+              Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
+              garantindo excelência em cada projeto e construindo relações de confiança.
+            </p>
+          </div>
+        </section>
+
+
+
+        <section class="info-geral">
+          <div class="container-info">
+            <div class="formdata">
+              <h4>Nome</h4>
+              <input disabled id="nomeFornecedor" type="text" placeholder="Digite o nome do fornecedor">
             </div>
-            <div class="footer-section">
-                <h3>Funcionalidades</h3>
-                <ul>
-                    <li>Cotação de Preços</li>
-                    <li>Gestão de Orçamentos</li>
-                    <li>Comparação de Materiais</li>
-                </ul>
+            <div class="formdata">
+              <h4>Area de Atuação</h4>
+              <input disabled id="area" type="text" placeholder="Digite a categoria">
             </div>
-            <div class="footer-section">
-                <h3>Recursos</h3>
-                <ul>
-                    <li>Lista de Fornecedores</li>
-                    <li>Simulação de Custos</li>
-                    <li>Dashboard Interativo</li>
-                </ul>
+            <div class="formdata">
+              <h4>CNPJ</h4>
+              <input disabled id= "cnpj" type="text" placeholder="Digite o CNPJ">
             </div>
-            <div class="footer-section">
-                <h3>Sobre</h3>
-                <ul>
-                    <li><a href="#">Sobre o OrçaTudo</li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
+            <div class="formdata">
+              <h4>Email</h4>
+              <input disabled id="email" type="email" placeholder="Digite o email">
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
-        </div>
-    </footer>
+            <div class="formdata">
+              <h4>Telefone</h4>
+              <input disabled id="telefone" type="tel" placeholder="Digite o telefone">
+            </div>
+            <div class="formdata">
+              <h4>Endereço</h4>
+              <input disabled id="endereco" type="text" placeholder="Digite o endereço">
+            </div>
+          </div>
+        </section>
+
+
+
+        <section class="editar-section">
+          <h2>Gerenciamento</h2>
+
+          <div class="editar-buttons">
+            <button><i class="fas fa-pen"></i> Editar</button>
+            <button><i class="fas fa-save"></i> Salvar</button>
+            <button><i class="fas fa-trash"></i> Excluir</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!--Integração API-->
+
+  <script src="js/Fornecedor.js"></script>
+  <script src="js/authUsuario.js"></script>
+  <script>
+
+
+    // Função para buscar dados do fornecedor
+    async function carregarPerfil() {
+      try {
+        if (sessionStorage.getItem('token') == null) {
+          alert("Você precisa estar logado para acessar");
+          window.location = "login.html";
+        }
+        const obj = await decodificarJWT(sessionStorage.getItem('token'));
+        console.log(obj)
+        const fornecedorId = await getFornecedorByEmail(obj.sub); // Substitua com o ID real do fornecedor
+        console.log("fornecedorid",fornecedorId)
+        const resposta = await getFornecedorById (  fornecedorId[0].id);
+        const fornecedor = await resposta;
+
+        document.getElementById("nomeFornecedor").value = fornecedor[0].nome;
+        document.getElementById("area").value = fornecedor[0].area_de_atuacao;
+        document.getElementById("cnpj").value = fornecedor[0].documento;
+        document.getElementById("email").value = fornecedor[0].email;
+        document.getElementById("telefone").value = fornecedor[0].telefone;
+        document.getElementById("endereco").value = fornecedor[0].endereco;
+        document.getElementById('perfil-nome').textContent = fornecedor[0].nome;
+        document.getElementById('descricao').textContent = fornecedor[0].descricao;
+
+      } catch (erro) {
+        console.error("Erro ao carregar perfil:", erro);
+      }
+    }
+
+    // Função para salvar dados atualizados
+    async function salvarPerfil() {
+      const dados = {
+        nome: document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value,
+        categoria: document.querySelector('input[placeholder="Digite a categoria"]').value,
+        cnpj: document.querySelector('input[placeholder="Digite o CNPJ"]').value,
+        email: document.querySelector('input[placeholder="Digite o email"]').value,
+        telefone: document.querySelector('input[placeholder="Digite o telefone"]').value,
+        endereco: document.querySelector('input[placeholder="Digite o endereço"]').value
+      };
+
+      try {
+        const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+          alert("Perfil atualizado com sucesso!");
+        } else {
+          alert("Erro ao salvar.");
+        }
+
+      } catch (erro) {
+        console.error("Erro ao salvar perfil:", erro);
+      }
+    }
+
+    // Quando a página carregar
+    document.addEventListener("DOMContentLoaded", () => {
+      carregarPerfil();
+
+      document.querySelector(".fa-save").parentElement.addEventListener("click", () => {
+        salvarPerfil();
+      });
+    });
+  </script>
+
+
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+      </div>
+      <div class="footer-section">
+        <h3>Ideal Para</h3>
+        <ul>
+          <li>Engenheiros Civis</li>
+          <li>Construtoras</li>
+          <li>Orçamentistas</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Funcionalidades</h3>
+        <ul>
+          <li>Cotação de Preços</li>
+          <li>Gestão de Orçamentos</li>
+          <li>Comparação de Materiais</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Recursos</h3>
+        <ul>
+          <li>Lista de Fornecedores</li>
+          <li>Simulação de Custos</li>
+          <li>Dashboard Interativo</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Sobre</h3>
+        <ul>
+          <li><a href="#">Sobre o OrçaTudo</li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+    </div>
+  </footer>
 
 
 </body>
+
 </html>
