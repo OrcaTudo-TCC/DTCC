@@ -7,17 +7,28 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ========================
    LAYOUT GERAL
 ======================== */
 main {
+    flex: 1;
   display: flex;
-  min-height: 100vh;
+  
 }
 
 main section:not(.sidebar) {
@@ -80,6 +91,7 @@ main section:not(.sidebar) {
   flex-direction: column;
   align-items: center;
   gap: 0;
+  margin-bottom: -10px; /* Aproxima o footer */
 }
 
 /* ========================
@@ -89,13 +101,13 @@ main section:not(.sidebar) {
 .cards {
   display: flex;
   flex-wrap: nowrap;      /* Impede quebra de linha */
-  gap: 30px;
+  gap: 50px;
   padding: 10px;
   justify-content: center;
   align-items: stretch;    /* Garante alinhamento vertical uniforme */
   height: 130px;
-  overflow: hidden;        /* Oculta conteúdo que exceder a altura */
-  margin-bottom: 0;        /* Remove espaço extra */
+  margin-top: 30px;
+  margin-bottom: 100px;        /* Remove espaço extra */
 }
 
 .card {
@@ -104,7 +116,7 @@ main section:not(.sidebar) {
   border-radius: 10px;
   padding: 20px 25px;
    min-width: 250px;  /* ou o valor que você estiver usando */
-  width: 250px;
+  width: 350px;
   height: 130px;
   margin: 0;
    flex-shrink: 0;    /* Evita encolhimento se a largura da tela for pequena */
@@ -150,12 +162,12 @@ main section:not(.sidebar) {
   height: 10vh;
   overflow-y: auto;
   border-radius: 10px;
-   margin-top: 0px;
+  
  
 }
 
 .historico table {
-  width: 85%;
+  width: 90%;
   margin: auto;
   border-collapse: collapse;
   background-color: #fff;
@@ -219,4 +231,9 @@ main section:not(.sidebar) {
 
 .historico td:first-child {
   width: 2vw;
+}
+
+footer {
+  margin-top: -90px;
+  z-index: 10;         /* número maior que o do outro elemento */
 }

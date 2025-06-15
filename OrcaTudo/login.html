@@ -96,7 +96,7 @@
                 const result = await login(email, password); // função vinda de authUsuario.js
 
                 if (result && result.token) {
-                    // 🔁 Salva o novo token, substituindo o antigo
+                   
                     sessionStorage.setItem("token", result.token);
 
                     // (Opcional) Decodifica para obter o e-mail ou ID
@@ -104,7 +104,7 @@
                     sessionStorage.setItem("usuarioEmail", payload.sub); // salva o e-mail se quiser
 
                     alert("Login realizado com sucesso!");
-                    window.location.href = "dashboard.html"; // vá para o perfil, dashboard etc
+                    window.location.href = "dashboardusuario.html"; // vá para o perfil, dashboard etc
                 } else {
                     alert("Usuário não encontrado ou dados inválidos.");
                 }
