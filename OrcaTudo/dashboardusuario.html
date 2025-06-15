@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - OrçaTudo</title>
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/dashboardusuario.css">
+  <script src="js/authUsuario.js"></script>
+  <script src="js/Usuario.js"></script>
+  <script src="js/operacoes.js"></script>
+  <script src="js/Carrinho.js"></script>
+  <script src="js/item-carrinho.js"></script>
   <link rel="icon" href="imagens/Logo1.png" type="image/png">
   <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
 </head>
@@ -87,7 +93,7 @@
             <span><i class="fa-solid fa-cart-shopping"></i></span>
           </div>
           <p class="card-subtitle">Orçamento Carrinho Atual</p>
-          <p class="card-value">R$ 40.000</p>
+          <p id="card-total-carrinho">R$ 40.000</p>
         </article>
 
         <article class="card">
@@ -96,7 +102,7 @@
             <span><i class="fa-solid fa-cart-shopping"></i></span>
           </div>
           <p class="card-subtitle">Quantidades Intes do Carrinho</p>
-          <p class="card-value"> 4 </p>
+          <p id="card-itens-carrinho"> 4 </p>
         </article>
 
         <article class="card">
@@ -105,7 +111,7 @@
             <span><i class="fa-solid fa-cart-shopping"></i></span>
           </div>
           <p class="card-subtitle">Produtos Carrinho Atual</p>
-          <p class="card-value">Exemplo 01</p>
+          <p id="card-produtos-carrinho">Exemplo 01</p>
         </article>
       </div>
 
@@ -145,6 +151,76 @@
       </section>
     </div>
   </main>
+  <script>
+    // Aguarda o carregamento completo do DOM antes de executar o código
+    document.addEventListener("DOMContentLoaded", async () => {
+
+      // Recupera o token JWT da sessão (verifica se o usuário está logado)
+      const token = sessionStorage.getItem("token");
+
+      // Se não houver token, redireciona o usuário para a tela de login
+      if (!token) {
+        alert("Você precisa estar logado.");
+        window.location.href = "/login.html";
+        return;
+      }
+
+      try {
+        // Decodifica o token JWT para obter o payload (dados do usuário)
+        const payload = decodificarJWT(token);
+
+        // Extrai o e-mail do usuário logado (está no campo 'sub' do JWT)
+        const email = payload.sub;
+
+        // Busca o(s) usuário(s) correspondente(s) ao e-mail na API
+        const usuarios = await getUsuarioByEmail(email);
+
+        // Pega o primeiro usuário retornado (esperado que haja apenas um)
+        const usuario = usuarios[0];
+
+        // Se não encontrou o usuário, lança um erro
+        if (!usuario) throw new Error("Usuário não encontrado");
+
+        // Busca o carrinho do usuário pelo ID
+        const carrinho = await getCarrinho(usuario.id);
+
+        // Se não encontrou carrinho, lança um erro
+        if (!carrinho) throw new Error("Carrinho não encontrado");
+
+        // Busca os itens do carrinho usando o ID do carrinho
+        const itens = await getItens(carrinho.id);
+
+        // Exibe os itens no console (útil para debug)
+        console.log("Itens do carrinho:", itens);
+
+        // Inicializa a variável total para somar os valores dos produtos
+        let total = 0;
+
+        // Soma os subtotais de todos os itens no carrinho
+        itens.forEach(item => {
+          total += item.subtotal;
+        });
+
+        // Atualiza o card "Total Carrinho" com o valor formatado em R$
+        document.getElementById("card-total-carrinho").textContent =
+          total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        // Atualiza o card "Itens Carrinho" com a quantidade de itens
+        document.getElementById("card-itens-carrinho").textContent = itens.length.toString();
+
+        // Atualiza o card "Produtos Carrinho" com o nome do primeiro produto (se existir)
+        document.getElementById("card-produtos-carrinho").textContent =
+          itens.length > 0 ? itens[0].produto.nome : "Nenhum";
+
+      } catch (error) {
+        // Se ocorrer qualquer erro no processo, exibe no console
+        console.error("Erro ao carregar o dashboard:", error);
+      }
+    });
+
+  </script>
+
+
 
   <!-- Rodapé -->
   <footer>
@@ -195,4 +271,5 @@
   </footer>
 
 </body>
+
 </html>
