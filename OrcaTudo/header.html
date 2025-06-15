@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,26 @@
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
             <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
         </div>
-        
+
         <div class="search-bar">
-            <input type="text" placeholder="O que você procura na Orça Tudo?">
-            <i class="fas fa-search"></i>
+            <div>
+                <input id="input" type="text" placeholder="O que você procura na Orça Tudo?">
+                <i class="fas fa-search" id="search" ></i>
+            </div>
+            <ul class="sugestoes">
+            </ul>
         </div>
 
         <nav>
             <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Licitação</a></li>
-                <li><a href="#">Cotação</a></li>
-                <li><a href="#">Sobre nós</a></li>
+                <li><a href="dashboard2.html">Dashboard</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
             </ul>
         </nav>
 
@@ -31,11 +35,11 @@
             <div class="user-menu">
                 <i class="far fa-user" id="user-icon"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
-                    <a href="#">Configurações</a>
-                    <a href="#">Sair da Conta</a>
+                    <a href="dashboard2.html">Dashboard</a>
+                    <a href="#" id="logout" >Sair da Conta</a>
                 </div>
             </div>
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart" id="cart" ></i>
         </div>
     </header>
 
@@ -102,5 +106,61 @@
             });
         });
     </script>
+    <!--integração da página-->
+    <script src="js/produto.js"></script>
+    <script>
+        initSearchbar();
+        initHeader();
+        async function initSearchbar() {
+            searchbar = document.getElementById('input');
+            let sugestoes = document.getElementsByClassName('sugestoes')[0];
+            let results = null;
+            searchbar.addEventListener('input', async () => {
+                sugestoes.innerHTML = "";
+                if(searchbar.value !== null && searchbar.value !== "" ){
+                    results = await produtoNomeLike(searchbar.value)
+                }
+                results.forEach(prod => {
+                    li = document.createElement('li');
+                    li.innerText = prod.nome;
+                    li.addEventListener('click', ()=>{
+                        searchbar.value = "";
+                        window.location = "cotacao.html?produto="+ prod.id;
+                    })
+                    sugestoes.appendChild(li);
+                });
+
+                console.log(results);
+            })
+            icon = document.getElementsByClassName('fas fa-search')[0];
+            icon.addEventListener('click', ()=>{
+                alert("Clicou no ícone")
+                window.location = "catalogo.html?search="+ searchbar.value
+            })
+        }
+
+        function initHeader(){
+            logout = document.getElementById('logout');
+            cart = document.getElementById('cart');
+            logout.addEventListener('click', ()=>{
+                
+                if(sessionStorage.getItem('token') == null ){
+                    alert("Você não está logado!")
+                }else{
+                    sessionStorage.removeItem('token');
+                    alert("Você deslogou com sucesso!")
+                    window.location = "landingPage.html"
+                }
+            })
+            cart.addEventListener('click', ()=>{
+                if(sessionStorage.getItem('token')  == null){
+                    alert("Você precisa estar logado");
+                }else{
+                    window.location = "carrinho.html";
+                }
+            })
+        }
+    </script>
 </body>
+
 </html>

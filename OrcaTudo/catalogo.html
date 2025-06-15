@@ -252,8 +252,16 @@
     document.addEventListener('DOMContentLoaded', async ()=>{
       await inicializarSelects()
 
-      let produtos = await todosProdutos();
-      renderizarProdutos(produtos.flat());
+      let produtos;
+      params = new URLSearchParams(window.location.search);
+      if(params.get('search')  == null){
+        produtos = await todosProdutos();
+        renderizarProdutos(produtos.flat());
+      }else{
+        produtos = await produtoNomeLike(params.get('search'));
+        alert("realizou a pesquisa nomelike")
+        renderizarProdutos(produtos);
+      }
 
     })
   </script>

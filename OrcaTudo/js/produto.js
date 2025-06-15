@@ -132,7 +132,7 @@ async function getProdutoImagem(idProduto) {
 
 async function produtoNomeLike(nome){
     try {
-        if(typeof nome !== "String"){
+        if(typeof nome !== "string"){
             throw new Error("O nome do fornecedor precisa ser do tipo String");
         }
         const response = await fetch(endpointProd + "/search/" + nome, {
@@ -146,6 +146,7 @@ async function produtoNomeLike(nome){
         return data;
     } catch (error) {
         console.log("Erro na requisição get produto nome like: "+ error);
+        return null;
     }
 }
 

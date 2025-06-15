@@ -14,31 +14,41 @@ header {
     padding: 15px 30px;
     background-color: rgb(0, 0, 0);
     border-bottom: 1px solid #ddd;
-    flex-wrap: wrap; /* Para melhor adaptação em telas menores */
+    flex-wrap: wrap;
+    /* Para melhor adaptação em telas menores */
 }
 
 /* Estilo do logo */
 .logo {
     display: flex;
     align-items: center;
-    margin-right: 20px; /* Reduz o espaço entre logo e search bar */
+    margin-right: 1vw;
+    /* Reduz o espaço entre logo e search bar */
 }
 
 .logo img {
-    height: 50px; /* Ajuste conforme necessário */
+    height: 50px;
+    /* Ajuste conforme necessário */
     width: auto;
 }
 
-/* Barra de pesquisa */ 
+/* Barra de pesquisa */
 .search-bar {
-    display: flex;
+    display: relative;
     align-items: center;
     background-color: #f3f3f3;
-    padding: 8px;
+    padding: 10px;
+    box-sizing: border-box;
     border-radius: 5px;
     width: 35%;
     min-width: 250px;
-    margin-left: -250px; /* Aproxima a barra de pesquisa */
+    max-width: 400px;
+    margin-left: -250px;
+    /* Aproxima a barra de pesquisa */
+}
+
+.search-bar div {
+    display: flex;
 }
 
 .search-bar input {
@@ -49,12 +59,43 @@ header {
     padding: 5px;
 }
 
+.sugestoes {
+    max-width: inherit  ;
+    position: absolute;
+    transform: translate(-10px,5px);
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+.sugestoes li {
+
+    padding: 10px;
+    cursor: pointer;
+
+}
+.sugestoes li:hover{
+    background-color:#f0f0f0;
+    cursor: pointer;
+}
+
 .search-bar i {
     color: gray;
 }
-
+#search{
+    cursor: pointer;
+    transform: translate(-10px,5px);
+}
 nav {
-    margin-left: -190px; /* Aproxima a nav da barra de pesquisa */
+    margin-left: -190px;
+    /* Aproxima a nav da barra de pesquisa */
 }
 
 
@@ -90,7 +131,8 @@ nav ul li a:hover {
     cursor: pointer;
     color: #ae7550;
     font-size: 25px;
-    transition: color 0.3s ease; /* Suaviza a mudança de cor */
+    transition: color 0.3s ease;
+    /* Suaviza a mudança de cor */
 }
 
 .icons i:hover {
@@ -209,7 +251,7 @@ nav ul li a:hover {
 
 
 
-/* Estilização Footer */    
+/* Estilização Footer */
 
 footer {
     background-color: #000000;
@@ -233,7 +275,7 @@ footer {
 }
 
 .footer-section img {
-width: 200px;
+    width: 200px;
 }
 
 
