@@ -5,20 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - OrçaTudo</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/dashboardusuario.css">
+  <link rel="icon" href="imagens/Logo1.png" type="image/png">
+  <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+
+  <!-- Scripts -->
   <script src="js/authUsuario.js"></script>
   <script src="js/Usuario.js"></script>
   <script src="js/operacoes.js"></script>
   <script src="js/Carrinho.js"></script>
   <script src="js/item-carrinho.js"></script>
-  <link rel="icon" href="imagens/Logo1.png" type="image/png">
-  <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
-  <!-- Header -->
+  <!-- Cabeçalho -->
   <header>
     <div class="logo">
       <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
@@ -48,31 +51,11 @@
       </div>
       <i class="fas fa-shopping-cart"></i>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const userIcon = document.getElementById("user-icon");
-        const dropdownMenu = document.getElementById("dropdown-menu");
-
-        userIcon.addEventListener("click", function (event) {
-          event.stopPropagation();
-          dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-        });
-
-        document.addEventListener("click", function () {
-          dropdownMenu.style.display = "none";
-        });
-
-        dropdownMenu.addEventListener("click", function (event) {
-          event.stopPropagation();
-        });
-      });
-    </script>
   </header>
 
   <!-- Conteúdo principal -->
   <main>
-    <!-- Sidebar -->
+    <!-- Barra lateral -->
     <aside class="sidebar">
       <ul>
         <li><a href="dashboard2.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -84,8 +67,8 @@
       </ul>
     </aside>
 
-    <!-- Conteúdo do dashboard -->
-    <div class="conteudo">
+    <!-- Seção de dashboard -->
+    <section class="conteudo">
       <div class="cards">
         <article class="card">
           <div class="card-header">
@@ -98,11 +81,11 @@
 
         <article class="card">
           <div class="card-header">
-            <h3>Intens Carrinho</h3>
+            <h3>Itens Carrinho</h3>
             <span><i class="fa-solid fa-cart-shopping"></i></span>
           </div>
-          <p class="card-subtitle">Quantidades Intes do Carrinho</p>
-          <p id="card-itens-carrinho"> 4 </p>
+          <p class="card-subtitle">Quantidade de Itens do Carrinho</p>
+          <p id="card-itens-carrinho">4</p>
         </article>
 
         <article class="card">
@@ -110,14 +93,14 @@
             <h3>Produtos Carrinho</h3>
             <span><i class="fa-solid fa-cart-shopping"></i></span>
           </div>
-          <p class="card-subtitle">Produtos Carrinho Atual</p>
+          <p class="card-subtitle">Produtos no Carrinho Atual</p>
           <p id="card-produtos-carrinho">Exemplo 01</p>
         </article>
       </div>
 
       <!-- Tabela de histórico -->
       <section class="historico">
-        <table>
+        <table id="tbody-operacoes">
           <caption>Histórico de operações</caption>
           <thead>
             <tr>
@@ -127,100 +110,11 @@
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>12134</td>
-              <td>Licitação</td>
-              <td>14/03/2025</td>
-              <td class="status" id="concluido">Concluído</td>
-            </tr>
-            <tr>
-              <td>12467</td>
-              <td>Cotação</td>
-              <td>14/03/2025</td>
-              <td class="status" id="pendente">Pendente</td>
-            </tr>
-            <tr>
-              <td>12467</td>
-              <td>Compra</td>
-              <td>14/03/2025</td>
-              <td class="status" id="cancelada">Cancelada</td>
-            </tr>
-          </tbody>
+          <tbody></tbody>
         </table>
       </section>
-    </div>
+    </section>
   </main>
-  <script>
-    // Aguarda o carregamento completo do DOM antes de executar o código
-    document.addEventListener("DOMContentLoaded", async () => {
-
-      // Recupera o token JWT da sessão (verifica se o usuário está logado)
-      const token = sessionStorage.getItem("token");
-
-      // Se não houver token, redireciona o usuário para a tela de login
-      if (!token) {
-        alert("Você precisa estar logado.");
-        window.location.href = "/login.html";
-        return;
-      }
-
-      try {
-        // Decodifica o token JWT para obter o payload (dados do usuário)
-        const payload = decodificarJWT(token);
-
-        // Extrai o e-mail do usuário logado (está no campo 'sub' do JWT)
-        const email = payload.sub;
-
-        // Busca o(s) usuário(s) correspondente(s) ao e-mail na API
-        const usuarios = await getUsuarioByEmail(email);
-
-        // Pega o primeiro usuário retornado (esperado que haja apenas um)
-        const usuario = usuarios[0];
-
-        // Se não encontrou o usuário, lança um erro
-        if (!usuario) throw new Error("Usuário não encontrado");
-
-        // Busca o carrinho do usuário pelo ID
-        const carrinho = await getCarrinho(usuario.id);
-
-        // Se não encontrou carrinho, lança um erro
-        if (!carrinho) throw new Error("Carrinho não encontrado");
-
-        // Busca os itens do carrinho usando o ID do carrinho
-        const itens = await getItens(carrinho.id);
-
-        // Exibe os itens no console (útil para debug)
-        console.log("Itens do carrinho:", itens);
-
-        // Inicializa a variável total para somar os valores dos produtos
-        let total = 0;
-
-        // Soma os subtotais de todos os itens no carrinho
-        itens.forEach(item => {
-          total += item.subtotal;
-        });
-
-        // Atualiza o card "Total Carrinho" com o valor formatado em R$
-        document.getElementById("card-total-carrinho").textContent =
-          total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-
-        // Atualiza o card "Itens Carrinho" com a quantidade de itens
-        document.getElementById("card-itens-carrinho").textContent = itens.length.toString();
-
-        // Atualiza o card "Produtos Carrinho" com o nome do primeiro produto (se existir)
-        document.getElementById("card-produtos-carrinho").textContent =
-          itens.length > 0 ? itens[0].produto.nome : "Nenhum";
-
-      } catch (error) {
-        // Se ocorrer qualquer erro no processo, exibe no console
-        console.error("Erro ao carregar o dashboard:", error);
-      }
-    });
-
-  </script>
-
-
 
   <!-- Rodapé -->
   <footer>
@@ -228,7 +122,6 @@
       <div class="footer-section">
         <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
       </div>
-
       <div class="footer-section">
         <h3>Ideal Para</h3>
         <ul>
@@ -237,7 +130,6 @@
           <li>Orçamentistas</li>
         </ul>
       </div>
-
       <div class="footer-section">
         <h3>Funcionalidades</h3>
         <ul>
@@ -246,7 +138,6 @@
           <li>Comparação de Materiais</li>
         </ul>
       </div>
-
       <div class="footer-section">
         <h3>Recursos</h3>
         <ul>
@@ -255,7 +146,6 @@
           <li>Dashboard Interativo</li>
         </ul>
       </div>
-
       <div class="footer-section">
         <h3>Sobre</h3>
         <ul>
@@ -264,12 +154,98 @@
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
     </div>
   </footer>
 
+  <!-- Script do dropdown do usuário e integrações da página -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        alert("Você precisa estar logado.");
+        window.location.href = "/login.html";
+        return;
+      }
+
+      try {
+        const payload = decodificarJWT(token);
+        const email = payload.sub;
+        const usuarios = await getUsuarioByEmail(email);
+        const usuario = usuarios[0];
+        if (!usuario) throw new Error("Usuário não encontrado");
+
+        const carrinho = await getCarrinho(usuario.id);
+        if (!carrinho) throw new Error("Carrinho não encontrado");
+        const itens = await getItens(carrinho.id);
+
+        let total = 0;
+        itens.forEach(item => total += item.subtotal);
+
+        document.getElementById("card-total-carrinho").textContent =
+          total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        document.getElementById("card-itens-carrinho").textContent = itens.length.toString();
+
+        document.getElementById("card-produtos-carrinho").textContent =
+          itens.length > 0 ? itens[0].produto.nome : "Nenhum";
+
+        const operacoes = await getOperacoesByUsuarioId(usuario.id);
+        const tbody = document.getElementById("tbody-operacoes");
+
+        if (operacoes.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='4'>Nenhuma operação encontrada.</td></tr>";
+        } else {
+          operacoes.sort((a, b) => {
+            const dataA = new Date(a.data.split("/").reverse().join("-"));
+            const dataB = new Date(b.data.split("/").reverse().join("-"));
+            return dataB - dataA;
+          });
+
+          const ultimas = operacoes.slice(0, 3);
+          ultimas.forEach(op => {
+            const linha = document.createElement("tr");
+
+            linha.innerHTML = `
+              <td>${op.id}</td>
+              <td>${capitalizar(op.operacao)}</td>
+              <td>${op.data}</td>
+              <td class="status" id="${op.status.toLowerCase()}">${capitalizar(op.status)}</td>
+            `;
+
+            tbody.appendChild(linha);
+          });
+        }
+
+      } catch (error) {
+        console.error("Erro ao carregar o dashboard:", error);
+      }
+    });
+
+    function capitalizar(texto) {
+      if (!texto) return "";
+      return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const userIcon = document.getElementById("user-icon");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+
+      userIcon.addEventListener("click", function (event) {
+        event.stopPropagation();
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+      });
+
+      document.addEventListener("click", function () {
+        dropdownMenu.style.display = "none";
+      });
+
+      dropdownMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
+    });
+  </script>
 </body>
 
 </html>
