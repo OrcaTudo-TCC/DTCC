@@ -60,9 +60,9 @@ header {
 }
 
 .sugestoes {
-    max-width: inherit  ;
+    max-width: inherit;
     position: absolute;
-    transform: translate(-10px,5px);
+    transform: translate(-10px, 5px);
     width: 100%;
     background: white;
     border: 1px solid #ccc;
@@ -81,18 +81,21 @@ header {
     cursor: pointer;
 
 }
-.sugestoes li:hover{
-    background-color:#f0f0f0;
+
+.sugestoes li:hover {
+    background-color: #f0f0f0;
     cursor: pointer;
 }
 
 .search-bar i {
     color: gray;
 }
-#search{
+
+#search {
     cursor: pointer;
-    transform: translate(-10px,5px);
+    transform: translate(-10px, 5px);
 }
+
 nav {
     margin-left: -190px;
     /* Aproxima a nav da barra de pesquisa */
@@ -120,13 +123,35 @@ nav ul li a:hover {
     color: #ae7550;
 }
 
+#cadastro {
+    color: white;
+    font-size: small;
+    margin: auto;
+}
+
+#login {
+    color: white;
+    font-size: small;
+    margin: auto;
+    margin-right: 2vw;
+}
+
+#cadastro:hover,
+#login:hover {
+    transition: 0.25s;
+    cursor: pointer;
+    color: #ae7550;
+}
+
 /* Ícones de usuário e carrinho */
 .icons {
     display: flex;
     gap: 15px;
     font-size: 18px;
 }
-
+#dashboard:hover{
+    cursor: pointer;
+}
 .icons i {
     cursor: pointer;
     color: #ae7550;
@@ -315,4 +340,56 @@ footer {
     text-align: center;
     margin-top: 30px;
     font-size: 11px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botões */
+.modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
 }

@@ -1,0 +1,38 @@
+Data: [10/06/25] 
+Hora de início: [19:53] 
+Hora de término: [20:08] 
+Participantes: Alex Alves , João Pedro Menezes, Kauan , Murilo, Otavio Henrique 
+Facilitador: Murilo Miranda
+
+1. Objetivo da Reunião 
+        Dar continuidade ao tcc e inteirar a equipe sobre o progresso e desenvolvimento.
+2. Tópicos Abordados 
+        progresso:
+        Alex alves: finalizou tela de perfil usuário, iniciou tela de dashboard usuário e fornecedor.
+        João Pedro: trabalhando na tela de perfil fornecedor.
+        Murilo: terminei tela de cotação, e fiz endpoint para pesquisa
+        Kauan: Entrega da tela de catálogo fornecedor foi rejeitada, por não condizer com as expectativas do trabalho
+3. Telas restantes:
+Cadastro fornecedor:✅
+Histórico:✅
+Perfil usuário: ✅
+Cadastro Usuário:✅
+Carrinho de compras: ✅
+Catálogo fornecedores:⏳ início de produção 
+Catálogo: ✅
+Cotação:✅
+Dahsboard usuário:❌❌
+Dahsboard fornecedor: ❌❌
+Header:❌
+Landing page:✅
+Login Usuário:✅
+Login Fornecedor:✅
+Perfil fornecedor:❌
+
+3. Decisões Tomadas 
+        Alex alves: terminar os dois dashboard, usuário e fornecedor. E realizar integração de ambas
+        João Pedro: finalizar integração de perfil fornecedor
+        Murilo: terminar integração do header
+       Kauan: Realizar a reentrega da integração da tela de catálogo fornecedor.
+      Otávio: Estudar para  slides apresentação final
+ 
