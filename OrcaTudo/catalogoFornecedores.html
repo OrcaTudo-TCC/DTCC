@@ -1,253 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo de Fornecedores</title>
-    <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/catalogoFornecedores.css">
-    <link rel="stylesheet" href="css/header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogo de Fornecedores</title>
+  <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/catalogoFornecedores.css">
+  <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="imagens/Logo1.png">
-        </div>
-        
-        <div class="search-bar">
-            <input type="text" placeholder="O que você procura na Orça tudo ?">
-            <i class="fas fa-search"></i>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Licitação</a></li>
-                <li><a href="#">Cotação</a></li>
-                <li><a href="#">Sobre nós</a></li>
-            </ul>
-        </nav>
-        <div class="icons">
+  <header>
+    <div class="logo">
+      <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
+    </div>
 
-            <div class="user-menu">
-                <i class="far fa-user" id="user-icon"></i>
-                <div class="dropdown-menu" id="dropdown-menu">
-                    <a href="#">Configurações</a>
-                    <a href="#">Sair da Conta</a>
-                </div>
-            </div>
-           
-           
-            <i class="fas fa-shopping-cart"></i>
-        </div>
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const userIcon = document.getElementById("user-icon");
-                const dropdownMenu = document.getElementById("dropdown-menu");
-        
-                userIcon.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Impede que o clique feche imediatamente
-                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
-                });
-        
-                document.addEventListener("click", function () {
-                    dropdownMenu.style.display = "none";
-                });
-        
-                dropdownMenu.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Evita que o clique no menu feche ele
-                });
-            });
-        </script>
-
-    </header>
-    
-
-    <container>
-
-
-        <div class="mainContent">
-            
-            <section class="perfil-fornecedor">
-                <div class="perfil-img">
-                  <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
-                </div>
-              
-                <div class="perfil-info">
-                  <h2 class="perfil-nome">Nome do Fornecedor</h2>
-                  <p class="perfil-avaliacao">Avaliação:</p>
-                  <div class="perfil-stars">
-                    <img src="imagens/star(1).png" alt="1 estrela">
-                    <img src="imagens/star(1).png" alt="2 estrelas">
-                    <img src="imagens/star(1).png" alt="3 estrelas">
-                    <img src="imagens/star.png" alt="4 estrelas">
-                    <img src="imagens/star.png" alt="5 estrelas">
-                  </div>
-                </div>
-              
-                <div class="perfil-sobre">
-                  <h3>Sobre nós</h3>
-                  <p>
-                    Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
-                    Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
-                    Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
-                    garantindo excelência em cada projeto e construindo relações de confiança.
-                  </p>
-                </div>
-              </section>
-
-
-              <section class="catalogo-section">
-                <!-- Filtro -->
-                <div class="filtro-container">
-                  <label for="filtro">Filtrar por</label>
-                  <select id="filtro" class="filtro-selecao">
-                    <option value="relevante">Mais relevante</option>
-                    <option value="maior_preco">Maior preço</option>
-                    <option value="menor_preco">Menor preço</option>
-                  </select>
-                </div>
-              
-                <!-- Categorias -->
-                <div class="categoria-lista">
-                  <span class="categoria-item">Categoria 1</span>
-                  <span class="categoria-item">Categoria 2</span>
-                  <span class="categoria-item">Categoria 3</span>
-                  <span class="categoria-item">Categoria 4</spa  n>
-                </div>
-              </section>
-
-              <section class="produto-section">
-                <div class="produto-card">
-                    <img src="https://cdn.leroymerlin.com.br/products/carrinho_de_mao_em_aco_carbono_pneu_e_camara_chapa_26mm_45l_1571958082_5aac_300x300.jpg" alt="Produto" />
-                    <h3> Carrinho De Mão Em Aço </h3>
-                    <p class="preco">R$ 189,91</p>
-                    <p class="categoria"> Ferramentas e Equipamentos</p>
-                    <p class="subcategoria">Carrinhos de Mão</p>
-                  </div>
-                  
-            
-                <!-- repete os cards -->
-                
-                <div class="produto-card">
-                  <img src="https://cdn.leroymerlin.com.br/products/betoneira_400l_1_traco_max_mono_127v_csm_92016435_f57f_600x600.jpg" alt="Produto" />
-                  <h3> Betoneira 400L 1 Traço </h3>
-                  <p class="preco">R$ 4.589,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="https://cdn.leroymerlin.com.br/products/trena_manual_5mx19mm_460610_dexter_91716401_b391_600x600.jpg" alt="Produto" />
-                  <h3> Trena Manual 5 metros </h3>
-                  <p class="preco">R$  29,90</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-                <div class="produto-card">
-                  <img src="imagens/placeholder.jpg" alt="Produto" />
-                  <h3> Nome Produto  </h3>
-                  <p class="preco">R$ 00,00</p>
-                  <p class="categoria"> Categoria </p>
-                  <p class="subcategoria"> Sub Categoria </p>
-                </div>
-                
-
-                
-              </section>
-              
-    </container>
-
-
-
-    <footer>
-      <div class="footer-container">
-          <div class="footer-section">
-              <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
-          </div>
-          <div class="footer-section">
-              <h3>Ideal Para</h3>
-              <ul>
-                  <li>Engenheiros Civis</li>
-                  <li>Construtoras</li>
-                  <li>Orçamentistas</li>
-              </ul>
-          </div>
-          <div class="footer-section">
-              <h3>Funcionalidades</h3>
-              <ul>
-                  <li>Cotação de Preços</li>
-                  <li>Gestão de Orçamentos</li>
-                  <li>Comparação de Materiais</li>
-              </ul>
-          </div>
-          <div class="footer-section">
-              <h3>Recursos</h3>
-              <ul>
-                  <li>Lista de Fornecedores</li>
-                  <li>Simulação de Custos</li>
-                  <li>Dashboard Interativo</li>
-              </ul>
-          </div>
-          <div class="footer-section">
-              <h3>Sobre</h3>
-              <ul>
-                  <li><a href="#">Sobre o OrçaTudo</li>
-                  <li><a href="#">Contato</a></li>
-              </ul>
-          </div>
+    <div class="search-bar">
+      <div>
+        <input id="input" type="text" placeholder="O que você procura na Orça Tudo?">
+        <i class="fas fa-search" id="search"></i>
       </div>
-      <div class="footer-bottom">
-          <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+      <ul class="sugestoes">
+      </ul>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="catalogo.html">Catálogo</a></li>
+      </ul>
+    </nav>
+
+    <div class="icons">
+      <p id="cadastro">Cadastre-se</p>
+      <p id="login">Faça login</p>
+      <div class="user-menu">
+        <i class="far fa-user" id="user-icon"></i>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a id="dashboard">Dashboard</a>
+          <a id="logout">Sair da Conta</a>
+        </div>
       </div>
+      <i class="fas fa-shopping-cart" id="cart"></i>
+    </div>
+  </header>
+
+
+  <container>
+
+
+    <div class="mainContent">
+
+      <section class="perfil-fornecedor">
+        <div class="perfil-img">
+          <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
+        </div>
+
+        <div class="perfil-info">
+          <h2 class="perfil-nome">Nome do Fornecedor</h2>
+          <p class="perfil-avaliacao">Avaliação:</p>
+          <div class="perfil-stars">
+            <img src="imagens/star(1).png" alt="1 estrela">
+            <img src="imagens/star(1).png" alt="2 estrelas">
+            <img src="imagens/star(1).png" alt="3 estrelas">
+            <img src="imagens/star.png" alt="4 estrelas">
+            <img src="imagens/star.png" alt="5 estrelas">
+          </div>
+        </div>
+
+        <div class="perfil-sobre">
+          <h3>Sobre nós</h3>
+          <p>
+            Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
+            Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
+            Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
+            garantindo excelência em cada projeto e construindo relações de confiança.
+          </p>
+        </div>
+      </section>
+
+
+      <section class="catalogo-section">
+        <!-- Filtro -->
+        <div class="filtro-container">
+          <label for="filtro">Filtrar por</label>
+          <select id="filtro" class="filtro-selecao">
+            <option value="relevante">Mais relevante</option>
+            <option value="maior_preco">Maior preço</option>
+            <option value="menor_preco">Menor preço</option>
+          </select>
+        </div>
+
+        <!-- Categorias -->
+        <div class="categoria-lista">
+          <span class="categoria-item">Categoria 1</span>
+          <span class="categoria-item">Categoria 2</span>
+          <span class="categoria-item">Categoria 3</span>
+          <span class="categoria-item">Categoria 4</spa n>
+        </div>
+      </section>
+
+      <section class="produto-section">
+        <div class="produto-card">
+          <img
+            src="https://cdn.leroymerlin.com.br/products/carrinho_de_mao_em_aco_carbono_pneu_e_camara_chapa_26mm_45l_1571958082_5aac_300x300.jpg"
+            alt="Produto" />
+          <h3> Carrinho De Mão Em Aço </h3>
+          <p class="preco">R$ 189,91</p>
+          <p class="categoria"> Ferramentas e Equipamentos</p>
+          <p class="subcategoria">Carrinhos de Mão</p>
+        </div>
+
+
+        <!-- repete os cards -->
+
+        <div class="produto-card">
+          <img
+            src="https://cdn.leroymerlin.com.br/products/betoneira_400l_1_traco_max_mono_127v_csm_92016435_f57f_600x600.jpg"
+            alt="Produto" />
+          <h3> Betoneira 400L 1 Traço </h3>
+          <p class="preco">R$ 4.589,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img
+            src="https://cdn.leroymerlin.com.br/products/trena_manual_5mx19mm_460610_dexter_91716401_b391_600x600.jpg"
+            alt="Produto" />
+          <h3> Trena Manual 5 metros </h3>
+          <p class="preco">R$ 29,90</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+        <div class="produto-card">
+          <img src="imagens/placeholder.jpg" alt="Produto" />
+          <h3> Nome Produto </h3>
+          <p class="preco">R$ 00,00</p>
+          <p class="categoria"> Categoria </p>
+          <p class="subcategoria"> Sub Categoria </p>
+        </div>
+
+
+
+      </section>
+
+  </container>
+
+
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="imagens/Logo.png" alt="OrçaTudo Logo" class="footer-logo">
+      </div>
+      <div class="footer-section">
+        <h3>Ideal Para</h3>
+        <ul>
+          <li>Engenheiros Civis</li>
+          <li>Construtoras</li>
+          <li>Orçamentistas</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Funcionalidades</h3>
+        <ul>
+          <li>Cotação de Preços</li>
+          <li>Gestão de Orçamentos</li>
+          <li>Comparação de Materiais</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Recursos</h3>
+        <ul>
+          <li>Lista de Fornecedores</li>
+          <li>Simulação de Custos</li>
+          <li>Dashboard Interativo</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Sobre</h3>
+        <ul>
+          <li><a href="#">Sobre o OrçaTudo</li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
+    </div>
   </footer>
-  
 
 
+  <!--script para funcionamenot do header e html do modal-->
+  <div id="meuModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2 id="modal-txt">Login como:</h2>
+      <button id="fornecedor">Fornecedor</button>
+      <button id="usuario">Usuário</button>
+    </div>
+  </div>
+  <script src="js/produto.js"></script>
+  <script src="js/authUsuario.js"></script>
+  <script src="js/Fornecedor.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userIcon = document.getElementById("user-icon");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+
+      userIcon.addEventListener("click", function (event) {
+        event.stopPropagation();
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+      });
+
+      document.addEventListener("click", function () {
+        dropdownMenu.style.display = "none";
+      });
+
+      dropdownMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
+    });
+  </script>
+  <script>
+    initSearchbar();
+    initHeader();
+    async function initSearchbar() {
+      searchbar = document.getElementById('input');
+      let sugestoes = document.getElementsByClassName('sugestoes')[0];
+      let results = null;
+      searchbar.addEventListener('input', async () => {
+        sugestoes.innerHTML = "";
+        if (searchbar.value !== null && searchbar.value !== "") {
+          results = await produtoNomeLike(searchbar.value)
+        }
+        results.forEach(prod => {
+          li = document.createElement('li');
+          li.innerText = prod.nome;
+          li.addEventListener('click', () => {
+            searchbar.value = "";
+            window.location = "cotacao.html?produto=" + prod.id;
+          })
+          sugestoes.appendChild(li);
+        });
+
+        console.log(results);
+      })
+      icon = document.getElementsByClassName('fas fa-search')[0];
+      icon.addEventListener('click', () => {
+        window.location = "catalogo.html?search=" + searchbar.value
+      })
+    }
+    function initHeader() {
+      logout = document.getElementById('logout');
+      cart = document.getElementById('cart');
+      dashboard = document.getElementById('dashboard');
+      loginTxt = document.getElementById('login');
+      cadastroTxt = document.getElementById('cadastro');
+      btnFornecedor = document.getElementById('fornecedor');
+      btnUsuario = document.getElementById('usuario');
+      txtModal = document.getElementById('modal-txt');
+      modal = document.getElementsByClassName('modal')[0];
+      logout.addEventListener('click', () => {
+
+        if (sessionStorage.getItem('token') == null) {
+          alert("Você não está logado!")
+        } else {
+          sessionStorage.removeItem('token');
+          alert("Você deslogou com sucesso!")
+          window.location = "landingPage.html"
+        }
+      })
+      dashboard.addEventListener('click', async () => {
+        if (sessionStorage.getItem('token' == null)) {
+          alert("Você precisa estar logado");
+        } else {
+          token = sessionStorage.getItem('token');
+          if (token != null) {
+            obj = await decodificarJWT(token);
+            let isFornecedor = false;
+            fornecedor = await getFornecedorByEmail(obj.sub);
+            if (fornecedor == null) {
+              window.location = "dashboard.html";
+            } else {
+              window.location = "dashboardusuario.html";
+            }
+          } else {
+            alert("Você precisa estar logado")
+          }
+
+        }
+      })
+      cart.addEventListener('click', () => {
+        if (sessionStorage.getItem('token') == null) {
+          alert("Você precisa estar logado");
+        } else {
+          window.location = "carrinho.html";
+        }
+      })
+
+      loginTxt.addEventListener('click', () => {
+        modal.style.display = 'block';
+        btnFornecedor.addEventListener('click', () => {
+          window.location = "loginFornecedor.html";
+        })
+        btnUsuario.addEventListener('click', () => {
+          window.location = "login.html"
+        })
+      })
+      cadastroTxt.addEventListener('click', () => {
+        txtModal.innerText = "Cadastrar-se como:"
+        modal.style.display = 'block';
+        btnFornecedor.addEventListener('click', () => {
+          window.location = "cadastroFornecedor.html"
+        })
+        btnUsuario.addEventListener('click', () => {
+          window.location = "cadastroUsuario.html"
+        })
+      })
+
+    }
+    function fecharModal() {
+      modal.style.display = "none";
+    }
+  </script>
 
 </body>
-</html>
 
+</html>

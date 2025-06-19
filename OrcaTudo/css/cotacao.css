@@ -23,6 +23,24 @@ body {
     width: 85%;
 }
 
+.container-fornecedor{
+    display: flex;
+    width:fit-content;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.container-fornecedor:hover{
+    cursor: pointer;
+}
+.container-fornecedor img{
+    width: 50px;
+    height: 50px;
+}
+.container-fornecedor h1{
+    margin:0%;
+    padding-left: 2dvw;
+}
+
 .imagem-produto {
     flex: 1;
     display: flex;
@@ -268,7 +286,7 @@ h1 {
     }
 }
  /* formatação relacionada com o modal*/
-  .modal {
+  #modalCarrinho {
       display: none; /* começa escondido */
       position: fixed;
       top: 0; left: 0;

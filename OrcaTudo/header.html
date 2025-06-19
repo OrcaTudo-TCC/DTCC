@@ -26,7 +26,7 @@
 
         <nav>
             <ul>
-                <li><a href="catalogo.html" >Catálogo</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
             </ul>
         </nav>
 
@@ -36,7 +36,7 @@
             <div class="user-menu">
                 <i class="far fa-user" id="user-icon"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
-                    <a id="dashboard" >Dashboard</a>
+                    <a id="dashboard">Dashboard</a>
                     <a id="logout">Sair da Conta</a>
                 </div>
             </div>
@@ -90,7 +90,7 @@
     <div id="meuModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <h2 id="modal-txt" >Login como:</h2>
+            <h2 id="modal-txt">Login como:</h2>
             <button id="fornecedor">Fornecedor</button>
             <button id="usuario">Usuário</button>
         </div>
@@ -117,7 +117,7 @@
     </script>
     <!--integração da header-->
     <script src="js/produto.js"></script>
-    <script src="js/authUsuario.js" ></script>
+    <script src="js/authUsuario.js"></script>
     <script src="js/Fornecedor.js"></script>
     <script>
         initSearchbar();
@@ -145,7 +145,6 @@
             })
             icon = document.getElementsByClassName('fas fa-search')[0];
             icon.addEventListener('click', () => {
-                alert("Clicou no ícone")
                 window.location = "catalogo.html?search=" + searchbar.value
             })
         }
@@ -169,21 +168,21 @@
                     window.location = "landingPage.html"
                 }
             })
-            dashboard.addEventListener('click', async ()=>{
-                if(sessionStorage.getItem('token' == null)){
+            dashboard.addEventListener('click', async () => {
+                if (sessionStorage.getItem('token' == null)) {
                     alert("Você precisa estar logado");
-                }else{
+                } else {
                     token = sessionStorage.getItem('token');
-                    if(token != null){
+                    if (token != null) {
                         obj = await decodificarJWT(token);
                         let isFornecedor = false;
                         fornecedor = await getFornecedorByEmail(obj.sub);
-                        if(fornecedor == null){
+                        if (fornecedor == null) {
                             window.location = "dashboard.html";
-                        }else{
+                        } else {
                             window.location = "dashboardusuario.html";
                         }
-                    }else{
+                    } else {
                         alert("Você precisa estar logado")
                     }
 
@@ -199,24 +198,24 @@
 
             loginTxt.addEventListener('click', () => {
                 modal.style.display = 'block';
-                btnFornecedor.addEventListener('click', ()=>{
+                btnFornecedor.addEventListener('click', () => {
                     window.location = "loginFornecedor.html";
                 })
-                btnUsuario.addEventListener('click', ()=>{
+                btnUsuario.addEventListener('click', () => {
                     window.location = "login.html"
                 })
             })
-            cadastroTxt.addEventListener('click', ()=>{
+            cadastroTxt.addEventListener('click', () => {
                 txtModal.innerText = "Cadastrar-se como:"
                 modal.style.display = 'block';
-                btnFornecedor.addEventListener('click', ()=>{
+                btnFornecedor.addEventListener('click', () => {
                     window.location = "cadastroFornecedor.html"
                 })
-                btnUsuario.addEventListener('click', ()=>{
+                btnUsuario.addEventListener('click', () => {
                     window.location = "cadastroUsuario.html"
                 })
             })
-            
+
         }
         function fecharModal() {
             modal.style.display = "none";

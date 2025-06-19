@@ -259,7 +259,6 @@
         renderizarProdutos(produtos.flat());
       }else{
         produtos = await produtoNomeLike(params.get('search'));
-        alert("realizou a pesquisa nomelike")
         renderizarProdutos(produtos);
       }
 

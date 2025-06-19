@@ -16,56 +16,36 @@
 
     <header>
         <div class="logo">
-            <img src="imagens/Logo1.png">
+            <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
         </div>
 
         <div class="search-bar">
-            <input type="text" placeholder="O que você procura na Orça tudo ?">
-            <i class="fas fa-search"></i>
+            <div>
+                <input id="input" type="text" placeholder="O que você procura na Orça Tudo?">
+                <i class="fas fa-search" id="search"></i>
+            </div>
+            <ul class="sugestoes">
+            </ul>
         </div>
+
         <nav>
             <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Licitação</a></li>
-                <li><a href="#">Cotação</a></li>
-                <li><a href="#">Sobre nós</a></li>
+                <li><a href="catalogo.html" >Catálogo</a></li>
             </ul>
         </nav>
-        <div class="icons">
 
+        <div class="icons">
+            <p id="cadastro">Cadastre-se</p>
+            <p id="login">Faça login</p>
             <div class="user-menu">
                 <i class="far fa-user" id="user-icon"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
-                    <a href="#">Configurações</a>
-                    <a href="#">Sair da Conta</a>
+                    <a id="dashboard" >Dashboard</a>
+                    <a id="logout">Sair da Conta</a>
                 </div>
             </div>
-
-
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart" id="cart"></i>
         </div>
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const userIcon = document.getElementById("user-icon");
-                const dropdownMenu = document.getElementById("dropdown-menu");
-
-                userIcon.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Impede que o clique feche imediatamente
-                    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
-                });
-
-                document.addEventListener("click", function () {
-                    dropdownMenu.style.display = "none";
-                });
-
-                dropdownMenu.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Evita que o clique no menu feche ele
-                });
-            });
-        </script>
-
     </header>
 
     <container>
@@ -76,6 +56,12 @@
                 </div>
 
                 <div class="detalhes-produto">
+
+                    <div class="container-fornecedor" >
+                        <img src="imagens/userPlaceholder.png" alt="icon fornecedor">
+                        <h1 id="fornecedorTxt" >Nome do fornecedor</h1>
+                    </div>
+
                     <h1 class="produto-titulo">Betoneira 400L Prime 220V Menegotti</h1>
 
                     <div class="cotacao">
@@ -221,7 +207,7 @@
         </div>
     </footer>
 
-    <div id="modal" class="modal">
+    <div id="modalCarrinho" >
         <div class="modal-content">
             <p>Faça login para continuar</p>
             <button class="btn btn-login" id="confirmarBtn">Login</button>
@@ -230,12 +216,12 @@
     </div>
     <script>
         botaoCarrinho = document.getElementsByClassName('btn verde')[0];
-        modal = document.getElementById('modal');
+        modalCarrinho = document.getElementById('modalCarrinho');
         const qtd = document.getElementById('quantidade');
         produtoSelecionadoIn = document.getElementById('produto-selecionado');
         botaoCarrinho.addEventListener('click', async () => {
             if (sessionStorage.getItem('token') == null) {
-                modal.style.display = "flex";
+                modalCarrinho.style.display = "flex";
                 return;
             }
             let obj = await decodificarJWT(sessionStorage.getItem('token'));
@@ -292,7 +278,7 @@
         })
         const btnVoltar = document.getElementById('cancelarBtn');
         btnVoltar.addEventListener('click', () => {
-            modal.style.display = "none";
+            modalCarrinho.style.display = "none";
         })
     </script>
 
@@ -301,6 +287,7 @@
     <script src="js/produto.js"></script>
     <script src="js/item-carrinho.js"></script>
     <script src="js/authUsuario.js"></script>
+    <script src="js/Fornecedor.js"></script>
     <script src="js/Usuario.js"></script>
     <script src="js/Carrinho.js"></script>
 
@@ -329,15 +316,20 @@
             produto = await getProdutoById(idProduto);
             console.log(produto)
 
-
+            let containerFornecedor = document.getElementsByClassName('container-fornecedor')[0];
             let imgElement = document.getElementsByClassName('imagem-produto')[1];
-            let Nomeh1 = document.getElementsByClassName('produto-titulo')[0];
+            let nomeH1 = document.getElementsByClassName('produto-titulo')[0];
+            let nomeFornecedor = document.getElementById('fornecedorTxt');
             let categoriaH3 = document.getElementById('categoria');
             let subcategoriaH3 = document.getElementById('subcategoria');
             let categoriaFinal = document.getElementById('produto');
             let descriçãoDiv = document.getElementsByClassName('descricao-produto')[0];
 
-            Nomeh1.innerText = produto[0].nome;
+            containerFornecedor.addEventListener('click', ()=>{
+                window.location = "catalogoFornecedores.html?fornecedor="+produto[0].fornecedor.id;
+            })
+            nomeFornecedor.innerText = produto[0].fornecedor.nome;
+            nomeH1.innerText = produto[0].nome;
             categoriaH3.innerText = produto[0].subcategoriaFinal.subcategoria.categoria.nome;
             subcategoriaH3.innerText = produto[0].subcategoriaFinal.subcategoria.nome;
             categoriaFinal.innerText = produto[0].subcategoriaFinal.nome;
@@ -431,6 +423,137 @@
             subtotal = document.getElementById('subtotal');
         }
 
+    </script>
+    <!--script para funcionamento do header e html do modal-->
+    <div id="meuModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2 id="modal-txt">Login como:</h2>
+            <button id="fornecedor">Fornecedor</button>
+            <button id="usuario">Usuário</button>
+        </div>
+    </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userIcon = document.getElementById("user-icon");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+
+            userIcon.addEventListener("click", function (event) {
+                event.stopPropagation();
+                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+            });
+
+            document.addEventListener("click", function () {
+                dropdownMenu.style.display = "none";
+            });
+
+            dropdownMenu.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+        <script>
+        initSearchbar();
+        initHeader();
+        async function initSearchbar() {
+            searchbar = document.getElementById('input');
+            let sugestoes = document.getElementsByClassName('sugestoes')[0];
+            let results = null;
+            searchbar.addEventListener('input', async () => {
+                sugestoes.innerHTML = "";
+                if (searchbar.value !== null && searchbar.value !== "") {
+                    results = await produtoNomeLike(searchbar.value)
+                }
+                results.forEach(prod => {
+                    li = document.createElement('li');
+                    li.innerText = prod.nome;
+                    li.addEventListener('click', () => {
+                        searchbar.value = "";
+                        window.location = "cotacao.html?produto=" + prod.id;
+                    })
+                    sugestoes.appendChild(li);
+                });
+
+                console.log(results);
+            })
+            icon = document.getElementsByClassName('fas fa-search')[0];
+            icon.addEventListener('click', () => {
+                alert("Clicou no ícone")
+                window.location = "catalogo.html?search=" + searchbar.value
+            })
+        }
+        function initHeader() {
+            logout = document.getElementById('logout');
+            cart = document.getElementById('cart');
+            dashboard = document.getElementById('dashboard');
+            loginTxt = document.getElementById('login');
+            cadastroTxt = document.getElementById('cadastro');
+            btnFornecedor = document.getElementById('fornecedor');
+            btnUsuario = document.getElementById('usuario');
+            txtModal = document.getElementById('modal-txt');
+            modal = document.getElementsByClassName('modal')[0];
+            logout.addEventListener('click', () => {
+
+                if (sessionStorage.getItem('token') == null) {
+                    alert("Você não está logado!")
+                } else {
+                    sessionStorage.removeItem('token');
+                    alert("Você deslogou com sucesso!")
+                    window.location = "landingPage.html"
+                }
+            })
+            dashboard.addEventListener('click', async ()=>{
+                if(sessionStorage.getItem('token' == null)){
+                    alert("Você precisa estar logado");
+                }else{
+                    token = sessionStorage.getItem('token');
+                    if(token != null){
+                        obj = await decodificarJWT(token);
+                        let isFornecedor = false;
+                        fornecedor = await getFornecedorByEmail(obj.sub);
+                        if(fornecedor == null){
+                            window.location = "dashboard.html";
+                        }else{
+                            window.location = "dashboardusuario.html";
+                        }
+                    }else{
+                        alert("Você precisa estar logado")
+                    }
+
+                }
+            })
+            cart.addEventListener('click', () => {
+                if (sessionStorage.getItem('token') == null) {
+                    alert("Você precisa estar logado");
+                } else {
+                    window.location = "carrinho.html";
+                }
+            })
+
+            loginTxt.addEventListener('click', () => {
+                modal.style.display = 'block';
+                btnFornecedor.addEventListener('click', ()=>{
+                    window.location = "loginFornecedor.html";
+                })
+                btnUsuario.addEventListener('click', ()=>{
+                    window.location = "login.html"
+                })
+            })
+            cadastroTxt.addEventListener('click', ()=>{
+                txtModal.innerText = "Cadastrar-se como:"
+                modal.style.display = 'block';
+                btnFornecedor.addEventListener('click', ()=>{
+                    window.location = "cadastroFornecedor.html"
+                })
+                btnUsuario.addEventListener('click', ()=>{
+                    window.location = "cadastroUsuario.html"
+                })
+            })
+            
+        }
+        function fecharModal() {
+            modal.style.display = "none";
+        }
     </script>
 </body>
 
