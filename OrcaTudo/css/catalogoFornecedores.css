@@ -53,15 +53,8 @@ body {
   margin-bottom: 10px;
 }
 
-.perfil-avaliacao {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
 
-.perfil-stars img {
-  width: 25px;
-  height: 25px;
-}
+
 
 .perfil-sobre {
   flex: 2;

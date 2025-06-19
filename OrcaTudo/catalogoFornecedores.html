@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catalogo de Fornecedores</title>
   <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="imagens/Logo1.png" type="image/png">
   <link rel="stylesheet" href="css/catalogoFornecedores.css">
   <link rel="stylesheet" href="css/header.css">
 </head>
@@ -59,14 +60,11 @@
 
         <div class="perfil-info">
           <h2 class="perfil-nome">Nome do Fornecedor</h2>
-          <p class="perfil-avaliacao">Avaliação:</p>
-          <div class="perfil-stars">
-            <img src="imagens/star(1).png" alt="1 estrela">
-            <img src="imagens/star(1).png" alt="2 estrelas">
-            <img src="imagens/star(1).png" alt="3 estrelas">
-            <img src="imagens/star.png" alt="4 estrelas">
-            <img src="imagens/star.png" alt="5 estrelas">
-          </div>
+          <h4 class="perfil-area">Area de atuação</h4>
+          <h4 class="perfil-endereco" >endereço</h4>
+          <p class="perfil-razao" >Razão Social</p>
+          <p class="perfil-contato" >Contato: emailexemplo@gmail.com</p>
+
         </div>
 
         <div class="perfil-sobre">
@@ -234,7 +232,7 @@
   </footer>
 
 
-  <!--script para funcionamenot do header e html do modal-->
+  <!--script para funcionamento do header e html do modal-->
   <div id="meuModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="fecharModal()">&times;</span>
@@ -367,7 +365,51 @@
       modal.style.display = "none";
     }
   </script>
+  <!--Script para integração da página -->
+  <script>
+    window.addEventListener('DOMContentLoaded', async ()=>{
+      params = new URLSearchParams(window.location.search);
+      let fornecedor;
+      if(params.get('fornecedor') == null){
+        //caso a página não tenha o parâmetro 'fornecedor'
+        alert('Parâmetro obrigatório "fornecedor" ausente');
+      }else{
+        //caso a página tenha o parâmetro 'fornecedor'
+        fornecedor = await getFornecedorById( Number.parseInt(params.get('fornecedor')));
+        if(fornecedor == null){
+          alert("Parâmetro 'fornecedor' inválido");
+        }
+        carregarInfoFornecedor(fornecedor)
+      }
+    })
 
+    function carregarInfoFornecedor(fornecedor){
+      console.log(fornecedor);
+      const nomeFornecedor = document.getElementsByClassName('perfil-nome')[0];
+      const areaFornecedor = document.getElementsByClassName('perfil-area')[0];
+      const contatoFornecedor = document.getElementsByClassName('perfil-contato')[0];
+      const razaoFornecedor = document.getElementsByClassName('perfil-razao')[0];
+      const enderecoFornecedor = document.getElementsByClassName('perfil-endereco')[0];
+      const sobreFornecedor = document.getElementsByClassName('perfil-sobre')[0];
+
+
+      nomeFornecedor.innerText = fornecedor[0].nome;
+      areaFornecedor.innerText = fornecedor[0].area_de_atuacao;
+      contatoFornecedor.innerText =  "Contato: "+ fornecedor[0].email;
+      razaoFornecedor.innerText = fornecedor[0].razao_social;
+      enderecoFornecedor.innerText = "Logradouro: "+ fornecedor[0].endereco;
+      sobreFornecedor.innerHTML = "<h3>Sobre nós</h3>" + "<p>"+ fornecedor[0].descricao + "</p>";
+    }
+
+
+    function carregarProdutos(Produtos) {
+      containerProdutos = document.getElementsByClassName('produto-section')[0];
+      if(Produtos.lenght === 0){
+        containerProdutos.innerText = " ";
+      }
+      
+    }
+  </script>
 </body>
 
 </html>
