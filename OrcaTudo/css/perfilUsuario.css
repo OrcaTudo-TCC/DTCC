@@ -17,69 +17,38 @@ body {
 
 .mainContent{
     width: 100%; 
-    height: 100vh;
     padding: 20px;
     text-align:center;
 }
 
 .perfil-fornecedor {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: flex-start; /* alinhamento ao topo */
+    justify-content: flex-start; /* alinhamento à esquerda */
+    flex-direction: column; /* Coloca os filhos (perfil-info) em coluna */
     background-color: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
     width: 90vw;
     margin: 30px auto;
-    gap: 30px;
-  }
-  
-  .perfil-img img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .perfil-info {
-    flex: 1;
-    min-width: 250px;
-  }
-  
-  .perfil-nome {
+}
+
+.perfil-info {
+    text-align: left;
+    width: 100%; /* Faz com que ocupe toda a largura */
+}
+
+.perfil-nome {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-  }
-  
-  .perfil-avaliacao {
+}
+
+.perfil-avaliacao {
     font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .perfil-stars img {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .perfil-sobre {
-    flex: 2;
-    min-width: 300px;
-  }
-  
-  .perfil-sobre h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .perfil-sobre p {
-    text-align: justify;
-    line-height: 1.6;
-    font-size: 15px;
-    color: #333;
-  }
+    color: #666;
+}
   
 
 .info-geral {
@@ -116,6 +85,17 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 14px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.form-row .formdata {
+    width: 48%;
 }
 
 .editar-section {
@@ -161,3 +141,36 @@ body {
 }
 
 
+@media (max-width: 768px) {
+    .container-info {
+        flex-direction: column;
+    }
+
+    .formdata {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-row .formdata {
+        width: 100%;
+    }
+
+    .perfil-fornecedor {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .editar-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .editar-buttons button {
+        width: 100%;
+    }
+}

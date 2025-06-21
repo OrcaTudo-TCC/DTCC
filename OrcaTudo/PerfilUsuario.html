@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <link rel="stylesheet" href="css/perfilUsuario.css">
     <link rel="stylesheet" href="css/header.css">
     <script src="js/Usuario.js"></script>
-    <script src="js/authUsuario.js" ></script>
-     <link rel="icon" href="imagens/Logo1.png" type="image/png">
-    
+    <script src="js/authUsuario.js"></script>
+    <link rel="icon" href="imagens/Logo1.png" type="image/png">
+
 </head>
+
 <body>
 
 
@@ -42,7 +44,7 @@
                 <i class="far fa-user" id="user-icon"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
                     <a id="perfil">Perfil</a>
-                    
+
                     <a id="logout">Sair da Conta</a>
                 </div>
             </div>
@@ -53,46 +55,25 @@
 
     <main>
         <div class="container">
-    
+
             <div class="mainContent">
-            
+
                 <section class="perfil-fornecedor">
-                    <div class="perfil-img">
-                      <img src="imagens/userPlaceholder.png" alt="Foto do Fornecedor">
-                    </div>
-                  
                     <div class="perfil-info">
-                      <h2 class="perfil-nome">Nome do Usuário</h2>
-                      <p class="perfil-avaliacao">Avaliação:</p>
-                      <div class="perfil-stars">
-                        <img src="imagens/star(1).png" alt="1 estrela">
-                        <img src="imagens/star(1).png" alt="2 estrelas">
-                        <img src="imagens/star(1).png" alt="3 estrelas">
-                        <img src="imagens/star.png" alt="4 estrelas">
-                        <img src="imagens/star.png" alt="5 estrelas">
-                      </div>
+                        <h2 class="perfil-nome" id="perfil-nome">Nome do Usuário</h2>
+                        <p class="perfil-avaliacao">Configurações Perfil Usuario</p>
                     </div>
-                  
-                    <div class="perfil-sobre">
-                      <h3>Sobre nós</h3>
-                      <p>
-                        Somos uma empresa focada em qualidade, inovação e compromisso com nossos clientes.
-                        Oferecemos soluções eficientes e personalizadas, sempre com ética e transparência.
-                        Nossa equipe qualificada trabalha para entregar resultados que fazem a diferença,
-                        garantindo excelência em cada projeto e construindo relações de confiança.
-                      </p>
-                    </div>
-                  </section>
-                  
-               
-               
+                </section>
+
+
+
                 <section class="info-geral">
                     <div class="container-info">
                         <div class="formdata">
                             <h4>Nome</h4>
                             <input id="nome" type="text" placeholder="Digite o nome usuário" disabled>
                         </div>
-                      
+
                         <div class="formdata">
                             <h4>CNPJ/CPF</h4>
                             <input id="documento" type="text" placeholder="Digite o CNPJ/CPF" disabled>
@@ -101,35 +82,35 @@
                             <h4>Email</h4>
                             <input id="email" placeholder="Digite o email" disabled>
                         </div>
-                        <div class="formdata">
-                            <h4>Telefone</h4>
-                            <input id="telefone" type="tel" placeholder="Digite o telefone" disabled>
+                        <div class="form-row">
+                            <div class="formdata">
+                                <h4>Telefone</h4>
+                                <input id="telefone" type="tel" placeholder="Digite o telefone" disabled>
+                            </div>
+                            <div class="formdata">
+                                <h4>Endereço</h4>
+                                <input id="endereco" type="text" placeholder="Digite o endereço" disabled>
+                            </div>
                         </div>
-                        <div class="formdata">
-                            <h4>Endereço</h4>
-                            <input id="endereco" type="text" placeholder="Digite o endereço" disabled>
-                        </div>
-                    </div>
                 </section>
-                
-                
-                
+
+
+
                 <section class="editar-section">
                     <h2>Gerenciamento</h2>
-                  
+
                     <div class="editar-buttons">
-                      <button id="editar"><i class="fas fa-pen"></i> Editar</button>
-                      <button id="salvar"><i class="fas fa-save"></i> Salvar</button>
-                      <button id="excluir"><i class="fas fa-trash"></i> Excluir</button>
+                        <button id="editar"><i class="fas fa-pen"></i> Editar</button>
+                        <button id="salvar"><i class="fas fa-save"></i> Salvar</button>
                     </div>
-                  </section>
-                  
+                </section>
+
             </div>
         </div>
     </main>
 
-            <script>
-             document.addEventListener("DOMContentLoaded", async () => {
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
             const token = sessionStorage.getItem("token");
             if (!token) {
                 alert("Você precisa estar logado.");
@@ -154,6 +135,9 @@
                 document.getElementById("documento").value = usuario.documento || "";
                 document.getElementById("endereco").value = usuario.endereco || "";
 
+                // Mostra o nome do usuário no h2
+                document.getElementById("perfil-nome").innerText = usuario.nome || "Usuário";
+
             } catch (error) {
                 console.error("Erro ao carregar dados:", error);
             }
@@ -161,16 +145,16 @@
 
 
 
-            document.addEventListener("DOMContentLoaded", () => { // espera que todo o HTML da página esteja carregado antes de executar qualquer código JavaScript.
-                const editarBtn = document.querySelector("#editar"); // 
+        document.addEventListener("DOMContentLoaded", () => { // espera que todo o HTML da página esteja carregado antes de executar qualquer código JavaScript.
+            const editarBtn = document.querySelector("#editar"); // 
 
-                editarBtn.addEventListener("click", () => { // Evento ao clicar no botão editar 
-                    // Ativa todos os campos de input para edição
-                    document.querySelectorAll("input").forEach(input => {
-                        input.disabled = false; // Remove o atributo disabled
-                    });
+            editarBtn.addEventListener("click", () => { // Evento ao clicar no botão editar 
+                // Ativa todos os campos de input para edição
+                document.querySelectorAll("input").forEach(input => {
+                    input.disabled = false; // Remove o atributo disabled
                 });
             });
+        });
 
 
 
@@ -178,74 +162,75 @@
         // Garante que o DOM esteja totalmente carregado antes de adicionar os ouvintes de eventos
         document.addEventListener("DOMContentLoaded", () => {
 
-        // Seleciona o botão de salvar pelo ID
-        const salvarBtn = document.getElementById("salvar");
+            // Seleciona o botão de salvar pelo ID
+            const salvarBtn = document.getElementById("salvar");
 
-        // Adiciona o evento de clique no botão Salvar
-        salvarBtn.addEventListener("click", async () => {
+            // Adiciona o evento de clique no botão Salvar
+            salvarBtn.addEventListener("click", async () => {
 
-            // Pega o token JWT salvo no localStorage
-            const token = sessionStorage.getItem("token");
-            if (!token) {
-                alert("Você precisa estar logado.");
-                return; // Interrompe a execução caso não tenha token
-            }
-
-            try {
-                // Decodifica o token para obter o e-mail do usuário logado
-                const payload = decodificarJWT(token);
-                const email = payload.sub;
-
-                // Busca os dados do usuário com base no e-mail
-                const usuarios = await getUsuarioByEmail(email);
-                const usuario = usuarios[0]; // Pega o primeiro (e provavelmente único) resultado
-
-                // Cria um objeto com os valores dos inputs atualizados
-                const dadosAtualizados = {
-                    nome: document.getElementById("nome").value,
-                    email: document.getElementById("email").value,
-                    telefone: document.getElementById("telefone").value,
-                    documento: document.getElementById("documento").value,
-                    endereco: document.getElementById("endereco").value
-                };
-
-                // Envia a requisição PUT para atualizar os dados do usuário na API
-                const resposta = await fetch(`http://localhost:8080/usuarios/${usuario.id}`, {
-                    method: "PUT", // Método de atualização
-                    headers: {
-                        "Content-Type": "application/json", // Tipo de conteúdo esperado
-                        Authorization: `Bearer ${token}` // Envia o token JWT no cabeçalho para autenticação
-                    },
-                    body: JSON.stringify(dadosAtualizados) // Converte os dados em JSON para enviar no corpo
-                });
-
-                // Verifica se a atualização foi bem-sucedida
-                if (resposta.ok) {
-                    alert("Dados atualizados com sucesso!");
-
-                    // Desativa os campos novamente após salvar
-                    document.querySelectorAll("input").forEach(input => {
-                        input.disabled = true;
-                    });
-
-                } else {
-                    alert("Erro ao atualizar os dados."); // Caso ocorra algum erro (ex: validação)
+                // Pega o token JWT salvo no localStorage
+                const token = sessionStorage.getItem("token");
+                if (!token) {
+                    alert("Você precisa estar logado.");
+                    return; // Interrompe a execução caso não tenha token
                 }
 
-            } catch (error) {
-                // Captura qualquer erro que ocorra durante o processo
-                console.error("Erro ao salvar dados:", error);
-                alert("Erro inesperado."); // Alerta genérico
-            }
+                try {
+                    // Decodifica o token para obter o e-mail do usuário logado
+                    const payload = decodificarJWT(token);
+                    const email = payload.sub;
 
+                    // Busca os dados do usuário com base no e-mail
+                    const usuarios = await getUsuarioByEmail(email);
+                    const usuario = usuarios[0]; // Pega o primeiro (e provavelmente único) resultado
+
+                    // Cria um objeto com os valores dos inputs atualizados
+                    const dadosAtualizados = {
+                        nome: document.getElementById("nome").value,
+                        email: document.getElementById("email").value,
+                        telefone: document.getElementById("telefone").value,
+                        documento: document.getElementById("documento").value,
+                        endereco: document.getElementById("endereco").value
+
+                    };
+
+                    // Envia a requisição PUT para atualizar os dados do usuário na API
+                    const resposta = await fetch(`http://localhost:8080/usuarios/${usuario.id}`, {
+                        method: "PUT", // Método de atualização
+                        headers: {
+                            "Content-Type": "application/json", // Tipo de conteúdo esperado
+                            Authorization: `Bearer ${token}` // Envia o token JWT no cabeçalho para autenticação
+                        },
+                        body: JSON.stringify(dadosAtualizados) // Converte os dados em JSON para enviar no corpo
+                    });
+
+                    // Verifica se a atualização foi bem-sucedida
+                    if (resposta.ok) {
+                        alert("Dados atualizados com sucesso!");
+
+                        // Desativa os campos novamente após salvar
+                        document.querySelectorAll("input").forEach(input => {
+                            input.disabled = true;
+                        });
+
+                    } else {
+                        alert("Erro ao atualizar os dados."); // Caso ocorra algum erro (ex: validação)
+                    }
+
+                } catch (error) {
+                    // Captura qualquer erro que ocorra durante o processo
+                    console.error("Erro ao salvar dados:", error);
+                    alert("Erro inesperado."); // Alerta genérico
+                }
+
+            });
         });
-    });
 
 
 
 
-    
-        </script>
+
+    </script>
 
 
 
@@ -343,23 +328,23 @@
             txtModal = document.getElementById('modal-txt');
             perfil = document.getElementById('perfil');
             modal = document.getElementsByClassName('modal')[0];
-                    document.addEventListener("DOMContentLoaded", function () {
-            const userIcon = document.getElementById("user-icon");
-            const dropdownMenu = document.getElementById("dropdown-menu");
+            document.addEventListener("DOMContentLoaded", function () {
+                const userIcon = document.getElementById("user-icon");
+                const dropdownMenu = document.getElementById("dropdown-menu");
 
-            userIcon.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-            });
+                userIcon.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+                });
 
-            document.addEventListener("click", function () {
-                dropdownMenu.style.display = "none";
-            });
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
 
-            dropdownMenu.addEventListener("click", function (event) {
-                event.stopPropagation();
+                dropdownMenu.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                });
             });
-        });
             logout.addEventListener('click', () => {
 
                 if (sessionStorage.getItem('token') == null) {
@@ -371,19 +356,19 @@
                 }
             })
             perfil.addEventListener('click', async () => {
-                    token = sessionStorage.getItem('token');
-                    if (token != null) {
-                        obj = await decodificarJWT(token);
+                token = sessionStorage.getItem('token');
+                if (token != null) {
+                    obj = await decodificarJWT(token);
 
-                        fornecedor = await getFornecedorByEmail(obj.sub);
-                        if (fornecedor == null) {
-                            window.location = "PerfilFornecedor.html";
-                        } else {
-                            window.location = "PerfilUsuario.html";
-                        }
+                    fornecedor = await getFornecedorByEmail(obj.sub);
+                    if (fornecedor == null) {
+                        window.location = "PerfilFornecedor.html";
                     } else {
-                        alert("Você precisa estar logado")
+                        window.location = "PerfilUsuario.html";
                     }
+                } else {
+                    alert("Você precisa estar logado")
+                }
             })
             dashboard.addEventListener('click', async () => {
                 if (sessionStorage.getItem('token' == null)) {
@@ -441,4 +426,5 @@
     </script>
 
 </body>
+
 </html>
