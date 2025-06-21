@@ -1,5 +1,5 @@
 
-const endpoint = "http://localhost:8080/fornecedor"
+const endpointForne = "http://localhost:8080/fornecedor"
 
 const endpoint2 = "http://localhost:8080/auth/signupFornecedor"
 
@@ -8,7 +8,7 @@ async function getFornecedorById(id){
 
      if(typeof id === 'number' && Number.isInteger(id)){
         // se a requisição conter parametro numérico
-        const url = new URL(endpoint);
+        const url = new URL(endpointForne);
         url.searchParams.append('id', id)
         try{
             const response = await fetch(url.toString(), {
@@ -29,7 +29,7 @@ async function getFornecedorById(id){
     // se a requisição não conter nennhum parametro
     else if(id === undefined){
         try{
-            const response = await fetch(endpoint);
+            const response = await fetch(endpointForne);
             const data = await response.json();
     
             return data
@@ -48,7 +48,7 @@ async function getFornecedorById(id){
 async function getFornecedorByEmail(email) {
     if(typeof email === 'string'){
         // se a requisição conter parametro numérico
-        const url = new URL(endpoint);
+        const url = new URL(endpointForne);
         url.searchParams.append('email', email)
         console.log(email);
         try{
@@ -124,7 +124,7 @@ async function putFornecedor(id, atributo , valor){
         throw new Error("Id inválido, id precisa ser um número inteiro")
     }
     try{
-        const response = await fetch(endpoint+ "/"+ id , {
+        const response = await fetch(endpointForne+ "/"+ id , {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -147,7 +147,7 @@ async function deleteFornecedor(id) {
         throw new Error("Id inválido, id precisa ser um número inteiro")
     }
     try{
-        const response = await fetch(endpoint + "/" + id, {
+        const response = await fetch(endpointForn + "/" + id, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
         });

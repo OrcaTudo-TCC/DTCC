@@ -82,7 +82,6 @@ async function getProdutoByCategoriaFinal(nomeCategoriaFinal){
             throw new Error("Erro na requisição get produto by categoria: "+response.status);
         }
         let datap = await response.json();
-        console.log("data: ", datap)
         return datap;
 
     } catch (error) {
@@ -96,9 +95,8 @@ async function getProdutoByFornecedorNome(nomeFornecedor){
         if(typeof nomeCategoriaFinal === "string"){
             throw new Error("O nome do fornecedor precisa ser do tipo String");
         }
-        const response = await fetch(endpointProd+"/fornecedor"+nomeFornecedor,{
-            method:"GET",
-            headers: { "Content-Type": "application/json" }
+        const response = await fetch(endpointProd+"/fornecedor/"+nomeFornecedor,{
+            method:"GET"
         })
         if(!response.ok){
             throw new Error(response.status);

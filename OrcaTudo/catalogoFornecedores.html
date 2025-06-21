@@ -61,9 +61,9 @@
         <div class="perfil-info">
           <h2 class="perfil-nome">Nome do Fornecedor</h2>
           <h4 class="perfil-area">Area de atuação</h4>
-          <h4 class="perfil-endereco" >endereço</h4>
-          <p class="perfil-razao" >Razão Social</p>
-          <p class="perfil-contato" >Contato: emailexemplo@gmail.com</p>
+          <h4 class="perfil-endereco">endereço</h4>
+          <p class="perfil-razao">Razão Social</p>
+          <p class="perfil-contato">Contato: emailexemplo@gmail.com</p>
 
         </div>
 
@@ -91,11 +91,12 @@
         </div>
 
         <!-- Categorias -->
+        <p style="margin-bottom: 10px;" >Subcategorias:</p>
         <div class="categoria-lista">
           <span class="categoria-item">Categoria 1</span>
           <span class="categoria-item">Categoria 2</span>
           <span class="categoria-item">Categoria 3</span>
-          <span class="categoria-item">Categoria 4</spa n>
+          <span class="categoria-item">Categoria 4</span>
         </div>
       </section>
 
@@ -244,6 +245,8 @@
   <script src="js/produto.js"></script>
   <script src="js/authUsuario.js"></script>
   <script src="js/Fornecedor.js"></script>
+  <script src="js/subcategoria.js"></script>
+  <script src="js/SubcategoriaFinal.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const userIcon = document.getElementById("user-icon");
@@ -367,23 +370,65 @@
   </script>
   <!--Script para integração da página -->
   <script>
-    window.addEventListener('DOMContentLoaded', async ()=>{
+    window.addEventListener('DOMContentLoaded', async () => {
       params = new URLSearchParams(window.location.search);
       let fornecedor;
-      if(params.get('fornecedor') == null){
+      if (params.get('fornecedor') == null) {
         //caso a página não tenha o parâmetro 'fornecedor'
         alert('Parâmetro obrigatório "fornecedor" ausente');
-      }else{
+      } else {
         //caso a página tenha o parâmetro 'fornecedor'
-        fornecedor = await getFornecedorById( Number.parseInt(params.get('fornecedor')));
-        if(fornecedor == null){
+        fornecedor = await getFornecedorById(Number.parseInt(params.get('fornecedor')));
+        if (fornecedor == null) {
           alert("Parâmetro 'fornecedor' inválido");
         }
         carregarInfoFornecedor(fornecedor)
+        produtos = await getProdutoByFornecedorNome(fornecedor[0].nome)
+        carregarFiltro(produtos);
+        carregarProdutos(produtos);
       }
     })
 
-    function carregarInfoFornecedor(fornecedor){
+    function carregarProdutos(produtos){
+      console.log("carregarProdutos rodou!")
+      if(!Array.isArray(produtos) || produtos == null ){
+        throw new Error("O parâmetro 'produtos' da função carregarProdutos precisa ser um Array e não pode ser nulo"); 
+      }
+      const cardsContainer = document.getElementsByClassName('produto-section')[0];
+      cardsContainer.innerHTML = "";
+      produtos.forEach(produto => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('produto-card')
+        cardDiv.addEventListener('click', ()=>{
+          window.location = "cotacao.html?produto=" + produto.id;
+        })
+        const cardImg = document.createElement('img');
+        const cardH3 = document.createElement('h3');
+        const cardPreco = document.createElement('p');
+        cardPreco.classList.add('preco');
+        const cardCategoria = document.createElement('p');
+        cardCategoria.classList.add('categoria')
+        const cardSubcategoria = document.createElement('p');
+        cardSubcategoria.classList.add('subcategoria')
+        
+        const base64 = produto.imagem;
+        const contentType = "image/png";
+        const dataUrl = `data:${contentType};base64,${base64}`;
+        cardImg.src = dataUrl
+        cardDiv.appendChild(cardImg);
+        cardH3.innerText = produto.nome;
+        cardDiv.appendChild(cardH3);
+        cardPreco.innerText =  "R$ "+ produto.preco;
+        cardDiv.appendChild(cardPreco);
+        cardCategoria.innerText = produto.subcategoriaFinal.subcategoria.categoria.nome;
+        cardDiv.appendChild(cardCategoria);
+        cardSubcategoria.innerText = produto.subcategoriaFinal.subcategoria.nome;
+        cardDiv.appendChild(cardSubcategoria);
+        cardsContainer.appendChild(cardDiv);
+
+      })
+    }
+    function carregarInfoFornecedor(fornecedor) {
       console.log(fornecedor);
       const nomeFornecedor = document.getElementsByClassName('perfil-nome')[0];
       const areaFornecedor = document.getElementsByClassName('perfil-area')[0];
@@ -395,19 +440,66 @@
 
       nomeFornecedor.innerText = fornecedor[0].nome;
       areaFornecedor.innerText = fornecedor[0].area_de_atuacao;
-      contatoFornecedor.innerText =  "Contato: "+ fornecedor[0].email;
+      contatoFornecedor.innerText = "Contato: " + fornecedor[0].email;
       razaoFornecedor.innerText = fornecedor[0].razao_social;
-      enderecoFornecedor.innerText = "Logradouro: "+ fornecedor[0].endereco;
-      sobreFornecedor.innerHTML = "<h3>Sobre nós</h3>" + "<p>"+ fornecedor[0].descricao + "</p>";
+      enderecoFornecedor.innerText = "Logradouro: " + fornecedor[0].endereco;
+      sobreFornecedor.innerHTML = "<h3>Sobre nós</h3>" + "<p>" + fornecedor[0].descricao + "</p>";
     }
+    function carregarFiltro(produtos) {
+      let categorias = [];
+      let subcategorias = [];
+      let subFinais = [];
+      selectFiltro = document.getElementById('filtro');
+      divSubcategorias = document.getElementsByClassName('categoria-lista')[0];
+      produtos.forEach(produto => {
+
+        if (!subFinais.includes(produto.subcategoriaFinal.nome)) {
+          subFinais.push(produto.subcategoriaFinal.nome);
+        }
+        if (!subcategorias.includes(produto.subcategoriaFinal.subcategoria.nome)) {
+          subcategorias.push(produto.subcategoriaFinal.subcategoria.nome);
+        }
+        if (!categorias.includes(produto.subcategoriaFinal.subcategoria.categoria.nome)) {
+          categorias.push(produto.subcategoriaFinal.subcategoria.categoria.nome);
+        }
+      })
+
+      //select de categorias
+      selectFiltro.innerText = "";
+      categorias.forEach(categoria => {
+        option = document.createElement('option');
+        option.innerText = categoria;
+        selectFiltro.appendChild(option);
+      })
+      selectFiltro.addEventListener('change', async ()=>{
+        if(selectFiltro.value !== ""){
+          console.log(selectFiltro.value)
+          subcategorias = await getSubcategoria(selectFiltro.value);
+          subFinal = await Promise.all(subcategorias.flat().map(sub => getSubcategoriafinal(sub.nome)));
+          produtos = await Promise.all(subFinal.flat().map(final => getProdutoByCategoriaFinal(final.nome)));
+          carregarProdutos(produtos.flat());
+        }
+        
+      })
+      selectFiltro.innerHTML += "<option value='' selected disabled >Selecionar categoria</option>";
+      //botões para filtrar por subcategorias
+      divSubcategorias.innerText = "";
+      subcategorias.forEach(subcategoria => {
+        span = document.createElement('span');
+        span.innerText = subcategoria;
+        span.classList.add('categoria-item');
+        span.addEventListener('click', async ()=>{
+          subFinal = await getSubcategoriafinal(subcategoria);
+          produtos = await Promise.all(subFinal.map(final => getProdutoByCategoriaFinal(final.nome)));
+          carregarProdutos(produtos.flat())
+        })
+        divSubcategorias.appendChild(span);
+      })
 
 
-    function carregarProdutos(Produtos) {
-      containerProdutos = document.getElementsByClassName('produto-section')[0];
-      if(Produtos.lenght === 0){
-        containerProdutos.innerText = " ";
-      }
-      
+      console.log("categorias: ", categorias);
+      console.log("subcategorias: ", subcategorias);
+      console.log("Subcateogiras finais: ", subFinais);
     }
   </script>
 </body>
