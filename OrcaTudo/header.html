@@ -27,6 +27,7 @@
         <nav>
             <ul>
                 <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a id="dashboard">Dashboard</a></li>
             </ul>
         </nav>
 
@@ -36,7 +37,8 @@
             <div class="user-menu">
                 <i class="far fa-user" id="user-icon"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
-                    <a id="dashboard">Dashboard</a>
+                    <a id="perfil">Perfil</a>
+                    
                     <a id="logout">Sair da Conta</a>
                 </div>
             </div>
@@ -96,25 +98,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const userIcon = document.getElementById("user-icon");
-            const dropdownMenu = document.getElementById("dropdown-menu");
-
-            userIcon.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-            });
-
-            document.addEventListener("click", function () {
-                dropdownMenu.style.display = "none";
-            });
-
-            dropdownMenu.addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
-        });
-    </script>
     <!--integração da header-->
     <script src="js/produto.js"></script>
     <script src="js/authUsuario.js"></script>
@@ -157,7 +140,25 @@
             btnFornecedor = document.getElementById('fornecedor');
             btnUsuario = document.getElementById('usuario');
             txtModal = document.getElementById('modal-txt');
+            perfil = document.getElementById('perfil');
             modal = document.getElementsByClassName('modal')[0];
+                    document.addEventListener("DOMContentLoaded", function () {
+            const userIcon = document.getElementById("user-icon");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+
+            userIcon.addEventListener("click", function (event) {
+                event.stopPropagation();
+                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+            });
+
+            document.addEventListener("click", function () {
+                dropdownMenu.style.display = "none";
+            });
+
+            dropdownMenu.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+        });
             logout.addEventListener('click', () => {
 
                 if (sessionStorage.getItem('token') == null) {
@@ -168,6 +169,21 @@
                     window.location = "landingPage.html"
                 }
             })
+            perfil.addEventListener('click', async () => {
+                    token = sessionStorage.getItem('token');
+                    if (token != null) {
+                        obj = await decodificarJWT(token);
+
+                        fornecedor = await getFornecedorByEmail(obj.sub);
+                        if (fornecedor == null) {
+                            window.location = "PerfilFornecedor.html";
+                        } else {
+                            window.location = "PerfilUsuario.html";
+                        }
+                    } else {
+                        alert("Você precisa estar logado")
+                    }
+            })
             dashboard.addEventListener('click', async () => {
                 if (sessionStorage.getItem('token' == null)) {
                     alert("Você precisa estar logado");
@@ -175,7 +191,7 @@
                     token = sessionStorage.getItem('token');
                     if (token != null) {
                         obj = await decodificarJWT(token);
-                        let isFornecedor = false;
+
                         fornecedor = await getFornecedorByEmail(obj.sub);
                         if (fornecedor == null) {
                             window.location = "dashboard.html";
@@ -197,6 +213,7 @@
             })
 
             loginTxt.addEventListener('click', () => {
+                txtModal.innerText = "login como:"
                 modal.style.display = 'block';
                 btnFornecedor.addEventListener('click', () => {
                     window.location = "loginFornecedor.html";

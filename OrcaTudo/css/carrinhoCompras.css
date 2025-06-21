@@ -149,7 +149,7 @@ body {
   }
 
   /* formatação relacionada com o modal*/
-  .modal {
+  #modalRemove {
       display: none; /* começa escondido */
       position: fixed;
       top: 0; left: 0;
