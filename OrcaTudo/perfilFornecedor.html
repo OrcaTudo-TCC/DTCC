@@ -116,8 +116,8 @@
           <h2>Gerenciamento</h2>
 
           <div class="editar-buttons">
-            <button><i class="fas fa-pen"></i> Gerenciar produtos</button>
-            <button><i class="fas fa-pen"></i> Gerenciar categorias</button>
+            <button id="gerenciar-produtos" ><i class="fas fa-pen"></i> Gerenciar produtos</button>
+            <button id="gerenciar-categorias" ><i class="fas fa-pen"></i> Gerenciar categorias</button>
             <button id="editar"><i class="fas fa-pen"></i>Editar Informações</button>
           </div>
         </section>
@@ -174,7 +174,27 @@
         console.error("Erro ao carregar perfil:", erro);
       }
     }
+    
 
+
+    // carrega todos os eventos necessários para o funcionamento do modal de gerenciamento produtos
+    function fecharMenuProdutos(){
+      document.getElementsByClassName('produtos-menu')[0].style.display = "none";
+    }
+    async function carregarModalProdutos() {
+      document.getElementById('gerenciar-produtos').addEventListener('click', ()=>{
+        document.getElementsByClassName('produtos-menu')[0].style.display = "flex";
+      })
+    }
+    // carrega todos os eventos necessários para o funcionamento do modal de categorias
+    function fecharModalCategorias(){
+      document.getElementsByClassName('categorias-menu')[0].style.display = "none";
+    }
+    async function carregarModalCategorias() {
+      document.getElementById('gerenciar-categorias').addEventListener('click' , ()=>{
+        document.getElementsByClassName('categorias-menu')[0].style.display = "flex";
+      })
+    }
     // Função para salvar dados atualizados
     async function salvarPerfil() {
       const obj = await decodificarJWT(sessionStorage.getItem('token'));
@@ -231,9 +251,14 @@
 
 
     }
-    // Quando a página carregarui
+    
+    
+    
+    // Quando a página carregar
     document.addEventListener("DOMContentLoaded", () => {
       carregarPerfil();
+      carregarModalProdutos();
+      carregarModalCategorias();
       btnEditar = document.getElementById('editar');
       btnEditar.addEventListener('click', () => {
         editarInfo();
@@ -286,6 +311,8 @@
     </div>
   </footer>
 
+
+  <!--modal gerenciar produtos-->
   <div class="produtos-menu">
     <button class="close-btn" onclick="fecharMenuProdutos()">X</button>
     <h2>Gerenciar Produtos</h2>
@@ -307,6 +334,7 @@
           </div>
           <p>descrição do produto</p>
           <button>Atualizar</button>
+          <button>Voltar</button>
         </div>
       </div>
       <!--Conteúdo que ficará a direita, lista de produtos cadastrados-->
@@ -376,7 +404,55 @@
     </div>
   </div>
 
-
+  <!--modal gerenciar categorias-->
+  <div class="categorias-menu" >
+    <button onclick="fecharModalCategorias()" class="close-categorias" >X</button>
+    <h2>Gerenciar categorias</h2>
+    <div class="categorias-container" >
+      <!--conteúdo à esquerda, seleção de categorias, subcategorias, categorias finais-->
+      <div class="select-categoria" >
+        <h3>Selecione uma categoria para editar</h3>
+        <label for="slt-categoria">Categorias</label>
+        <select id="sct-categoria" >
+          <option>Selecione uma categoria</option>
+        </select>
+        <label for="slt-subcategoria">Subcategoria</label>
+        <select id="slt-subcategoria" >
+          <option>Selecione uma subcategoria</option>
+        </select>
+        <label for="slt-final">Categoria final</label>
+        <select id="slt-final" >
+          <option value="">Selecioner uma Categoria Final</option>
+        </select>
+        <button>Limpar seleção</button>
+      </div>
+      <!--conteúdo à direita, opções de editar ou exluir categoria selecionada, caso nada seelecionada criar-->
+      <div class="edit-categoria" >
+        <h3>Nova categoria</h3>
+        <input disabled type="text" placeholder="Nome da categoria" >
+        <div class="option-container" >
+          <label>
+            <input type="radio" name="option" value="categoria" >
+            <span>Categoria</span>
+          </label>
+          <label>
+            <input type="radio" name="option" value="subcategoria" >
+            <span>Subcategoria</span>
+          </label>
+          <label>
+            <input type="radio" name="option" value="SubcategoriaFinal" >
+            <span>Categoria Final</span>
+          </label>
+        </div>
+        <label for="slt-pai">Pertence à:</label>
+        <select id="slt-pai">
+          <option value="">Selecione</option>
+        </select>
+        <button id="salvar-btn" >Salvar</button>
+        <button id="delete-btn" >Excluir</button>
+      </div>
+    </div>
+  </div>
   <!--integração da header-->
 
   <div id="meuModal" class="modal">
