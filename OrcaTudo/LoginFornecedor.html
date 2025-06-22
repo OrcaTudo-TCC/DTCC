@@ -81,12 +81,12 @@
                 const result = await loginFornecedor(email, password); // função vinda de authUsuario.js
 
                 if (result && result.token) {
-                    // 🔁 Salva o novo token, substituindo o antigo
+                    // Salva o novo token, substituindo o antigo
                     sessionStorage.setItem("token", result.token);
 
 
                     alert("Login realizado com sucesso!");
-                    window.location.href = "dashboard.html"; // vá para o perfil, dashboard etc
+                    window.location.href = "dashboardfornecedor.html"; // vá para o perfil, dashboard etc
                 } else {
                     alert("Usuário não encontrado ou dados inválidos.");
                 }
