@@ -250,8 +250,14 @@
   <!--Scrpit para renderizar produtos-->
   <script>
     async function renderizarProdutos(produtos){
+      params = new URLSearchParams(window.location.search);
       const results = document.getElementsByClassName('results')[0];
-      results.innerText = produtos.length +" Resultados encontrados"
+      if(params.get('search')  == null){
+        results.innerText = produtos.length +" Resultados encontrados"
+      }else{
+        results.innerText = produtos.length + " resultados para pesquisa '"+ params.get('search')+ "'";
+      }
+
       const section = document.getElementsByClassName('produto-section')[0];
       if(produtos.length === 0){
         section.innerHTML = "";

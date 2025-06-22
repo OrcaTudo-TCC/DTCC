@@ -134,7 +134,7 @@ async function putFornecedor(id, atributo , valor){
         const data = await response.json();
 
         if(!response.ok){
-            throw new Error("Erro na requisição put fronecedor: "+ response.status);
+            throw new Error("Erro na requisição put fornecedor: "+ response.status);
         }
         return data;
     }catch(err){

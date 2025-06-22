@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil Fornecedor</title>
   <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="imagens/Logo1.png" type="image/png">
   <link rel="stylesheet" href="css/perfilFornecedor.css">
   <link rel="stylesheet" href="css/header.css">
 </head>
@@ -12,41 +13,41 @@
 <body>
 
 
-    <header>
-        <div class="logo">
-            <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
-        </div>
+  <header>
+    <div class="logo">
+      <img src="imagens/Logo1.png" alt="Logo OrçaTudo">
+    </div>
 
-        <div class="search-bar">
-            <div>
-                <input id="input" type="text" placeholder="O que você procura na Orça Tudo?">
-                <i class="fas fa-search" id="search"></i>
-            </div>
-            <ul class="sugestoes">
-            </ul>
-        </div>
+    <div class="search-bar">
+      <div>
+        <input id="input" type="text" placeholder="O que você procura na Orça Tudo?">
+        <i class="fas fa-search" id="search"></i>
+      </div>
+      <ul class="sugestoes">
+      </ul>
+    </div>
 
-        <nav>
-            <ul>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a id="dashboard">Dashboard</a></li>
-            </ul>
-        </nav>
+    <nav>
+      <ul>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a id="dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
 
-        <div class="icons">
-            <p id="cadastro">Cadastre-se</p>
-            <p id="login">Faça login</p>
-            <div class="user-menu">
-                <i class="far fa-user" id="user-icon"></i>
-                <div class="dropdown-menu" id="dropdown-menu">
-                    <a id="perfil">Perfil</a>
-                    
-                    <a id="logout">Sair da Conta</a>
-                </div>
-            </div>
-            <i class="fas fa-shopping-cart" id="cart"></i>
+    <div class="icons">
+      <p id="cadastro">Cadastre-se</p>
+      <p id="login">Faça login</p>
+      <div class="user-menu">
+        <i class="far fa-user" id="user-icon"></i>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a id="perfil">Perfil</a>
+
+          <a id="logout">Sair da Conta</a>
         </div>
-    </header>
+      </div>
+      <i class="fas fa-shopping-cart" id="cart"></i>
+    </div>
+  </header>
 
 
   <main>
@@ -60,15 +61,11 @@
           </div>
 
           <div class="perfil-info">
-            <h2 id="perfil-nome">Nome do Fornecedor</h2>
-            <p class="perfil-avaliacao">Avaliação:</p>
-            <div class="perfil-stars">
-              <img src="imagens/star(1).png" alt="1 estrela">
-              <img src="imagens/star(1).png" alt="2 estrelas">
-              <img src="imagens/star(1).png" alt="3 estrelas">
-              <img src="imagens/star.png" alt="4 estrelas">
-              <img src="imagens/star.png" alt="5 estrelas">
-            </div>
+            <h2 id="perfil-nome" style="margin-bottom: 20px;">Nome do Fornecedor</h2>
+            <h4 class="perfil-area">Area de atuação</h4>
+            <h4 class="perfil-endereco">endereço</h4>
+            <p class="perfil-razao">Razão Social</p>
+            <p class="perfil-contato">Contato: emailexemplo@gmail.com</p>
           </div>
 
           <div class="perfil-sobre">
@@ -96,7 +93,7 @@
             </div>
             <div class="formdata">
               <h4>CNPJ</h4>
-              <input disabled id= "cnpj" type="text" placeholder="Digite o CNPJ">
+              <input disabled id="cnpj" type="text" placeholder="Digite o CNPJ">
             </div>
             <div class="formdata">
               <h4>Email</h4>
@@ -119,9 +116,9 @@
           <h2>Gerenciamento</h2>
 
           <div class="editar-buttons">
-            <button><i class="fas fa-pen"></i> Editar</button>
-            <button><i class="fas fa-save"></i> Salvar</button>
-            <button><i class="fas fa-trash"></i> Excluir</button>
+            <button><i class="fas fa-pen"></i> Gerenciar produtos</button>
+            <button><i class="fas fa-pen"></i> Gerenciar categorias</button>
+            <button id="editar"><i class="fas fa-pen"></i>Editar Informações</button>
           </div>
         </section>
 
@@ -133,6 +130,7 @@
 
   <script src="js/Fornecedor.js"></script>
   <script src="js/authUsuario.js"></script>
+  <script src="js/produto.js"></script>
   <script>
 
 
@@ -145,19 +143,32 @@
         }
         const obj = await decodificarJWT(sessionStorage.getItem('token'));
         console.log(obj)
-        const fornecedorId = await getFornecedorByEmail(obj.sub); // Substitua com o ID real do fornecedor
-        console.log("fornecedorid",fornecedorId)
-        const resposta = await getFornecedorById (  fornecedorId[0].id);
-        const fornecedor = await resposta;
+        const fornecedor = await getFornecedorByEmail(obj.sub);
 
-        document.getElementById("nomeFornecedor").value = fornecedor[0].nome;
+        const nomeFornecedor = document.getElementById('perfil-nome');
+        const areaFornecedor = document.getElementsByClassName('perfil-area')[0];
+        const contatoFornecedor = document.getElementsByClassName('perfil-contato')[0];
+        const razaoFornecedor = document.getElementsByClassName('perfil-razao')[0];
+        const enderecoFornecedor = document.getElementsByClassName('perfil-endereco')[0];
+        const sobreFornecedor = document.getElementsByClassName('perfil-sobre')[0];
+
+
+        nomeFornecedor.innerText = fornecedor[0].nome;
+        areaFornecedor.innerText = fornecedor[0].area_de_atuacao;
+        contatoFornecedor.innerText = "Contato: " + fornecedor[0].email;
+        razaoFornecedor.innerText = fornecedor[0].razao_social;
+        enderecoFornecedor.innerText = "Logradouro: " + fornecedor[0].endereco;
+        sobreFornecedor.innerHTML = "<h3>Sobre nós</h3>" + "<p>" + fornecedor[0].descricao + "</p>";
+
+
+
         document.getElementById("area").value = fornecedor[0].area_de_atuacao;
         document.getElementById("cnpj").value = fornecedor[0].documento;
         document.getElementById("email").value = fornecedor[0].email;
         document.getElementById("telefone").value = fornecedor[0].telefone;
         document.getElementById("endereco").value = fornecedor[0].endereco;
         document.getElementById('perfil-nome').textContent = fornecedor[0].nome;
-        document.getElementById('descricao').textContent = fornecedor[0].descricao;
+
 
       } catch (erro) {
         console.error("Erro ao carregar perfil:", erro);
@@ -166,42 +177,68 @@
 
     // Função para salvar dados atualizados
     async function salvarPerfil() {
+      const obj = await decodificarJWT(sessionStorage.getItem('token'));
+      console.log(obj)
+      const fornecedor = await getFornecedorByEmail(obj.sub);
+      console.log("fornecedor: ", fornecedor)
+      console.log('salvou!')
       const dados = {
         nome: document.querySelector('input[placeholder="Digite o nome do fornecedor"]').value,
-        categoria: document.querySelector('input[placeholder="Digite a categoria"]').value,
-        cnpj: document.querySelector('input[placeholder="Digite o CNPJ"]').value,
+        area_de_atuacao: document.querySelector('input[placeholder="Digite a categoria"]').value,
+        documento: document.querySelector('input[placeholder="Digite o CNPJ"]').value,
         email: document.querySelector('input[placeholder="Digite o email"]').value,
         telefone: document.querySelector('input[placeholder="Digite o telefone"]').value,
         endereco: document.querySelector('input[placeholder="Digite o endereço"]').value
       };
 
       try {
-        const resposta = await fetch(`http://localhost:8080/fornecedor/${fornecedorId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(dados)
-        });
+        for (const [chave, valor] of Object.entries(dados)) {
+          const resposta = await putFornecedor(fornecedor[0].id, chave, valor);
 
-        if (resposta.ok) {
-          alert("Perfil atualizado com sucesso!");
-        } else {
-          alert("Erro ao salvar.");
         }
-
-      } catch (erro) {
-        console.error("Erro ao salvar perfil:", erro);
+        // 🔥 Agora sim, recarregar a página após concluir tudo:
+        location.reload();
+      } catch (error) {
+        console.log(error)
       }
     }
+    function editarInfo() {
+      btnEditar = document.getElementById('editar');
+      console.log("Editarinfo rodou")
 
-    // Quando a página carregar
+
+      if (btnEditar.innerText === "Editar Informações") {
+        console.log("rodou porra!!!");
+        document.getElementById("nomeFornecedor").disabled = false;
+        document.getElementById("area").disabled = false;
+        document.getElementById("cnpj").disabled = false;
+        document.getElementById("email").disabled = false;
+        document.getElementById("telefone").disabled = false;
+        document.getElementById("endereco").disabled = false;
+        document.getElementById('perfil-nome').disabled = false;
+        btnEditar.innerText = "Salvar";
+      } else {
+        btnEditar.innerText = "Editar Informações"
+        document.getElementById("nomeFornecedor").disabled = true
+        document.getElementById("area").disabled = true
+        document.getElementById("cnpj").disabled = true
+        document.getElementById("email").disabled = true
+        document.getElementById("telefone").disabled = true
+        document.getElementById("endereco").disabled = true
+        document.getElementById('perfil-nome').disabled = true
+        salvarPerfil();
+      }
+
+
+    }
+    // Quando a página carregarui
     document.addEventListener("DOMContentLoaded", () => {
       carregarPerfil();
+      btnEditar = document.getElementById('editar');
+      btnEditar.addEventListener('click', () => {
+        editarInfo();
+      })
 
-      document.querySelector(".fa-save").parentElement.addEventListener("click", () => {
-        salvarPerfil();
-      });
     });
   </script>
 
@@ -248,155 +285,244 @@
       <p>© 2025 OrçaTudo. Todos os direitos reservados | Política de Privacidade | Termos de Serviço</p>
     </div>
   </footer>
-      <div id="meuModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <h2 id="modal-txt">Login como:</h2>
-            <button id="fornecedor">Fornecedor</button>
-            <button id="usuario">Usuário</button>
+
+  <div class="produtos-menu">
+    <button class="close-btn" onclick="fecharMenuProdutos()">X</button>
+    <h2>Gerenciar Produtos</h2>
+    <div class="produtos-container">
+      <!--conteúdo que ficará a esquerda, preview do produto-->
+      <div class="cadastrar-container">
+        <h2>Atualizar produto</h2>
+        <img src="imagens/placeholder.jpg" alt="imagem produto">
+        <div class="preview-info">
+
+          <h3>Nome do produto</h3>
+          <h3>Preço</h3>
+          <div>
+            <ul>
+              <li>Categoria</li>
+              <li>Subcategoria</li>
+              <li>Categoria final</li>
+            </ul>
+          </div>
+          <p>descrição do produto</p>
+          <button>Atualizar</button>
         </div>
+      </div>
+      <!--Conteúdo que ficará a direita, lista de produtos cadastrados-->
+      <div class="tabela-container">
+        <h3>Produtos cadastrados</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>nome</th>
+              <th>Categoria</th>
+              <th>Atualizar</th>
+              <th>Deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+                        <tr>
+              <td>nome do produto</td>
+              <td>Ferramentas</td>
+              <td class="atualizar" ><a>atualizar</a></td>
+              <td class="deletar" ><a>deletar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 
-    <!--integração da header-->
-    <script src="js/produto.js"></script>
-    <script src="js/authUsuario.js"></script>
-    <script src="js/Fornecedor.js"></script>
-    <script>
-        initSearchbar();
-        initHeader();
-        async function initSearchbar() {
-            searchbar = document.getElementById('input');
-            let sugestoes = document.getElementsByClassName('sugestoes')[0];
-            let results = null;
-            searchbar.addEventListener('input', async () => {
-                sugestoes.innerHTML = "";
-                if (searchbar.value !== null && searchbar.value !== "") {
-                    results = await produtoNomeLike(searchbar.value)
-                }
-                results.forEach(prod => {
-                    li = document.createElement('li');
-                    li.innerText = prod.nome;
-                    li.addEventListener('click', () => {
-                        searchbar.value = "";
-                        window.location = "cotacao.html?produto=" + prod.id;
-                    })
-                    sugestoes.appendChild(li);
-                });
 
-                console.log(results);
-            })
-            icon = document.getElementsByClassName('fas fa-search')[0];
-            icon.addEventListener('click', () => {
-                window.location = "catalogo.html?search=" + searchbar.value
-            })
+  <!--integração da header-->
+
+  <div id="meuModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2 id="modal-txt">Login como:</h2>
+      <button id="fornecedor">Fornecedor</button>
+      <button id="usuario">Usuário</button>
+    </div>
+  </div>
+  <script>
+    initSearchbar();
+    initHeader();
+    async function initSearchbar() {
+      searchbar = document.getElementById('input');
+      let sugestoes = document.getElementsByClassName('sugestoes')[0];
+      let results = null;
+      searchbar.addEventListener('input', async () => {
+        sugestoes.innerHTML = "";
+        if (searchbar.value !== null && searchbar.value !== "") {
+          results = await produtoNomeLike(searchbar.value)
         }
-        function initHeader() {
-            logout = document.getElementById('logout');
-            cart = document.getElementById('cart');
-            dashboard = document.getElementById('dashboard');
-            loginTxt = document.getElementById('login');
-            cadastroTxt = document.getElementById('cadastro');
-            btnFornecedor = document.getElementById('fornecedor');
-            btnUsuario = document.getElementById('usuario');
-            txtModal = document.getElementById('modal-txt');
-            perfil = document.getElementById('perfil');
-            modal = document.getElementsByClassName('modal')[0];
-                    document.addEventListener("DOMContentLoaded", function () {
-            const userIcon = document.getElementById("user-icon");
-            const dropdownMenu = document.getElementById("dropdown-menu");
-
-            userIcon.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-            });
-
-            document.addEventListener("click", function () {
-                dropdownMenu.style.display = "none";
-            });
-
-            dropdownMenu.addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
+        results.forEach(prod => {
+          li = document.createElement('li');
+          li.innerText = prod.nome;
+          li.addEventListener('click', () => {
+            searchbar.value = "";
+            window.location = "cotacao.html?produto=" + prod.id;
+          })
+          sugestoes.appendChild(li);
         });
-            logout.addEventListener('click', () => {
 
-                if (sessionStorage.getItem('token') == null) {
-                    alert("Você não está logado!")
-                } else {
-                    sessionStorage.removeItem('token');
-                    alert("Você deslogou com sucesso!")
-                    window.location = "landingPage.html"
-                }
-            })
-            perfil.addEventListener('click', async () => {
-                    token = sessionStorage.getItem('token');
-                    if (token != null) {
-                        obj = await decodificarJWT(token);
+        console.log(results);
+      })
+      icon = document.getElementsByClassName('fas fa-search')[0];
+      icon.addEventListener('click', () => {
+        window.location = "catalogo.html?search=" + searchbar.value
+      })
+    }
+    function initHeader() {
+      logout = document.getElementById('logout');
+      cart = document.getElementById('cart');
+      dashboard = document.getElementById('dashboard');
+      loginTxt = document.getElementById('login');
+      cadastroTxt = document.getElementById('cadastro');
+      btnFornecedor = document.getElementById('fornecedor');
+      btnUsuario = document.getElementById('usuario');
+      txtModal = document.getElementById('modal-txt');
+      perfil = document.getElementById('perfil');
+      modal = document.getElementsByClassName('modal')[0];
+      document.addEventListener("DOMContentLoaded", function () {
+        const userIcon = document.getElementById("user-icon");
+        const dropdownMenu = document.getElementById("dropdown-menu");
 
-                        fornecedor = await getFornecedorByEmail(obj.sub);
-                        if (fornecedor == null) {
-                            window.location = "PerfilFornecedor.html";
-                        } else {
-                            window.location = "PerfilUsuario.html";
-                        }
-                    } else {
-                        alert("Você precisa estar logado")
-                    }
-            })
-            dashboard.addEventListener('click', async () => {
-                if (sessionStorage.getItem('token' == null)) {
-                    alert("Você precisa estar logado");
-                } else {
-                    token = sessionStorage.getItem('token');
-                    if (token != null) {
-                        obj = await decodificarJWT(token);
+        userIcon.addEventListener("click", function (event) {
+          event.stopPropagation();
+          dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        });
 
-                        fornecedor = await getFornecedorByEmail(obj.sub);
-                        if (fornecedor == null) {
-                            window.location = "dashboard.html";
-                        } else {
-                            window.location = "dashboardusuario.html";
-                        }
-                    } else {
-                        alert("Você precisa estar logado")
-                    }
+        document.addEventListener("click", function () {
+          dropdownMenu.style.display = "none";
+        });
 
-                }
-            })
-            cart.addEventListener('click', () => {
-                if (sessionStorage.getItem('token') == null) {
-                    alert("Você precisa estar logado");
-                } else {
-                    window.location = "carrinho.html";
-                }
-            })
+        dropdownMenu.addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+      });
+      logout.addEventListener('click', () => {
 
-            loginTxt.addEventListener('click', () => {
-                txtModal.innerText = "login como:"
-                modal.style.display = 'block';
-                btnFornecedor.addEventListener('click', () => {
-                    window.location = "loginFornecedor.html";
-                })
-                btnUsuario.addEventListener('click', () => {
-                    window.location = "login.html"
-                })
-            })
-            cadastroTxt.addEventListener('click', () => {
-                txtModal.innerText = "Cadastrar-se como:"
-                modal.style.display = 'block';
-                btnFornecedor.addEventListener('click', () => {
-                    window.location = "cadastroFornecedor.html"
-                })
-                btnUsuario.addEventListener('click', () => {
-                    window.location = "cadastroUsuario.html"
-                })
-            })
+        if (sessionStorage.getItem('token') == null) {
+          alert("Você não está logado!")
+        } else {
+          sessionStorage.removeItem('token');
+          alert("Você deslogou com sucesso!")
+          window.location = "landingPage.html"
+        }
+      })
+      perfil.addEventListener('click', async () => {
+        token = sessionStorage.getItem('token');
+        if (token != null) {
+          obj = await decodificarJWT(token);
+
+          fornecedor = await getFornecedorByEmail(obj.sub);
+          if (fornecedor == null) {
+            window.location = "PerfilFornecedor.html";
+          } else {
+            window.location = "PerfilUsuario.html";
+          }
+        } else {
+          alert("Você precisa estar logado")
+        }
+      })
+      dashboard.addEventListener('click', async () => {
+        if (sessionStorage.getItem('token' == null)) {
+          alert("Você precisa estar logado");
+        } else {
+          token = sessionStorage.getItem('token');
+          if (token != null) {
+            obj = await decodificarJWT(token);
+
+            fornecedor = await getFornecedorByEmail(obj.sub);
+            if (fornecedor == null) {
+              window.location = "dashboard.html";
+            } else {
+              window.location = "dashboardusuario.html";
+            }
+          } else {
+            alert("Você precisa estar logado")
+          }
 
         }
-        function fecharModal() {
-            modal.style.display = "none";
+      })
+      cart.addEventListener('click', () => {
+        if (sessionStorage.getItem('token') == null) {
+          alert("Você precisa estar logado");
+        } else {
+          window.location = "carrinho.html";
         }
-    </script>
+      })
+
+      loginTxt.addEventListener('click', () => {
+        txtModal.innerText = "login como:"
+        modal.style.display = 'block';
+        btnFornecedor.addEventListener('click', () => {
+          window.location = "loginFornecedor.html";
+        })
+        btnUsuario.addEventListener('click', () => {
+          window.location = "login.html"
+        })
+      })
+      cadastroTxt.addEventListener('click', () => {
+        txtModal.innerText = "Cadastrar-se como:"
+        modal.style.display = 'block';
+        btnFornecedor.addEventListener('click', () => {
+          window.location = "cadastroFornecedor.html"
+        })
+        btnUsuario.addEventListener('click', () => {
+          window.location = "cadastroUsuario.html"
+        })
+      })
+
+    }
+    function fecharModal() {
+      modal.style.display = "none";
+    }
+  </script>
 
 
 </body>
