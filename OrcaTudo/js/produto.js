@@ -31,9 +31,9 @@ async function postProduto(produto , imagem) {
         formData.append("nome", produto.nome);
         formData.append("descricao", produto.descricao);
         formData.append("preco",produto.preco);
-        formData.append("nomeDasubcategoriafinal",produto.idSubcategoriaFinal);
-        formData.append("nomeDoFornecedor", produto.idFornecedor);
         formData.append("imagemFile", imagem);
+        formData.append("nomeDasubcategoriaFinal",produto.nomeSubcategoriaFinal);
+        formData.append("nomeDoFornecedor", produto.nomeFornecedor);
         //requisição com fecth
         const response = await fetch(endpointProd,{
             method: "POST",

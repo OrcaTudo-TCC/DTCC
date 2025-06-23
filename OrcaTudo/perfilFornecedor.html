@@ -116,8 +116,8 @@
           <h2>Gerenciamento</h2>
 
           <div class="editar-buttons">
-            <button id="gerenciar-produtos" ><i class="fas fa-pen"></i> Gerenciar produtos</button>
-            <button id="gerenciar-categorias" ><i class="fas fa-pen"></i> Gerenciar categorias</button>
+            <button id="gerenciar-produtos"><i class="fas fa-pen"></i> Gerenciar produtos</button>
+            <button id="gerenciar-categorias"><i class="fas fa-pen"></i> Gerenciar categorias</button>
             <button id="editar"><i class="fas fa-pen"></i>Editar Informações</button>
           </div>
         </section>
@@ -131,6 +131,10 @@
   <script src="js/Fornecedor.js"></script>
   <script src="js/authUsuario.js"></script>
   <script src="js/produto.js"></script>
+  <script src="js/Carrinho.js"></script>
+  <script src="js/categoria.js"></script>
+  <script src="js/subcategoria.js"></script>
+  <script src="js/SubcategoriaFinal.js"></script>
   <script>
 
 
@@ -174,24 +178,118 @@
         console.error("Erro ao carregar perfil:", erro);
       }
     }
-    
+
 
 
     // carrega todos os eventos necessários para o funcionamento do modal de gerenciamento produtos
-    function fecharMenuProdutos(){
+    function fecharMenuProdutos() {
       document.getElementsByClassName('produtos-menu')[0].style.display = "none";
     }
     async function carregarModalProdutos() {
-      document.getElementById('gerenciar-produtos').addEventListener('click', ()=>{
+      document.getElementById('gerenciar-produtos').addEventListener('click', () => {
         document.getElementsByClassName('produtos-menu')[0].style.display = "flex";
       })
+      document.getElementById('salvar-btn-prods').addEventListener('click', ()=>{
+        salvarProduto();
+      })
+
+      const imagem = document.getElementById('seletor-imagem');
+      const nome = document.getElementById('nome-input');
+      const preco = document.getElementById('preco-input');
+      const categoria = document.getElementById('select-categoria');
+      const subcategoria = document.getElementById('select-sub');
+      const subFinal = document.getElementById('select-final');
+      const descricao = document.getElementById('descricao-input');
+      let subcategorias;
+      //inicializando os selects
+      categoria.innerText = "<option value='' disabled selected>Selecione...</option>";
+      categorias = await getCategoria();
+      categorias.forEach(cate => {
+        let option = document.createElement('option');
+        option.innerText = cate.nome;
+        categoria.appendChild(option);
+      })
+      //quando houver uma mudança no select de categoria
+      categoria.addEventListener('change', async () => {
+        if (categoria.value === "" || categoria.value === undefined) {
+          return;
+        }
+        subcategoria.innerHTML = '<Option value="" >Subcategoria</Option>';
+        subFinal.innerHTML = '<Option id="select-final" value="" >Categoria Final</Option>'
+        subcategorias = await getSubcategoria(categoria.value);
+        subcategorias.forEach(sub => {
+          let option = document.createElement('option');
+          option.innerText = sub.nome;
+          subcategoria.appendChild(option);
+        })
+
+      })
+
+
+
+      subcategoria.addEventListener('change', async () => {
+        console.log('valor de subcategoria: ', subcategoria.value)
+        if (subcategoria.value === "" || categoria.value === undefined) {
+          return;
+        }
+        finais = await Promise.all(subcategorias.map(sub => getSubcategoriafinal(sub.nome)));
+        subFinal.innerHTML = ''
+        finaisFlat = finais.flat();
+        console.log('finais depois de flat ', finaisFlat)
+        finaisFlat.forEach(categoriaFinal => {
+          option = document.createElement('option');
+          option.innerText = categoriaFinal.nome;
+          subFinal.appendChild(option);
+        })
+      })
+
     }
+
+    async function salvarProduto() {
+      const imagem = document.getElementById('seletor-imagem');
+      const nome = document.getElementById('nome-input');
+      const preco = document.getElementById('preco-input');
+      const subFinal = document.getElementById('select-final');
+      const descricao = document.getElementById('descricao-input');
+      if (
+        !imagem.value ||
+        !nome.value.trim() ||
+        !preco.value.trim() ||
+        !subFinal.value.trim() ||
+        !descricao.value.trim()
+      ) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+
+      try {
+          const obj = await decodificarJWT(sessionStorage.getItem('token'));
+        console.log(obj)
+        const fornecedor = await getFornecedorByEmail(obj.sub);
+
+        let produto = {
+          "nome": nome.value,
+          "descricao": descricao.value,
+          "preco": preco.value,
+          "nomeSubcategoriaFinal": subFinal.value,
+          "nomeFornecedor": fornecedor[0].nome
+        }
+        postProduto(produto, imagem.files[0])
+        return true;
+      } catch (error) {
+        console.log("Erro ao tentar salvar produto: ", error)
+      }
+    }
+
+
+
     // carrega todos os eventos necessários para o funcionamento do modal de categorias
-    function fecharModalCategorias(){
+    function fecharModalCategorias() {
       document.getElementsByClassName('categorias-menu')[0].style.display = "none";
     }
     async function carregarModalCategorias() {
-      document.getElementById('gerenciar-categorias').addEventListener('click' , ()=>{
+      document.getElementById('gerenciar-categorias').addEventListener('click', () => {
         document.getElementsByClassName('categorias-menu')[0].style.display = "flex";
       })
     }
@@ -251,9 +349,9 @@
 
 
     }
-    
-    
-    
+
+
+
     // Quando a página carregar
     document.addEventListener("DOMContentLoaded", () => {
       carregarPerfil();
@@ -319,22 +417,32 @@
     <div class="produtos-container">
       <!--conteúdo que ficará a esquerda, preview do produto-->
       <div class="cadastrar-container">
-        <h2>Atualizar produto</h2>
-        <img src="imagens/placeholder.jpg" alt="imagem produto">
+        <h2>Cadastrar produto</h2>
+        <label for="seletor-imagem">
+          <img src="imagens/placeholder.jpg" alt="imagem produto">
+        </label>
+        <input type="file" id="seletor-imagem" accept="image/*" style="display: none;">
         <div class="preview-info">
 
-          <h3>Nome do produto</h3>
-          <h3>Preço</h3>
-          <div>
+          <input type="text" id="nome-input" placeholder="Nome do produto"><!--<h3>Nome do produto</h3>-->
+          <input type="number" id="preco-input" placeholder="Preço ex:29.99"> <!-- <h3>Preço</h3> -->
+          <div id="selects-container">
             <ul>
-              <li>Categoria</li>
-              <li>Subcategoria</li>
-              <li>Categoria final</li>
+              <li><select id="select-categoria">
+                  <Option value="">Categoria</Option>
+                </select></li>
+              <li><select id="select-sub">
+                  <Option value="">Subcategoria</Option>
+                </select></li>
+              <li><select id="select-final">
+                  <Option value="">Categoria Final</Option>
+                </select></li>
             </ul>
           </div>
-          <p>descrição do produto</p>
-          <button>Atualizar</button>
-          <button>Voltar</button>
+          <textarea id="descricao-input" type="text" placeholder="Adicione a descrição do produto aqui"></textarea>
+          <!-- <p>descrição do produto</p> -->
+          <button id="salvar-btn-prods">Salvar</button>
+          <button id="delete-btn-prods">Voltar</button>
         </div>
       </div>
       <!--Conteúdo que ficará a direita, lista de produtos cadastrados-->
@@ -353,50 +461,50 @@
             <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
-                        <tr>
+            <tr>
               <td>nome do produto</td>
               <td>Ferramentas</td>
-              <td class="atualizar" ><a>atualizar</a></td>
-              <td class="deletar" ><a>deletar</a></td>
+              <td class="atualizar"><a>atualizar</a></td>
+              <td class="deletar"><a>deletar</a></td>
             </tr>
           </tbody>
         </table>
@@ -405,42 +513,42 @@
   </div>
 
   <!--modal gerenciar categorias-->
-  <div class="categorias-menu" >
-    <button onclick="fecharModalCategorias()" class="close-categorias" >X</button>
+  <div class="categorias-menu">
+    <button onclick="fecharModalCategorias()" class="close-categorias">X</button>
     <h2>Gerenciar categorias</h2>
-    <div class="categorias-container" >
+    <div class="categorias-container">
       <!--conteúdo à esquerda, seleção de categorias, subcategorias, categorias finais-->
-      <div class="select-categoria" >
+      <div class="select-categoria">
         <h3>Selecione uma categoria para editar</h3>
         <label for="slt-categoria">Categorias</label>
-        <select id="sct-categoria" >
+        <select id="sct-categoria">
           <option>Selecione uma categoria</option>
         </select>
         <label for="slt-subcategoria">Subcategoria</label>
-        <select id="slt-subcategoria" >
+        <select id="slt-subcategoria">
           <option>Selecione uma subcategoria</option>
         </select>
         <label for="slt-final">Categoria final</label>
-        <select id="slt-final" >
+        <select id="slt-final">
           <option value="">Selecioner uma Categoria Final</option>
         </select>
         <button>Limpar seleção</button>
       </div>
       <!--conteúdo à direita, opções de editar ou exluir categoria selecionada, caso nada seelecionada criar-->
-      <div class="edit-categoria" >
+      <div class="edit-categoria">
         <h3>Nova categoria</h3>
-        <input disabled type="text" placeholder="Nome da categoria" >
-        <div class="option-container" >
+        <input disabled type="text" placeholder="Nome da categoria">
+        <div class="option-container">
           <label>
-            <input type="radio" name="option" value="categoria" >
+            <input type="radio" name="option" value="categoria">
             <span>Categoria</span>
           </label>
           <label>
-            <input type="radio" name="option" value="subcategoria" >
+            <input type="radio" name="option" value="subcategoria">
             <span>Subcategoria</span>
           </label>
           <label>
-            <input type="radio" name="option" value="SubcategoriaFinal" >
+            <input type="radio" name="option" value="SubcategoriaFinal">
             <span>Categoria Final</span>
           </label>
         </div>
@@ -448,8 +556,8 @@
         <select id="slt-pai">
           <option value="">Selecione</option>
         </select>
-        <button id="salvar-btn" >Salvar</button>
-        <button id="delete-btn" >Excluir</button>
+        <button id="salvar-btn">Salvar</button>
+        <button id="delete-btn">Excluir</button>
       </div>
     </div>
   </div>

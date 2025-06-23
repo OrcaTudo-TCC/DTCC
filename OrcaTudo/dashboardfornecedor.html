@@ -160,13 +160,13 @@
                 const fornecedorId = fornecedor.id;
 
                 // 2. Buscar todos os produtos
-                const produtos = await getTodosProdutos();
+                const produtos = await getProdutoByFornecedorNome(fornecedor.nome)
 
                 // 3. Filtrar produtos do fornecedor
-                const meusProdutos = produtos.filter(p => p.id_fornecedor === fornecedorId);
+                // const meusProdutos = await getProdutoByFornecedorNome()
 
                 // 4. Atualizar o span com a quantidade de produtos
-                document.getElementById("total-produtos-fornecedor").textContent = meusProdutos.length;
+                document.getElementById("total-produtos-fornecedor").textContent = produtos.length;
 
                 // 5. Obter categorias únicas (baseado no id_subcategoriafinal)
                 const categoriasUnicas = [...new Set(meusProdutos.map(p => p.id_subcategoriafinal))];

@@ -211,10 +211,19 @@ body {
   align-items: center;
 
 }
-.cadastrar-container img{
+.cadastrar-container label img{
   height: 15vw;
+  width: 15vw;
   margin-bottom: 10px;
+  cursor: pointer;
 }
+.upload-container {
+  position: relative;
+  display: inline-block;
+  width:fit-content;
+  height:fit-content;
+}
+
 .preview-info{
   padding-left: 2vw;
 }
@@ -233,6 +242,25 @@ body {
   padding: 5px;
   border-radius: 10px;
 }
+#nome-input{
+  padding: 5px;
+  font-weight: bold;
+  font-size: large;
+  display: block;
+}
+#preco-input{
+  margin-top: 1dvh;
+  padding: 5px;
+}
+#selects-container ul li select{
+  border: none;
+}
+#descricao-input{
+  display: block;
+  height: 15dvh;
+  width: 25dvw;
+  margin-bottom: 5px;
+}
 .preview-info p{
   height: 14vh;
 }
@@ -243,6 +271,22 @@ body {
   color: white;
   background-color: #ae7550;
   margin-bottom: 5px;
+}
+.preview-info button:hover{
+  cursor: pointer;
+}
+#salvar-btn-prods{
+  background-color: #28a745;
+}
+#salvar-btn-prods:hover{
+  background-color: #17c53d;
+}
+
+#delete-btn-prods{
+  background-color: #005bb5;
+}
+#delete-btn-prods:hover{
+  background-color: #0077ff;
 }
 .tabela-container{
   padding-left: 20px;
