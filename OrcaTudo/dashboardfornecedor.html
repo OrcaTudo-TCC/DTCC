@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrçaTudo</title>
     <script src="https://kit.fontawesome.com/449a3898b7.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="imagens/Logo1.png" type="image/png">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="js/authUsuario.js"></script>
@@ -70,6 +71,18 @@
     <main class="principal">
 
         <section class="dashboard">
+
+            <div class="info-fornecedor">
+                <img class="img-fornecedor" src="imagens/userPlaceholder.png" alt="imagem fornecedor">
+
+                <div class="dados-fornecedor">
+                    <h2 class="nome-fornecedor" id="nome-fornecedor">Nome Fornecedor</h2>
+                    <h3 class="razao" id="razao">Razão Social</h3>
+                </div>
+            </div>
+
+
+
             <div class="card">
                 <h3>Total Produtos Cadastrado</h3>
                 <div class="info">
@@ -78,13 +91,7 @@
                 </div>
             </div>
 
-            <div class="card">
-                <h3>Total Categorias</h3>
-                <div class="info">
-                    <i class="fa-solid fa-list"></i>
-                    <span class="value" id="total-categorias-fornecedor">0</span>
-                </div>
-            </div>
+
         </section>
 
         <section class="dashboard-actions">
