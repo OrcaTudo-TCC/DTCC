@@ -1,0 +1,20 @@
+Data: [22/06/25] 
+Hora de início: [21:17] 
+Hora de término: [22:00] 
+Participantes: Alex Alves , João Pedro Menezes, Murilo 
+Facilitador: João Pedro Menezes 
+
+1. Objetivo da Reunião 
+        Realizar as ultimas funcionalidades e ajuste no sistema para versão final do projeto.
+2. Tópicos Abordados 
+        progresso:
+        Alex alves: finalizou dashboard Usuário, ajuste tela perfil usuário finalizado, finalizando dashboard fornecedor.
+        João Pedro: finalizou wireframes baixa fidelidade.
+        Murilo: Finalizou integração header, finalizando funcionalidades tela perfil fornecedor.
+
+3. Decisões Tomadas 
+        Alex alves: Integração Dashboard Fornecedor 
+        João Pedro: ajustar detalhes finais da apresentação 
+        Murilo: terminar as funcionalidades tela perfil fornecedor, corrigir monografia  
+       
+ 
