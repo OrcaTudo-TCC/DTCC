@@ -87,7 +87,7 @@
                 <h3>Total Produtos Cadastrado</h3>
                 <div class="info">
                     <i class="fas fa-box-open"></i>
-                    <span class="value" id="total-produtos-fornecedor">0</span>
+                    <span class="value" id="total-produtos">0</span>
                 </div>
             </div>
 
@@ -108,82 +108,45 @@
 
     </main>
 
-    <script>
-        // Função para decodificar o JWT
-        function decodificarJWT(token) {
-            const base64Url = token.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-                '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            ).join(''));
-            return JSON.parse(jsonPayload);
-        }
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      alert("Você precisa estar logado.");
+      window.location.href = "/loginFornecedor.html";
+      return;
+    }
 
-        // Buscar todos os fornecedores ou um por ID
-        async function getFornecedorById(id) {
-            const url = new URL("http://localhost:8080/fornecedor");
-            if (id !== undefined) url.searchParams.append('id', id);
-            try {
-                const response = await fetch(url.toString());
-                if (!response.ok) throw new Error("Erro na requisição: " + response.status);
-                return await response.json();
-            } catch (err) {
-                console.log("Erro ao buscar fornecedor:", err);
-                return [];
-            }
-        }
+    try {
+      const payload = decodificarJWT(token);
+      const email = payload.sub;
+      console.log("Email do fornecedor logado:", email);
 
-        // Buscar todos os produtos
-        async function getTodosProdutos() {
-            try {
-                const response = await fetch("http://localhost:8080/produtos");
-                if (!response.ok) throw new Error("Erro ao buscar produtos: " + response.status);
-                return await response.json();
-            } catch (err) {
-                console.log("Erro ao buscar produtos:", err);
-                return [];
-            }
-        }
+      // Buscar os dados do fornecedor logado
+      const fornecedor = await getFornecedorByEmail(email);
+      console.log("Fornecedor retornado:", fornecedor);
 
-        // Quando a página carregar, executa:
-        document.addEventListener("DOMContentLoaded", async () => {
-            const token = sessionStorage.getItem("token");
-            if (!token) {
-                alert("Você precisa estar logado.");
-                window.location.href = "/loginFornecedor.html";
-                return;
-            }
+      // Corrigido: Verifica se o fornecedor é um array válido com pelo menos um item
+      if (!Array.isArray(fornecedor) || fornecedor.length === 0 || !fornecedor[0].id) {
+        throw new Error("Fornecedor não encontrado.");
+      }
 
-            try {
-                const payload = decodificarJWT(token);
-                const email = payload.sub;
+      // Atualiza os elementos do HTML com os dados do fornecedor
+      document.getElementById("nome-fornecedor").textContent = fornecedor[0].nome;
+      document.getElementById("razao").textContent = fornecedor[0].razao_social;
 
-                // 1. Buscar todos os fornecedores e filtrar pelo e-mail
-                const todosFornecedores = await getFornecedorById(); // retorna todos
-                const fornecedor = todosFornecedores.find(f => f.email === email);
+      // Buscar produtos cadastrados por esse fornecedor
+      const produtos = await getProdutoByFornecedorNome(fornecedor[0].nome);
+      const totalProdutos = (produtos && Array.isArray(produtos)) ? produtos.length : 0;
 
-                if (!fornecedor) throw new Error("Fornecedor não encontrado");
+      document.getElementById("total-produtos").textContent = totalProdutos;
 
-                const fornecedorId = fornecedor.id;
-
-                // 2. Buscar todos os produtos
-                const produtos = await getProdutoByFornecedorNome(fornecedor.nome)
-
-                // 3. Filtrar produtos do fornecedor
-                // const meusProdutos = await getProdutoByFornecedorNome()
-
-                // 4. Atualizar o span com a quantidade de produtos
-                document.getElementById("total-produtos-fornecedor").textContent = produtos.length;
-
-                // 5. Obter categorias únicas (baseado no id_subcategoriafinal)
-                const categoriasUnicas = [...new Set(meusProdutos.map(p => p.id_subcategoriafinal))];
-                document.getElementById("total-categorias-fornecedor").textContent = categoriasUnicas.length;
-
-            } catch (error) {
-                console.error("Erro ao carregar dados do dashboard do fornecedor:", error);
-            }
-        });
-    </script>
+    } catch (error) {
+      console.error("Erro ao carregar informações do fornecedor ou produtos:", error);
+      document.getElementById("total-produtos").textContent = "Erro";
+    }
+  });
+</script>
 
 
 
