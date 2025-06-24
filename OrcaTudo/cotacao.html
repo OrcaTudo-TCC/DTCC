@@ -254,6 +254,12 @@
             }
 
             let item = await postItem(requestbody);
+            let operacao = {
+                "idUsuario":usuario.id,
+                "operacao": "COTACAO",
+                "status": "CONCLUIDA"
+            }
+            postOperacao(operacao);
             alert("Adicionado com sucesso!")
         })
 
@@ -291,6 +297,7 @@
     <script src="js/Fornecedor.js"></script>
     <script src="js/Usuario.js"></script>
     <script src="js/Carrinho.js"></script>
+    <script src="js/operacoes.js" ></script>
 
     <script>
         const param = new URLSearchParams(window.location.search);

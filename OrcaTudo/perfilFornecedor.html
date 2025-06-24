@@ -394,6 +394,8 @@
               inputCategoria.value = "";
             }catch(error){
               alert("Erro ao tentar salvar categoria")
+            }finally{
+              location.reload();
             }
           }
           if(opcaoSelecionada.value == "subcategoria"){
@@ -403,15 +405,20 @@
               inputCategoria.value = "";
             } catch (error) {
               alert("Erro ao tentar salvar subcategoria")
+            }finally{
+              location.reload();
             }
           }
           if(opcaoSelecionada.value == "SubcategoriaFinal"){
             try {
-              postSubcategoriafinal(paiCategoria.value, inputCategoria.value)
-              alert("Salvou a subcategoria final '"+inputCategoria.value+"' com sucesso!")
+              postSubcategoriafinal(paiCategoria.value, inputCategoria.value);
+              alert("Salvou a subcategoria final '"+inputCategoria.value+"' com sucesso!");
+              
               inputCategoria.value = "";
             } catch (error) {
               alert("Erro ao tentar salvar subcategoria")
+            }finally{
+              location.reload();
             }
           }
         }

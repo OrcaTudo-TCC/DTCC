@@ -172,7 +172,6 @@
 .produto-section {
         background-color: white;
         width: 70vw;
-        height: 100vh;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         border-radius: 12px;
