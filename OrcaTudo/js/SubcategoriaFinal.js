@@ -16,11 +16,12 @@ async function getSubcategoriafinal (subcategoria) {
 
     } catch (error) {
       console.log ("Erro na Requisição getSubcategoriafinal: " + error);
+      return null;
     }
   }
 
 
-  async function postSubcategoriafinal () {
+  async function postSubcategoriafinal (subcategoriafinal , nome) {
     try{
       const response = await fetch(endpointSubFinal,{
         method: "POST",
@@ -32,8 +33,8 @@ async function getSubcategoriafinal (subcategoria) {
 
         })});
 
-        if (!response.ok) {
-          throw new Error(response.status);
+        if (response.status == 404){
+          console.log('erro na pesquisa: ', response.status)
         }
         const data = await response.json();
         return data;

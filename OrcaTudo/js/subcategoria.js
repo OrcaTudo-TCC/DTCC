@@ -10,8 +10,8 @@ async function getSubcategoria (categoria) {
             headers: { "Content-Type": "application/json" }
         })
 
-        if (!response.ok){
-            throw new Error (response.status)
+        if (response.status === 404){
+          console.log('erro na pesquisa: ', response.status)
         }
 
         const data = await response.json()

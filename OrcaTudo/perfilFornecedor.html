@@ -189,7 +189,7 @@
       document.getElementById('gerenciar-produtos').addEventListener('click', () => {
         document.getElementsByClassName('produtos-menu')[0].style.display = "flex";
       })
-      document.getElementById('salvar-btn-prods').addEventListener('click', ()=>{
+      document.getElementById('salvar-btn-prods').addEventListener('click', () => {
         salvarProduto();
       })
 
@@ -249,6 +249,8 @@
       const imagem = document.getElementById('seletor-imagem');
       const nome = document.getElementById('nome-input');
       const preco = document.getElementById('preco-input');
+      const categoria = document.getElementById('select-categoria');
+      const subcategoria = document.getElementById('select-sub');
       const subFinal = document.getElementById('select-final');
       const descricao = document.getElementById('descricao-input');
       if (
@@ -264,7 +266,7 @@
 
 
       try {
-          const obj = await decodificarJWT(sessionStorage.getItem('token'));
+        const obj = await decodificarJWT(sessionStorage.getItem('token'));
         console.log(obj)
         const fornecedor = await getFornecedorByEmail(obj.sub);
 
@@ -276,7 +278,10 @@
           "nomeFornecedor": fornecedor[0].nome
         }
         postProduto(produto, imagem.files[0])
-        return true;
+        nome.value = "";
+        descricao.value = "";
+        preco.value = "";
+        imagem.value = "";
       } catch (error) {
         console.log("Erro ao tentar salvar produto: ", error)
       }
@@ -292,7 +297,126 @@
       document.getElementById('gerenciar-categorias').addEventListener('click', () => {
         document.getElementsByClassName('categorias-menu')[0].style.display = "flex";
       })
+      const radioCategoria = document.getElementById('radio-categoria');
+      const radioSubcategoria = document.getElementById('radio-subcategoria');
+      const radioSubcategoriaFinal = document.getElementById('radio-subcategoriaFinal');
+      const selectPai = document.getElementById('slt-pai');
+      const labelPai = document.getElementById('slt-pai-label');
+      let categorias;
+      let subcategorias;
+      let subcategoriasFinais;
+      try {
+        categorias = await getCategoria();
+        subcategorias = await Promise.all(categorias.map(cat => getSubcategoria(cat.nome)));
+        console.log('subcategorias: ', subcategorias.flat())
+        subcategoriasFinais = await Promise.all(subcategorias.flat().filter(sub => sub.status !== 404).map(finais => getSubcategoriafinal(finais.nome)));
+        console.log("Subcategorias finais: ", subcategoriasFinais.flat())
+      } catch (error) {
+        console.log("Erro ao pesquisar: ", error)
+      }
+      selectCategoria = document.getElementById('slt-categoria');
+      selectSubcateoria = document.getElementById('slt-subcategoria');
+      selectSubcategoriaFinal = document.getElementById('slt-final');
+      categorias.forEach(categoria => {
+        let option = document.createElement('option');
+        option.innerText = categoria.nome;
+        selectCategoria.appendChild(option);
+      })
+      subcategorias.flat().forEach(sub => {
+        let option = document.createElement('option');
+        option.innerText = sub.nome;
+        selectSubcateoria.appendChild(option);
+      })
+      subcategoriasFinais.flat().forEach(final => {
+        if (final == null) return;
+        let option = document.createElement('option');
+        option.innerText = final.nome;
+        selectSubcategoriaFinal.appendChild(option);
+      })
+      document.querySelector('.option-container').addEventListener('change', (event) => {
+        if (event.target.name === 'option') {
+          selecionado = event.target.value;
+          console.log(selecionado);
+          if(selecionado == "categoria"){
+            console.log("selecionou categoria");
+            selectPai.style.visibility = "hidden"
+            labelPai.style.visibility = "hidden"
+
+          }else if(selecionado == "subcategoria"){
+            console.log("selecionou subcategoria")
+            selectPai.innerHTML = ""
+            selectPai.style.visibility = "visible";
+            labelPai.style.visibility = "visible";
+            categorias.forEach(sub => {
+              let option = document.createElement('option');
+              option.innerText = sub.nome;
+              selectPai.appendChild(option);
+            })
+          }else if(selecionado == "SubcategoriaFinal"){
+            selectPai.innerHTML = ""
+            console.log("selecionou subcategoriaFinal")
+            selectPai.style.visibility = "visible";
+            labelPai.style.visibility = "visible";
+            subcategorias.flat().filter(sub => sub.nome !== undefined).forEach(sub => {
+              let option = document.createElement('option');
+              option.innerText = sub.nome
+              selectPai.appendChild(option);
+            })
+          }
+          
+        }
+      });
     }
+
+
+    async function salvarCategoria() {
+      const inputCategoria = document.getElementById('inputCategoria');
+      const opcaoSelecionada = document.querySelector('input[name="option"]:checked');
+      const paiCategoria = document.getElementById('slt-pai');
+      const salvarbtn = document.getElementById('salvar-btn');
+
+        //caso o botão seteja com a função de salvar
+        if(salvarbtn.innerText == "Salvar"){
+          if (inputCategoria == "") {
+            alert('Preencha o nome da categoria');
+            return;
+          }
+          if (!opcaoSelecionada) {
+            alert('Selecione uma categoria')
+            return;
+          }
+          console.log("apertou o botão de salvar com a opção selcionada: ", opcaoSelecionada)
+          if(opcaoSelecionada.value == "categoria"){
+            try{
+              postCategoria(inputCategoria.value)
+              alert("Salvou a categoria '"+inputCategoria.value+"' com sucesso!")
+              inputCategoria.value = "";
+            }catch(error){
+              alert("Erro ao tentar salvar categoria")
+            }
+          }
+          if(opcaoSelecionada.value == "subcategoria"){
+            try {
+              postSubcategoria(paiCategoria.value, inputCategoria.value);
+              alert("Salvou a subcategoria '"+inputCategoria.value+"' com sucesso!")
+              inputCategoria.value = "";
+            } catch (error) {
+              alert("Erro ao tentar salvar subcategoria")
+            }
+          }
+          if(opcaoSelecionada.value == "SubcategoriaFinal"){
+            try {
+              postSubcategoriafinal(paiCategoria.value, inputCategoria.value)
+              alert("Salvou a subcategoria final '"+inputCategoria.value+"' com sucesso!")
+              inputCategoria.value = "";
+            } catch (error) {
+              alert("Erro ao tentar salvar subcategoria")
+            }
+          }
+        }
+      
+    }
+
     // Função para salvar dados atualizados
     async function salvarPerfil() {
       const obj = await decodificarJWT(sessionStorage.getItem('token'));
@@ -521,14 +645,14 @@
       <div class="select-categoria">
         <h3>Selecione uma categoria para editar</h3>
         <label for="slt-categoria">Categorias</label>
-        <select id="sct-categoria">
+        <select id="slt-categoria">
           <option>Selecione uma categoria</option>
         </select>
         <label for="slt-subcategoria">Subcategoria</label>
         <select id="slt-subcategoria">
           <option>Selecione uma subcategoria</option>
         </select>
-        <label for="slt-final">Categoria final</label>
+        <label   for="slt-final">Categoria final</label>
         <select id="slt-final">
           <option value="">Selecioner uma Categoria Final</option>
         </select>
@@ -537,26 +661,26 @@
       <!--conteúdo à direita, opções de editar ou exluir categoria selecionada, caso nada seelecionada criar-->
       <div class="edit-categoria">
         <h3>Nova categoria</h3>
-        <input disabled type="text" placeholder="Nome da categoria">
+        <input id="inputCategoria" type="text" placeholder="Nome da categoria">
         <div class="option-container">
           <label>
-            <input type="radio" name="option" value="categoria">
+            <input id="radio-categoria" aria-checked="true" checked type="radio" name="option" value="categoria" >
             <span>Categoria</span>
           </label>
           <label>
-            <input type="radio" name="option" value="subcategoria">
+            <input id="radio-subcategoira" type="radio" name="option" value="subcategoria">
             <span>Subcategoria</span>
           </label>
           <label>
-            <input type="radio" name="option" value="SubcategoriaFinal">
+            <input id="radio-subcategoriaFinal" type="radio" name="option" value="SubcategoriaFinal">
             <span>Categoria Final</span>
           </label>
         </div>
-        <label for="slt-pai">Pertence à:</label>
-        <select id="slt-pai">
+        <label style="visibility: hidden;" id="slt-pai-label" for="slt-pai">Pertence à:</label>
+        <select style="visibility: hidden;" id="slt-pai">
           <option value="">Selecione</option>
         </select>
-        <button id="salvar-btn">Salvar</button>
+        <button onclick="salvarCategoria()"  id="salvar-btn">Salvar</button>
         <button id="delete-btn">Excluir</button>
       </div>
     </div>
